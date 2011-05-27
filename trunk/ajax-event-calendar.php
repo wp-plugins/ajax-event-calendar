@@ -2,8 +2,8 @@
 /*
 Plugin Name: Ajax Event Calendar
 Plugin URI: http://eranmiller.com/plugins/aec/
-Description: A multi-user ajax event calendar for editing and viewing via a "Google Calendar"-like interface.
-Version: 0.2.3
+Description: A multi-user ajax event calendar which enables editing via a Google Calendar-like interface.
+Version: 0.6
 Author: Eran Miller
 Author URI: http://eranmiller.com
 License: GPL2
@@ -72,13 +72,6 @@ if ( !class_exists( 'ajax_event_calendar' ) ) {
 		}
 
 		function install() {
-			/*
-			if ( version_compare( get_bloginfo('version'), '0.3', '<' ) ) {
-				deactivate_plugins( plugin_basename( __FILE__ ) );
-				wp_die( 'This plugin requires WordPress version 4.0 or higher. ');
-			}
-			*/
-			
 			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 			global $wpdb;
 
@@ -265,7 +258,7 @@ if ( !class_exists( 'ajax_event_calendar' ) ) {
 		function output_event( $input ) {
 			$input['allDay'] = ( $input['allDay'] ) ? true : false;
 			$output = array(
-				'id'	 		=> $input['id']
+				  'id'	 		=> $input['id']
 				, 'title'  		=> stripslashes( $input['title'] )
 				, 'start'  		=> $this->date_database_format( $input['start_date'] . ' ' . $input['start_time'] )
 				, 'end'	  		=> $this->date_database_format( $input['end_date'] . ' ' . $input['end_time'] )
@@ -280,7 +273,7 @@ if ( !class_exists( 'ajax_event_calendar' ) ) {
 			foreach( $events as $event ) {
 				$allDay   = ( $event->allday ) ? true : false;
 				array_push( $output, array(
-					'id'			=> $event->id
+					  'id'			=> $event->id
 					, 'title'		=> stripslashes( $event->title )
 					, 'start'		=> $event->start
 					, 'end'			=> $event->end
@@ -509,10 +502,11 @@ if ( !class_exists( 'ajax_event_calendar' ) ) {
 				return $event_count;
 			}
 		}
+
 		function delete_user_confirmation( ) {
 			// TODO: add filter to delete confirmation page displaing the number of events to be deleted.
 		}
-		
+
 		function confirm_delete_user_events( $user_id ) {
 			$event_count = $this->get_event_count( $user_id );
 			$this->delete_user_events( $user_id );
@@ -527,10 +521,10 @@ if ( !class_exists( 'ajax_event_calendar' ) ) {
 			if ( $result === false ) {
 				$this->log( $wpdb->print_error() );
 				return false;
-			} 
+			}
 			return $result;
 		}
-		
+
 		function delete_user_events( $user_id ) {
 			global $wpdb;
 			$result = $wpdb->query( $wpdb->prepare( 'DELETE FROM ' . $wpdb->prefix . AEC_EVENT_TABLE . ' WHERE user_id = %d;', $user_id ) );
@@ -569,7 +563,7 @@ if ( !class_exists( 'ajax_event_calendar' ) ) {
 				$this->output_events( $results );
 			}
 		}
-		
+
 		function add_category( $input ) {
 			$input = $this->cleanse_category_input( $input );
 
@@ -669,7 +663,7 @@ if ( !class_exists( 'ajax_event_calendar' ) ) {
 			}
 			echo $result;
 		}
-		
+
 		function generate_css() {
 			$categories = $this->get_categories();
 			$out = '';
@@ -707,14 +701,14 @@ if ( !class_exists( 'ajax_event_calendar' ) ) {
 			return ( $value == 1 ) ? '' : 's';
 		}
 
-		//placeholder
+		// placeholder
 		function deactivate() {}
-		
+
 	}
 }
 
 register_activation_hook( __FILE__, array( 'ajax_event_calendar', 'install' ) );
-register_deactivation_hook( __FILE__, array( 'ajax_event_calendar', 'deactivate' ) );
+// register_deactivation_hook( __FILE__, array( 'ajax_event_calendar', 'deactivate' ) );
 
 if ( class_exists( 'ajax_event_calendar' ) ) {
 	$aec = new ajax_event_calendar();
