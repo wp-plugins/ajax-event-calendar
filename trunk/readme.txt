@@ -1,11 +1,9 @@
 === Ajax Event Calendar ===
 Contributors: eranmiller
-Donate link: http://example.com/
 Tags: multi-user event calendar, event calendar, calendar, event, events, ajax
 Requires at least: 3.1
 Tested up to: 3.1.3
-Stable tag: 0.2.3
-Last updated: 2011-05-26
+Stable tag: 0.6
 
 A multi-user ajax event calendar which enables both editing via a Google Calendar-like interface.
 
