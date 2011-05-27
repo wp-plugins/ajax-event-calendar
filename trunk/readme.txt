@@ -3,14 +3,13 @@ Contributors: eranmiller
 Tags: multi-user, calendar, event, ajax
 Requires at least: 3.1
 Tested up to: 3.1.3
-Stable tag: 0.6
+Stable tag: 0.6.1
 
-A multi-user event calendar that enables editing via a Google Calendar-like interface.
+A Google Calendar-like interface that allows users (with required access) to add, edit and delete events in a common calendar.
 
 == Description ==
 
-* Renders events created by registered users with the appropriate authorization
-* Administrators can edit all events, calendar contributors can only edit events they create themselves
+* Administrators can edit and delete all events, others can only edit and delete events they create themselves
 * Dynamic (based on event categories) and near-instant event filtering
 * Dynamically generated calendar contributor list (sidebar widget)
 * Current month calendar activity report (Administrator only)
@@ -25,7 +24,15 @@ A multi-user event calendar that enables editing via a Google Calendar-like inte
 1. (optional) Display contributor list in sidebar via WordPress Widget options
 1. (optional) Create and delete existing, or add additional event category types
 
-== Notes ==
+== Frequently Asked Questions ==
+
+* Coming Soon
+
+== Screenshots ==
+
+* Coming Soon
+
+== Other ==
 
 * Adds two new roles "Calendar Contributor" and "Blog+Calendar Contributor"
 * Adds new capability "aec_add_events" (Administrator and Calendar Contributor roles)
@@ -42,20 +49,10 @@ A multi-user event calendar that enables editing via a Google Calendar-like inte
 * OSX styled modal forms (simpleModal)
 * Category color selection (miniColors)
 
-== Frequently Asked Questions ==
-
-* Coming Soon
-
-== Upgrade Notice ==
-
-= 0.6 =
-* First official plugin release
-
-== Screenshots ==
-
-* Coming Soon
-
 == Changelog ==
+
+= 0.6.1 = 
+* Updated plugin link
 
 = 0.6 =
 * Refined event input form
@@ -97,3 +94,11 @@ A multi-user event calendar that enables editing via a Google Calendar-like inte
 
 = 0.1 =
 * Getting the wheels to stay on the wagon
+
+== Upgrade Notice ==
+
+= 0.6.1 =
+* Updated plugin link
+
+= 0.6 =
+* First official plugin release
