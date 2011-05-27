@@ -15,7 +15,7 @@ A multi-user ajax event calendar which enables editing via a Google Calendar-lik
 * Dynamically generated calendar contributor list (sidebar widget)
 * Current month calendar activity report (Administrator only)
 * Event category management interface (Administrator only)
-
+* Calendar event count column to Users table (Administrator only)
 
 == Installation ==
 
@@ -31,14 +31,15 @@ A multi-user ajax event calendar which enables editing via a Google Calendar-lik
 * Adds new capability "aec_add_events" (Administrator and Calendar Contributor roles)
 * Adds new capability "aec_run_reports" (Administrator only)
 * These roles and capabilities are removed when the plugin is deleted
-* Adds calendar event count column to administrative Users table
-* Deletes all events associated with a deleted user!
+* All events associated with a deleted user are perminently deleted!
+* Databases are perminently deleted when the plugin is deleted!
 
 == Credits ==
 
 * Google Calendar styled interface (FullCalendar Plugin)
 * Growl styled feedback (jGrowl Plugin)
 * OSX styled modal forms (simpleModal Plugin)
+* Category color selection (miniColors Plugin)
 
 == Change Log ==
 
