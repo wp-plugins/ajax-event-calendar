@@ -1,15 +1,15 @@
 === Ajax Event Calendar ===
 Contributors: eranmiller
-Tags: multi-user event calendar, event calendar, calendar, event, events, ajax
+Tags: multi-user, calendar, event, ajax
 Requires at least: 3.1
 Tested up to: 3.1.3
 Stable tag: 0.6
 
-A multi-user ajax event calendar which enables editing via a Google Calendar-like interface.
+A multi-user event calendar that enables editing via a Google Calendar-like interface.
 
 == Description ==
 
-* Displays events created by registered users with the appropriate authorization
+* Renders events created by registered users with the appropriate authorization
 * Administrators can edit all events, calendar contributors can only edit events they create themselves
 * Dynamic (based on event categories) and near-instant event filtering
 * Dynamically generated calendar contributor list (sidebar widget)
@@ -20,10 +20,10 @@ A multi-user ajax event calendar which enables editing via a Google Calendar-lik
 == Installation ==
 
 1. Use the automatic installer from within the WordPress administration
-2. Click Activate for Ajax Event Calendar
-3. Create a new page for the readonly calendar page. IMPORTANT: page slug must 'calendar'
-4. (optional) Display contributor list in sidebar via WordPress Widget options
-5. (optional) Create and delete existing, or add additional event category types
+1. Click Activate for Ajax Event Calendar
+1. Create a new page for the readonly calendar page. IMPORTANT: page slug must 'calendar'
+1. (optional) Display contributor list in sidebar via WordPress Widget options
+1. (optional) Create and delete existing, or add additional event category types
 
 == Notes ==
 
@@ -35,14 +35,27 @@ A multi-user ajax event calendar which enables editing via a Google Calendar-lik
 * Databases are perminently deleted when the plugin is deleted
 * The event filter is only present when more than a single event category has been created
 
-= Credits =
+**Credits**
 
 * Google Calendar styled interface (FullCalendar)
 * Growl styled feedback (jGrowl)
 * OSX styled modal forms (simpleModal)
 * Category color selection (miniColors)
 
-== Change Log ==
+== Frequently Asked Questions ==
+
+* Coming Soon
+
+== Upgrade Notice ==
+
+= 0.6 =
+* First official plugin release
+
+== Screenshots ==
+
+* Coming Soon
+
+== Changelog ==
 
 = 0.6 =
 * Refined event input form
