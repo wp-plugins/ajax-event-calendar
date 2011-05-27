@@ -6,8 +6,6 @@
 		global $wpdb;
 	
 		delete_option( 'aec_plugin_version' );
-		// placeholder
-		// delete_option( 'plugin_options' );
 
 		$role = get_role( 'administrator' );
 		$role->remove_cap( 'aec_add_events' );
