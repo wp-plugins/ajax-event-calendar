@@ -5,7 +5,7 @@ Requires at least: 3.1
 Tested up to: 3.1.3
 Stable tag: 0.6
 
-A multi-user ajax event calendar which enables both editing via a Google Calendar-like interface.
+A multi-user ajax event calendar which enables editing via a Google Calendar-like interface.
 
 == Description ==
 
