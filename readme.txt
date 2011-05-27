@@ -11,7 +11,7 @@ A multi-user ajax event calendar which enables editing via a Google Calendar-lik
 
 * Displays events created by registered users with the appropriate authorization
 * Administrators can edit all events, calendar contributors can only edit events they create themselves
-* Efficient (immediate) content filtering, no repeat database requests
+* Dynamic (based on event categories) and near-instant event filtering
 * Dynamically generated calendar contributor list (sidebar widget)
 * Current month calendar activity report (Administrator only)
 * Event category management interface (Administrator only)
@@ -21,9 +21,9 @@ A multi-user ajax event calendar which enables editing via a Google Calendar-lik
 
 1. Use the automatic installer from within the WordPress administration
 2. Click Activate for Ajax Event Calendar
-3. Create a new page for the readonly calendar page. IMPORTANT: name the page as you like, but the slug must be named 'calendar'
+3. Create a new page for the readonly calendar page. IMPORTANT: page slug must 'calendar'
 4. (optional) Display contributor list in sidebar via WordPress Widget options
-5. (optional) Create existing, or add additional event category types (when more than one exists, filter becomes available on readonly calendar page)
+5. (optional) Create and delete existing, or add additional event category types
 
 == Notes ==
 
@@ -31,15 +31,16 @@ A multi-user ajax event calendar which enables editing via a Google Calendar-lik
 * Adds new capability "aec_add_events" (Administrator and Calendar Contributor roles)
 * Adds new capability "aec_run_reports" (Administrator only)
 * These roles and capabilities are removed when the plugin is deleted
-* All events associated with a deleted user are perminently deleted!
-* Databases are perminently deleted when the plugin is deleted!
+* All events associated with a deleted user are perminently deleted
+* Databases are perminently deleted when the plugin is deleted
+* The event filter is only present when more than a single event category has been created
 
-== Credits ==
+= Credits =
 
-* Google Calendar styled interface (FullCalendar Plugin)
-* Growl styled feedback (jGrowl Plugin)
-* OSX styled modal forms (simpleModal Plugin)
-* Category color selection (miniColors Plugin)
+* Google Calendar styled interface (FullCalendar)
+* Growl styled feedback (jGrowl)
+* OSX styled modal forms (simpleModal)
+* Category color selection (miniColors)
 
 == Change Log ==
 
