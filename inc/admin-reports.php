@@ -10,3 +10,4 @@ if ( count( $rows ) ) {
 	echo 'No events this month';
 }
 ?>
+</div>
