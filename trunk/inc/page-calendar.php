@@ -88,7 +88,13 @@ get_header();
 		<div class="content"></div>
 	</div>
 	<div id="aec-header">
-		<?php wp_register( '', '' ); ?> | <?php wp_loginout(); ?>
+		<?php 
+			$options = get_option('aec_options');
+			$showMenu = ($options['showMenu']) ? 1 : 0;
+			if ($showMenu) {
+				wp_register( '', '' ); ?> | <?php wp_loginout(); 
+			}
+		?>
 		<ul id="aec-filter">
 		<?php
 			$categories = $aec->get_categories();
