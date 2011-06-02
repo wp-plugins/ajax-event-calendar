@@ -51,7 +51,7 @@ if (!class_exists('ajax_event_calendar')){
 			add_action('admin_menu', array($this, 'set_admin_menu'));
 			add_action('admin_init', array($this, 'aec_options_init'));
 			add_action('delete_user', array($this, 'confirm_delete_user_events'));
-			add_action('widgets_init', create_function('', 'return register_widget("aec_contributors");'));
+			add_action('widgets_init', create_function('', 'return register_widget("contributor_list");'));
 			add_filter('page_template', array($this, 'page_templates'));
 			add_filter('manage_users_columns', array($this, 'add_events_column'));
 			add_filter('manage_users_custom_column', array($this, 'manage_events_column'), 10, 3);
