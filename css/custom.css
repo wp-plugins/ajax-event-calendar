@@ -1,13 +1,13 @@
-ol#aec_category_table{list-style:none;margin-left:.4em}
-#aec_header{width:100%;margin:-2em 0 2em 0}
-#aec_filter {list-style:none;float:right}
-#aec_filter a{cursor:pointer;display:block;padding:.3em .9em;text-decoration:none;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}
-#aec_filter h3{padding:.3em .5em}
-#aec_filter a.all,
-#aec_filter a.all:visited,
-#aec_filter a.all:active,
-#aec_filter a.all:hover{background:#000;color:#ddd}
-#aec_filter li{float:left;border:1px solid #fff}
+ol#aec-category-table{list-style:none;margin-left:.4em}
+#aec-header{width:100%;margin:-2em 0 2em 0}
+#aec-filter {list-style:none;float:right}
+#aec-filter a{cursor:pointer;display:block;padding:.3em .9em;text-decoration:none;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}
+#aec-filter h3{padding:.3em .5em}
+#aec-filter a.all,
+#aec-filter a.all:visited,
+#aec-filter a.all:active,
+#aec-filter a.all:hover{background:#000;color:#ddd}
+#aec-filter li{float:left;border:1px solid #fff}
 
 #aec-loading,
 #aec-modal{display:none}
