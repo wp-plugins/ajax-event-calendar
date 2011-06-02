@@ -3,7 +3,7 @@
 Plugin Name: Ajax Event Calendar
 Plugin URI: http://wordpress.org/extend/plugins/ajax-event-calendar/
 Description: A Google Calendar-like interface that allows registered users (with the necessary credentials) to add, edit and delete events in a common calendar viewable by blog visitors.
-Version: 0.7.3
+Version: 0.7.4
 Author: Eran Miller
 Author URI: http://eranmiller.com
 License: GPL2
@@ -35,7 +35,7 @@ define('AEC_PLUGIN_FILE', basename(__FILE__));
 define('AEC_PLUGIN_NAME', str_replace('.php', '', AEC_PLUGIN_FILE));
 define('AEC_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('AEC_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('AEC_PLUGIN_VERSION', '0.7.3');
+define('AEC_PLUGIN_VERSION', '0.7.4');
 define('AEC_EVENT_TABLE', AEC_DOMAIN . 'event');
 define('AEC_CATEGORY_TABLE', AEC_DOMAIN . 'event_category');
 define('AEC_PLUGIN_HOMEPAGE', 'http://wordpress.org/extend/plugins/' . AEC_PLUGIN_NAME . '/');
