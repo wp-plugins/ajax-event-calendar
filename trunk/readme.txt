@@ -3,9 +3,9 @@ Contributors: eranmiller
 Tags: multi-user, calendar, event, ajax
 Requires at least: 3.1
 Tested up to: 3.1.3
-Stable tag: 0.6.1
+Stable tag: 0.7
 
-A Google Calendar-like interface that allows users (with required access) to add, edit and delete events in a common calendar.
+A Google Calendar-like interface that allows registered users (with required access) to add, edit and delete events in a common calendar viewable by blog visitors.
 
 == Description ==
 
@@ -15,6 +15,8 @@ A Google Calendar-like interface that allows users (with required access) to add
 * Current month calendar activity report (Administrator only)
 * Event category management interface (Administrator only)
 * Calendar event count column to Users table (Administrator only)
+* Limits event entry to the next 30-minute interval and one year from the present time (optional)
+* Displays the WordPress Admin menu on the front-end Calendar (optional)
 
 == Installation ==
 
@@ -26,11 +28,9 @@ A Google Calendar-like interface that allows users (with required access) to add
 
 == Frequently Asked Questions ==
 
-* Coming Soon
 
 == Screenshots ==
 
-* Coming Soon
 
 == Other ==
 
@@ -40,6 +40,7 @@ A Google Calendar-like interface that allows users (with required access) to add
 * These roles and capabilities are removed when the plugin is deleted
 * All events associated with a deleted user are perminently deleted
 * Databases are perminently deleted when the plugin is deleted
+* Plugin options are perminently deleted when the plugin is deleted
 * The event filter is only present when more than a single event category has been created
 
 **Credits**
@@ -50,6 +51,11 @@ A Google Calendar-like interface that allows users (with required access) to add
 * Category color selection (miniColors)
 
 == Changelog ==
+
+= 0.7 =
+* Added options for event limits and admin menu toggle
+* Modified css to address reported style collisions
+* Added a PHP5 dependancy check to halt installation for users running older versions
 
 = 0.6.1 = 
 * Updated plugin link
@@ -96,6 +102,9 @@ A Google Calendar-like interface that allows users (with required access) to add
 * Getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
+
+= 0.7 =
+* Fixed CSS collision and added plugin options
 
 = 0.6.1 =
 * Updated plugin link
