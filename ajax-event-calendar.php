@@ -3,7 +3,7 @@
 Plugin Name: Ajax Event Calendar
 Plugin URI: http://wordpress.org/extend/plugins/ajax-event-calendar/
 Description: A Google Calendar-like interface that allows registered users (with the necessary credentials) to add, edit and delete events in a common calendar viewable by blog visitors.
-Version: 0.7.1
+Version: 0.7.4
 Author: Eran Miller
 Author URI: http://eranmiller.com
 License: GPL2
@@ -35,7 +35,7 @@ define('AEC_PLUGIN_FILE', basename(__FILE__));
 define('AEC_PLUGIN_NAME', str_replace('.php', '', AEC_PLUGIN_FILE));
 define('AEC_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('AEC_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('AEC_PLUGIN_VERSION', '0.7.1');
+define('AEC_PLUGIN_VERSION', '0.7.4');
 define('AEC_EVENT_TABLE', AEC_DOMAIN . 'event');
 define('AEC_CATEGORY_TABLE', AEC_DOMAIN . 'event_category');
 define('AEC_PLUGIN_HOMEPAGE', 'http://wordpress.org/extend/plugins/' . AEC_PLUGIN_NAME . '/');
@@ -51,7 +51,7 @@ if (!class_exists('ajax_event_calendar')){
 			add_action('admin_menu', array($this, 'set_admin_menu'));
 			add_action('admin_init', array($this, 'aec_options_init'));
 			add_action('delete_user', array($this, 'confirm_delete_user_events'));
-			add_action('widgets_init', create_function('', 'return register_widget("aec_contributors");'));
+			add_action('widgets_init', create_function('', 'return register_widget("contributor_list");'));
 			add_filter('page_template', array($this, 'page_templates'));
 			add_filter('manage_users_columns', array($this, 'add_events_column'));
 			add_filter('manage_users_custom_column', array($this, 'manage_events_column'), 10, 3);
@@ -152,7 +152,7 @@ if (!class_exists('ajax_event_calendar')){
 				$sub_report = add_submenu_page(AEC_PLUGIN_FILE, 'Activity Report', 'Activity Report', AEC_DOMAIN . 'run_reports', 'activity_report', array($this, 'run_reports'));
 				add_contextual_help($sub_report, $help);
 				
-				$this->add_defaults_fn();
+				$this->default_options();
 				$sub_options = add_submenu_page(AEC_PLUGIN_FILE, 'Calendar Options', 'Calendar Options', 'manage_options', 'calendar_options', array($this, 'aec_options_page'));
 				add_contextual_help($sub_options, $help);
 		}
@@ -699,7 +699,7 @@ if (!class_exists('ajax_event_calendar')){
 		}
 		
 		// Define default option settings
-		function add_defaults_fn(){
+		function default_options(){
 			$tmp = get_option('aec_options');
 			if(!is_array($tmp)){
 				$arr = array('version'=>AEC_PLUGIN_VERSION,'limit'=>true, 'showMenu'=>true);
