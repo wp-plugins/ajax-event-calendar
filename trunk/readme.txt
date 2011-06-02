@@ -3,7 +3,7 @@ Contributors: eranmiller
 Tags: multi-user, calendar, event, ajax
 Requires at least: 3.1
 Tested up to: 3.1.3
-Stable tag: 0.7.5
+Stable tag: 0.7.6
 
 A Google Calendar-like experience to add, edit and delete events in a common calendar.
 
@@ -53,6 +53,9 @@ A Google Calendar-like interface that allows registered users (with required acc
 * Category color selection (miniColors)
 
 == Changelog ==
+
+= 0.7.6 =
+* Fixed toggle admin menu option
 
 = 0.7.5 =
 * Fixed css, filters and modals
@@ -119,6 +122,9 @@ A Google Calendar-like interface that allows registered users (with required acc
 * Getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
+
+= 0.7.6 =
+* Fixed toggle admin menu option
 
 = 0.7.5 =
 * Fixed css, filters and modals
