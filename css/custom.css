@@ -1,26 +1,29 @@
-body{;font-family:"Lucida Grande",Arial,sans-serif}
-.wrap{padding:2em 1em}
-ol#category_table{list-style:none;margin-left:.4em}
-#actions{width:100%;margin:-2em 0 2em 0}
-#filter {list-style:none;float:right}
-#filter a{cursor:pointer;display:block;padding:.3em .9em;text-decoration:none;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}
-#filter h3{padding:.3em .5em}
-#filter a.all,#filter a.all:visited,#filter a.all:active,#filter a.all:hover{background:#000;color:#ddd}
-#filter li{float:left;border:1px solid #fff}
-#loading,#modal{display:none}
-#loading{color:#fff;font:2.5em/1em "Lucida Grande",Arial,sans-serif;padding:5em}
-#modal-overlay{background-color:#000;cursor:wait}
-#modal-container{-moz-border-radius-bottomleft:6px;-moz-border-radius-bottomright:6px;-moz-box-shadow:0 0 64px #000;-webkit-border-bottom-left-radius:6px;-webkit-border-bottom-right-radius:6px;-webkit-box-shadow:0 0 64px #000;background-color:#eee;border-radius:0 0 6px 6px;box-shadow:0 0 64px #000;color:#000;font:16px/24px "Lucida Grande",Arial,sans-serif;padding-bottom:4px;width:600px}
-#modal-container .title{background-color:#ddd;border-bottom:1px solid #ccc;color:#000;font-weight:700;padding:6px 8px;text-shadow:0 1px 0 #f4f4f4}
-#modal-container .close{display:none;position:absolute;right:0;top:0}
-#modal-container .close a{color:#777;display:block;font-weight:700;padding:6px 12px 0;text-decoration:none;text-shadow:0 1px 0 #f4f4f4}
-#modal-container .close a:hover{color:#000}
-#modal-container .content{font-size:12px;padding:0 12px}
-#modal-container h2{margin:10px 0 6px}
-#modal-container h3{font-weight:700;padding-top:1em}
-#modal-container p{margin-bottom:10px}
-#modal-container span{color:#777}
-#modal ul{list-style-type:none;margin:0;padding:0}
+ol#aec_category_table{list-style:none;margin-left:.4em}
+#aec_header{width:100%;margin:-2em 0 2em 0}
+#aec_filter {list-style:none;float:right}
+#aec_filter a{cursor:pointer;display:block;padding:.3em .9em;text-decoration:none;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}
+#aec_filter h3{padding:.3em .5em}
+#aec_filter a.all,
+#aec_filter a.all:visited,
+#aec_filter a.all:active,
+#aec_filter a.all:hover{background:#000;color:#ddd}
+#aec_filter li{float:left;border:1px solid #fff}
+
+#aec-loading,
+#aec-modal{display:none}
+#aec-loading{color:#fff;font:2.5em/1em "Lucida Grande",Arial,sans-serif;padding:5em}
+#aec-modal-overlay{background-color:#000;cursor:wait}
+#aec-modal-container{-moz-border-radius-bottomleft:6px;-moz-border-radius-bottomright:6px;-moz-box-shadow:0 0 64px #000;-webkit-border-bottom-left-radius:6px;-webkit-border-bottom-right-radius:6px;-webkit-box-shadow:0 0 64px #000;background-color:#eee;border-radius:0 0 6px 6px;box-shadow:0 0 64px #000;color:#000;font:16px/24px "Lucida Grande",Arial,sans-serif;padding-bottom:4px;width:600px}
+#aec-modal-container .title{background-color:#ddd;border-bottom:1px solid #ccc;color:#000;font-weight:700;padding:6px 8px;text-shadow:0 1px 0 #f4f4f4}
+#aec-modal-container .close{display:none;position:absolute;right:0;top:0}
+#aec-modal-container .close a{color:#777;display:block;font-weight:700;padding:6px 12px 0;text-decoration:none;text-shadow:0 1px 0 #f4f4f4}
+#aec-modal-container .close a:hover{color:#000}
+#aec-modal-container .content{font-size:12px;padding:0 12px}
+#aec-modal-container h2{margin:10px 0 6px}
+#aec-modal-container h3{font-weight:700;padding-top:1em}
+#aec-modal-container p{margin-bottom:10px}
+#aec-modal-container span{color:#777}
+#aec-modal ul{list-style-type:none;margin:0;padding:0}
 
 .fc{direction:ltr;text-align:left}
 .fc table{border-collapse:collapse;border-spacing:0}
@@ -126,31 +129,31 @@ div.time-picker li{cursor:pointer;font:12px/1 "Lucida Grande",Arial,sans-serif;h
 div.time-picker li.selected{background:#0063CE;color:#fff}
 form{font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif}
 
-.form .edit{width:25em}
-.form table{border-spacing:0}
-.form tr.header{background:#eee}
-.form td{padding:5px;margin:0}
+.aec_form .edit{width:25em}
+.aec_form table{border-spacing:0}
+.aec_form tr.header{background:#eee}
+.aec_form td{padding:5px;margin:0}
 
-.form li{float:left;margin:3px 0 0;padding-bottom:3px;width:100%}
-.form ul{height:1%;list-style:none;margin:0;overflow:hidden;padding:2px 5px 5px}
-.form fieldset{display:block;margin-bottom:10px}
-.form em{color:red}
-.form .picker{cursor:pointer}
-.form{list-style:none;margin:0}
-.form label{display:inline;float:left;padding:5px 5px 3px 0;width:120px}
-.form label.box{padding:0 0 0 5px;width:auto}
-.form li ul li{border-bottom:0 solid red}
-.form input{display:inline;line-height:100%;width:25em}
-.form .auto{width:auto}
-.form .wide{width:32em}
-.form .semi{width:15em}
-.form .error{background-color:#ff6}
-.form select{display:inline;float:left;width:25em}
-.form textarea{display:inline;float:left;height:6.5em;resize:none;width:25em}
-.form input[type=radio]{border:0;width:auto;float:left}
-.form input[type=checkbox]{border:0;width:auto;float:left}
-.form li.buttons{text-align:right}
-.form li.buttons input{float:none;width:auto}
+.aec_form li{float:left;margin:3px 0 0;padding-bottom:3px;width:100%}
+.aec_form ul{height:1%;list-style:none;margin:0;overflow:hidden;padding:2px 5px 5px}
+.aec_form fieldset{display:block;margin-bottom:10px}
+.aec_form em{color:red}
+.aec_form .picker{cursor:pointer}
+.aec_form{list-style:none;margin:0}
+.aec_form label{display:inline;float:left;padding:5px 5px 3px 0;width:120px}
+.aec_form label.box{padding:0 0 0 5px;width:auto}
+.aec_form li ul li{border-bottom:0 solid red}
+.aec_form input{display:inline;width:25em}
+.aec_form .auto{width:auto}
+.aec_form .wide{width:32em}
+.aec_form .semi{width:15em}
+.aec_form .error{background-color:#ff6}
+.aec_form select{display:inline;float:left;width:25em}
+.aec_form textarea{display:inline;float:left;height:6.5em;resize:none;width:25em}
+.aec_form input[type=radio]{border:0;width:auto;float:left}
+.aec_form input[type=checkbox]{border:0;width:auto;float:left}
+.aec_form li.buttons{text-align:right}
+.aec_form li.buttons input{float:none;width:auto}
 .vvv li{clear:both;display:block;width:100%}
 .vvv label{clear:both;display:block;float:none;width:100%}
 .vvv input{display:block;float:left}
@@ -193,18 +196,18 @@ form{font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif}
 label.v{display:block;float:none;padding:3px;text-align:left;width:auto}
 label.h{display:inline;float:left;width:auto}
 .multiselect{background-color:#FFF;border:0 inset #ccc;float:left;height:200px;overflow:auto;padding:0;width:200px}
-.multiselect .form{border:0;height:auto;margin:0;padding:0}
+.multiselect .aec_form{border:0;height:auto;margin:0;padding:0}
 .multiselect .vhh{margin:0;padding:0}
 .multiselect .vhh input{float:left}
 .multiselect .vhh label{clear:none;display:block;float:none;margin-left:20px;width:auto}
 .multiselect .vhh li{overflow:hidden;width:100%}
 .multiselect .vii li{width:100%}
-.form input.noborder{border:0}
+.aec_form input.noborder{border:0}
 .required{color:red}
 .required label:before{content:"* "}
 .leftnote{color:#F93;float:left;padding:3px 5px 0}
 .bottomnote{clear:both;color:#F93;display:block;padding:0}
-.form label span {display:block}
+.aec_form label span {display:block}
 .tar label{text-align:right}
 .fl{float:left}
 .cb{clear:both}

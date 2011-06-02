@@ -3,19 +3,20 @@ Contributors: eranmiller
 Tags: multi-user, calendar, event, ajax
 Requires at least: 3.1
 Tested up to: 3.1.3
-Stable tag: 0.6
+Stable tag: 0.7
 
-A multi-user event calendar that enables editing via a Google Calendar-like interface.
+A Google Calendar-like interface that allows registered users (with required access) to add, edit and delete events in a common calendar viewable by blog visitors.
 
 == Description ==
 
-* Renders events created by registered users with the appropriate authorization
-* Administrators can edit all events, calendar contributors can only edit events they create themselves
+* Administrators can edit and delete all events, others can only edit and delete events they create themselves
 * Dynamic (based on event categories) and near-instant event filtering
 * Dynamically generated calendar contributor list (sidebar widget)
 * Current month calendar activity report (Administrator only)
 * Event category management interface (Administrator only)
 * Calendar event count column to Users table (Administrator only)
+* Limits event entry to the next 30-minute interval and one year from the present time (optional)
+* Displays the WordPress Admin menu on the front-end Calendar (optional)
 
 == Installation ==
 
@@ -25,7 +26,13 @@ A multi-user event calendar that enables editing via a Google Calendar-like inte
 1. (optional) Display contributor list in sidebar via WordPress Widget options
 1. (optional) Create and delete existing, or add additional event category types
 
-== Notes ==
+== Frequently Asked Questions ==
+
+
+== Screenshots ==
+
+
+== Other ==
 
 * Adds two new roles "Calendar Contributor" and "Blog+Calendar Contributor"
 * Adds new capability "aec_add_events" (Administrator and Calendar Contributor roles)
@@ -33,6 +40,7 @@ A multi-user event calendar that enables editing via a Google Calendar-like inte
 * These roles and capabilities are removed when the plugin is deleted
 * All events associated with a deleted user are perminently deleted
 * Databases are perminently deleted when the plugin is deleted
+* Plugin options are perminently deleted when the plugin is deleted
 * The event filter is only present when more than a single event category has been created
 
 **Credits**
@@ -42,20 +50,15 @@ A multi-user event calendar that enables editing via a Google Calendar-like inte
 * OSX styled modal forms (simpleModal)
 * Category color selection (miniColors)
 
-== Frequently Asked Questions ==
-
-* Coming Soon
-
-== Upgrade Notice ==
-
-= 0.6 =
-* First official plugin release
-
-== Screenshots ==
-
-* Coming Soon
-
 == Changelog ==
+
+= 0.7 =
+* Added options for event limits and admin menu toggle
+* Modified css to address reported style collisions
+* Added a PHP5 dependancy check to halt installation for users running older versions
+
+= 0.6.1 = 
+* Updated plugin link
 
 = 0.6 =
 * Refined event input form
@@ -97,3 +100,14 @@ A multi-user event calendar that enables editing via a Google Calendar-like inte
 
 = 0.1 =
 * Getting the wheels to stay on the wagon
+
+== Upgrade Notice ==
+
+= 0.7 =
+* Fixed CSS collision and added plugin options
+
+= 0.6.1 =
+* Updated plugin link
+
+= 0.6 =
+* First official plugin release

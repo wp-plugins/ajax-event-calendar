@@ -16,9 +16,9 @@
 		$categories = $this->get_categories();
 ?>
 <div class='wrap'>
-	<h2>Manage Category Types</h2>
+	<h2>Categories</h2>
 	<em>Add a new, or edit an existing category type (and associated calendar tile color).</em>
-	<form id="category_form" class="form">
+	<form id="category_form" class="aec_form">
 	<ul>
 		<li>
 			<input type="hidden" id="bgcolor" name="bgcolor" class="bg colors" value="#ABCABC" /> 
@@ -29,11 +29,11 @@
 	</ul>
 	</form>
 
-	<ol id="category_table">
+	<ol id="aec_category_table">
 <?php
 		$out = '';
 		foreach ($categories as $category) {
-			$delete = ( $category->id > 1 ) ? '<a class="delete">delete</a>' . "\n" : ' (this is the primary category, it can be edited but it cannot be deleted)';
+			$delete = ( $category->id > 1 ) ? '<a class="delete">delete</a>' . "\n" : ' (you may edit this category, but it cannot be deleted)';
 			$out .= '<li id="id_' . $category->id . '">' . "\n";
 			$out .= '<input type="hidden" name="bgcolor" value="#' . $category->bgcolor . '" class="bg colors" />' . "\n";
 			$out .= '<input type="hidden" name="fgcolor" value="#' . $category->fgcolor . '" class="fg" />' . "\n";
@@ -95,7 +95,7 @@
 						row += '<span><button class="update button-secondary">update</button> <a class="delete">delete</a></span> \n';
 						row += '</li> \n';
 
-					jQuery( '#category_table' ).append( row );
+					jQuery( '#aec_category_table' ).append( row );
 					jQuery( '.colors', jQuery( '#id_' + data.id ) ).miniColors({
 						change: function(hex, rgb) {
 							jQuery( '.fg', jQuery( this ).parent()[0] ).val( getFG( rgb ) );
@@ -109,13 +109,13 @@
 		
 		jQuery( 'body' ).delegate( '.update', 'click', function( e ) {
 			e.preventDefault();
-			var row = jQuery( this ).parent().parent()[0]
-				 , html_id = row.id
-				 , id = html_id.replace( 'id_', '' )
-				 , cat = jQuery.trim( jQuery( '.edit' , row ).val() )
-				 , fg = jQuery( '.fg' , row ).val()
-				 , bg = jQuery( '.bg', row ).val()
-				 , json = { 'id': id, 'bgcolor': bg, 'fgcolor': fg, 'category': cat };
+			var row = jQuery( this ).parent().parent()[0],
+				html_id = row.id,
+				id = html_id.replace( 'id_', '' ),
+				cat = jQuery.trim( jQuery( '.edit' , row ).val() ),
+				fg = jQuery( '.fg' , row ).val(),
+				bg = jQuery( '.bg', row ).val(),
+				json = { 'id': id, 'bgcolor': bg, 'fgcolor': fg, 'category': cat };
 				if ( cat.length > 1 ) {
 					 jQuery.post( '<?php echo AEC_PLUGIN_URL; ?>inc/admin-category.php', { 'category_data': json, 'action': 'update' }, function( data, textStatus, jqXHR ){
 					if ( data ) {					
@@ -129,10 +129,10 @@
 		
 		jQuery( 'body' ).delegate( '.delete', 'click', function( e ) {
 			e.preventDefault();
-			var row = jQuery( this ).parent().parent()[0]
-				 , html_id = row.id
-				 , id = html_id.replace( 'id_', '' )
-				 , cat = jQuery( '.edit' , row ).val();
+			var row = jQuery( this ).parent().parent()[0],
+				html_id = row.id,
+				id = html_id.replace( 'id_', '' ),
+				cat = jQuery( '.edit' , row ).val();
 
 			if ( confirm( 'Are you sure you want to delete this category type?' ) ) {
 				jQuery.post( '<?php echo AEC_PLUGIN_URL; ?>inc/admin-category.php', { 'id': id, 'action': 'delete' }, function( data ) {
