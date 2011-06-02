@@ -32,7 +32,7 @@
 		$accessible_checked = ( $event->access ) ? 'checked="checked" ' : '';
 		$rsvp_checked = ( $event->rsvp ) ? 'checked="checked" ' : '';
 ?>
-	<form method="post" action="" id="event_form" class="form">
+	<form method="post" action="" id="event_form" class="aec_form">
 	<input type="hidden" name="id" id="id" value="<?php echo $event->id; ?>" />
     <input type="hidden" name="user_id" id="user_id" value="<?php echo $event->user_id; ?>" />
     <ul>
@@ -164,10 +164,16 @@
 <script type='text/javascript'>
 jQuery().ready( function() {
 	var dates = jQuery( '#start_date, #end_date' ).datepicker({
-		minDate: '+1d'
-		, maxDate: '+1y'
-		, showButtonPanel: true
-		, onSelect: function( selectedDate ) {
+<?php
+	$options = get_option('aec_options');
+	$limit = ($options['limit']) ? 1 : 0;
+	if ($limit) {
+?>
+		minDate: '+1d',
+		maxDate: '+1y',
+<?php } ?>
+		showButtonPanel: true,
+		onSelect: function( selectedDate ) {
 			var option = ( this.id == 'start_date' ) ? 'minDate' : 'maxDate',
 				instance = jQuery( this ).data( 'datepicker' ),
 				date = jQuery.datepicker.parseDate( instance.settings.dateFormat || 
@@ -179,9 +185,9 @@ jQuery().ready( function() {
 	});
 
 	var times = jQuery( '#start_time, #end_time' ).timePicker({ 
-		step: 30
-		, show24Hours: false
-		, separator:':'
+		step: 30,
+		show24Hours: false,
+		separator:':'
 	});
 
 	validateForm();
@@ -203,12 +209,12 @@ jQuery().ready( function() {
 				if ( data ) {
 					var calendar = jQuery( '#calendar' ).fullCalendar( 'renderEvent',
 					{
-						id: data.id
-						, title: data.title
-						, allDay: data.allDay
-						, start: data.start
-						, end: data.end
-						, className: data.className
+						id: data.id,
+						title: data.title,
+						allDay: data.allDay,
+						start: data.start,
+						end: data.end,
+						className: data.className
 					}, false );
 					//calendar.fullCalendar( 'unselect' );
 					jQuery.jGrowl( '<strong>' + data.title + '</strong> has been added.', { header: 'Success!' } );
@@ -280,9 +286,9 @@ jQuery().ready( function() {
 	}
 
 	function checkDuration() {
-		var allDay = jQuery( '#allDay' ).attr( 'checked' )
-			, from = jQuery( '#start_date' ).val()
-			, to = jQuery( '#end_date' ).val();
+		var allDay = jQuery( '#allDay' ).attr( 'checked' ),
+			from = jQuery( '#start_date' ).val(),
+			to = jQuery( '#end_date' ).val();
 		
 		if ( allDay ) {
 			jQuery( '#start_time, #end_time' ).fadeOut( 250 );
