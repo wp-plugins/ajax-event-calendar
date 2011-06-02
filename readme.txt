@@ -3,11 +3,13 @@ Contributors: eranmiller
 Tags: multi-user, calendar, event, ajax
 Requires at least: 3.1
 Tested up to: 3.1.3
-Stable tag: 0.7.1
+Stable tag: 0.7.3
 
-A Google Calendar-like interface that allows registered users (with required access) to add, edit and delete events in a common calendar viewable by blog visitors.
+A Google Calendar-like experience to add, edit and delete events in a common calendar.
 
 == Description ==
+
+A Google Calendar-like interface that allows registered users (with required access) to add, edit and delete events in a common calendar viewable by all blog visitors.
 
 * Administrators can edit and delete all events, others can only edit and delete events they create themselves
 * Dynamic (based on event categories) and near-instant event filtering
@@ -51,6 +53,13 @@ A Google Calendar-like interface that allows registered users (with required acc
 * Category color selection (miniColors)
 
 == Changelog ==
+
+= 0.7.3 =
+* Fixed update issues
+
+= 0.7.2 =
+* Fixed truncated plugin description
+
 = 0.7.1 =
 * Fixed widget file path
 
@@ -104,6 +113,12 @@ A Google Calendar-like interface that allows registered users (with required acc
 * Getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
+
+= 0.7.3 =
+* Fixed update issues
+
+= 0.7.2 =
+* Fixed truncated plugin description
 
 = 0.7.1
 * Fixed widget file path
