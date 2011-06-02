@@ -18,7 +18,7 @@
 <div class='wrap'>
 	<h2>Categories</h2>
 	<em>Add a new, or edit an existing category type (and associated calendar tile color).</em>
-	<form id="category_form" class="aec_form">
+	<form id="aec-category-form">
 	<ul>
 		<li>
 			<input type="hidden" id="bgcolor" name="bgcolor" class="bg colors" value="#ABCABC" /> 
@@ -29,7 +29,7 @@
 	</ul>
 	</form>
 
-	<ol id="aec_category_table">
+	<ol id="aec-category-table">
 <?php
 		$out = '';
 		foreach ($categories as $category) {
@@ -57,7 +57,7 @@
 
 		validateForm();
 
-		jQuery( '#category_form' ).keyup( function() {
+		jQuery( '#aec-category-form' ).keyup( function() {
 			validateForm();
 		});
 		
@@ -86,7 +86,7 @@
 
 		jQuery( '.add' ).click( function( e ) {
 			e.preventDefault();
-			jQuery.post( '<?php echo AEC_PLUGIN_URL; ?>inc/admin-category.php', { 'category_data': jQuery( '#category_form' ).serialize(), 'action': 'add' }, function( data ){
+			jQuery.post( '<?php echo AEC_PLUGIN_URL; ?>inc/admin-category.php', { 'category_data': jQuery( '#aec-category-form' ).serialize(), 'action': 'add' }, function( data ){
 				if ( data ) {
 					var row =  '<li id="id_' + data.id + '"> \n';
 						row += '<input type="hidden" name="bgcolor" value="#' + data.bgcolor + '"  class="bg colors" /> \n';
@@ -95,7 +95,7 @@
 						row += '<span><button class="update button-secondary">update</button> <a class="delete">delete</a></span> \n';
 						row += '</li> \n';
 
-					jQuery( '#aec_category_table' ).append( row );
+					jQuery( '#aec-category-table' ).append( row );
 					jQuery( '.colors', jQuery( '#id_' + data.id ) ).miniColors({
 						change: function(hex, rgb) {
 							jQuery( '.fg', jQuery( this ).parent()[0] ).val( getFG( rgb ) );

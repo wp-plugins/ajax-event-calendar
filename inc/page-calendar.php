@@ -78,18 +78,24 @@ Template Name: calendar
 	}
 get_header();
 ?>
-<div id="container">
+<div class="wrap">
 <link rel="stylesheet" type="text/css" href="<?php echo AEC_PLUGIN_URL; ?>css/jquery-ui-1.8.11.custom.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo AEC_PLUGIN_URL; ?>css/custom.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo AEC_PLUGIN_URL; ?>css/cat_colors.css" />
-	<div id="loading">Loading...</div>
-	<div id="modal">
+	<div id="aec-loading">Loading...</div>
+	<div id="aec-modal">
 		<div class="title"></div>
 		<div class="content"></div>
 	</div>
-	<div id="actions">
-		<?php wp_register( '', '' ); ?> | <?php wp_loginout(); ?>
-		<ul id="filter">
+	<div id="aec-header">
+		<?php 
+			$options = get_option('aec_options');
+			$showMenu = ($options['showMenu']) ? 1 : 0;
+			if ($showMenu) {
+				wp_register( '', '' ); ?> | <?php wp_loginout(); 
+			}
+		?>
+		<ul id="aec-filter">
 		<?php
 			$categories = $aec->get_categories();
 			if ( sizeof( $categories ) > 1 ) {
@@ -103,7 +109,7 @@ get_header();
 		?>
 		</ul>
 	</div>
-	<div id="calendar"></div>
+	<div id="aec-calendar"></div>
  </div>
 
 <script type="text/javascript" src="<?php echo AEC_PLUGIN_URL; ?>js/jquery-1.5.1.min.js"></script>
@@ -113,8 +119,8 @@ get_header();
 <script type="text/javascript">
 	jQuery( document ).ready(function() {	
 
-		var isFilter = ( jQuery( '#filter li a' ).length > 0 );
-		var calendar = jQuery( '#calendar' ).fullCalendar({
+		var isFilter = ( jQuery( '#aec-filter li a' ).length > 0 );
+		var calendar = jQuery( '#aec-calendar' ).fullCalendar({
 			theme: true
 			, timeFormat: {
 				agenda: 'h:mmt{ - h:mmt}'
@@ -126,7 +132,7 @@ get_header();
 			, eventRender: function( e, element ) {
 				// check if filter is active
 				if ( isFilter ) {
-					var filter = jQuery( '#filter li.active' ).children().attr( 'class' );
+					var filter = jQuery( '#aec-filter li.active' ).children().attr( 'class' );
 					// skip filter if selected option is "all"		
 					if ( filter != 'all' ) {
 						// hide all category types other than the selected
@@ -150,7 +156,7 @@ get_header();
 			, selectable: false
 			, selectHelper: false
 			, loading: function( b ) {
-				if ( b ) jQuery( '#loading' ).modal({ overlayId: 'modal-overlay', close: false });
+				if ( b ) jQuery( '#aec-loading' ).modal({ overlayId: 'aec-modal-overlay', close: false });
 				else jQuery.modal.close();
 			}
 			,eventClick: function( e ) {
@@ -159,23 +165,23 @@ get_header();
 		});
 		
 		if ( isFilter ) {
-			filter( jQuery( '#filter .all' ) ); // filter: activate all
+			filter( jQuery( '#aec-filter .all' ) ); // filter: activate all
 			
-			jQuery( '#filter li a' ).click( function() {
+			jQuery( '#aec-filter li a' ).click( function() {
 				filter( this );
 			});
 		};
 
 		function filter( active ) {
-			jQuery( '#filter li' ).next().fadeTo( 0, 0.3 ).removeClass( 'active' );
+			jQuery( '#aec-filter li' ).next().fadeTo( 0, 0.3 ).removeClass( 'active' );
 			jQuery( active ).parent().fadeTo( 250, 1 ).addClass( 'active' );
 			calendar.fullCalendar( 'rerenderEvents' );
 		}
 		
 		function eventDialog( e ) {		
-			jQuery( '#modal' ).modal({
-				overlayId: 'modal-overlay'
-				, containerId: 'modal-container'
+			jQuery( '#aec-modal' ).modal({
+				overlayId: 'aec-modal-overlay'
+				, containerId: 'aec-modal-container'
 				, closeHTML: '<div class="close"><a href="#" class="simplemodal-close" title="click here (or press ESC) close event details">x</a></div>'
 				, minHeight: 35
 				, opacity: 65
@@ -185,7 +191,7 @@ get_header();
 					var modal = this;
 					modal.container = d.container[0];
 					d.overlay.fadeIn( 250, function () {
-						jQuery( '#modal', modal.container ).show();
+						jQuery( '#aec-modal', modal.container ).show();
 						var title = jQuery( 'div.title', modal.container ),
 							content = jQuery( 'div.content', modal.container ),
 							closebtn = jQuery( 'div.close', modal.container );
