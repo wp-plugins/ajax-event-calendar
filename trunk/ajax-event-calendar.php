@@ -152,7 +152,7 @@ if (!class_exists('ajax_event_calendar')){
 				$sub_report = add_submenu_page(AEC_PLUGIN_FILE, 'Activity Report', 'Activity Report', AEC_DOMAIN . 'run_reports', 'activity_report', array($this, 'run_reports'));
 				add_contextual_help($sub_report, $help);
 				
-				$this->add_defaults_fn();
+				$this->default_options();
 				$sub_options = add_submenu_page(AEC_PLUGIN_FILE, 'Calendar Options', 'Calendar Options', 'manage_options', 'calendar_options', array($this, 'aec_options_page'));
 				add_contextual_help($sub_options, $help);
 		}
@@ -699,7 +699,7 @@ if (!class_exists('ajax_event_calendar')){
 		}
 		
 		// Define default option settings
-		function add_defaults_fn(){
+		function default_options(){
 			$tmp = get_option('aec_options');
 			if(!is_array($tmp)){
 				$arr = array('version'=>AEC_PLUGIN_VERSION,'limit'=>true, 'showMenu'=>true);
