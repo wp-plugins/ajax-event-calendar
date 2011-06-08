@@ -1,7 +1,6 @@
 <?php 
 	$is_admin = (current_user_can('manage_options') == true) ? 1 : 0;
 	$options = get_option('aec_options');
-	$limit = ($options['limit']) ? 1 : 0;
 ?>
 <div class="wrap">
 	<h2>Calendar</h2>
@@ -22,7 +21,7 @@ jQuery().ready( function() {
 		today = new Date( d.getFullYear(), d.getMonth(), d.getDate() ),
 		nextYear = new Date( d.getFullYear() + 1, d.getMonth(), d.getDate() ),
 		admin = <?php echo $is_admin; ?>;
-		limitEvents = <?php echo $limit; ?>;
+		limit = <?php echo $options['general_limit_events']; ?>;
 
 	var calendar = jQuery( '#aec-calendar' ).fullCalendar( {
 		theme: true
@@ -52,7 +51,8 @@ jQuery().ready( function() {
 			else jQuery.modal.close();
 		}
 		, select: function( start, end, allDay, js, view ) {
-			if ( limitEvents ) {
+
+			if ( limit ) {
 				if ( start < today || ( start < now && view.name == 'agendaWeek' )) {
 					jQuery.jGrowl( 'You cannot create events in the past.', { header: 'Whoops!' } );
 					return false;
@@ -75,7 +75,7 @@ jQuery().ready( function() {
 		}
 		, eventResize: function( e, dayDelta, minuteDelta, revertFunc, js, ui, view ) {
 			eventtime = ( e.end == null ) ? e.start : e.end;
-			if ( limitEvents && eventtime < now ) {
+			if ( limit && eventtime < now ) {
 				jQuery.jGrowl( 'You cannot resize expired events.', { header: 'Whoops!' } );
 				revertFunc();
 				return false;
@@ -84,7 +84,7 @@ jQuery().ready( function() {
 		}
 		// IMPORTANT: parameters must be listed as shown for revertFunc and view to function
 		, eventDrop: function( e, dayDelta, minuteDelta, allDay, revertFunc, js, ui, view ) {
-			if ( limitEvents && e.start < now ) {
+			if ( limit && e.start < now ) {
 				jQuery.jGrowl( 'You cannot move events into the past.', { header: 'Whoops!' } );
 				revertFunc();
 				return;
@@ -96,7 +96,7 @@ jQuery().ready( function() {
 		}
 		, eventClick: function( e, js, view ) {
 			eventtime = ( e.end == null ) ? e.start : e.end;			
-			if ( limitEvents && (eventtime < now && admin == false )) {
+			if ( limit && (eventtime < now && admin == false )) {
 				jQuery.jGrowl( 'You cannot edit expired events.', { header: 'Whoops!' } );
 				return;
 			}

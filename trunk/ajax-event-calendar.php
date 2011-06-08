@@ -3,7 +3,7 @@
 Plugin Name: Ajax Event Calendar
 Plugin URI: http://wordpress.org/extend/plugins/ajax-event-calendar/
 Description: A Google Calendar-like interface that allows registered users (with the necessary credentials) to add, edit and delete events in a common calendar viewable by blog visitors.
-Version: 0.7.6
+Version: 0.8
 Author: Eran Miller
 Author URI: http://eranmiller.com
 License: GPL2
@@ -35,7 +35,7 @@ define('AEC_PLUGIN_FILE', basename(__FILE__));
 define('AEC_PLUGIN_NAME', str_replace('.php', '', AEC_PLUGIN_FILE));
 define('AEC_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('AEC_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('AEC_PLUGIN_VERSION', '0.7.6');
+define('AEC_PLUGIN_VERSION', '0.8');
 define('AEC_EVENT_TABLE', AEC_DOMAIN . 'event');
 define('AEC_CATEGORY_TABLE', AEC_DOMAIN . 'event_category');
 define('AEC_PLUGIN_HOMEPAGE', 'http://wordpress.org/extend/plugins/' . AEC_PLUGIN_NAME . '/');
@@ -55,14 +55,12 @@ if (!class_exists('ajax_event_calendar')){
 			add_filter('page_template', array($this, 'page_templates'));
 			add_filter('manage_users_columns', array($this, 'add_events_column'));
 			add_filter('manage_users_custom_column', array($this, 'manage_events_column'), 10, 3);
+			add_filter('plugin_action_links', array($this, 'plugin_action_links'), 10, 2 );
+
+			update_option(AEC_DOMAIN . 'version', AEC_PLUGIN_VERSION);
 		}
 
 		function install(){
-			if (version_compare(PHP_VERSION, '5', '<')){
-				deactivate_plugins(AEC_PLUGIN_FILE);
-				wp_die(printf(__('Sorry, ' . AEC_PLUGIN_NAME . ' requires PHP 5 or higher. Your PHP version is "%s". Ask your web hosting service how to enable PHP 5 as the default on your servers.', AEC_PLUGIN_NAME), PHP_VERSION));
-			}
-
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 			global $wpdb;
 
@@ -110,26 +108,45 @@ if (!class_exists('ajax_event_calendar')){
 
 			// new roles for plugin
 			add_role('calendar_contributor', 'Calendar Contributor', array(
-				'read' => true,
-				AEC_DOMAIN . 'add_events' => true
+				'read' => 1,
+				AEC_DOMAIN . 'add_events' => 1
 			));
 			add_role('blog_calendar_contributor', 'Blog + Calendar Contributor', array(
-				'read' => true,
-				'edit_posts' => true,
-				'delete_posts' => true,
-				AEC_DOMAIN . 'add_events' => true
+				'read' => 1,
+				'edit_posts' => 1,
+				'delete_posts' => 1,
+				AEC_DOMAIN . 'add_events' => 1
 			));
 
 			// add capabilities for administrators
 			$role = get_role('administrator');
 			$role->add_cap(AEC_DOMAIN . 'add_events');
 			$role->add_cap(AEC_DOMAIN . 'run_reports');
+			
+			// set default options
+			$arr = array(
+				'general_show_menu'=>1,	//Display administrative menu on front-end calendar.
+				'general_limit_events'=>1, //Enforce event creation range to fit between: 30 minutes and one year from the current time.
+				'general_show_sidebar'=>0, //Display the sidebar next to the front-end calendar.
+				'form_description'=>1,
+				'form_link'=>1,
+				'form_venue'=>1,
+				'form_address'=>1,
+				'form_city'=>1,
+				'form_state'=>1,
+				'form_zip'=>1,
+				'form_contact'=>1,
+				'form_contact_info'=>1,
+				'form_access'=>1,
+				'form_rsvp'=>1
+			);
+			update_option('aec_options', $arr);
 		}
 
 		function set_admin_menu(){
-			if (function_exists('add_options_page')) 
+			if (function_exists('add_options_page'))
 				$page = add_menu_page('Ajax Event Calendar', 'Calendar', AEC_DOMAIN . 'add_events', AEC_PLUGIN_FILE, array($this, 'admin_page'), AEC_PLUGIN_URL . 'css/images/calendar.png', 30);
-				
+
 				// only load scripts and styles on plugin page
 				add_action("admin_print_scripts-$page", array($this, 'load_calendar_js'));
 				add_action("admin_print_styles-$page", array($this, 'load_calendar_css'));
@@ -143,7 +160,7 @@ if (!class_exists('ajax_event_calendar')){
 				// sub menu page: categories
 				$sub_category = add_submenu_page(AEC_PLUGIN_FILE, 'Categories', 'Categories', AEC_DOMAIN . 'run_reports', 'event_categories', array($this, 'category_page'));
 				add_contextual_help($sub_category, $help);
-				
+
 				// only load scripts and styles on sub page
 				add_action("admin_print_scripts-$sub_category", array($this, 'load_category_js'));
 				add_action("admin_print_styles-$sub_category", array($this, 'load_category_css'));
@@ -152,7 +169,6 @@ if (!class_exists('ajax_event_calendar')){
 				$sub_report = add_submenu_page(AEC_PLUGIN_FILE, 'Activity Report', 'Activity Report', AEC_DOMAIN . 'run_reports', 'activity_report', array($this, 'run_reports'));
 				add_contextual_help($sub_report, $help);
 				
-				$this->default_options();
 				$sub_options = add_submenu_page(AEC_PLUGIN_FILE, 'Calendar Options', 'Calendar Options', 'manage_options', 'calendar_options', array($this, 'aec_options_page'));
 				add_contextual_help($sub_options, $help);
 		}
@@ -168,7 +184,7 @@ if (!class_exists('ajax_event_calendar')){
 				wp_die(__('You do not have sufficient permissions to access this page.', AEC_PLUGIN_NAME));
 			include_once(AEC_PLUGIN_PATH . 'inc/admin-category.php');
 		}
-	
+
 		function run_reports(){
 			if (!current_user_can(AEC_DOMAIN . 'run_reports'))
 				wp_die(__('You do not have sufficient permissions to access this page.', AEC_PLUGIN_NAME));
@@ -295,7 +311,6 @@ if (!class_exists('ajax_event_calendar')){
 										'GROUP BY category_id ' .
 										'ORDER BY cnt DESC;'
 										);
-
 			if ($result === false){
 				$this->log($wpdb->print_error());
 			}
@@ -503,6 +518,16 @@ if (!class_exists('ajax_event_calendar')){
 				return $event_count;
 			}
 		}
+		
+		// Display a Settings link on the main Plugins page
+		function plugin_action_links( $links, $file ) {
+			if ( $file == plugin_basename( __FILE__ ) ) {
+				$posk_links = '<a href="' . get_admin_url() . 'admin.php?page=calendar_options">' . __('Settings') . '</a>';
+				// make the 'Settings' link appear first
+				array_unshift( $links, $posk_links );
+			}
+			return $links;
+		}
 
 		function confirm_delete_user_events($user_id){
 			// TODO: add filter to delete confirmation page displaing the number of events to be deleted.
@@ -697,96 +722,35 @@ if (!class_exists('ajax_event_calendar')){
 		function plural($value){
 			return ($value == 1) ? '' : 's';
 		}
-		
-		// Define default option settings
-		function default_options(){
-			$tmp = get_option('aec_options');
-			if(!is_array($tmp)){
-				$arr = array('version'=>AEC_PLUGIN_VERSION,'limit'=>true, 'showMenu'=>true);
-				//$arr = array("dropdown1"=>"Orange", "text_area" => "Space to put a lot of information here!", "text_string" => "Some sample text", "pass_string" => "123456", "chkbox1" => "", "chkbox2" => "on", "option_set1" => "Triangle");
-				update_option('aec_options', $arr);
-			}
-		}
 
 		function aec_options_init(){
+			$options = get_option('aec_options');
 			register_setting('aec_options', 'aec_options', array($this, 'aec_options_validate'));
-			add_settings_section('section', '', array($this, 'nothing'), __FILE__);
-			add_settings_field('showMenu', 'Show Menu', array($this, 'option_showMenu'), __FILE__, 'section');
-			add_settings_field('limit', 'Limit Events', array($this, 'option_limit'), __FILE__, 'section');
-			//add_settings_field('plugin_text_string', 'Text Input', array($this, 'setting_string_fn'), __FILE__, 'main_section');
-			//add_settings_field('plugin_text_pass', 'Password Text Input', array($this, 'setting_pass_fn'), __FILE__, 'main_section');
-			//add_settings_field('plugin_textarea_string', 'Large Textbox!', array($this, 'setting_textarea_fn'), __FILE__, 'main_section');
-			//add_settings_field('radio_buttons', 'Select Shape', array($this, 'setting_radio_fn'), __FILE__, 'main_section');
-			//add_settings_field('drop_down1', 'Select Color', array($this, 'setting_dropdown_fn'), __FILE__, 'main_section');
-			//add_settings_field('plugin_chk1', 'Restore Defaults Upon Reactivation?', array($this, 'setting_chk1_fn'), __FILE__, 'main_section');
-		}
-
-		function nothing() {}
-		
-/*
-		// Future Use
-		// Callback functions
-		
-		// DROP-DOWN-BOX - Name: aec_options[dropdown1]
-		function  setting_dropdown_fn(){
-			$options = get_option('aec_options');
-			$items = array("Red", "Green", "Blue", "Orange", "White", "Violet", "Yellow");
-			echo "<select id='drop_down1' name='aec_options[dropdown1]'>";
-			foreach($items as $item){
-				$selected = ($options['dropdown1']==$item) ? 'selected="selected"' : '';
-				echo "<option value='$item' $selected>$item</option>";
-			}
-			echo "</select>";
-		}
-
-		// TEXTAREA - Name: aec_options[text_area]
-		function setting_textarea_fn(){
-			$options = get_option('aec_options');
-			echo "<textarea id='plugin_textarea_string' name='aec_options[text_area]' rows='7' cols='50' type='textarea'>{$options['text_area']}</textarea>";
-		}
-
-		// TEXTBOX - Name: aec_options[text_string]
-		function setting_string_fn(){
-			$options = get_option('aec_options');
-			echo "<input id='plugin_text_string' name='aec_options[text_string]' size='40' type='text' value='{$options['text_string']}' />";
-		}
-
-		// PASSWORD-TEXTBOX - Name: aec_options[pass_string]
-		function setting_pass_fn(){
-			$options = get_option('aec_options');
-			echo "<input id='plugin_text_pass' name='aec_options[pass_string]' size='40' type='password' value='{$options['pass_string']}' />";
-		}
-		
-		// RADIO-BUTTON - Name: aec_options[option_set1]
-		function setting_radio_fn(){
-			$options = get_option('aec_options');
-			$items = array("Square", "Triangle", "Circle");
-			foreach($items as $item){
-				$checked = ($options['option_set1']==$item) ? ' checked="checked" ' : '';
-				echo "<label><input ".$checked." value='$item' name='aec_options[option_set1]' type='radio' /> $item</label><br />";
+			foreach ($options as $option => $value) {
+				list($section, $field) = explode('_', $option, 2);
+				$label = ucwords(str_replace('_', ' ', $field));
+				if ($section != 'form') { //todo: remove temporary placeholder when functionality is completed
+					add_settings_section($section, ucfirst($section), array($this, 'add_form_section'), __FILE__);
+					add_settings_field($option, ucfirst($label), array($this, 'add_form_field' ), __FILE__, $section, array($option,$value));
+				}
 			}
 		}
-*/
-
-		function option_limit(){
-			$options = get_option('aec_options');
-			$checked = ($options['limit']) ? ' checked="checked" ' : '';
-			echo '<input ' . $checked . ' id="limit" name="aec_options[limit]" type="checkbox" />
-			<span>Limits event entry to the next 30-minute interval and one year from the present time.</span>';
-		}
 		
-		function option_showMenu(){
-			$options = get_option('aec_options');
-			$checked = ($options['showMenu']) ? ' checked="checked" ' : '';
-			echo '<input ' . $checked . ' id="showMenu" name="aec_options[showMenu]" type="checkbox" />
-			<span>Displays the WordPress Admin menu on the front-end Calendar.</span>';
+		function add_form_field($args){
+			list($field,$value) = $args;
+			$displayed = ($value) ? ' checked="checked"' : ' ';
+			echo ' <input type="hidden" name="aec_options[' . $field . ']" value="0" />';
+			echo ' <input' . $displayed . 'id="' . $field . '" value="1" name="aec_options[' . $field . ']" type="checkbox" />';
+		}
+
+		function add_form_section() {
+			echo '';
 		}
 
 		// Display the admin options page
 		function aec_options_page(){
 		?>
 			<div class="wrap">
-				<div class="icon32" id="icon-options-general"><br></div>
 				<h2>Calendar Options</h2>
 				<form action="options.php" method="post">
 				<?php settings_fields('aec_options'); ?>
@@ -799,20 +763,26 @@ if (!class_exists('ajax_event_calendar')){
 		<?php
 		}
 
+	
 		function aec_options_validate($input){
-			// validation placeholder
+			$options = get_option('aec_options');
+			$input = array_merge($options, $input);  // todo: remove temporary placeholder when functionality is completed
 			return $input; // return validated input
 		}
 
 		// placeholder
-		function deactivate(){}
+		function deactivate(){
+			//delete_option('aec_options');
+		}
 	}
 }
 
 register_activation_hook(__FILE__, array('ajax_event_calendar', 'install'));
-// register_deactivation_hook(__FILE__, array('ajax_event_calendar', 'deactivate'));
+//register_deactivation_hook(__FILE__, array('ajax_event_calendar', 'deactivate'));
 
 if (class_exists('ajax_event_calendar')){
+	if (version_compare(PHP_VERSION, '5', '<'))
+		die(printf(__('Sorry, ' . AEC_PLUGIN_NAME . ' requires PHP 5 or higher. Your PHP version is "%s". Ask your web hosting service how to enable PHP 5 on your site.', AEC_PLUGIN_NAME), PHP_VERSION));
 	$aec = new ajax_event_calendar();
 }
 ?>
