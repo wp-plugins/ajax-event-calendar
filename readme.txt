@@ -3,7 +3,7 @@ Contributors: eranmiller
 Tags: multi-user, calendar, event, ajax
 Requires at least: 3.1
 Tested up to: 3.1.3
-Stable tag: 0.7.6
+Stable tag: 0.8
 
 A Google Calendar-like experience to add, edit and delete events in a common calendar.
 
@@ -14,38 +14,51 @@ A Google Calendar-like interface that allows registered users (with required acc
 * Administrators can edit and delete all events, others can only edit and delete events they create themselves
 * Dynamic (based on event categories) and near-instant event filtering
 * Dynamically generated calendar contributor list (sidebar widget)
-* Current month calendar activity report (Administrator only)
-* Event category management interface (Administrator only)
-* Calendar event count column to Users table (Administrator only)
-* Limits event entry to the next 30-minute interval and one year from the present time (optional)
-* Displays the WordPress Admin menu on the front-end Calendar (optional)
+
+= Administrator only =
+
+* Current month calendar activity report
+* Event category management interface
+* Calendar event count column to Users table
+
+= Options =
+
+* Edit, delete or add event category types
+* Event creation is restricted to this time period: from the following 30-minute interval to one year into the future
+* Displays the WordPress Login/Register links (Admin menu) on the front-end Calendar
+* Front-end calendar supports password protection
+* Front-end calendar adjusts width, with and without sidebar
+* Display a contributors list in sidebar by employing "Calendar Contributors" in Widgets
 
 == Installation ==
 
-1. Use the automatic installer from within the WordPress administration
-1. Click Activate for Ajax Event Calendar
-1. Create a new page for the readonly calendar page. IMPORTANT: page slug must 'calendar'
-1. (optional) Display contributor list in sidebar via WordPress Widget options
-1. (optional) Create and delete existing, or add additional event category types
+1. The easiest way to install this plugin is via the automatic installer within WordPress administration
+1. To create the front-end (non-administrative) view of the calendar: create a new page with any name, the **page slug must be 'calendar'**
 
 == Frequently Asked Questions ==
 
+= What does this plugin remove on deletion? =
+The event and category databases, custom calendar roles and capabilities, and plugin options are permanently removed.
+
+= How does the calendar filter work? =
+The filter is displays only when more than a one kind of event category has been created.
+
+= What happens to user events when they are deleted? =
+All events associated with a deleted user are permanently deleted.
+
+= What happens when a category is deleted? =
+All events associated with the deleted category are re-assigned to the primary category type (Event).
+
+= How are roles and capabilities affected by this plugin? =
+Two new roles "Calendar Contributor" and "Blog+Calendar Contributor" are added, both containing a new capability "aec_add_events".  A new capability "aec_run_reports" is added to Administrator accounts only.
 
 == Screenshots ==
 
+* Coming Soon
 
 == Other ==
 
-* Adds two new roles "Calendar Contributor" and "Blog+Calendar Contributor"
-* Adds new capability "aec_add_events" (Administrator and Calendar Contributor roles)
-* Adds new capability "aec_run_reports" (Administrator only)
-* These roles and capabilities are removed when the plugin is deleted
-* All events associated with a deleted user are perminently deleted
-* Databases are perminently deleted when the plugin is deleted
-* Plugin options are perminently deleted when the plugin is deleted
-* The event filter is only present when more than a single event category has been created
-
-**Credits**
+= Credits =
 
 * Google Calendar styled interface (FullCalendar)
 * Growl styled feedback (jGrowl)
@@ -53,6 +66,10 @@ A Google Calendar-like interface that allows registered users (with required acc
 * Category color selection (miniColors)
 
 == Changelog ==
+= 0.8 =
+* Fixed css conflicts with themes
+* Added sidebar toggle option
+* Added password protection support
 
 = 0.7.6 =
 * Fixed toggle admin menu option
@@ -122,6 +139,8 @@ A Google Calendar-like interface that allows registered users (with required acc
 * Getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
+= 0.8 =
+* CSS conflicts, sidebar toggle option, password protection support
 
 = 0.7.6 =
 * Fixed toggle admin menu option

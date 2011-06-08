@@ -6,7 +6,7 @@
 		global $wpdb;
 	
 		delete_option( 'aec_plugin_version' );
-
+		delete_option( 'aec_options' );
 		$role = get_role( 'administrator' );
 		$role->remove_cap( 'aec_add_events' );
 		$role->remove_cap( 'aec_run_reports' );
