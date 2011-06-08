@@ -3,6 +3,8 @@
 	require_once( "../../../../wp-blog-header.php" );
 	header( "HTTP/1.1 200 OK" );
 	
+	$options = get_option('aec_options');
+	
 	// Add or Edit events
 	if ( isset($_POST['action']) ) {
 		// process add/edit
@@ -82,53 +84,73 @@
 		<li>
 			<label for="address">Neighborhood or Street Address</label>
 			<ul class="hvv">
+				<?php if ($options['form_address']) { ?>
 				<li>
 					<input class="" type="text" name="address" id="address" value="<?php echo $event->address; ?>" />
 				</li>
+				<?php } ?>
 				<li class="cb">
+				<?php if ($options['form_city']) { ?>
 					<label for="city" class="required">City</label>
 					<input class="auto" type="text" name="city" id="city" size="22" value="<?php echo $event->city; ?>" />
+				<?php } ?>
 				</li>
 				<li>
+				<?php if ($options['form_state']) { ?>
 					<label for="state" class="required">State</label>
 					<input class="auto" type="text" name="state" id="state" size="3" maxlength="2" value="<?php echo $event->state; ?>" />
+				<?php } ?>
 				</li>
-				<li>        
+				<li>
+				<?php if ($options['form_zip']) { ?>
 					<label for="zip" class="required">Zip</label>
 					<input class="auto" type="text" name="zip" id="zip" size="5" maxlength="5" value="<?php echo $event->zip; ?>" />
+				<?php } ?>
 				</li>
 			</ul>
         </li>
         <li>
-            <label for="link">Website Link</label>
+            <?php if ($options['form_link']) { ?>
+			<label for="link">Website Link</label>
             <input type="text" name="link" id="link" value="<?php echo $event->link; ?>" />
-        </li>
-		<li>    
+			<?php } ?>
+		</li>
+		<li>
+			<?php if ($options['form_description']) { ?>
             <label for="description" class="required">Description</label>
             <textarea class="wide" name="description" id="description"><?php echo $event->description; ?></textarea>
+			<?php } ?>
         </li>
         <li>
 			<label>Contact Person</label>
 			<ul class="hvv">
 				<li>
+					<?php if ($options['form_contact']) { ?>
 					<label for="contact" class="required">Name</label>
 					<input class="semi" type="text" name="contact" id="contact" value="<?php echo $event->contact; ?>" />
+					<?php } ?>
 				</li>
 				<li>
+					<?php if ($options['form_contact_info']) { ?>
 					<label for="contact_info" class="required">Phone or Email Address</label>
 					<input class="semi" type="text" name="contact_info" id="contact_info" value="<?php echo $event->contact_info; ?>" />
+					<?php } ?>
 				</li>
 			</ul>
 		</li>
 		<li>
 			<label></label>
+			<?php if ($options['form_access']) { ?>
 			<input type="checkbox" value="1" name="access" id="access" <?php echo $accessible_checked; ?>/>
 			<label for="access" class="box">This event is accessible to people with disabilities.</label>
+			<?php } ?>
 		</li>
 		<li>
 			<label></label>
+			<?php if ($options['form_rsvp']) { ?>
 			<input type="checkbox" value="1" name="rsvp" id="rsvp" <?php echo $rsvp_checked; ?>/>
 			<label for="rsvp" class="box">Please register with the contact person for this event.</label>
+			<?php } ?>
 		</li>
         <li class="buttons">
 			<input type="button" name="cancel" value="Cancel" class="button-secondary" id="cancel" />
@@ -164,11 +186,7 @@
 <script type='text/javascript'>
 jQuery().ready( function() {
 	var dates = jQuery( '#start_date, #end_date' ).datepicker({
-<?php
-	$options = get_option('aec_options');
-	$limit = ($options['limit']) ? 1 : 0;
-	if ($limit) {
-?>
+<?php if ($options['general_limit_events']) { ?>
 		minDate: '+1d',
 		maxDate: '+1y',
 <?php } ?>
@@ -207,7 +225,7 @@ jQuery().ready( function() {
 
 			jQuery.post( '<?php echo AEC_PLUGIN_URL; ?>inc/event.php', { 'event': jQuery( '#event_form' ).serialize(), 'action': 'add' }, function( data ){
 				if ( data ) {
-					var calendar = jQuery( '#calendar' ).fullCalendar( 'renderEvent',
+					var calendar = jQuery( '#aec-calendar' ).fullCalendar( 'renderEvent',
 					{
 						id: data.id,
 						title: data.title,
@@ -229,13 +247,13 @@ jQuery().ready( function() {
 		if ( validateForm() ) {
 			jQuery.post( '<?php echo AEC_PLUGIN_URL; ?>inc/event.php', { 'event': jQuery( '#event_form' ).serialize(), 'action': 'update' }, function( data ){
 				if ( data ) {
-					var e = jQuery( '#calendar' ).fullCalendar( 'clientEvents', data.id )[0];
+					var e = jQuery( '#aec-calendar' ).fullCalendar( 'clientEvents', data.id )[0];
 					e.title = data.title;
 					e.allDay = data.allDay;
 					e.start = data.start;
 					e.end = data.end;
 					e.className = data.className;
-					jQuery( '#calendar' ).fullCalendar( 'updateEvent', e );
+					jQuery( '#aec-calendar' ).fullCalendar( 'updateEvent', e );
 					jQuery.jGrowl( '<strong>' + e.title + '</strong> has been updated.', { header: 'Success!' } );
 				}
 			}, 'json' );
@@ -251,7 +269,7 @@ jQuery().ready( function() {
 		if (confirm( 'Are you sure you wish to delete this event?' )) {
 			jQuery.post( '<?php echo AEC_PLUGIN_URL; ?>inc/event.php', { 'id': id, 'action': 'delete' }, function( data ) {
 				if (data) {
-					jQuery( '#calendar' ).fullCalendar( 'removeEvents', id );
+					jQuery( '#aec-calendar' ).fullCalendar( 'removeEvents', id );
 					jQuery.jGrowl( title + ' has been deleted.', { header: 'Success!' } );
 					jQuery.modal.close();
 				}
@@ -261,6 +279,8 @@ jQuery().ready( function() {
 
 	function validateForm() {
 		err = checkDuration();
+		
+		// to do: base required on plugin options
 		var required = ['title', 'city', 'state', 'zip', 'description', 'contact', 'contact_info'];
 		
 		// check required fields
