@@ -1,6 +1,6 @@
 === Ajax Event Calendar ===
 Contributors: eranmiller
-Tags: multi-user, calendar, event, ajax
+Tags: multi-user, calendar, event, ajax, filter
 Requires at least: 3.1
 Tested up to: 3.1.3
 Stable tag: 0.8
@@ -11,61 +11,67 @@ A Google Calendar-like experience to add, edit and delete events in a common cal
 
 A Google Calendar-like interface that allows registered users (with required access) to add, edit and delete events in a common calendar viewable by all blog visitors.
 
-* Administrators can edit and delete all events, others can only edit and delete events they create themselves
-* Dynamic (based on event categories) and near-instant event filtering
+* Users can only edit and delete events they create
+* Dynamic category-based near-instant event filtering
 * Dynamically generated calendar contributor list (sidebar widget)
 
 = Administrator only =
 
-* Current month calendar activity report
-* Event category management interface
-* Calendar event count column to Users table
+* Administrators can edit and delete all events
+* Current calendar month activity report
+* Event category management
+* Added column "event counts" in the Users table, enables you to monitor event creation by user
 
 = Options =
 
-* Edit, delete or add event category types
-* Event creation is restricted to this time period: from the following 30-minute interval to one year into the future
+* Add, edit or delete event category types
+* Limit event creation to a pre-defined window of time: between the next 30-minute interval and one year
 * Displays the WordPress Login/Register links (Admin menu) on the front-end Calendar
-* Front-end calendar supports password protection
-* Front-end calendar adjusts width, with and without sidebar
+* Front-end calendar can be password protected
+* Toggle front-end calendar to display with and without the blog sidebar
 * Display a contributors list in sidebar by employing "Calendar Contributors" in Widgets
 
 == Installation ==
 
-1. The easiest way to install this plugin is via the automatic installer within WordPress administration
-1. To create the front-end (non-administrative) view of the calendar: create a new page with any name, the **page slug must be 'calendar'**
+1. The easiest way to install this plugin is via the automatic installer within WordPress administration.
+1. To create the front-end (non-administrative) view of the calendar: create a new page with any name, the **page slug must be named 'calendar'**
 
 == Frequently Asked Questions ==
 
-= What does this plugin remove on deletion? =
+= What does this plugin remove when deleted? =
 The event and category databases, custom calendar roles and capabilities, and plugin options are permanently removed.
 
 = How does the calendar filter work? =
-The filter is displays only when more than a one kind of event category has been created.
+The filter is appears only when more than a one event category has been created.
 
 = What happens to user events when they are deleted? =
 All events associated with a deleted user are permanently deleted.
 
-= What happens when a category is deleted? =
-All events associated with the deleted category are re-assigned to the primary category type (Event).
+= What happens to events associated with a deleted category? =
+All events associated with a deleted category are re-assigned to the primary category type.
 
-= How are roles and capabilities affected by this plugin? =
-Two new roles "Calendar Contributor" and "Blog+Calendar Contributor" are added, both containing a new capability "aec_add_events".  A new capability "aec_run_reports" is added to Administrator accounts only.
+= What are roles and capabilities does this plugin create? =
+Two new roles "Calendar Contributor" and "Blog+Calendar Contributor" are added, both contain a new capability "aec_add_events".  
+A new capability "aec_run_reports" is added to Administrator accounts only.
 
 == Screenshots ==
 
-* Coming Soon
+Coming Soon
 
-== Other ==
+== Other Notes ==
 
-= Credits =
+**Compatibility**
+If you use the WP Minify plugin, disable the HTML minification option or the calendar detail view will not load properlly.
 
-* Google Calendar styled interface (FullCalendar)
-* Growl styled feedback (jGrowl)
-* OSX styled modal forms (simpleModal)
+Hat Tip to the authors of these fine jQuery plugins, used in the creation of this plugin:
+
+* Google Calendar interface experience (FullCalendar)
+* Growl feedback (jGrowl)
+* OSX modal forms (simpleModal)
 * Category color selection (miniColors)
 
 == Changelog ==
+
 = 0.8 =
 * Fixed css conflicts with themes
 * Added sidebar toggle option
@@ -139,6 +145,7 @@ Two new roles "Calendar Contributor" and "Blog+Calendar Contributor" are added, 
 * Getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
+
 = 0.8 =
 * CSS conflicts, sidebar toggle option, password protection support
 
@@ -157,7 +164,7 @@ Two new roles "Calendar Contributor" and "Blog+Calendar Contributor" are added, 
 = 0.7.2 =
 * Fixed truncated plugin description
 
-= 0.7.1
+= 0.7.1 =
 * Fixed widget file path
 
 = 0.7 =
