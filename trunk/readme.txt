@@ -60,6 +60,9 @@ Coming Soon
 
 == Other Notes ==
 
+**Compatibility**
+If you use the WP Minify plugin, disable the HTML minification option or the calendar detail view will not load properlly.
+
 Hat Tip to the authors of these fine jQuery plugins, used in the creation of this plugin:
 
 * Google Calendar interface experience (FullCalendar)
