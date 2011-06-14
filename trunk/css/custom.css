@@ -1,32 +1,44 @@
-body{;font-family:"Lucida Grande",Arial,sans-serif}
-.wrap{padding:2em 1em}
-ol#category_table{list-style:none;margin-left:.4em}
-#actions{width:100%;margin:-2em 0 2em 0}
-#filter {list-style:none;float:right}
-#filter a{cursor:pointer;display:block;padding:.3em .9em;text-decoration:none;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}
-#filter h3{padding:.3em .5em}
-#filter a.all,#filter a.all:visited,#filter a.all:active,#filter a.all:hover{background:#000;color:#ddd}
-#filter li{float:left;border:1px solid #fff}
-#loading,#modal{display:none}
-#loading{color:#fff;font:2.5em/1em "Lucida Grande",Arial,sans-serif;padding:5em}
-#modal-overlay{background-color:#000;cursor:wait}
-#modal-container{-moz-border-radius-bottomleft:6px;-moz-border-radius-bottomright:6px;-moz-box-shadow:0 0 64px #000;-webkit-border-bottom-left-radius:6px;-webkit-border-bottom-right-radius:6px;-webkit-box-shadow:0 0 64px #000;background-color:#eee;border-radius:0 0 6px 6px;box-shadow:0 0 64px #000;color:#000;font:16px/24px "Lucida Grande",Arial,sans-serif;padding-bottom:4px;width:600px}
-#modal-container .title{background-color:#ddd;border-bottom:1px solid #ccc;color:#000;font-weight:700;padding:6px 8px;text-shadow:0 1px 0 #f4f4f4}
-#modal-container .close{display:none;position:absolute;right:0;top:0}
-#modal-container .close a{color:#777;display:block;font-weight:700;padding:6px 12px 0;text-decoration:none;text-shadow:0 1px 0 #f4f4f4}
-#modal-container .close a:hover{color:#000}
-#modal-container .content{font-size:12px;padding:0 12px}
-#modal-container h2{margin:10px 0 6px}
-#modal-container h3{font-weight:700;padding-top:1em}
-#modal-container p{margin-bottom:10px}
-#modal-container span{color:#777}
-#modal ul{list-style-type:none;margin:0;padding:0}
-
+/* ajax-event-calendar - version 0.9 */
+ol#aec-category-table{list-style:none;margin-left:.4em}
+#aec-calendar{font-size:12px;line-height:16px}
+#aec-calendar table{border:0 !important;margin:0 !important}
+#aec-calendar td{padding:0 !important}
+/* fixes jquery ui chrome positioning bug of calendar image */
+.ui-datepicker-trigger{float:left}
+#aec-header{width:100%;clear:both;padding:0;margin-bottom:.5em !important;font-size:.7em}
+#aec-filter {margin-bottom:.5em !important;list-style:none;float:right}
+#aec-filter a{cursor:pointer;display:block;padding:0 .9em;text-decoration:none;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}
+#aec-filter h3{margin:0;padding:.1em .5em}
+#aec-filter a.all,
+#aec-filter a.all:visited,
+#aec-filter a.all:active,
+#aec-filter a.all:hover{background:#000;color:#ddd}
+#aec-filter li{float:left;padding:0 2px}
+#aec-loading,
+#aec-modal{display:none}
+#aec-loading{color:#fff;font:2.5em/1em "Lucida Grande",Arial,sans-serif;padding:5em}
+#aec-modal-overlay{background-color:#000;cursor:wait}
+#aec-modal-container{-moz-border-radius-bottomleft:6px;-moz-border-radius-bottomright:6px;-moz-box-shadow:0 0 64px #000;-webkit-border-bottom-left-radius:6px;-webkit-border-bottom-right-radius:6px;-webkit-box-shadow:0 0 64px #000;background-color:#eee;border-radius:0 0 6px 6px;box-shadow:0 0 64px #000;color:#333;font:16px/24px "Lucida Grande",Arial,sans-serif;padding-bottom:4px;width:600px}
+#aec-modal-container .title{background-color:#ddd;border-bottom:1px solid #ccc;color:#000;font-weight:700;padding:6px 8px;text-shadow:0 1px 0 #f4f4f4}
+#aec-modal-container .close{display:none;position:absolute;right:0;top:0}
+#aec-modal-container .close a{color:#777;display:block;font-weight:700;padding:6px 12px 0;text-decoration:none;text-shadow:0 1px 0 #f4f4f4}
+#aec-modal-container .close a:hover{color:#000}
+#aec-modal-container .content{font-size:12px;padding:0 12px}
+#aec-modal-container h2{margin:10px 0 6px}
+#aec-modal-container h3{margin:0;font-weight:700;padding-top:1em}
+#aec-modal-container p{margin-bottom:10px}
+#aec-modal-container span{color:#777}
+#aec-modal-container span.duration{padding-left:5px;font-size:.9em}
+#aec-modal ul{list-style-type:none;margin:0;padding:0}
+#aec-modal hr{margin:10px 0;padding:0}
+#aec-modal a{position:absolute;padding:5px 10px;bottom:0;right:10px;font-size:1.15em;font-weight:bold;-moz-border-radius-topleft:6px;-moz-border-radius-topright:6px;-webkit-border-top-left-radius:6px;-webkit-border-top-right-radius:6px;background-color:#333;border-radius:6px 6px 0 0;color:#eee;text-decoration:none;border:1px solid #333}
+#aec-modal a:hover{background-color:#ddd;color:#333;border-color:#ccc;border-style:solid;border-width:1px 1px 0}
+#aec-credit{visibility:hidden;position:absolute;height:1px;width:1px;overflow:hidden;top:-999px}
 .fc{direction:ltr;text-align:left}
 .fc table{border-collapse:collapse;border-spacing:0}
 html .fc,.fc table{font-size:1em}
-.fc td,.fc th{padding:0;vertical-align:top}
-.fc-header td{white-space:nowrap}
+.fc td,.fc th{padding:0 !important;vertical-align:top}
+.fc-header td{white-space:nowrap;border:0 !important}
 .fc-header-left{text-align:left;width:25%}
 .fc-header-center{text-align:center}
 .fc-header-right{text-align:right;width:25%}
@@ -96,8 +108,8 @@ table.fc-border-separate{border-collapse:separate}
 .fc-rtl .fc-grid .fc-event-time{float:right}
 .fc-agenda table{border-collapse:separate}
 .fc-agenda-days th{text-align:center}
-.fc-agenda .fc-agenda-axis{font-weight:400;padding:0 4px;text-align:right;vertical-align:middle;white-space:nowrap;width:50px}
-.fc-agenda .fc-day-content{padding:2px 2px 1px}
+.fc-agenda .fc-agenda-axis{font-weight:400;padding:0 4px !important;text-align:right;vertical-align:middle;white-space:nowrap;width:50px}
+.fc-agenda .fc-day-content{padding:2px 2px 1px !important}
 .fc-agenda-days .fc-agenda-axis{border-right-width:1px}
 .fc-agenda-days .fc-col0{border-left-width:0}
 .fc-agenda-allday th{border-width:0 1px}
@@ -126,31 +138,31 @@ div.time-picker li{cursor:pointer;font:12px/1 "Lucida Grande",Arial,sans-serif;h
 div.time-picker li.selected{background:#0063CE;color:#fff}
 form{font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif}
 
-.form .edit{width:25em}
-.form table{border-spacing:0}
-.form tr.header{background:#eee}
-.form td{padding:5px;margin:0}
+.aec_form .edit{width:25em}
+.aec_form table{border-spacing:0}
+.aec_form tr.header{background:#eee}
+.aec_form td{padding:5px;margin:0}
 
-.form li{float:left;margin:3px 0 0;padding-bottom:3px;width:100%}
-.form ul{height:1%;list-style:none;margin:0;overflow:hidden;padding:2px 5px 5px}
-.form fieldset{display:block;margin-bottom:10px}
-.form em{color:red}
-.form .picker{cursor:pointer}
-.form{list-style:none;margin:0}
-.form label{display:inline;float:left;padding:5px 5px 3px 0;width:120px}
-.form label.box{padding:0 0 0 5px;width:auto}
-.form li ul li{border-bottom:0 solid red}
-.form input{display:inline;line-height:100%;width:25em}
-.form .auto{width:auto}
-.form .wide{width:32em}
-.form .semi{width:15em}
-.form .error{background-color:#ff6}
-.form select{display:inline;float:left;width:25em}
-.form textarea{display:inline;float:left;height:6.5em;resize:none;width:25em}
-.form input[type=radio]{border:0;width:auto;float:left}
-.form input[type=checkbox]{border:0;width:auto;float:left}
-.form li.buttons{text-align:right}
-.form li.buttons input{float:none;width:auto}
+.aec_form li{float:left;margin:3px 0 0;padding-bottom:3px;width:100%}
+.aec_form ul{height:1%;list-style:none;margin:0;overflow:hidden;padding:2px 5px 5px}
+.aec_form fieldset{display:block;margin-bottom:10px}
+.aec_form em{color:red}
+.aec_form .picker{cursor:pointer}
+.aec_form{list-style:none;margin:0}
+.aec_form label{display:inline;float:left;padding:5px 5px 3px 0;width:100px}
+.aec_form label.box{padding:0 0 0 5px;width:auto}
+.aec_form li ul li{border-bottom:0 solid red}
+.aec_form input{display:inline;width:25em}
+.aec_form .auto{width:auto}
+.aec_form .wide{width:32em}
+.aec_form .semi{width:15em}
+.aec_form .error{background-color:#ff6}
+.aec_form select{display:inline;float:left;width:25em}
+.aec_form textarea{display:inline;float:left;height:6.5em;resize:none;width:25em}
+.aec_form input[type=radio]{border:0;width:auto;float:left}
+.aec_form input[type=checkbox]{border:0;width:auto;float:left}
+.aec_form li.buttons{text-align:right}
+.aec_form li.buttons input{float:none;width:auto}
 .vvv li{clear:both;display:block;width:100%}
 .vvv label{clear:both;display:block;float:none;width:100%}
 .vvv input{display:block;float:left}
@@ -160,7 +172,7 @@ form{font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif}
 .hvv li{clear:none;display:inline;float:left;margin-right:10px;width:auto}
 .hvv li.cb{clear:both}
 .hvv label{display:block;float:none;width:auto;padding:1px 0 0 3px}
-.hvv label.box{display:inline;padding-left:5px;vertical-align:top}
+.hvv label.box{display:inline;padding-left:5px;vertical-align:top;white-space:nowrap}
 .hvv input{display:block;float:left}
 .hvv select{display:block}
 .hvv textarea{display:block}
@@ -193,20 +205,21 @@ form{font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif}
 label.v{display:block;float:none;padding:3px;text-align:left;width:auto}
 label.h{display:inline;float:left;width:auto}
 .multiselect{background-color:#FFF;border:0 inset #ccc;float:left;height:200px;overflow:auto;padding:0;width:200px}
-.multiselect .form{border:0;height:auto;margin:0;padding:0}
+.multiselect .aec_form{border:0;height:auto;margin:0;padding:0}
 .multiselect .vhh{margin:0;padding:0}
 .multiselect .vhh input{float:left}
 .multiselect .vhh label{clear:none;display:block;float:none;margin-left:20px;width:auto}
 .multiselect .vhh li{overflow:hidden;width:100%}
 .multiselect .vii li{width:100%}
-.form input.noborder{border:0}
+.aec_form input.noborder{border:0}
 .required{color:red}
 .required label:before{content:"* "}
 .leftnote{color:#F93;float:left;padding:3px 5px 0}
 .bottomnote{clear:both;color:#F93;display:block;padding:0}
-.form label span {display:block}
+.aec_form label span {display:block}
 .tar label{text-align:right}
 .fl{float:left}
+.fr{float:right}
 .cb{clear:both}
 .w100p{width:100%}
 .mr20{margin-right:20px}

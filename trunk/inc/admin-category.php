@@ -16,29 +16,29 @@
 		$categories = $this->get_categories();
 ?>
 <div class='wrap'>
-	<h2>Manage Category Types</h2>
-	<em>Add a new, or edit an existing category type (and associated calendar tile color).</em>
-	<form id="category_form" class="form">
+	<h2><?php _e('Categories', AEC_PLUGIN_NAME); ?></h2>
+	<p><?php _e('Add new, or edit existing category type (and associated calendar tile color).', AEC_PLUGIN_NAME); ?></p>
+	<form id="aec-category-form">
 	<ul>
 		<li>
 			<input type="hidden" id="bgcolor" name="bgcolor" class="bg colors" value="#ABCABC" /> 
 			<input type="hidden" id="fgcolor" name="fgcolor" class="fg" />
 			<input type="text" id="category" name="category" value="" /> 
-			<button class="add button-primary auto">Add Category</button>
+			<button class="add button-primary"><?php _e('Add', AEC_PLUGIN_NAME); ?></button>
 		</li>
 	</ul>
 	</form>
 
-	<ol id="category_table">
+	<ol id="aec-category-table">
 <?php
 		$out = '';
 		foreach ($categories as $category) {
-			$delete = ( $category->id > 1 ) ? '<a class="delete">delete</a>' . "\n" : ' (this is the primary category, it can be edited but it cannot be deleted)';
+			$delete = ( $category->id > 1 ) ? '<a class="delete">' . __('Delete', AEC_PLUGIN_NAME) . '</a>' . "\n" : ' <em>' . __('This category is required and can only be edited.', AEC_PLUGIN_NAME) . '</em>';
 			$out .= '<li id="id_' . $category->id . '">' . "\n";
 			$out .= '<input type="hidden" name="bgcolor" value="#' . $category->bgcolor . '" class="bg colors" />' . "\n";
 			$out .= '<input type="hidden" name="fgcolor" value="#' . $category->fgcolor . '" class="fg" />' . "\n";
 			$out .= '<input type="text" name="category" value="' . $category->category . '" class="edit" />' . "\n";
-			$out .= '<span><button class="update button-secondary">update</button> ' . $delete . '</span>' . "\n";
+			$out .= '<span><button class="update button-secondary">' . __('Update', AEC_PLUGIN_NAME) . '</button> ' . $delete . '</span>' . "\n";
 			$out .= '</li>' . "\n";
 		}
 		echo $out;
@@ -47,7 +47,7 @@
 </div>
 <script>
 	jQuery(document).ready(function() {
-		jQuery.jGrowl.defaults.closerTemplate = '<div>hide all notifications</div>';
+		jQuery.jGrowl.defaults.closerTemplate = '<div><?php _e('hide all notifications', AEC_PLUGIN_NAME); ?></div>';
 		jQuery.jGrowl.defaults.position = 'bottom-right';
 		jQuery( '.colors' ).miniColors({
 			change: function(hex, rgb) {
@@ -57,7 +57,7 @@
 
 		validateForm();
 
-		jQuery( '#category_form' ).keyup( function() {
+		jQuery( '#aec-category-form' ).keyup( function() {
 			validateForm();
 		});
 		
@@ -86,22 +86,22 @@
 
 		jQuery( '.add' ).click( function( e ) {
 			e.preventDefault();
-			jQuery.post( '<?php echo AEC_PLUGIN_URL; ?>inc/admin-category.php', { 'category_data': jQuery( '#category_form' ).serialize(), 'action': 'add' }, function( data ){
+			jQuery.post( '<?php echo AEC_PLUGIN_URL; ?>inc/admin-category.php', { 'category_data': jQuery( '#aec-category-form' ).serialize(), 'action': 'add' }, function( data ){
 				if ( data ) {
 					var row =  '<li id="id_' + data.id + '"> \n';
 						row += '<input type="hidden" name="bgcolor" value="#' + data.bgcolor + '"  class="bg colors" /> \n';
 						row += '<input type="hidden" name="fgcolor" value="#' + data.fgcolor + '" class="fb" /> \n';
 						row += '<input type="text" name="category" value="' + data.category + '" class="edit" /> \n';
-						row += '<span><button class="update button-secondary">update</button> <a class="delete">delete</a></span> \n';
+						row += '<span><button class="update button-secondary"><?php _e('update', AEC_PLUGIN_NAME); ?></button> <a class="delete"><?php _e('delete', AEC_PLUGIN_NAME); ?></a></span> \n';
 						row += '</li> \n';
 
-					jQuery( '#category_table' ).append( row );
+					jQuery( '#aec-category-table' ).append( row );
 					jQuery( '.colors', jQuery( '#id_' + data.id ) ).miniColors({
 						change: function(hex, rgb) {
 							jQuery( '.fg', jQuery( this ).parent()[0] ).val( getFG( rgb ) );
 						}
 					});
-					jQuery.jGrowl( 'Category type <strong>' + data.category + '</strong> has been created.', { header: 'Success!' } );
+					jQuery.jGrowl( '<?php _e('Category type', AEC_PLUGIN_NAME); ?> <strong>' + data.category + '</strong> <?php _e('has been created.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Success!', AEC_PLUGIN_NAME); ?>' } );
 					jQuery( '#category' ).val('');	// clear field after submission
 				}
 			}, 'json' );
@@ -109,44 +109,44 @@
 		
 		jQuery( 'body' ).delegate( '.update', 'click', function( e ) {
 			e.preventDefault();
-			var row = jQuery( this ).parent().parent()[0]
-				 , html_id = row.id
-				 , id = html_id.replace( 'id_', '' )
-				 , cat = jQuery.trim( jQuery( '.edit' , row ).val() )
-				 , fg = jQuery( '.fg' , row ).val()
-				 , bg = jQuery( '.bg', row ).val()
-				 , json = { 'id': id, 'bgcolor': bg, 'fgcolor': fg, 'category': cat };
+			var row = jQuery( this ).parent().parent()[0],
+				html_id = row.id,
+				id = html_id.replace( 'id_', '' ),
+				cat = jQuery.trim( jQuery( '.edit' , row ).val() ),
+				fg = jQuery( '.fg' , row ).val(),
+				bg = jQuery( '.bg', row ).val(),
+				json = { 'id': id, 'bgcolor': bg, 'fgcolor': fg, 'category': cat };
 				if ( cat.length > 1 ) {
 					 jQuery.post( '<?php echo AEC_PLUGIN_URL; ?>inc/admin-category.php', { 'category_data': json, 'action': 'update' }, function( data, textStatus, jqXHR ){
 					if ( data ) {					
-							jQuery.jGrowl( 'Category type <strong>' + cat + '</strong> has been updated.', { header: 'Success!' } );
+							jQuery.jGrowl( '<?php _e('Category type', AEC_PLUGIN_NAME); ?> <strong>' + cat + '</strong> <?php _e('has been created.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Success!', AEC_PLUGIN_NAME); ?>' } );
 						}
 					});
 				} else {
-					jQuery.jGrowl( 'Category type cannot be a blank value.', { header: 'Whoops!' } );
+					jQuery.jGrowl( '<?php _e('Category type cannot be a blank value.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Whoops!', AEC_PLUGIN_NAME); ?>' } );
 				}
 		});
 		
 		jQuery( 'body' ).delegate( '.delete', 'click', function( e ) {
 			e.preventDefault();
-			var row = jQuery( this ).parent().parent()[0]
-				 , html_id = row.id
-				 , id = html_id.replace( 'id_', '' )
-				 , cat = jQuery( '.edit' , row ).val();
+			var row = jQuery( this ).parent().parent()[0],
+				html_id = row.id,
+				id = html_id.replace( 'id_', '' ),
+				cat = jQuery( '.edit' , row ).val();
 
-			if ( confirm( 'Are you sure you want to delete this category type?' ) ) {
+			if ( confirm( '<?php _e('Are you sure you want to delete this category type?', AEC_PLUGIN_NAME); ?>' ) ) {
 				jQuery.post( '<?php echo AEC_PLUGIN_URL; ?>inc/admin-category.php', { 'id': id, 'action': 'delete' }, function( data ) {
 					if ( data ) {
 						if ( data == 'false' ) {
-							if ( confirm( 'Several events are listed under the "' + cat + '" category type.\r\nWould you like to migrate these events to the default category type?\r\n\r\n' ) ) {
+							if ( confirm( '<?php _e('Several events are listed under the', AEC_PLUGIN_NAME); ?> "' + cat + '" <?php _e('category type.\r\nWould you like to migrate these events to the default category type?\r\n\r\n', AEC_PLUGIN_NAME); ?>' ) ) {
 								jQuery.post( '<?php echo AEC_PLUGIN_URL; ?>inc/admin-category.php', { 'id': id, 'action': 'change' }, function( data ) {
-									jQuery.jGrowl( 'Events have been reassigned to the default category type.', { header: 'Success!' } );
+									jQuery.jGrowl( '<?php _e('Events have been reassigned to the default category type.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Success!', AEC_PLUGIN_NAME); ?>!' } );
 									jQuery( row ).remove();
 								});
 							}
 						} else {
 							jQuery( row ).remove();
-							jQuery.jGrowl( 'Category type <strong>' + cat + '</strong> has been deleted.', { header: 'Success!' } );
+							jQuery.jGrowl( '<?php _e('Category type', AEC_PLUGIN_NAME); ?> <strong>' + cat + '</strong> <?php _e('has been deleted.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Success!', AEC_PLUGIN_NAME); ?>' } );
 						}
 					}
 				});
@@ -158,7 +158,6 @@
 				fg = ( lums > 186 ) ? '#000000' : '#FFFFFF';
 			return fg;
 		}
-
 	});
 </script>
 <?php

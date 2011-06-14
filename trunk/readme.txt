@@ -1,61 +1,113 @@
 === Ajax Event Calendar ===
 Contributors: eranmiller
-Tags: multi-user, calendar, event, ajax
+Tags: multi-user, calendar, event, ajax, filter
 Requires at least: 3.1
 Tested up to: 3.1.3
-Stable tag: 0.6
+Stable tag: 0.9
 
-A multi-user event calendar that enables editing via a Google Calendar-like interface.
+Provides a hybrid Google/OSX interface for adding, editing and deleting events in a community calendar.
 
 == Description ==
 
-* Renders events created by registered users with the appropriate authorization
-* Administrators can edit all events, calendar contributors can only edit events they create themselves
-* Dynamic (based on event categories) and near-instant event filtering
+A plugin that provides a hybrid Google/OSX interface which enables registered users (with required access) to add, edit and delete events in a community calendar, viewable by all blog visitors.
+
+* Users can only edit and delete events they create
+* Dynamic category-based near-instant event filtering
 * Dynamically generated calendar contributor list (sidebar widget)
-* Current month calendar activity report (Administrator only)
-* Event category management interface (Administrator only)
-* Calendar event count column to Users table (Administrator only)
+
+= Administrator only =
+
+* Administrators can edit and delete all events
+* Current calendar month activity report
+* Event category management
+* Added column "event counts" in the Users table, for tracking event creation by user
+* Control which event detail fields to display and require
+
+= Options =
+
+* Add, edit or delete event category types
+* Limit event creation to a pre-defined window of time: between the next 30-minute interval and one year
+* Displays the WordPress Login/Register links (Admin menu) on the front-end Calendar
+* Front-end calendar can be password protected
+* Toggle front-end calendar to display with and without the blog sidebar
+* Display a contributors list in sidebar by employing "Calendar Contributors" in Widgets
 
 == Installation ==
 
-1. Use the automatic installer from within the WordPress administration
-1. Click Activate for Ajax Event Calendar
-1. Create a new page for the readonly calendar page. IMPORTANT: page slug must 'calendar'
-1. (optional) Display contributor list in sidebar via WordPress Widget options
-1. (optional) Create and delete existing, or add additional event category types
-
-== Notes ==
-
-* Adds two new roles "Calendar Contributor" and "Blog+Calendar Contributor"
-* Adds new capability "aec_add_events" (Administrator and Calendar Contributor roles)
-* Adds new capability "aec_run_reports" (Administrator only)
-* These roles and capabilities are removed when the plugin is deleted
-* All events associated with a deleted user are perminently deleted
-* Databases are perminently deleted when the plugin is deleted
-* The event filter is only present when more than a single event category has been created
-
-**Credits**
-
-* Google Calendar styled interface (FullCalendar)
-* Growl styled feedback (jGrowl)
-* OSX styled modal forms (simpleModal)
-* Category color selection (miniColors)
+1. The easiest way to install this plugin is through the integrated WordPress plugin installer
+1. To create the front-end (non-administrative) calendar view: create a new page with any name, the **page slug must be named 'calendar'**
 
 == Frequently Asked Questions ==
 
-* Coming Soon
+= What does this plugin remove when deleted? =
+The event and category databases, custom calendar roles and capabilities, and plugin options are permanently removed.
 
-== Upgrade Notice ==
+= How does the calendar filter work? =
+The filter is appears only when more than a one event category has been created.
 
-= 0.6 =
-* First official plugin release
+= What happens to user events when they are deleted? =
+All events associated with a deleted user are permanently deleted.
+
+= What happens to events associated with a deleted category? =
+All events associated with a deleted category are re-assigned to the primary category type.
+
+= What are roles and capabilities does this plugin create? =
+Two new roles "Calendar Contributor" and "Blog+Calendar Contributor" are added, both contain a new capability "aec_add_events".  A new capability "aec_run_reports" is added to Administrator accounts only.
 
 == Screenshots ==
 
-* Coming Soon
+Coming Soon
+
+== Other Notes ==
+
+**Compatibility**:
+
+1. If you use the WP Minify plugin, disable the HTML minification option or the calendar detail view will not load properlly.
+
+Hat Tip to the authors of these fine jQuery plugins (used in the creation of this one):
+
+* Google Calendar interface experience (FullCalendar)
+* Growl feedback (jGrowl)
+* OSX modal forms (simpleModal)
+* Category color selection (miniColors)
 
 == Changelog ==
+
+= 0.9 =
+* Improved event detail display layout
+* Added event detail form field options - plugin options page now located under "Settings" menu
+* Added foundation for multi-language support (expected delivery: v1.0)
+
+= 0.8 =
+* Fixed css conflicts with themes
+* Added sidebar toggle option
+* Added password protection support
+
+= 0.7.6 =
+* Fixed toggle admin menu option
+
+= 0.7.5 =
+* Fixed css, filters and modals
+
+= 0.7.4 =
+* Fixed activity report missing file
+
+= 0.7.3 =
+* Fixed update issues
+
+= 0.7.2 =
+* Fixed truncated plugin description
+
+= 0.7.1 =
+* Fixed widget file path
+
+= 0.7 =
+* Added options for event limits and admin menu toggle
+* Modified css to address reported style collisions
+* Added a PHP5 dependancy check to halt installation for users running older versions
+
+= 0.6.1 = 
+* Updated plugin link
 
 = 0.6 =
 * Refined event input form
@@ -97,3 +149,38 @@ A multi-user event calendar that enables editing via a Google Calendar-like inte
 
 = 0.1 =
 * Getting the wheels to stay on the wagon
+
+== Upgrade Notice ==
+
+= 0.9 =
+* Added event detail form field options, foundation for multi-language support, UI improvements
+
+= 0.8 =
+* CSS conflicts, sidebar toggle option, password protection support
+
+= 0.7.6 =
+* Fixed toggle admin menu option
+
+= 0.7.5 =
+* Fixed css, filters and modals
+
+= 0.7.4 =
+* Fixed activity report missing file
+
+= 0.7.3 =
+* Fixed update issues
+
+= 0.7.2 =
+* Fixed truncated plugin description
+
+= 0.7.1 =
+* Fixed widget file path
+
+= 0.7 =
+* Fixed CSS collision and added plugin options
+
+= 0.6.1 =
+* Updated plugin link
+
+= 0.6 =
+* First official plugin release
