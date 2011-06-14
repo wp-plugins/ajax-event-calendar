@@ -1,6 +1,6 @@
 <div class="wrap">
-<h2>Activity Report</h2>
-<span>Number of events scheduled for the current month, by type</span>
+<h2><?php _e('Activity Report', AEC_PLUGIN_NAME); ?></h2>
+<p><?php _e('Number of events scheduled for the current month, by type:', AEC_PLUGIN_NAME); ?></p>
 <?php
 $rows = $this->report_monthly_activity();
 if ( count( $rows ) ) {
@@ -8,7 +8,7 @@ if ( count( $rows ) ) {
 		echo '<p><strong>' . $row->cnt . '</strong> ' . $row->category . $this->plural($row->cnt) . '</p>';
 	}
 } else {
-	echo 'No events this month';
+	echo '<p><em>' . __('No events this month.', AEC_PLUGIN_NAME) . '</em></p>';
 }
 ?>
 </div>

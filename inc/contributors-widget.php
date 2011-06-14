@@ -6,15 +6,15 @@
 class contributor_list extends WP_Widget {
 
 	function contributor_list() {
-		$widget_ops = array('description' => 'A list of calendar contributors linked to their organization websites' );
-		parent::WP_Widget( false, 'Calendar Contributors', $widget_ops );
+		$widget_ops = array('description' => __('A list of calendar contributors linked to their organization websites', AEC_PLUGIN_NAME) );
+		parent::WP_Widget( false, __('Calendar Contributors', AEC_PLUGIN_NAME), $widget_ops );
 	}
 	
 	function widget( $args, $instance ) {
 		extract( $args );
 		$contributors = $this->get_users_by_role( 'calendar_contributor' );
 		echo $before_widget;
-		echo $before_title . ' (' . sizeof( $contributors ) . ') Contributors' . $after_title; 
+		echo $before_title . ' (' . sizeof( $contributors ) . ')' . __('Contributors', AEC_PLUGIN_NAME) . $after_title; 
 		if ( $contributors ) {
 			echo '<ul>';
 			foreach ( $contributors as $contributor ) {
@@ -22,10 +22,10 @@ class contributor_list extends WP_Widget {
 				echo '<li><a href="' . $user->user_url . '" target="_blank">' .  $user->organization . '</a></li>';
 			}
 		} else {
-			echo 'No contributors as of yet!';
+			_e('No contributors as of yet!', AEC_PLUGIN_NAME);
 		}
 		echo '</ul>';
-		echo $after_widget;		
+		echo $after_widget;
 	}
 
 	function get_users_by_role( $roles ) {
@@ -55,8 +55,7 @@ class contributor_list extends WP_Widget {
 	
 	/** @see WP_Widget::form */
 	function form() {				
-		echo "No options to worry about....it's magic!";
+		_e('No options to worry about....it\'s magic!', AEC_PLUGIN_NAME);
 	}
 }
-
 ?>

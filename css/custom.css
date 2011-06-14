@@ -1,9 +1,10 @@
-/* ajax-event-calendar - version 0.8 */
+/* ajax-event-calendar - version 0.9 */
 ol#aec-category-table{list-style:none;margin-left:.4em}
 #aec-calendar{font-size:12px;line-height:16px}
 #aec-calendar table{border:0 !important;margin:0 !important}
 #aec-calendar td{padding:0 !important}
-
+/* fixes jquery ui chrome positioning bug of calendar image */
+.ui-datepicker-trigger{float:left}
 #aec-header{width:100%;clear:both;padding:0;margin-bottom:.5em !important;font-size:.7em}
 #aec-filter {margin-bottom:.5em !important;list-style:none;float:right}
 #aec-filter a{cursor:pointer;display:block;padding:0 .9em;text-decoration:none;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}
@@ -17,7 +18,7 @@ ol#aec-category-table{list-style:none;margin-left:.4em}
 #aec-modal{display:none}
 #aec-loading{color:#fff;font:2.5em/1em "Lucida Grande",Arial,sans-serif;padding:5em}
 #aec-modal-overlay{background-color:#000;cursor:wait}
-#aec-modal-container{-moz-border-radius-bottomleft:6px;-moz-border-radius-bottomright:6px;-moz-box-shadow:0 0 64px #000;-webkit-border-bottom-left-radius:6px;-webkit-border-bottom-right-radius:6px;-webkit-box-shadow:0 0 64px #000;background-color:#eee;border-radius:0 0 6px 6px;box-shadow:0 0 64px #000;color:#000;font:16px/24px "Lucida Grande",Arial,sans-serif;padding-bottom:4px;width:600px}
+#aec-modal-container{-moz-border-radius-bottomleft:6px;-moz-border-radius-bottomright:6px;-moz-box-shadow:0 0 64px #000;-webkit-border-bottom-left-radius:6px;-webkit-border-bottom-right-radius:6px;-webkit-box-shadow:0 0 64px #000;background-color:#eee;border-radius:0 0 6px 6px;box-shadow:0 0 64px #000;color:#333;font:16px/24px "Lucida Grande",Arial,sans-serif;padding-bottom:4px;width:600px}
 #aec-modal-container .title{background-color:#ddd;border-bottom:1px solid #ccc;color:#000;font-weight:700;padding:6px 8px;text-shadow:0 1px 0 #f4f4f4}
 #aec-modal-container .close{display:none;position:absolute;right:0;top:0}
 #aec-modal-container .close a{color:#777;display:block;font-weight:700;padding:6px 12px 0;text-decoration:none;text-shadow:0 1px 0 #f4f4f4}
@@ -27,7 +28,11 @@ ol#aec-category-table{list-style:none;margin-left:.4em}
 #aec-modal-container h3{margin:0;font-weight:700;padding-top:1em}
 #aec-modal-container p{margin-bottom:10px}
 #aec-modal-container span{color:#777}
+#aec-modal-container span.duration{padding-left:5px;font-size:.9em}
 #aec-modal ul{list-style-type:none;margin:0;padding:0}
+#aec-modal hr{margin:10px 0;padding:0}
+#aec-modal a{position:absolute;padding:5px 10px;bottom:0;right:10px;font-size:1.15em;font-weight:bold;-moz-border-radius-topleft:6px;-moz-border-radius-topright:6px;-webkit-border-top-left-radius:6px;-webkit-border-top-right-radius:6px;background-color:#333;border-radius:6px 6px 0 0;color:#eee;text-decoration:none;border:1px solid #333}
+#aec-modal a:hover{background-color:#ddd;color:#333;border-color:#ccc;border-style:solid;border-width:1px 1px 0}
 #aec-credit{visibility:hidden;position:absolute;height:1px;width:1px;overflow:hidden;top:-999px}
 .fc{direction:ltr;text-align:left}
 .fc table{border-collapse:collapse;border-spacing:0}
@@ -144,7 +149,7 @@ form{font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif}
 .aec_form em{color:red}
 .aec_form .picker{cursor:pointer}
 .aec_form{list-style:none;margin:0}
-.aec_form label{display:inline;float:left;padding:5px 5px 3px 0;width:120px}
+.aec_form label{display:inline;float:left;padding:5px 5px 3px 0;width:100px}
 .aec_form label.box{padding:0 0 0 5px;width:auto}
 .aec_form li ul li{border-bottom:0 solid red}
 .aec_form input{display:inline;width:25em}
@@ -167,7 +172,7 @@ form{font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif}
 .hvv li{clear:none;display:inline;float:left;margin-right:10px;width:auto}
 .hvv li.cb{clear:both}
 .hvv label{display:block;float:none;width:auto;padding:1px 0 0 3px}
-.hvv label.box{display:inline;padding-left:5px;vertical-align:top}
+.hvv label.box{display:inline;padding-left:5px;vertical-align:top;white-space:nowrap}
 .hvv input{display:block;float:left}
 .hvv select{display:block}
 .hvv textarea{display:block}
@@ -214,6 +219,7 @@ label.h{display:inline;float:left;width:auto}
 .aec_form label span {display:block}
 .tar label{text-align:right}
 .fl{float:left}
+.fr{float:right}
 .cb{clear:both}
 .w100p{width:100%}
 .mr20{margin-right:20px}
