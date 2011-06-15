@@ -127,9 +127,9 @@ if (!class_exists('ajax_event_calendar')){
 			$role->add_cap(AEC_DOMAIN . 'run_reports');
 			
 			$form_defaults = array(	// 0: hide | 1:show | 2:require
-				'menu' => '1',		// Display administrative menu on front-end calendar.
-				'limit' => '1', 	// Enforce event creation range to fit between: 30 minutes and one year from the current time.
-				'sidebar' => '0',	// Display the sidebar next to the front-end calendar.
+				'menu' => '1',
+				'limit' => '1',
+				'sidebar' => '0',
 				'title' => '2',
 				'venue' => '1',
 				'address' => '2',
@@ -141,11 +141,12 @@ if (!class_exists('ajax_event_calendar')){
 				'contact' => '2',
 				'contact_info' => '2',
 				'accessible' => '1',
-				'rsvp' => '1'
+				'rsvp' => '1',
+				'reset' => '0'
 			);
 			
 			$options = get_option(AEC_DOMAIN . 'options');
-			if (($options['reset']=='1') || (!is_array($options)))
+			if ((!is_array($options) || !(isset($options['reset']) || $options['reset']=='1')))
 				update_option('aec_options', $form_defaults);
 		}
 
@@ -733,8 +734,7 @@ if (!class_exists('ajax_event_calendar')){
 		}
 		
 		function aec_options_validate($input){
-			//$options = get_option('aec_options');
-			//$input = array_merge($options, $input);
+			// validation placeholder
 			return $input;
 		}
 		
@@ -817,6 +817,15 @@ if (!class_exists('ajax_event_calendar')){
 								echo $value . '</label><br />';
 							}
 							?>
+						</td>
+					</tr>
+					<tr><td colspan="2"><hr></td></tr>
+					<tr valign="top">
+						<th scope="row"><?php _e('Restore Original Settings', AEC_PLUGIN_NAME); ?></th>
+						<td>
+							<label>
+							<input type="hidden" name="aec_options[reset]" value="0" />
+							<input name="aec_options[reset]" type="checkbox" value="1" <?php if (isset($options['reset'])) { checked('1', $options['reset']); } ?> /> <?php _e('Resets plugin settings on reactivation', AEC_PLUGIN_NAME); ?></label>
 						</td>
 					</tr>
 				</table>

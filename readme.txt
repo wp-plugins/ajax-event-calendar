@@ -5,11 +5,11 @@ Requires at least: 3.1
 Tested up to: 3.1.3
 Stable tag: 0.9
 
-Provides a hybrid Google/OSX interface for adding, editing and deleting events in a community calendar.
+Provides a hybrid Google/OSX interface for multiple users to manage events in a community calendar.
 
 == Description ==
 
-A plugin that provides a hybrid Google/OSX interface which enables registered users (with required access) to add, edit and delete events in a community calendar, viewable by all blog visitors.
+Provides a hybrid Google/OSX interface which enables registered users (with required access) to add, edit and delete events in a community calendar, viewable by all blog visitors.
 
 * Users can only edit and delete events they create
 * Dynamic category-based near-instant event filtering
@@ -75,7 +75,8 @@ Hat Tip to the authors of these fine jQuery plugins (used in the creation of thi
 == Changelog ==
 
 = 0.9 =
-* Improved event detail UI
+* Improved event detail page UI
+* Refactored event detail page load (to address instances of event detail not loading)
 * Added event detail form field options - plugin options page now located under "Settings" menu
 * Added multi-language support (open call for translations)
 

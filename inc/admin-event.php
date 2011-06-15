@@ -220,7 +220,7 @@ jQuery().ready(function() {
 	jQuery('#add').click(function(e) {
 		e.preventDefault();
 		if (validateForm()) {
-			jQuery.post('<?php echo AEC_PLUGIN_URL; ?>inc/event.php', {'event':jQuery('#event_form').serialize(),'action':'add'}, function(data){
+			jQuery.post('<?php echo AEC_PLUGIN_URL; ?>inc/admin-event.php', {'event':jQuery('#event_form').serialize(),'action':'add'}, function(data){
 				if (data) {
 					var calendar = jQuery('#aec-calendar').fullCalendar('renderEvent',
 					{
@@ -243,7 +243,7 @@ jQuery().ready(function() {
 	jQuery('#update').click(function(e) {
 		e.preventDefault();
 		if (validateForm()) {
-			jQuery.post('<?php echo AEC_PLUGIN_URL; ?>inc/event.php', {'event':jQuery('#event_form').serialize(),'action':'update'}, function(data){
+			jQuery.post('<?php echo AEC_PLUGIN_URL; ?>inc/admin-event.php', {'event':jQuery('#event_form').serialize(),'action':'update'}, function(data){
 				if (data) {
 					var e = jQuery('#aec-calendar').fullCalendar('clientEvents',data.id)[0];
 					e.title = data.title;
@@ -266,7 +266,7 @@ jQuery().ready(function() {
 		var title = jQuery('#title').val();
 
 		if (confirm('<?php _e('Delete this event?', AEC_PLUGIN_NAME); ?>')) {
-			jQuery.post('<?php echo AEC_PLUGIN_URL; ?>inc/event.php', { 'id': id, 'action': 'delete' }, function(data) {
+			jQuery.post('<?php echo AEC_PLUGIN_URL; ?>inc/admin-event.php', { 'id': id, 'action': 'delete' }, function(data) {
 				if (data) {
 					jQuery('#aec-calendar').fullCalendar('removeEvents', id);
 					jQuery.jGrowl('<strong>' + title + '</strong> <?php _e('has been deleted.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Success!', AEC_PLUGIN_NAME); ?>' });
