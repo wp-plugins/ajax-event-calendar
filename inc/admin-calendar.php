@@ -71,8 +71,8 @@ jQuery().ready( function() {
 			e = { 'start': start, 'end': end, 'allDay': allDay };
 			e = dbFormat( e );
 			eventDialog( e, 'Add Event' );
-		}
-		, eventResize: function( e, dayDelta, minuteDelta, revertFunc, js, ui, view ) {
+		},
+		eventResize: function( e, dayDelta, minuteDelta, revertFunc, js, ui, view ) {
 			eventtime = ( e.end == null ) ? e.start : e.end;
 			if ( limit && eventtime < now ) {
 				jQuery.jGrowl( '<?php _e('You cannot resize expired events.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Whoops!', AEC_PLUGIN_NAME); ?>' } );
@@ -80,9 +80,9 @@ jQuery().ready( function() {
 				return false;
 			}
 			moveEvent( e );
-		}
+		},
 		// IMPORTANT: parameters must be listed as shown for revertFunc and view to function
-		, eventDrop: function( e, dayDelta, minuteDelta, allDay, revertFunc, js, ui, view ) {
+		eventDrop: function( e, dayDelta, minuteDelta, allDay, revertFunc, js, ui, view ) {
 			if ( limit && e.start < now ) {
 				jQuery.jGrowl( '<?php _e('You cannot move events into the past.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Whoops!',  AEC_PLUGIN_NAME); ?>' } );
 				revertFunc();
@@ -92,8 +92,8 @@ jQuery().ready( function() {
 				//revertFunc();
 			//}
 			moveEvent( e );
-		}
-		, eventClick: function( e, js, view ) {
+		},
+		eventClick: function( e, js, view ) {
 			eventtime = ( e.end == null ) ? e.start : e.end;			
 			if ( limit && (eventtime < now && admin == false )) {
 				jQuery.jGrowl( '<?php _e('You cannot edit expired events.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Whoops!',  AEC_PLUGIN_NAME); ?>' } );
@@ -139,14 +139,14 @@ jQuery().ready( function() {
 	
 	function eventDialog( e, actionTitle ) {		
 		jQuery( '#aec-modal' ).modal({
-			overlayId: 'aec-modal-overlay'
-			, containerId: 'aec-modal-container'
-			, closeHTML: '<div class="close"><a href="#" class="simplemodal-close">x</a></div>'
-			, minHeight: 35
-			, opacity: 65
-			, position: ['0',]
-			, overlayClose: true
-			, onOpen: function ( d ) {
+			overlayId: 'aec-modal-overlay',
+			containerId: 'aec-modal-container',
+			closeHTML: '<div class="close"><a href="#" class="simplemodal-close" title="<?php _e('Close Event Form', AEC_PLUGIN_NAME); ?>">x</a></div>',
+			minHeight: 35,
+			opacity: 65,
+			position: ['0',],
+			overlayClose: true,
+			onOpen: function ( d ) {
 				var modal = this;
 				modal.container = d.container[0];
 				d.overlay.fadeIn( 150, function () {
@@ -154,7 +154,7 @@ jQuery().ready( function() {
 					var title = jQuery( 'div.title', modal.container ),
 						content = jQuery( 'div.content', modal.container ),
 						closebtn = jQuery( 'div.close', modal.container );
-					title.html( '<?php _e('Loading event form...', AEC_PLUGIN_NAME); ?>' ).show();
+					title.html( '<?php _e('Loading Event Form...', AEC_PLUGIN_NAME); ?>' ).show();
 					d.container.slideDown( 150, function () {
 						content.load( '<?php echo AEC_PLUGIN_URL; ?>inc/event.php', { 'event': e }, function () {
 							title.html( actionTitle );
@@ -166,8 +166,8 @@ jQuery().ready( function() {
 						}, 'json' );
 					});
 				});
-			}
-			, onClose: function ( d ) {
+			},
+			onClose: function ( d ) {
 				var modal = this;
 				d.container.animate( { top:'-' + ( d.container.height() + 20 ) }, 350, function () {
 					modal.close();

@@ -92,7 +92,7 @@
 						row += '<input type="hidden" name="bgcolor" value="#' + data.bgcolor + '"  class="bg colors" /> \n';
 						row += '<input type="hidden" name="fgcolor" value="#' + data.fgcolor + '" class="fb" /> \n';
 						row += '<input type="text" name="category" value="' + data.category + '" class="edit" /> \n';
-						row += '<span><button class="update button-secondary"><?php _e('update', AEC_PLUGIN_NAME); ?></button> <a class="delete"><?php _e('delete', AEC_PLUGIN_NAME); ?></a></span> \n';
+						row += '<span><button class="update button-secondary"><?php _e('Update', AEC_PLUGIN_NAME); ?></button> <a class="delete"><?php _e('Delete', AEC_PLUGIN_NAME); ?></a></span> \n';
 						row += '</li> \n';
 
 					jQuery( '#aec-category-table' ).append( row );
@@ -138,9 +138,9 @@
 				jQuery.post( '<?php echo AEC_PLUGIN_URL; ?>inc/admin-category.php', { 'id': id, 'action': 'delete' }, function( data ) {
 					if ( data ) {
 						if ( data == 'false' ) {
-							if ( confirm( '<?php _e('Several events are listed under the', AEC_PLUGIN_NAME); ?> "' + cat + '" <?php _e('category type.\r\nWould you like to migrate these events to the default category type?\r\n\r\n', AEC_PLUGIN_NAME); ?>' ) ) {
+							if ( confirm( '<?php _e('Several events are associated with this category. Click OK to reassign these events to the default category.', AEC_PLUGIN_NAME); ?>') ) {
 								jQuery.post( '<?php echo AEC_PLUGIN_URL; ?>inc/admin-category.php', { 'id': id, 'action': 'change' }, function( data ) {
-									jQuery.jGrowl( '<?php _e('Events have been reassigned to the default category type.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Success!', AEC_PLUGIN_NAME); ?>!' } );
+									jQuery.jGrowl( '<?php _e('Events have been reassigned to the default category.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Success!', AEC_PLUGIN_NAME); ?>!' } );
 									jQuery( row ).remove();
 								});
 							}
