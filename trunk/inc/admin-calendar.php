@@ -6,8 +6,8 @@
 	<h2><?php _e('Calendar', AEC_PLUGIN_NAME); ?></h2>
 	<div id="aec-loading"><?php _e('Loading...', AEC_PLUGIN_NAME); ?></div>
 	<div id="aec-modal">
-		<div class="title"></div>
-		<div class="content"></div>
+		<div class="aec-title"></div>
+		<div class="aec-content"></div>
 	</div>
 	<div id="aec-calendar"</div>
 </div>
@@ -130,7 +130,7 @@ jQuery().ready( function() {
 	// Update dragged/resized event
 	function moveEvent( e ) {			
 		db = dbFormat( e );
-		jQuery.post( '<?php echo AEC_PLUGIN_URL; ?>inc/event.php', { 'id': e.id, 'start': db.start, 'end': db.end, 'allDay': db.allDay, 'action': 'move' }, function( data ){
+		jQuery.post( '<?php echo AEC_PLUGIN_URL; ?>inc/admin-event.php', { 'id': e.id, 'start': db.start, 'end': db.end, 'allDay': db.allDay, 'action': 'move' }, function( data ){
 			if ( data ) {
 				jQuery.jGrowl( '<strong>' + e.title + '</strong> <?php _e('has been modified.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Success!', AEC_PLUGIN_NAME); ?>' } );
 			}
@@ -151,12 +151,12 @@ jQuery().ready( function() {
 				modal.container = d.container[0];
 				d.overlay.fadeIn( 150, function () {
 					jQuery( '#aec-modal', modal.container ).show();
-					var title = jQuery( 'div.title', modal.container ),
-						content = jQuery( 'div.content', modal.container ),
+					var title = jQuery( 'div.aec-title', modal.container ),
+						content = jQuery( 'div.aec-content', modal.container ),
 						closebtn = jQuery( 'div.close', modal.container );
 					title.html( '<?php _e('Loading Event Form...', AEC_PLUGIN_NAME); ?>' ).show();
 					d.container.slideDown( 150, function () {
-						content.load( '<?php echo AEC_PLUGIN_URL; ?>inc/event.php', { 'event': e }, function () {
+						content.load( '<?php echo AEC_PLUGIN_URL; ?>inc/admin-event.php', { 'event': e }, function () {
 							title.html( actionTitle );
 							var h = content.height() + title.height() + 20;
 							d.container.animate( { height: h }, 250, function () {
