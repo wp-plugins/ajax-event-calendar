@@ -22,7 +22,7 @@ class contributor_list extends WP_Widget {
 				echo '<li><a href="' . $user->user_url . '" target="_blank">' .  $user->organization . '</a></li>';
 			}
 		} else {
-			_e('No contributors as of yet!', AEC_PLUGIN_NAME);
+			_e('No contributors as of yet.', AEC_PLUGIN_NAME);
 		}
 		echo '</ul>';
 		echo $after_widget;
@@ -55,7 +55,7 @@ class contributor_list extends WP_Widget {
 	
 	/** @see WP_Widget::form */
 	function form() {				
-		_e('No options to worry about....it\'s magic!', AEC_PLUGIN_NAME);
+		_e('No options available.', AEC_PLUGIN_NAME);
 	}
 }
 ?>
