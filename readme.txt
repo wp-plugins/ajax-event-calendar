@@ -5,11 +5,11 @@ Requires at least: 3.1
 Tested up to: 3.1.3
 Stable tag: 0.8
 
-A Google Calendar-like experience to add, edit and delete events in a common calendar.
+Provides a hybrid Google/OSX interface for adding, editing and deleting events in a community calendar.
 
 == Description ==
 
-A Google Calendar-like interface that allows registered users (with required access) to add, edit and delete events in a common calendar viewable by all blog visitors.
+A plugin that provides a hybrid Google/OSX interface which enables registered users (with required access) to add, edit and delete events in a community calendar, viewable by all blog visitors.
 
 * Users can only edit and delete events they create
 * Dynamic category-based near-instant event filtering
@@ -20,7 +20,8 @@ A Google Calendar-like interface that allows registered users (with required acc
 * Administrators can edit and delete all events
 * Current calendar month activity report
 * Event category management
-* Added column "event counts" in the Users table, enables you to monitor event creation by user
+* Added column "event counts" in the Users table, for tracking event creation by user
+* Control which event detail fields to display and require
 
 = Options =
 
@@ -33,8 +34,8 @@ A Google Calendar-like interface that allows registered users (with required acc
 
 == Installation ==
 
-1. The easiest way to install this plugin is via the automatic installer within WordPress administration.
-1. To create the front-end (non-administrative) view of the calendar: create a new page with any name, the **page slug must be named 'calendar'**
+1. The easiest way to install this plugin is through the integrated WordPress plugin installer
+1. To create the front-end (non-administrative) calendar view: create a new page with any name, the **page slug must be named 'calendar'**
 
 == Frequently Asked Questions ==
 
@@ -51,8 +52,7 @@ All events associated with a deleted user are permanently deleted.
 All events associated with a deleted category are re-assigned to the primary category type.
 
 = What are roles and capabilities does this plugin create? =
-Two new roles "Calendar Contributor" and "Blog+Calendar Contributor" are added, both contain a new capability "aec_add_events".  
-A new capability "aec_run_reports" is added to Administrator accounts only.
+Two new roles "Calendar Contributor" and "Blog+Calendar Contributor" are added, both contain a new capability "aec_add_events".  A new capability "aec_run_reports" is added to Administrator accounts only.
 
 == Screenshots ==
 
@@ -60,10 +60,11 @@ Coming Soon
 
 == Other Notes ==
 
-**Compatibility**
-If you use the WP Minify plugin, disable the HTML minification option or the calendar detail view will not load properlly.
+**Compatibility**:
 
-Hat Tip to the authors of these fine jQuery plugins, used in the creation of this plugin:
+1. If you use the WP Minify plugin, disable the HTML minification option or the calendar detail view will not load properlly.
+
+Hat Tip to the authors of these fine jQuery plugins (used in the creation of this one):
 
 * Google Calendar interface experience (FullCalendar)
 * Growl feedback (jGrowl)
@@ -71,6 +72,11 @@ Hat Tip to the authors of these fine jQuery plugins, used in the creation of thi
 * Category color selection (miniColors)
 
 == Changelog ==
+
+= 0.9 =
+* Improved event detail display layout
+* Added event detail form field options - plugin options page now located under "Settings" menu
+* Added foundation for multi-language support (expected delivery: v1.0)
 
 = 0.8 =
 * Fixed css conflicts with themes
@@ -145,6 +151,9 @@ Hat Tip to the authors of these fine jQuery plugins, used in the creation of thi
 * Getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
+
+= 0.9 =
+* Added event detail form field options, foundation for multi-language support, UI improvements
 
 = 0.8 =
 * CSS conflicts, sidebar toggle option, password protection support
