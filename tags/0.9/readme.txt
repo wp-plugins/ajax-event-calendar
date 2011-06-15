@@ -3,7 +3,7 @@ Contributors: eranmiller
 Tags: multi-user, calendar, event, ajax, filter
 Requires at least: 3.1
 Tested up to: 3.1.3
-Stable tag: 0.8
+Stable tag: 0.9
 
 Provides a hybrid Google/OSX interface for adding, editing and deleting events in a community calendar.
 
@@ -14,6 +14,7 @@ A plugin that provides a hybrid Google/OSX interface which enables registered us
 * Users can only edit and delete events they create
 * Dynamic category-based near-instant event filtering
 * Dynamically generated calendar contributor list (sidebar widget)
+* Multi-language support - the Poedit catalog is available in the locales directory, translations welcome!
 
 = Administrator only =
 
@@ -62,7 +63,7 @@ Coming Soon
 
 **Compatibility**:
 
-1. If you use the WP Minify plugin, disable the HTML minification option or the calendar detail view will not load properlly.
+1. If you use the WP Minify plugin, disable the HTML minification option or the calendar detail view will not load properly.
 
 Hat Tip to the authors of these fine jQuery plugins (used in the creation of this one):
 
@@ -74,9 +75,9 @@ Hat Tip to the authors of these fine jQuery plugins (used in the creation of thi
 == Changelog ==
 
 = 0.9 =
-* Improved event detail display layout
+* Improved event detail UI
 * Added event detail form field options - plugin options page now located under "Settings" menu
-* Added foundation for multi-language support (expected delivery: v1.0)
+* Added multi-language support (open call for translations)
 
 = 0.8 =
 * Fixed css conflicts with themes
@@ -104,7 +105,7 @@ Hat Tip to the authors of these fine jQuery plugins (used in the creation of thi
 = 0.7 =
 * Added options for event limits and admin menu toggle
 * Modified css to address reported style collisions
-* Added a PHP5 dependancy check to halt installation for users running older versions
+* Added a PHP5 dependency check to halt installation for users running older versions
 
 = 0.6.1 = 
 * Updated plugin link
@@ -137,7 +138,7 @@ Hat Tip to the authors of these fine jQuery plugins (used in the creation of thi
 * Streamlined event input form html and css
 * Fixed calculation for all day event durations
 * Added validation for event duration input
-* Added Organization name to event viewing modal, from data provided by user's wordpress profile
+* Added Organization name to event viewing modal, from data provided by user's WordPress profile
 * Dynamically generated calendar contributor list
 
 = 0.2.1 =
@@ -153,7 +154,7 @@ Hat Tip to the authors of these fine jQuery plugins (used in the creation of thi
 == Upgrade Notice ==
 
 = 0.9 =
-* Added event detail form field options, foundation for multi-language support, UI improvements
+* Added form field options, foundation for localization, UI improvements
 
 = 0.8 =
 * CSS conflicts, sidebar toggle option, password protection support
