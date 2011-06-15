@@ -146,7 +146,7 @@ if (!class_exists('ajax_event_calendar')){
 			);
 			
 			$options = get_option(AEC_DOMAIN . 'options');
-			if ((!is_array($options) || (isset($options['reset']) && $options['reset']=='1')))
+			if ((!is_array($options) || !(isset($options['reset']) || $options['reset']=='1')))
 				update_option('aec_options', $form_defaults);
 		}
 
