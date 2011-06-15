@@ -54,11 +54,12 @@ if (!class_exists('ajax_event_calendar')){
 			add_action('admin_init', array($this, 'aec_options_init'));
 			add_action('delete_user', array($this, 'confirm_delete_user_events'));
 			add_action('widgets_init', create_function('', 'return register_widget("contributor_list");'));
+		    add_action('init', array($this, 'localize_plugin'));
 			add_filter('page_template', array($this, 'page_templates'));
 			add_filter('manage_users_columns', array($this, 'add_events_column'));
 			add_filter('manage_users_custom_column', array($this, 'manage_events_column'), 10, 3);
-			add_filter('plugin_action_links', array($this, 'plugin_action_links'), 10, 2);
-			update_option(AEC_DOMAIN . 'version', AEC_PLUGIN_VERSION);
+			add_filter('plugin_action_links', array($this, 'settings_link'), 10, 2);
+     		update_option(AEC_DOMAIN . 'version', AEC_PLUGIN_VERSION);
 		}
 
 		function install(){
@@ -177,6 +178,10 @@ if (!class_exists('ajax_event_calendar')){
 				// settings menu
 				$sub_options = add_options_page('Calendar Options', 'Calendar Options', 'manage_options', __FILE__, array($this, 'aec_options_page'));
 				add_contextual_help($sub_options, $help);
+		}
+
+	    function localize_plugin() {
+			load_plugin_textdomain( AEC_PLUGIN_NAME, '', AEC_PLUGIN_PATH . 'locale/' );
 		}
 
 		function admin_page(){
@@ -517,10 +522,10 @@ if (!class_exists('ajax_event_calendar')){
 			}
 		}
 		
-		// Display a Settings link on the main Plugins page
-		function plugin_action_links($links, $file){
+		// Display settings link on the plugins page
+		function settings_link($links, $file){
 			if ($file == plugin_basename(__FILE__)){
-				$posk_links = '<a href="' . get_admin_url() . 'options-general.php?page=' . AEC_PLUGIN_NAME . '/' . AEC_PLUGIN_FILE . '">' . __('Settings') . '</a>';
+				$posk_links = '<a href="' . get_admin_url() . 'options-general.php?page=' . AEC_PLUGIN_NAME . '/' . AEC_PLUGIN_FILE . '">' . __('Settings', AEC_PLUGIN_NAME) . '</a>';
 				// make the 'Settings' link appear first
 				array_unshift($links, $posk_links);
 			}
@@ -747,25 +752,25 @@ if (!class_exists('ajax_event_calendar')){
 			<h2><?php _e('Ajax Event Calendar Options', AEC_PLUGIN_NAME); ?></h2>
 			<?php
 			$general = array(
-				'menu' => 'Display administrative menu on front-end calendar.',
-				'limit' => 'Enforce event creation range to fit between 30 minutes and one year from the current time.',
-				'sidebar' => 'Display the sidebar next to the front-end calendar.'
+				'menu' =>  __('Show administrative menu above the front-end calendar.', AEC_PLUGIN_NAME),
+				'limit' =>  __('Enforce event creation between 30 minutes and one year from the current time.', AEC_PLUGIN_NAME),
+				'sidebar' => __('Show sidebar beside the front-end calendar.', AEC_PLUGIN_NAME)
 			);
 			$form = array(
-				'title' => 'Title',
-				'venue' => 'Venue',
-				'address' => 'Neighborhood or Street Address',
-				'city' => 'City',
-				'state' => 'State',
-				'zip' => 'Zipcode',
-				'link' => 'Event Link',
-				'description' => 'Description',
-				'contact' => 'Contact Name',
-				'contact_info' => 'Contact Information'
+				'title' => __('Title', AEC_PLUGIN_NAME),
+				'venue' => __('Venue', AEC_PLUGIN_NAME),
+				'address' => __('Neighborhood or Street Address', AEC_PLUGIN_NAME),
+				'city' => __('City', AEC_PLUGIN_NAME),
+				'state' => __('State', AEC_PLUGIN_NAME),
+				'zip' => __('Zip Code', AEC_PLUGIN_NAME),
+				'link' => __('Event Link', AEC_PLUGIN_NAME),
+				'description' => __('Description', AEC_PLUGIN_NAME),
+				'contact' => __('Contact Name', AEC_PLUGIN_NAME),
+				'contact_info' => __('Contact Information', AEC_PLUGIN_NAME)
 			);
 			$optional = array(
-				'accessible' => 'This event is accessible to people with disabilities.',
-				'rsvp' => 'Please register with the contact person for this event.'
+				'accessible' => __('This event is accessible to people with disabilities.', AEC_PLUGIN_NAME),
+				'rsvp' => __('Please register with the contact person for this event.', AEC_PLUGIN_NAME)
 			)
 			?>
 			<form method="post" action="options.php">
@@ -781,12 +786,11 @@ if (!class_exists('ajax_event_calendar')){
 								echo '<input type="hidden" name="aec_options[' . $field . ']" value="0" />';
 								echo '<label>';
 								echo '<input' . $checked . 'id="' . $field . '" value="1" name="aec_options[' . $field . ']" type="checkbox" /> ';
-								echo __($value, AEC_PLUGIN_NAME) . '</label><br />';
+								echo $value . '</label><br />';
 							}
 							?>
 						</td>
 					</tr>
-					
 					<tr>
 						<th scope="row"><?php _e('Check Required Form Fields', AEC_PLUGIN_NAME); ?></th>
 						<td>
@@ -796,12 +800,11 @@ if (!class_exists('ajax_event_calendar')){
 								echo '<input type="hidden" name="aec_options[' . $field . ']" value="1" />';
 								echo '<label>';
 								echo '<input' . $checked . 'id="' . $field . '" value="2" name="aec_options[' . $field . ']" type="checkbox" /> ';
-								echo __($value, AEC_PLUGIN_NAME) . '</label><br />';
+								echo $value . '</label><br />';
 							}
 							?>
 						</td>
 					</tr>
-
 					<tr>
 						<th scope="row"><?php _e('Optional Checkboxes', AEC_PLUGIN_NAME); ?></th>
 						<td>
@@ -811,17 +814,9 @@ if (!class_exists('ajax_event_calendar')){
 								echo '<input type="hidden" name="aec_options[' . $field . ']" value="0" />';
 								echo '<label>';
 								echo '<input' . $checked . 'id="' . $field . '" value="1" name="aec_options[' . $field . ']" type="checkbox" /> ';
-								echo __($value, AEC_PLUGIN_NAME) . '</label><br />';
+								echo $value . '</label><br />';
 							}
 							?>
-						</td>
-					</tr>
-					
-					<tr>
-						<th scope="row"><?php _e('Reset Settings', AEC_PLUGIN_NAME); ?></th>
-						<td><input type="hidden" name="aec_options[reset]" value="0" />
-							<label><input name="aec_options[reset]" type="checkbox" value="1" <?php if (isset($options['reset'])) { checked('1', $options['reset']); } ?> /> <?php _e('Restore defaults upon plugin deactivation/reactivation', AEC_PLUGIN_NAME); ?></label>
-							<br /><span style="color:#666666;margin-left:2px;"><?php _e('Only check this if you want to reset plugin settings upon Plugin reactivation.', AEC_PLUGIN_NAME); ?></span>
 						</td>
 					</tr>
 				</table>

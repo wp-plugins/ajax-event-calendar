@@ -103,7 +103,7 @@
 					<input class="auto" type="text" name="state" id="state" size="3" maxlength="2" value="<?php echo $event->state; ?>" />
 				</li>
 				<li>
-					<label for="zip"><?php _e('Zip', AEC_PLUGIN_NAME); ?></label>
+					<label for="zip"><?php _e('Zip Code', AEC_PLUGIN_NAME); ?></label>
 					<input class="auto" type="text" name="zip" id="zip" size="5" maxlength="5" value="<?php echo $event->zip; ?>" />
 				</li>
 			</ul>
@@ -265,7 +265,7 @@ jQuery().ready(function() {
 		var id = jQuery('#id').val();
 		var title = jQuery('#title').val();
 
-		if (confirm('<?php _e('Are you sure you wish to delete this event?', AEC_PLUGIN_NAME); ?>')) {
+		if (confirm('<?php _e('Delete this event?', AEC_PLUGIN_NAME); ?>')) {
 			jQuery.post('<?php echo AEC_PLUGIN_URL; ?>inc/event.php', { 'id': id, 'action': 'delete' }, function(data) {
 				if (data) {
 					jQuery('#aec-calendar').fullCalendar('removeEvents', id);

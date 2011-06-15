@@ -220,7 +220,7 @@ get_header();
 			jQuery('#aec-modal').modal({
 				overlayId: 'aec-modal-overlay'
 				, containerId: 'aec-modal-container'
-				, closeHTML: '<div class="close"><a href="#" class="simplemodal-close" title="<?php _e('click here (or press ESC) close event details', AEC_PLUGIN_NAME); ?>">x</a></div>'
+				, closeHTML: '<div class="close"><a href="#" class="simplemodal-close" title="<?php _e('Close Event Details', AEC_PLUGIN_NAME); ?>">x</a></div>'
 				, minHeight: 35
 				, opacity: 65
 				, position: ['0',]
@@ -233,7 +233,7 @@ get_header();
 						var title = jQuery('div.title', modal.container),
 							content = jQuery('div.content', modal.container),
 							closebtn = jQuery('div.close', modal.container);
-						title.html('Loading event details...').show();
+						title.html('<?php _e('Loading Event Details...', AEC_PLUGIN_NAME); ?>').show();
 						d.container.slideDown(250, function () {
 							jQuery.post('.', { 'id': e.id, 'do': 'edit' }, function(data) {
 								title.html(data.title);
