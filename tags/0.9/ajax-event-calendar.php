@@ -85,13 +85,14 @@ if (!class_exists('ajax_event_calendar')){
 							contact_info VARCHAR(50) NOT NULL,
 							access TINYINT(1) UNSIGNED DEFAULT 0,
 							rsvp TINYINT(1) UNSIGNED DEFAULT 0
-						);
-						## SAMPLE ROWS
-						INSERT INTO ' . $wpdb->prefix . AEC_EVENT_TABLE . ' (id, user_id, title, start, end, allDay, category_id, description, link, venue, address, city, state, zip, contact, contact_info, access, rsvp)
-						VALUES (NULL, 0, "Ajax Event Calendar (v' . AEC_PLUGIN_VERSION . ') Installed!", "' . date('Y-m-d') . '", "' . date('Y-m-d') . '", 1, 1, "' . AEC_PLUGIN_NAME . ' was installed.", "' . AEC_PLUGIN_HOMEPAGE . '", "Event Venue", "Event Street Address or Neighborhood", "Event City", "IL", 60601, "Eran Miller", "plugins@eranmiller.com", 0, 0);';
+						);';
 				dbDelta($sql);
 			}
-
+			// Sample Event
+			$sql = 'INSERT INTO ' . $wpdb->prefix . AEC_EVENT_TABLE . ' (id, user_id, title, start, end, allDay, category_id, description, link, venue, address, city, state, zip, contact, contact_info, access, rsvp)
+			VALUES (NULL, 0, "Ajax Event Calendar [v' . AEC_PLUGIN_VERSION . '] Installed!", "' . date('Y-m-d') . '", "' . date('Y-m-d') . '", 1, 1, "This is a sample event with all the fields populated.  <ul><li>Modify field options in the settings menu</li><li>Manage event categories in the calendar menu</li><li>Add user authorization in the user menu</li></ul>.", "' . AEC_PLUGIN_HOMEPAGE . '", "Plugins", "WordPress", "Chicago", "IL", 60605, "Eran Miller", "plugins@eranmiller.com", 0, 0);';
+			dbDelta($sql);
+			
 			if ($wpdb->get_var('SHOW TABLES LIKE "' . $wpdb->prefix . AEC_CATEGORY_TABLE . '"') != $wpdb->prefix . AEC_CATEGORY_TABLE){
 				$sql = 'CREATE TABLE ' . $wpdb->prefix . AEC_CATEGORY_TABLE . ' (
 							id TINYINT(4) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -99,7 +100,7 @@ if (!class_exists('ajax_event_calendar')){
 							bgcolor CHAR(6) NOT NULL,
 							fgcolor CHAR(6) NOT NULL
 						);
-						## SAMPLE ROWS
+						## DEFAULT CATEGORIES
 						INSERT INTO ' . $wpdb->prefix . AEC_CATEGORY_TABLE . ' (id, category, bgcolor, fgcolor)
 						VALUES 	(NULL, "Event", "517ed6", "FFFFFF"),
 								(NULL, "Deadline", "e3686c", "FFFFFF"),
@@ -156,7 +157,7 @@ if (!class_exists('ajax_event_calendar')){
 				add_action("admin_print_styles-$page", array($this, 'load_calendar_css'));
 
 				// contextual help override
-				$help = '<h3>Ajax Event Calendar <small>v' . AEC_PLUGIN_VERSION . '</small></h3>';
+				$help = '<h3>Ajax Event Calendar <small>[v' . AEC_PLUGIN_VERSION . ']</small></h3>';
 				$help .= 'Plugin help available <a href="' . AEC_PLUGIN_HOMEPAGE . '" target="_blank">here</a>';
 				$help .= '<br>Created by <a href="http://eranmiller.com" target="_blank">Eran Miller</a>';
 				add_contextual_help($page, $help);
@@ -173,9 +174,7 @@ if (!class_exists('ajax_event_calendar')){
 				$sub_report = add_submenu_page(AEC_PLUGIN_FILE, 'Activity Report', 'Activity Report', AEC_DOMAIN . 'run_reports', 'activity_report', array($this, 'run_reports'));
 				add_contextual_help($sub_report, $help);
 				
-				//$sub_options = add_submenu_page(AEC_PLUGIN_FILE, 'Calendar Options', 'Calendar Options', 'manage_options', 'calendar_options', array($this, 'aec_options_page'));
-				//add_contextual_help($sub_options, $help);
-				
+				// settings menu
 				$sub_options = add_options_page('Calendar Options', 'Calendar Options', 'manage_options', __FILE__, array($this, 'aec_options_page'));
 				add_contextual_help($sub_options, $help);
 		}
@@ -197,12 +196,6 @@ if (!class_exists('ajax_event_calendar')){
 				wp_die(__('You do not have sufficient permissions to access this page.', AEC_PLUGIN_NAME));
 			include_once(AEC_PLUGIN_PATH . 'inc/admin-reports.php');
 		}
-		
-		//function aec_options_page(){
-		//	if (!current_user_can(AEC_DOMAIN . 'run_reports'))
-		//		wp_die(__('You do not have sufficient permissions to access this page.', AEC_PLUGIN_NAME));
-		//	include_once(AEC_PLUGIN_PATH . 'inc/admin-options.php');
-		//}
 
 		// Calendar page override
 		function page_templates($page_template){

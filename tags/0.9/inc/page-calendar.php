@@ -88,7 +88,7 @@ Template Name: calendar
 				$out .= '</small></li>';
 			}
 			
-			if (!empty($event->link)) $out .= '<li><a href="' . $event->link . '" target="_blank">' . __('Event Link', AEC_PLUGIN_NAME) . '</a></li>';
+			if (!empty($event->link)) $out .= '<li><a href="' . $event->link . '" class="link cat' . $event->category_id . '" target="_blank">' . __('Event Link', AEC_PLUGIN_NAME) . '</a></li>';
 
 		$out .= '</ul>';
 
