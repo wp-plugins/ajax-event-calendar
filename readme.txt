@@ -3,13 +3,13 @@ Contributors: eranmiller
 Tags: multi-user, calendar, event, ajax, filter
 Requires at least: 3.1
 Tested up to: 3.1.3
-Stable tag: 0.8
+Stable tag: 0.9
 
-Provides a hybrid Google/OSX interface for adding, editing and deleting events in a community calendar.
+Provides a hybrid Google/OSX interface for multiple users to manage events in a community calendar.
 
 == Description ==
 
-A plugin that provides a hybrid Google/OSX interface which enables registered users (with required access) to add, edit and delete events in a community calendar, viewable by all blog visitors.
+Provides a hybrid Google/OSX interface which enables registered users (with required access) to add, edit and delete events in a community calendar, viewable by all blog visitors.
 
 * Users can only edit and delete events they create
 * Dynamic category-based near-instant event filtering
