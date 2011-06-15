@@ -31,8 +31,8 @@ ol#aec-category-table{list-style:none;margin-left:.4em}
 #aec-modal-container span.duration{padding-left:5px;font-size:.9em}
 #aec-modal ul{list-style-type:none;margin:0;padding:0}
 #aec-modal hr{margin:10px 0;padding:0}
-#aec-modal a{position:absolute;padding:5px 10px;bottom:0;right:10px;font-size:1.15em;font-weight:bold;-moz-border-radius-topleft:6px;-moz-border-radius-topright:6px;-webkit-border-top-left-radius:6px;-webkit-border-top-right-radius:6px;background-color:#333;border-radius:6px 6px 0 0;color:#eee;text-decoration:none;border:1px solid #333}
-#aec-modal a:hover{background-color:#ddd;color:#333;border-color:#ccc;border-style:solid;border-width:1px 1px 0}
+#aec-modal a.link{position:absolute;padding:5px 10px;bottom:0;right:10px;font-size:1.15em;font-weight:bold;-moz-border-radius-topleft:6px;-moz-border-radius-topright:6px;-webkit-border-top-left-radius:6px;-webkit-border-top-right-radius:6px;border-radius:6px 6px 0 0;text-decoration:none}
+#aec-modal a.link:hover{text-decoration:underline}
 #aec-credit{visibility:hidden;position:absolute;height:1px;width:1px;overflow:hidden;top:-999px}
 .fc{direction:ltr;text-align:left}
 .fc table{border-collapse:collapse;border-spacing:0}
