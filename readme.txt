@@ -47,7 +47,7 @@ Go to the Calendar Options page in the Settings menu and if none of the checkbox
 The event and category databases, custom calendar roles and capabilities, and plugin options are permanently removed.
 
 = How does the calendar filter work? =
-The filter is appears only when more than one event category has been created.
+The filter is only displayed when more than one event category has been created.
 
 = What happens to user events when they are deleted? =
 All events associated with a deleted user are permanently deleted.
