@@ -77,7 +77,7 @@ Hat Tip to the authors of these fine jQuery plugins (used in the creation of thi
 == Changelog ==
 
 = 0.9.1 =
-* A giant **Obrigado** to rgranzoti for the first pass of Portugueuse translation
+* A giant **Obrigado** to rgranzoti for the first pass of Portuguese translation
 * Added more localization
 * Fixed default option initialization
 * Further improved event detail page UI
