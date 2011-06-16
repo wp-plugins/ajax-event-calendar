@@ -3,7 +3,7 @@ Contributors: eranmiller
 Tags: multi-user, calendar, event, ajax, filter
 Requires at least: 3.1
 Tested up to: 3.1.3
-Stable tag: 0.9
+Stable tag: 0.8
 
 Provides a hybrid Google/OSX interface for multiple users to manage events in a community calendar.
 
