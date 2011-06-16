@@ -68,31 +68,31 @@ if (!class_exists('ajax_event_calendar')){
 
 			if ($wpdb->get_var('SHOW TABLES LIKE "' . $wpdb->prefix . AEC_EVENT_TABLE . '"') != $wpdb->prefix . AEC_EVENT_TABLE) {
 				$sql = 'CREATE TABLE ' . $wpdb->prefix . AEC_EVENT_TABLE . ' (
-							id BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-							user_id INT(10) UNSIGNED NOT NULL,
-							title VARCHAR(100) NOT NULL,
-							start DATETIME NOT NULL,
-							end DATETIME NOT NULL,
-							allDay TINYINT(1) UNSIGNED DEFAULT 0,
-							category_id TINYINT(4) UNSIGNED NOT NULL,
-							description VARCHAR(1000),
-							link VARCHAR(100),
-							venue VARCHAR(100) NOT NULL,
-							address VARCHAR(100),
-							city VARCHAR(50) NOT NULL,
-							state CHAR(2) NOT NULL,
-							zip MEDIUMINT(5) UNSIGNED NOT NULL,
-							contact VARCHAR(50) NOT NULL,
-							contact_info VARCHAR(50) NOT NULL,
-							access TINYINT(1) UNSIGNED DEFAULT 0,
-							rsvp TINYINT(1) UNSIGNED DEFAULT 0
-						); ';
-				// Sample Event
-				$sql .= 'INSERT INTO ' . $wpdb->prefix . AEC_EVENT_TABLE . ' (id, user_id, title, start, end, allDay, category_id, description, link, venue, address, city, state, zip, contact, contact_info, access, rsvp)
-				VALUES (NULL, 0, "Ajax Event Calendar [v' . AEC_PLUGIN_VERSION . '] Installed!", "' . date('Y-m-d') . '", "' . date('Y-m-d') . '", 1, 1, "This is a sample event with all the fields populated.  <ul><li>Modify field options in the settings menu</li><li>Manage event categories in the calendar menu</li><li>Add user authorization in the user menu</li></ul>", "' . AEC_PLUGIN_HOMEPAGE . '", "Plugins", "WordPress", "Chicago", "IL", 60605, "Eran Miller", "plugins@eranmiller.com", 0, 0);';			
+						id BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+						user_id INT(10) UNSIGNED NOT NULL,
+						title VARCHAR(100) NOT NULL,
+						start DATETIME NOT NULL,
+						end DATETIME NOT NULL,
+						allDay TINYINT(1) UNSIGNED DEFAULT 0,
+						category_id TINYINT(4) UNSIGNED NOT NULL,
+						description VARCHAR(1000),
+						link VARCHAR(100),
+						venue VARCHAR(100) NOT NULL,
+						address VARCHAR(100),
+						city VARCHAR(50) NOT NULL,
+						state CHAR(2) NOT NULL,
+						zip MEDIUMINT(5) UNSIGNED NOT NULL,
+						contact VARCHAR(50) NOT NULL,
+						contact_info VARCHAR(50) NOT NULL,
+						access TINYINT(1) UNSIGNED DEFAULT 0,
+						rsvp TINYINT(1) UNSIGNED DEFAULT 0);';
 				dbDelta($sql);
 			}
-			
+			// Sample Event
+				$sql = 'INSERT INTO ' . $wpdb->prefix . AEC_EVENT_TABLE . ' (id, user_id, title, start, end, allDay, category_id, description, link, venue, address, city, state, zip, contact, contact_info, access, rsvp)
+				VALUES (NULL, 0, "Ajax Event Calendar [v' . AEC_PLUGIN_VERSION . '] Installed!", "' . date('Y-m-d') . '", "' . date('Y-m-d') . '", 1, 1, "This is a sample event with all the fields populated.  <ul><li>Modify field options in the settings menu</li><li>Manage event categories in the calendar menu</li><li>Add user authorization in the user menu</li></ul>", "' . AEC_PLUGIN_HOMEPAGE . '", "Plugins", "WordPress", "Chicago", "IL", 60605, "Eran Miller", "plugins@eranmiller.com", 0, 0);';			
+				dbDelta($sql);
+				
 			if ($wpdb->get_var('SHOW TABLES LIKE "' . $wpdb->prefix . AEC_CATEGORY_TABLE . '"') != $wpdb->prefix . AEC_CATEGORY_TABLE){
 				$sql = 'CREATE TABLE ' . $wpdb->prefix . AEC_CATEGORY_TABLE . ' (
 							id TINYINT(4) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
