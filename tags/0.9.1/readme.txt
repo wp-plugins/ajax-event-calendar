@@ -14,9 +14,7 @@ Provides a hybrid Google/OSX interface which enables registered users (with requ
 * Users can only edit and delete events they create
 * Dynamic category-based near-instant event filtering
 * Dynamically generated calendar contributor list (sidebar widget)
-* Multi-language support
-
-**Poedit catalog is available in the /locales folder - Please email your translations to me!**
+* Multi-language support **The POT file is available in the /locales folder - please email your translations so I can package them with the plugin**
 
 = Administrator only =
 
@@ -42,14 +40,14 @@ Provides a hybrid Google/OSX interface which enables registered users (with requ
 
 == Frequently Asked Questions ==
 
-= I upgraded the plugin and the calendar no longer appears=
+= I upgraded the plugin and the calendar no longer appears =
 Go to the Calendar Options page in the Settings menu and if none of the checkboxes are set select the desired settings and click Save Settings.  If this does not correct the problem please post the issue in the [Support Forum](http://wordpress.org/tags/ajax-event-calendar?forum_id=10 "forum") and please include your URL for troubleshooting purposes.
 
 = What does this plugin remove when deleted? =
 The event and category databases, custom calendar roles and capabilities, and plugin options are permanently removed.
 
 = How does the calendar filter work? =
-The filter is appears only when more than a one event category has been created.
+The filter is appears only when more than one event category has been created.
 
 = What happens to user events when they are deleted? =
 All events associated with a deleted user are permanently deleted.
@@ -80,7 +78,7 @@ Hat Tip to the authors of these fine jQuery plugins (used in the creation of thi
 == Changelog ==
 
 = 0.9.1 =
-* A giant **Obrigado** to rgranzoti for the first pass of Portuguese translation
+* A giant **Obrigado** to rgranzoti for creating the initial translation in Portuguese!
 * Added more localization
 * Fixed default option initialization
 * Further improved event detail page UI
