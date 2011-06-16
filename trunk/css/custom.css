@@ -7,13 +7,13 @@ ol#aec-category-table{list-style:none;margin-left:.4em}
 .ui-datepicker-trigger{float:left}
 #aec-header{width:100%;clear:both;padding:0;margin-bottom:.5em !important;font-size:.7em}
 #aec-filter {margin-bottom:.5em !important;list-style:none;float:right}
-#aec-filter a{cursor:pointer;display:block;padding:0 .9em;text-decoration:none;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}
+#aec-filter a{font-size:11px;cursor:pointer;display:block;padding:0 .9em;text-decoration:none;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}
 #aec-filter h3{margin:0;padding:.1em .5em}
 #aec-filter a.all,
 #aec-filter a.all:visited,
 #aec-filter a.all:active,
 #aec-filter a.all:hover{background:#000;color:#ddd}
-#aec-filter li{float:left;padding:0 2px}
+#aec-filter li{float:left;padding:0 2px;margin:0}
 #aec-loading,
 #aec-modal{display:none}
 #aec-loading{color:#fff;font:2.5em/1em "Lucida Grande",Arial,sans-serif;padding:5em}
@@ -136,27 +136,27 @@ div.time-picker-12hours{width:6em}
 div.time-picker ul{list-style-type:none;margin:0;padding:0}
 div.time-picker li{cursor:pointer;font:12px/1 "Lucida Grande",Arial,sans-serif;height:10px;margin:0;padding:4px 3px}
 div.time-picker li.selected{background:#0063CE;color:#fff}
-form{font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif}
+form .aec_form{font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif}
 
 .aec_form .edit{width:25em}
 .aec_form table{border-spacing:0}
 .aec_form tr.header{background:#eee}
 .aec_form td{padding:5px;margin:0}
 
-.aec_form li{float:left;margin:3px 0 0;padding-bottom:3px;width:100%}
+.aec_form li{float:left;margin:5px 0 0;width:100%}
 .aec_form ul{height:1%;list-style:none;margin:0;overflow:hidden;padding:2px 5px 5px}
 .aec_form fieldset{display:block;margin-bottom:10px}
 .aec_form em{color:red}
-.aec_form .picker{cursor:pointer}
+.aec_form .picker{cursor:pointer;background:#fff}
 .aec_form{list-style:none;margin:0}
 .aec_form label{display:inline;float:left;padding:5px 5px 3px 0;width:100px}
 .aec_form label.box{padding:0 0 0 5px;width:auto}
 .aec_form li ul li{border-bottom:0 solid red}
-.aec_form input{display:inline;width:25em}
+.aec_form input{display:inline;padding:0.5em;width:25em}
 .aec_form .auto{width:auto}
 .aec_form .wide{width:32em}
 .aec_form .semi{width:15em}
-.aec_form .error{background-color:#ff6}
+.aec_form .aec-error{background-color:#ff6}
 .aec_form select{display:inline;float:left;width:25em}
 .aec_form textarea{display:inline;float:left;height:6.5em;resize:none;width:25em}
 .aec_form input[type=radio]{border:0;width:auto;float:left}
