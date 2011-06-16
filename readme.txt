@@ -84,7 +84,7 @@ Hat Tip to the authors of these fine jQuery plugins (used in the creation of thi
 
 = 0.9 =
 * Improved event detail page UI
-* Refactored event detail page load (to address instances of event detail not loading)
+* Refactored event detail page (to address instances of event detail not loading)
 * Added event detail form field options - plugin options page now located under "Settings" menu
 * Added multi-language support (open call for translations)
 
