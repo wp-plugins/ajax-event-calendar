@@ -52,12 +52,12 @@
 				<li>
 					<label for="start_date"><?php _e('From', AEC_PLUGIN_NAME); ?></label>
 					<input class="auto picker" type="text" name="start_date" id="start_date" size="11" readonly="readonly" value="<?php echo $start_date; ?>" />
-					<input class="auto cb" type="text" name="start_time" id="start_time" size="8" value="<?php echo trim($start_time); ?>" />
+					<input class="auto picker cb" type="text" name="start_time" id="start_time" size="8" readonly="readonly" value="<?php echo trim($start_time); ?>" />
 				</li>
 				<li>
 					<label for="end_date"><?php _e('To', AEC_PLUGIN_NAME); ?></label>
 					<input class="auto picker" type="text" name="end_date" id="end_date" size="11" readonly="readonly" value="<?php echo $end_date; ?>" />
-					<input class="auto cb" type="text" name="end_time" id="end_time" size="8" value="<?php echo trim($end_time); ?>" />
+					<input class="auto picker cb" type="text" name="end_time" id="end_time" size="8" readonly="readonly" value="<?php echo trim($end_time); ?>" />
 				</li>
 				<li>
 					<label>&nbsp;</label>
@@ -164,8 +164,8 @@
 				$first_name = get_user_meta($event->user_id, 'first_name', true);
 				$last_name = get_user_meta($event->user_id, 'last_name', true);
 				$organization = (isset($organization)) ? '(' . get_user_meta($event->user_id, 'organization', true) . ')' : '';
-				$out = '<span>Created by: ';
-				$author = 'Ajax Event Calendar';
+				$out = '<span>' . __('Created by', AEC_PLUGIN_NAME) . ': ';
+				$author = __('Ajax Event Calendar', AEC_PLUGIN_NAME);
 				if ($event->user_id > 0) {
 					$author = $first_name . ' ' . $last_name . $organization;
 				}
@@ -184,9 +184,6 @@ jQuery().ready(function() {
 		minDate: '+1d',
 		maxDate: '+1y',
 <?php } ?>
-		showOn: "button",
-		buttonImage: "<?php echo AEC_PLUGIN_URL; ?>css/images/calendar.png",
-		buttonImageOnly: true,
 		showButtonPanel: true,
 		onSelect: function(selectedDate) {
 			var option = (this.id == 'start_date') ? 'minDate' : 'maxDate',
@@ -287,10 +284,10 @@ jQuery().ready(function() {
 			jQuery.each(required, function(index, value) {
 				 jQuery('#'+value).parent().find('label').css({color:'red'});
 				 if (jQuery('#' + this).val() == '') {
-					jQuery('#' + this).addClass('error');
+					jQuery('#' + this).addClass('aec-error');
 					err = true;
 				 } else {
-					jQuery('#' + this).removeClass('error');
+					jQuery('#' + this).removeClass('aec-error');
 				 }
 			});
 		}
@@ -317,12 +314,12 @@ jQuery().ready(function() {
 				var start = jQuery.timePicker('#start_time').getTime(),
 					end = jQuery.timePicker('#end_time').getTime();
 				if (start >= end) {
-					jQuery('#start_time, #end_time').addClass('error');
+					jQuery('#start_time, #end_time').addClass('aec-error');
 					jQuery('.duration').html('<?php _e('Invalid duration, please adjust your time inputs.', AEC_PLUGIN_NAME); ?>');
 					return true;
 				}
 			}
-			jQuery('#start_time, #end_time').removeClass('error');
+			jQuery('#start_time, #end_time').removeClass('aec-error');
 			from = jQuery('#start_date').val() + ' ' + jQuery('#start_time').val(),
 			to = jQuery('#end_date').val() + ' ' + jQuery('#end_time').val();
 		}
