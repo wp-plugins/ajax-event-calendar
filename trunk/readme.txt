@@ -40,7 +40,7 @@ Provides a hybrid Google/OSX interface which enables registered users (with requ
 
 == Frequently Asked Questions ==
 
-= I upgraded the plugin and the calendar no longer appears =
+= I upgraded the plugin and the calendar no longer properly renders =
 Go to the Calendar Options page in the Settings menu and if none of the checkboxes are set select the desired settings and click Save Settings.  If this does not correct the problem please post the issue in the [Support Forum](http://wordpress.org/tags/ajax-event-calendar?forum_id=10 "forum") and please include your URL for troubleshooting purposes.
 
 = What does this plugin remove when deleted? =
