@@ -14,6 +14,7 @@
 			
 			$start_time = trim($start_time);
 			$end_time = trim($end_time);
+			$duration = $aec->calcDuration($event->start,$event->end,$event->allDay);
 			
 			$out .= '<li><h3>';
 			if ($start_date != $end_date) {
@@ -25,10 +26,15 @@
 					$out .= '<br>' . $event->end;
 				}
 			} else {
-				$out .= $start_date;
-				$out .= '<br>' . $start_time . ' - ' . $end_time;
+				if ($event->allDay) {
+					$out .= $start_date;
+					$duration = __('All Day', AEC_PLUGIN_NAME);
+				} else {
+					$out .= $start_date;
+					$out .= '<br>' . $start_time . ' - ' . $end_time;
+				}
 			}
-			$out .= ' <span class="duration">' . $aec->calcDuration($event->start,$event->end,$event->allDay) . '</span>';
+			$out .= ' <span class="duration">' . $duration . '</span>';
 
 			$out .= '</h3></li>';
 			$out .= '<li>' . stripslashes($event->description) . '</li>';
