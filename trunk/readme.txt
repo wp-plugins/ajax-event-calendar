@@ -3,7 +3,7 @@ Contributors: eranmiller
 Tags: multi-user, calendar, event, ajax, filter
 Requires at least: 3.1
 Tested up to: 3.1.3
-Stable tag: 0.8
+Stable tag: 0.9.1
 
 Provides a hybrid Google/OSX interface for multiple users to manage events in a community calendar.
 
@@ -14,7 +14,9 @@ Provides a hybrid Google/OSX interface which enables registered users (with requ
 * Users can only edit and delete events they create
 * Dynamic category-based near-instant event filtering
 * Dynamically generated calendar contributor list (sidebar widget)
-* Multi-language support - the Poedit catalog is available in the locales directory, translations welcome!
+* Multi-language support
+
+**Poedit catalog is available in the /locales folder - Please email your translations to me!**
 
 = Administrator only =
 
@@ -57,7 +59,7 @@ Two new roles "Calendar Contributor" and "Blog+Calendar Contributor" are added, 
 
 == Screenshots ==
 
-Coming Soon
+Coming in Version 1.0
 
 == Other Notes ==
 
@@ -73,6 +75,12 @@ Hat Tip to the authors of these fine jQuery plugins (used in the creation of thi
 * Category color selection (miniColors)
 
 == Changelog ==
+
+= 0.9.1 =
+* A giant **Obrigado** to rgranzoti for the first pass of Portugueuse translation
+* Added more localization
+* Fixed default option initialization
+* Further improved event detail page UI
 
 = 0.9 =
 * Improved event detail page UI
@@ -153,6 +161,9 @@ Hat Tip to the authors of these fine jQuery plugins (used in the creation of thi
 * Getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
+
+= 0.9.1 =
+* More localization, fixed default option initialization, UI improvements
 
 = 0.9 =
 * Added form field options, foundation for localization, UI improvements
