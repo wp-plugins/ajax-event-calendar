@@ -25,6 +25,64 @@ jQuery().ready( function() {
 
 	var calendar = jQuery( '#aec-calendar' ).fullCalendar( {
 		theme: true,
+		monthNames: ['<?php _e('January', AEC_PLUGIN_NAME); ?>',
+					 '<?php _e('February', AEC_PLUGIN_NAME); ?>',
+					 '<?php _e('March', AEC_PLUGIN_NAME); ?>',
+					 '<?php _e('April', AEC_PLUGIN_NAME); ?>',
+					 '<?php _e('May', AEC_PLUGIN_NAME); ?>',
+					 '<?php _e('June', AEC_PLUGIN_NAME); ?>',
+					 '<?php _e('July', AEC_PLUGIN_NAME); ?>',
+					 '<?php _e('August', AEC_PLUGIN_NAME); ?>',
+					 '<?php _e('September', AEC_PLUGIN_NAME); ?>',
+					 '<?php _e('October', AEC_PLUGIN_NAME); ?>',
+					 '<?php _e('November', AEC_PLUGIN_NAME); ?>',
+					 '<?php _e('December', AEC_PLUGIN_NAME); ?>'],
+		monthNamesShort: ['<?php _e('Jan', AEC_PLUGIN_NAME); ?>',
+						  '<?php _e('Feb', AEC_PLUGIN_NAME); ?>',
+						  '<?php _e('Mar', AEC_PLUGIN_NAME); ?>',
+						  '<?php _e('Apr', AEC_PLUGIN_NAME); ?>',
+						  '<?php _e('May', AEC_PLUGIN_NAME); ?>',
+						  '<?php _e('Jun', AEC_PLUGIN_NAME); ?>',
+						  '<?php _e('Jul', AEC_PLUGIN_NAME); ?>',
+						  '<?php _e('Aug', AEC_PLUGIN_NAME); ?>',
+						  '<?php _e('Sep', AEC_PLUGIN_NAME); ?>',
+						  '<?php _e('Oct', AEC_PLUGIN_NAME); ?>',
+						  '<?php _e('Nov', AEC_PLUGIN_NAME); ?>',
+						  '<?php _e('Dec', AEC_PLUGIN_NAME); ?>'],
+		dayNames: ['<?php _e('Monday', AEC_PLUGIN_NAME); ?>',
+				   '<?php _e('Tuesday', AEC_PLUGIN_NAME); ?>',
+				   '<?php _e('Wednesday', AEC_PLUGIN_NAME); ?>',
+				   '<?php _e('Thursday', AEC_PLUGIN_NAME); ?>',
+				   '<?php _e('Friday', AEC_PLUGIN_NAME); ?>',
+				   '<?php _e('Saturday', AEC_PLUGIN_NAME); ?>',
+				   '<?php _e('Sunday', AEC_PLUGIN_NAME); ?>'],
+		dayNamesShort: ['<?php _e('Mon', AEC_PLUGIN_NAME); ?>',
+						'<?php _e('Tue', AEC_PLUGIN_NAME); ?>',
+						'<?php _e('Wed', AEC_PLUGIN_NAME); ?>',
+						'<?php _e('Thu', AEC_PLUGIN_NAME); ?>',
+						'<?php _e('Fri', AEC_PLUGIN_NAME); ?>',
+						'<?php _e('Sat', AEC_PLUGIN_NAME); ?>',
+						'<?php _e('Sun', AEC_PLUGIN_NAME); ?>'],
+		buttonText: {
+			today: '<?php _e('Today', AEC_PLUGIN_NAME); ?>',
+			month: '<?php _e('Month', AEC_PLUGIN_NAME); ?>',
+			week: '<?php _e('Week', AEC_PLUGIN_NAME); ?>',
+			day: '<?php _e('Day', AEC_PLUGIN_NAME); ?>'
+		},
+		allDayText: '<?php _e('All Day', AEC_PLUGIN_NAME); ?>',
+		/*
+			titleFormat: {
+				month: 'MMMM yyyy',
+				week: "d [ yyyy]{ '&#8212;'[ MMM] d MMM yyyy}",
+				day: 'dddd, d MMM, yyyy'
+			},
+			columnFormat: {
+				month: 'ddd',
+				week: 'ddd d/M',
+				day: 'dddd d/M'
+			},
+			axisFormat: 'H:mm',
+			*/
 		timeFormat: {
 			agenda: 'h:mmt{ - h:mmt}',
 			'': 'h(:mm)t'

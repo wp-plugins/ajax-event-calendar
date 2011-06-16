@@ -4,23 +4,6 @@
 	header("HTTP/1.1 200 OK");
 	
 	if (isset($_POST['id'])) {
-		function calcDuration($from, $end, $allday){
-			$timestamp = strtotime($end) - strtotime($from);
-			$days = floor($timestamp/(60*60*24)); $timestamp%=60*60*24;
-			$hrs = floor($timestamp/(60*60)); $timestamp%=60*60;
-			$mins = floor($timestamp/60); $secs=$timestamp%60;
-			
-			$out = array();
-			if ($allday) $days += 1;
-			if ($days >= 1) { array_push($out, $days.' day'.plural($days)); }
-			if ($hrs >= 1) { array_push($out, $hrs.' hour'.plural($hrs)); }
-			if ($mins >= 1) { array_push($out, $mins.' minute'.plural($mins)); }
-			return implode(', ', $out);
-		}
-
-		function plural($value){
-			return ($value == 1) ? '' : 's';
-		}
 		$event = $aec->get_event($_POST['id']);
 
 		$out = '<ul>';
@@ -31,17 +14,28 @@
 			
 			$start_time = trim($start_time);
 			$end_time = trim($end_time);
+			$duration = $aec->calcDuration($event->start,$event->end,$event->allDay);
 			
 			$out .= '<li><h3>';
-			if ($event->allDay) {
-				$out .= $start_date;
-				if ($start_date != $end_date) $out .= ' - ' . $end_date;
-				$out .= ' <span class="duration">' . __('All Day', AEC_PLUGIN_NAME) . '</span>';
+			if ($start_date != $end_date) {
+				if ($event->allDay) {
+					$out .= $start_date;
+					$out .= ' - ' . $end_date;
+				} else {
+					$out .= $event->start;
+					$out .= '<br>' . $event->end;
+				}
 			} else {
-				$out .= $event->start;
-				$out .= ($start_date != $end_date) ? ' - ' . $event->end : ' - ' . $end_time;
-				$out .= ' <span class="duration">' . calcDuration($event->start,$event->end,$event->allDay) . '</span>';
+				if ($event->allDay) {
+					$out .= $start_date;
+					$duration = __('All Day', AEC_PLUGIN_NAME);
+				} else {
+					$out .= $start_date;
+					$out .= '<br>' . $start_time . ' - ' . $end_time;
+				}
 			}
+			$out .= ' <span class="duration">' . $duration . '</span>';
+
 			$out .= '</h3></li>';
 			$out .= '<li>' . stripslashes($event->description) . '</li>';
 			

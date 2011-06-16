@@ -3,7 +3,7 @@
 Plugin Name: Ajax Event Calendar
 Plugin URI: http://wordpress.org/extend/plugins/ajax-event-calendar/
 Description: A Google Calendar-like interface that allows registered users (with the necessary credentials) to add, edit and delete events in a common calendar viewable by blog visitors.
-Version: 0.9
+Version: 0.9.1
 Author: Eran Miller
 Author URI: http://eranmiller.com
 License: GPL2
@@ -30,7 +30,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)){
 	die('Sorry, but you cannot access this page directly.');
 }
 
-define('AEC_PLUGIN_VERSION', '0.9');
+define('AEC_PLUGIN_VERSION', '0.9.1');
 define('AEC_DOMAIN', 'aec_');
 define('AEC_PLUGIN_FILE', basename(__FILE__));
 define('AEC_PLUGIN_NAME', str_replace('.php', '', AEC_PLUGIN_FILE));
@@ -50,11 +50,11 @@ if (!class_exists('ajax_event_calendar')){
 
 		// PHP 5 constructor
 		function __construct(){
+		    add_action('init', array($this, 'localize_plugin'), 10, 1);
 			add_action('admin_menu', array($this, 'set_admin_menu'));
 			add_action('admin_init', array($this, 'aec_options_init'));
 			add_action('delete_user', array($this, 'confirm_delete_user_events'));
 			add_action('widgets_init', create_function('', 'return register_widget("contributor_list");'));
-		    add_action('init', array($this, 'localize_plugin'));
 			add_filter('page_template', array($this, 'page_templates'));
 			add_filter('manage_users_columns', array($this, 'add_events_column'));
 			add_filter('manage_users_custom_column', array($this, 'manage_events_column'), 10, 3);
@@ -66,34 +66,33 @@ if (!class_exists('ajax_event_calendar')){
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 			global $wpdb;
 
-			if ($wpdb->get_var('SHOW TABLES LIKE "' . $wpdb->prefix . AEC_EVENT_TABLE . '"') != $wpdb->prefix . AEC_EVENT_TABLE){
+			if ($wpdb->get_var('SHOW TABLES LIKE "' . $wpdb->prefix . AEC_EVENT_TABLE . '"') != $wpdb->prefix . AEC_EVENT_TABLE) {
 				$sql = 'CREATE TABLE ' . $wpdb->prefix . AEC_EVENT_TABLE . ' (
-							id BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-							user_id INT(10) UNSIGNED NOT NULL,
-							title VARCHAR(100) NOT NULL,
-							start DATETIME NOT NULL,
-							end DATETIME NOT NULL,
-							allDay TINYINT(1) UNSIGNED DEFAULT 0,
-							category_id TINYINT(4) UNSIGNED NOT NULL,
-							description VARCHAR(1000),
-							link VARCHAR(100),
-							venue VARCHAR(100) NOT NULL,
-							address VARCHAR(100),
-							city VARCHAR(50) NOT NULL,
-							state CHAR(2) NOT NULL,
-							zip MEDIUMINT(5) UNSIGNED NOT NULL,
-							contact VARCHAR(50) NOT NULL,
-							contact_info VARCHAR(50) NOT NULL,
-							access TINYINT(1) UNSIGNED DEFAULT 0,
-							rsvp TINYINT(1) UNSIGNED DEFAULT 0
-						);';
+						id BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+						user_id INT(10) UNSIGNED NOT NULL,
+						title VARCHAR(100) NOT NULL,
+						start DATETIME NOT NULL,
+						end DATETIME NOT NULL,
+						allDay TINYINT(1) UNSIGNED DEFAULT 0,
+						category_id TINYINT(4) UNSIGNED NOT NULL,
+						description VARCHAR(1000),
+						link VARCHAR(100),
+						venue VARCHAR(100) NOT NULL,
+						address VARCHAR(100),
+						city VARCHAR(50) NOT NULL,
+						state CHAR(2) NOT NULL,
+						zip MEDIUMINT(5) UNSIGNED NOT NULL,
+						contact VARCHAR(50) NOT NULL,
+						contact_info VARCHAR(50) NOT NULL,
+						access TINYINT(1) UNSIGNED DEFAULT 0,
+						rsvp TINYINT(1) UNSIGNED DEFAULT 0);';
 				dbDelta($sql);
 			}
 			// Sample Event
-			$sql = 'INSERT INTO ' . $wpdb->prefix . AEC_EVENT_TABLE . ' (id, user_id, title, start, end, allDay, category_id, description, link, venue, address, city, state, zip, contact, contact_info, access, rsvp)
-			VALUES (NULL, 0, "Ajax Event Calendar [v' . AEC_PLUGIN_VERSION . '] Installed!", "' . date('Y-m-d') . '", "' . date('Y-m-d') . '", 1, 1, "This is a sample event with all the fields populated.  <ul><li>Modify field options in the settings menu</li><li>Manage event categories in the calendar menu</li><li>Add user authorization in the user menu</li></ul>.", "' . AEC_PLUGIN_HOMEPAGE . '", "Plugins", "WordPress", "Chicago", "IL", 60605, "Eran Miller", "plugins@eranmiller.com", 0, 0);';
-			dbDelta($sql);
-			
+				$sql = 'INSERT INTO ' . $wpdb->prefix . AEC_EVENT_TABLE . ' (id, user_id, title, start, end, allDay, category_id, description, link, venue, address, city, state, zip, contact, contact_info, access, rsvp)
+				VALUES (NULL, 0, "Ajax Event Calendar [v' . AEC_PLUGIN_VERSION . '] Installed!", "' . date('Y-m-d') . '", "' . date('Y-m-d') . '", 1, 1, "This is a sample event with all the fields populated.  <ul><li>Modify field options in the settings menu</li><li>Manage event categories in the calendar menu</li><li>Add user authorization in the user menu</li></ul>", "' . AEC_PLUGIN_HOMEPAGE . '", "Plugins", "WordPress", "Chicago", "IL", 60605, "Eran Miller", "plugins@eranmiller.com", 0, 0);';			
+				dbDelta($sql);
+				
 			if ($wpdb->get_var('SHOW TABLES LIKE "' . $wpdb->prefix . AEC_CATEGORY_TABLE . '"') != $wpdb->prefix . AEC_CATEGORY_TABLE){
 				$sql = 'CREATE TABLE ' . $wpdb->prefix . AEC_CATEGORY_TABLE . ' (
 							id TINYINT(4) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -126,10 +125,11 @@ if (!class_exists('ajax_event_calendar')){
 			$role->add_cap(AEC_DOMAIN . 'add_events');
 			$role->add_cap(AEC_DOMAIN . 'run_reports');
 			
-			$form_defaults = array(	// 0: hide | 1:show | 2:require
-				'menu' => '1',		// Display administrative menu on front-end calendar.
-				'limit' => '1', 	// Enforce event creation range to fit between: 30 minutes and one year from the current time.
-				'sidebar' => '0',	// Display the sidebar next to the front-end calendar.
+			// 0: hide | 1:show | 2:require
+			$plugin_default_options = array(
+				'menu' => '1',
+				'limit' => '1',
+				'sidebar' => '0',
 				'title' => '2',
 				'venue' => '1',
 				'address' => '2',
@@ -141,30 +141,31 @@ if (!class_exists('ajax_event_calendar')){
 				'contact' => '2',
 				'contact_info' => '2',
 				'accessible' => '1',
-				'rsvp' => '1'
+				'rsvp' => '1',
+				'reset' => '0'
 			);
 			
 			$options = get_option(AEC_DOMAIN . 'options');
-			if (($options['reset']=='1') || (!is_array($options)))
-				update_option('aec_options', $form_defaults);
+			if ( !is_array($options) || !isset($options['reset']) || $options['reset']=='1')
+				update_option(AEC_DOMAIN . 'options', $plugin_default_options);
 		}
 
 		function set_admin_menu(){
 			if (function_exists('add_options_page'))
-				$page = add_menu_page('Ajax Event Calendar', 'Calendar', AEC_DOMAIN . 'add_events', AEC_PLUGIN_FILE, array($this, 'admin_page'), AEC_PLUGIN_URL . 'css/images/calendar.png', 30);
+				$page = add_menu_page('Ajax Event Calendar',  __('Calendar', AEC_PLUGIN_NAME), AEC_DOMAIN . 'add_events', AEC_PLUGIN_FILE, array($this, 'admin_page'), AEC_PLUGIN_URL . 'css/images/calendar.png', 30);
 
 				// only load scripts and styles on plugin page
 				add_action("admin_print_scripts-$page", array($this, 'load_calendar_js'));
 				add_action("admin_print_styles-$page", array($this, 'load_calendar_css'));
 
 				// contextual help override
-				$help = '<h3>Ajax Event Calendar <small>[v' . AEC_PLUGIN_VERSION . ']</small></h3>';
-				$help .= 'Plugin help available <a href="' . AEC_PLUGIN_HOMEPAGE . '" target="_blank">here</a>';
-				$help .= '<br>Created by <a href="http://eranmiller.com" target="_blank">Eran Miller</a>';
+				$help = '<h3>' . __('Ajax Event Calendar', AEC_PLUGIN_NAME) . ' <small>[v' . AEC_PLUGIN_VERSION . ']</small></h3>';
+				$help .= __('Plugin help available', AEC_PLUGIN_NAME) . ' <a href="' . AEC_PLUGIN_HOMEPAGE . '" target="_blank">' . __('here', AEC_PLUGIN_NAME) . '</a>';
+				$help .= '<br>' . __('Created by', AEC_PLUGIN_NAME) . ' <a href="http://eranmiller.com" target="_blank">Eran Miller</a>';
 				add_contextual_help($page, $help);
 
 				// sub menu page: categories
-				$sub_category = add_submenu_page(AEC_PLUGIN_FILE, 'Categories', 'Categories', AEC_DOMAIN . 'run_reports', 'event_categories', array($this, 'category_page'));
+				$sub_category = add_submenu_page(AEC_PLUGIN_FILE, 'Categories', __('Categories', AEC_PLUGIN_NAME), AEC_DOMAIN . 'run_reports', 'event_categories', array($this, 'category_page'));
 				add_contextual_help($sub_category, $help);
 
 				// only load scripts and styles on sub page
@@ -172,16 +173,16 @@ if (!class_exists('ajax_event_calendar')){
 				add_action("admin_print_styles-$sub_category", array($this, 'load_category_css'));
 
 				// sub menu page: categories
-				$sub_report = add_submenu_page(AEC_PLUGIN_FILE, 'Activity Report', 'Activity Report', AEC_DOMAIN . 'run_reports', 'activity_report', array($this, 'run_reports'));
+				$sub_report = add_submenu_page(AEC_PLUGIN_FILE, 'Activity Report', __('Activity Report', AEC_PLUGIN_NAME), AEC_DOMAIN . 'run_reports', 'activity_report', array($this, 'run_reports'));
 				add_contextual_help($sub_report, $help);
 				
 				// settings menu
-				$sub_options = add_options_page('Calendar Options', 'Calendar Options', 'manage_options', __FILE__, array($this, 'aec_options_page'));
+				$sub_options = add_options_page('Calendar Options', __('Calendar Options', AEC_PLUGIN_NAME), 'manage_options', __FILE__, array($this, 'aec_options_page'));
 				add_contextual_help($sub_options, $help);
 		}
 
 	    function localize_plugin() {
-			load_plugin_textdomain( AEC_PLUGIN_NAME, '', AEC_PLUGIN_PATH . 'locale/' );
+			load_plugin_textdomain( AEC_PLUGIN_NAME, false, AEC_PLUGIN_NAME . '/locale/' );
 		}
 
 		function admin_page(){
@@ -511,7 +512,7 @@ if (!class_exists('ajax_event_calendar')){
 		}
 
 		function add_events_column($columns){
-				$columns['calendar_events'] = 'Events';
+				$columns['calendar_events'] = __('Events', AEC_PLUGIN_NAME);
 			return $columns;
 		}
 
@@ -521,7 +522,7 @@ if (!class_exists('ajax_event_calendar')){
 				return $event_count;
 			}
 		}
-		
+
 		// Display settings link on the plugins page
 		function settings_link($links, $file){
 			if ($file == plugin_basename(__FILE__)){
@@ -721,28 +722,27 @@ if (!class_exists('ajax_event_calendar')){
 			}
 			return;
 		}
-		
+
 		function add_required_field($field){
 			array_push($this->required_fields, $field);
 		}
-		
+
 		function get_required_fields(){
 			if (count($this->required_fields))
 				return "'" . join("','", $this->required_fields) . "'";
 			return;
 		}
-		
+
 		function aec_options_validate($input){
-			//$options = get_option('aec_options');
-			//$input = array_merge($options, $input);
+			// validation placeholder
 			return $input;
 		}
-		
+
 		function aec_options_init(){
 			$options = $options = get_option(AEC_DOMAIN . 'options');
 			register_setting(AEC_DOMAIN . 'plugin_options', AEC_DOMAIN . 'options', array($this, 'aec_options_validate'));
 		}
-	
+
 		function aec_options_page(){ 
 			if (!current_user_can(AEC_DOMAIN . 'run_reports'))
 				wp_die(__('You do not have sufficient permissions to access this page.', AEC_PLUGIN_NAME));
@@ -757,7 +757,6 @@ if (!class_exists('ajax_event_calendar')){
 				'sidebar' => __('Show sidebar beside the front-end calendar.', AEC_PLUGIN_NAME)
 			);
 			$form = array(
-				'title' => __('Title', AEC_PLUGIN_NAME),
 				'venue' => __('Venue', AEC_PLUGIN_NAME),
 				'address' => __('Neighborhood or Street Address', AEC_PLUGIN_NAME),
 				'city' => __('City', AEC_PLUGIN_NAME),
@@ -819,13 +818,36 @@ if (!class_exists('ajax_event_calendar')){
 							?>
 						</td>
 					</tr>
+					<tr><td colspan="2"><hr></td></tr>
+					<tr valign="top">
+						<th scope="row"><?php _e('Restore Original Settings', AEC_PLUGIN_NAME); ?></th>
+						<td>
+							<label>
+							<input type="hidden" name="aec_options[reset]" value="0" />
+							<input name="aec_options[reset]" type="checkbox" value="1" <?php if (isset($options['reset'])) { checked('1', $options['reset']); } ?> /> <?php _e('Resets plugin settings on reactivation', AEC_PLUGIN_NAME); ?></label>
+						</td>
+					</tr>
 				</table>
 				<p class="submit">
-					<input name="Submit" type="submit" class="button-primary" value="<?php _e('Save Changes'); ?>" />
+					<input name="Submit" type="submit" class="button-primary" value="<?php _e('Save Changes', AEC_PLUGIN_NAME); ?>" />
 				</p>
 			</form>
 		</div>
 <?php	}
+		
+		function calcDuration($from, $end, $allday){
+			$timestamp = strtotime($end) - strtotime($from);
+			$days = floor($timestamp/(60*60*24)); $timestamp%=60*60*24;
+			$hrs = floor($timestamp/(60*60)); $timestamp%=60*60;
+			$mins = floor($timestamp/60); $secs=$timestamp%60;
+			
+			$out = array();
+			if ($allday) $days += 1;
+			if ($days >= 1) { array_push($out, $days . ' ' . _n( 'day', 'days', $days, AEC_PLUGIN_NAME)); }
+			if ($hrs >= 1) { array_push($out, $hrs . ' ' . _n( 'hour', 'hours', $hrs, AEC_PLUGIN_NAME)); }
+			if ($mins >= 1) { array_push($out, $mins . ' ' . _n( 'minute', 'minutes', $mins, AEC_PLUGIN_NAME)); }
+			return implode(', ', $out);
+		}
 		
 		function plural($value){
 			return ($value == 1) ? '' : 's';
