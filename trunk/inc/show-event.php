@@ -11,7 +11,6 @@
 			// Split date/time fields
 			list($start_date, $start_time) = str_split($event->start, 10);
 			list($end_date, $end_time) = str_split($event->end, 10);
-			
 			$start_time = trim($start_time);
 			$end_time = trim($end_time);
 			$duration = $aec->calcDuration($event->start,$event->end,$event->allDay);

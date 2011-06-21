@@ -24,7 +24,7 @@ jQuery().ready( function() {
 		limit = <?php echo $options['limit']; ?>;
 
 	var calendar = jQuery( '#aec-calendar' ).fullCalendar( {
-		theme: true,
+		
 		monthNames: ['<?php _e('January', AEC_PLUGIN_NAME); ?>',
 					 '<?php _e('February', AEC_PLUGIN_NAME); ?>',
 					 '<?php _e('March', AEC_PLUGIN_NAME); ?>',
@@ -49,20 +49,20 @@ jQuery().ready( function() {
 						  '<?php _e('Oct', AEC_PLUGIN_NAME); ?>',
 						  '<?php _e('Nov', AEC_PLUGIN_NAME); ?>',
 						  '<?php _e('Dec', AEC_PLUGIN_NAME); ?>'],
-		dayNames: ['<?php _e('Monday', AEC_PLUGIN_NAME); ?>',
+		dayNames: ['<?php _e('Sunday', AEC_PLUGIN_NAME); ?>',
+				   '<?php _e('Monday', AEC_PLUGIN_NAME); ?>',
 				   '<?php _e('Tuesday', AEC_PLUGIN_NAME); ?>',
 				   '<?php _e('Wednesday', AEC_PLUGIN_NAME); ?>',
 				   '<?php _e('Thursday', AEC_PLUGIN_NAME); ?>',
 				   '<?php _e('Friday', AEC_PLUGIN_NAME); ?>',
-				   '<?php _e('Saturday', AEC_PLUGIN_NAME); ?>',
-				   '<?php _e('Sunday', AEC_PLUGIN_NAME); ?>'],
-		dayNamesShort: ['<?php _e('Mon', AEC_PLUGIN_NAME); ?>',
+				   '<?php _e('Saturday', AEC_PLUGIN_NAME); ?>'],
+		dayNamesShort: ['<?php _e('Sun', AEC_PLUGIN_NAME); ?>',
+						'<?php _e('Mon', AEC_PLUGIN_NAME); ?>',
 						'<?php _e('Tue', AEC_PLUGIN_NAME); ?>',
 						'<?php _e('Wed', AEC_PLUGIN_NAME); ?>',
 						'<?php _e('Thu', AEC_PLUGIN_NAME); ?>',
 						'<?php _e('Fri', AEC_PLUGIN_NAME); ?>',
-						'<?php _e('Sat', AEC_PLUGIN_NAME); ?>',
-						'<?php _e('Sun', AEC_PLUGIN_NAME); ?>'],
+						'<?php _e('Sat', AEC_PLUGIN_NAME); ?>'],
 		buttonText: {
 			today: '<?php _e('Today', AEC_PLUGIN_NAME); ?>',
 			month: '<?php _e('Month', AEC_PLUGIN_NAME); ?>',
@@ -87,6 +87,7 @@ jQuery().ready( function() {
 			agenda: 'h:mmt{ - h:mmt}',
 			'': 'h(:mm)t'
 		},
+		
 		firstHour: 8,
 		weekMode: 'liquid',
 		editable: true,
