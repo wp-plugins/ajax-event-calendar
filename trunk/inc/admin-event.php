@@ -103,8 +103,8 @@
 					<input class="auto" type="text" name="state" id="state" size="3" maxlength="2" value="<?php echo $event->state; ?>" />
 				</li>
 				<li>
-					<label for="zip"><?php _e('Zip Code', AEC_PLUGIN_NAME); ?></label>
-					<input class="auto" type="text" name="zip" id="zip" size="5" maxlength="5" value="<?php echo $event->zip; ?>" />
+					<label for="zip"><?php _e('Postal Code', AEC_PLUGIN_NAME); ?></label>
+					<input class="auto" type="text" name="zip" id="zip" size="10" maxlength="10" value="<?php echo $event->zip; ?>" />
 				</li>
 			</ul>
         </li>

@@ -41,7 +41,6 @@
 			if (!empty($event->venue) || !empty($event->address) ||
 				!empty($event->city) || !empty($event->state) || 
 				!empty($event->zip) ) {
-				$out .= '<li><h3>' . __('Location', AEC_PLUGIN_NAME) . '</h3>';
 				$v = array();
 				$csz = array();
 				if (!empty($event->venue)) $v[] = $event->venue;
@@ -49,11 +48,17 @@
 				if (!empty($event->city)) $csz[] = $event->city;
 				if (!empty($event->state)) $csz[] = strtoupper($event->state);
 				if (!empty($event->zip)) $csz[] = $event->zip;
+				$out .= '<li><h3>' . __('Location', AEC_PLUGIN_NAME) . '</h3>';
 				$v[] = implode($csz, ', ');
 				$out .= implode($v, '<br>');
 				$out .= '</li>';
 			}
-
+			
+			// Google Map Link
+			$out .= '<li>';
+			$out .= '<a href="http://maps.google.com/?q=' . urlencode(implode($v, ' ') . ' '. implode($csz, ' ')) . '" class="map cat' . $event->category_id . '" target="_blank">View Map</a>';
+			$out .= '</li>';
+			
 			if (!empty($event->contact) || !empty($event->contact_info)) {
 				$out .= '<li><h3>' . __('Contact Information', AEC_PLUGIN_NAME) . '</h3>';
 				if (!empty($event->contact)) $c[] = $event->contact;
