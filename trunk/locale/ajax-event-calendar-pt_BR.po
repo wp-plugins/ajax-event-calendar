@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ajax Event Calendar v0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-21 05:29-0600\n"
-"PO-Revision-Date: 2011-06-21 05:29-0600\n"
+"POT-Creation-Date: 2011-06-21 11:04-0600\n"
+"PO-Revision-Date: 2011-06-21 11:04-0600\n"
 "Last-Translator: Eran Miller <plugins@eranmiller.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -13,148 +13,148 @@ msgstr ""
 "X-Poedit-Basepath: C:\\wamp\\www\\wordpress\\wp-content\\plugins\\ajax-event-calendar\\locale\n"
 "X-Poedit-SearchPath-0: C:\\wamp\\www\\wordpress\\wp-content\\plugins\\ajax-event-calendar\n"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:172
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:197
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:174
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:199
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-calendar.php:6
 msgid "Calendar"
 msgstr "Calendário"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:179
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:181
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:168
 msgid "Ajax Event Calendar"
 msgstr "Opções do Calendário de Eventos em Ajax"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:180
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:182
 msgid "Plugin help available"
 msgstr ""
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:180
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:182
 msgid "here"
 msgstr ""
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:181
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:183
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:167
 msgid "Created by"
 msgstr "Apresentado por"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:185
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:187
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-category.php:19
 msgid "Categories"
 msgstr "Categorias"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:193
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:195
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-reports.php:2
 msgid "Activity Report"
 msgstr "Relatório de Atividade"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:207
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:213
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:219
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:764
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:209
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:215
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:221
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:766
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Você não possui permissões suficientes para acessar esta página."
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:531
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:533
 msgid "Events"
 msgstr "Link do Evento"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:545
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:547
 msgid "Settings"
 msgstr "Configurações"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:768
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:770
 msgid "Ajax Event Calendar Options"
 msgstr "Opções do Calendário de Eventos em Ajax"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:771
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:773
 msgid "Show administrative menu above the front-end calendar."
 msgstr "Mostrar o menu administrativo acima do calendário que aparece no site."
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:772
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:774
 msgid "Enforce event creation between 30 minutes and one year from the current time."
 msgstr "Limitar criação de eventos de 30 minutos a 1 ano no futuro."
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:775
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:777
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:87
 msgid "Venue"
 msgstr "Evento"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:776
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:778
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:94
 msgid "Neighborhood or Street Address"
 msgstr "Bairro ou Endereço"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:777
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:779
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:98
 msgid "City"
 msgstr "Cidade"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:778
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:780
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:102
 msgid "State"
 msgstr "Estado"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:779
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:781
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:106
-msgid "Zip Code"
-msgstr "CEP"
+msgid "Postal Code"
+msgstr ""
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:780
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:82
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:782
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:87
 msgid "Event Link"
 msgstr "Link do Evento"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:781
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:783
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:116
 msgid "Description"
 msgstr "Descrição"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:782
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:784
 msgid "Contact Name"
 msgstr "Nome do Contato"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:783
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:58
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:785
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:63
 msgid "Contact Information"
 msgstr "Informações de contato"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:786
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:788
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:137
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:67
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:72
 msgid "This event is accessible to people with disabilities."
 msgstr "Este evento é acessível a pessoas com deficiência."
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:787
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:789
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:147
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:68
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:73
 msgid "Please register with the contact person for this event."
 msgstr "Favor registre-se para este evento através do Contato."
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:795
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:797
 msgid "General Options"
 msgstr "Opções Gerais"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:809
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:811
 msgid "Check Required Form Fields"
 msgstr "Verificar Campos do Formulário"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:823
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:825
 msgid "Optional Checkboxes"
 msgstr "Caixas de escolha opcionais"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:838
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:840
 msgid "Restore Original Settings"
 msgstr "Restaurar Configurações Padrão"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:842
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:844
 msgid "Resets plugin settings on Save"
 msgstr "Restaurar configurações do plugin ao reativar"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:847
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:849
 msgid "Save Changes"
 msgstr "Salvar Mudanças"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:877
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:879
 msgid "Sorry, "
 msgstr "Perdoe-nos, "
 
@@ -601,11 +601,11 @@ msgstr "Fechar Detalhes do Evento"
 msgid "Loading Event Details..."
 msgstr "Carregar Detalhes do Evento..."
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:44
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:51
 msgid "Location"
 msgstr "Localidade"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:73
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:78
 msgid "Presented by"
 msgstr "Apresentado por"
 
@@ -624,6 +624,9 @@ msgstr ""
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/upcoming-widget.php:118
 msgid "Number of Weeks from Today"
 msgstr ""
+
+#~ msgid "Zip Code"
+#~ msgstr "CEP"
 
 #~ msgid "created by"
 #~ msgstr "Apresentado por"
