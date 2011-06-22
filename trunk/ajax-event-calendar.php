@@ -76,6 +76,8 @@ if (!class_exists('ajax_event_calendar')){
 			add_filter('manage_users_columns', array($this, 'add_events_column'));
 			add_filter('manage_users_custom_column', array($this, 'manage_events_column'), 10, 3);
 			add_filter('plugin_action_links', array($this, 'settings_link'), 10, 2);
+			//placeholder for database update code
+			//add_action('plugins_loaded', array($this, 'update_database');
 			add_shortcode('calendar', array($this, 'show_calendar'));
      		update_option(AEC_DOMAIN . 'version', AEC_PLUGIN_VERSION);
 			
@@ -126,7 +128,7 @@ if (!class_exists('ajax_event_calendar')){
 						address VARCHAR(100),
 						city VARCHAR(50) NOT NULL,
 						state CHAR(2) NOT NULL,
-						zip MEDIUMINT(5) UNSIGNED NOT NULL,
+						zip MEDIUMINT(10) UNSIGNED NOT NULL,
 						contact VARCHAR(50) NOT NULL,
 						contact_info VARCHAR(50) NOT NULL,
 						access TINYINT(1) UNSIGNED DEFAULT 0,
@@ -776,7 +778,7 @@ if (!class_exists('ajax_event_calendar')){
 				'address' => __('Neighborhood or Street Address', AEC_PLUGIN_NAME),
 				'city' => __('City', AEC_PLUGIN_NAME),
 				'state' => __('State', AEC_PLUGIN_NAME),
-				'zip' => __('Zip Code', AEC_PLUGIN_NAME),
+				'zip' => __('Postal Code', AEC_PLUGIN_NAME),
 				'link' => __('Event Link', AEC_PLUGIN_NAME),
 				'description' => __('Description', AEC_PLUGIN_NAME),
 				'contact' => __('Contact Name', AEC_PLUGIN_NAME),
