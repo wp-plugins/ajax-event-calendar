@@ -3,7 +3,7 @@ Contributors: eranmiller
 Tags: multi-user, calendar, event, ajax, filter
 Requires at least: 3.1
 Tested up to: 3.1.3
-Stable tag: 0.9.1
+Stable tag: 0.9.5
 
 Provides a hybrid Google/OSX interface for multiple users to manage events in a community calendar.
 
@@ -16,6 +16,7 @@ Provides a hybrid Google/OSX interface which enables registered users (with requ
 * Dynamic category-based near-instant event filtering
 * Dynamically generated calendar contributor list (sidebar widget)
 * Display upcoming events in a list (sidebar widget)
+* Auto-generated Google Maps link, based on event address fields
 * Multi-language support **The POT file is available in the /locales folder** - please email your translations so I can package them with the plugin
 
 * **TO DO**
@@ -85,6 +86,7 @@ Hat Tip to the authors of these fine jQuery plugins (used in the creation of thi
 * Added upcoming events widget
 * Added redirect to event administration page from front-end calendar page login link
 * Changed front-end calendar implementation from custom template to shortcode, to accomodate wider range of themes
+* Auto-generated Google Maps link, based on event address fields
 * A giant **Merci** to doc75word for submitting the French localization!
 
 = 0.9.1 =
