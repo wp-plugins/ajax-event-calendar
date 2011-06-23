@@ -14,7 +14,8 @@ class aec_contributor_list extends WP_Widget{
 		extract($args);
 		$contributors = $this->get_users_by_role('calendar_contributor');
 		echo $before_widget;
-		echo $before_title . sprintf(_n('(%d) Contributor', '(%d) Contributors', AEC_PLUGIN_NAME), sizeof($contributors)) . $after_title;
+		$conts = sizeof($contributors);
+		echo $before_title . sprintf(_n('(%d) Contributor','(%d) Contributors', $conts, AEC_PLUGIN_NAME), $conts) . $after_title;
 		if ($contributors){
 			echo '<ul>';
 			foreach ($contributors as $contributor){
