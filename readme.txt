@@ -43,8 +43,11 @@ Provides a hybrid Google/OSX interface which enables registered users (with requ
 
 == Frequently Asked Questions ==
 
-= I upgraded the plugin and the calendar no longer appears =
-Go to the Calendar Options page in the Settings menu and if none of the checkboxes are selected, select **Reset Settings** and click **Save Settings**.  If the calendar still does not appear, please post the issue in the [Support Forum](http://wordpress.org/tags/ajax-event-calendar?forum_id=10 "forum") and include your URL for troubleshooting purposes.
+= I upgraded the plugin and neither the admin nor the front-end calendar appear =
+Go to the Calendar Options page in the Settings menu and if none of the checkboxes are selected, select **Reset Settings** and click **Save Settings**. If the calendar still does not appear, please post the issue in the [Support Forum](http://wordpress.org/tags/ajax-event-calendar?forum_id=10 "forum") and include your URL for troubleshooting purposes.
+
+= I upgraded the plugin to 0.9.6 and the front-end calendar no longer appears =
+To accommodate a wider range of themes, the front-end calendar installation, as of this version, depends on a shortcode - see Installation tab for details.
 
 = What does this plugin remove when deleted? =
 The event and category databases, custom calendar roles and capabilities, plugin options and widget settings are permanently removed.
@@ -86,7 +89,7 @@ Hat Tip to the authors of these fine jQuery plugins (used in the creation of thi
 = 0.9.5 =
 * Added upcoming events widget
 * Added redirect to event administration page from front-end calendar page login link
-* Changed front-end calendar implementation from custom template to shortcode, to accomodate wider range of themes
+* Changed front-end calendar implementation from custom template to shortcode, to accommodate wider range of themes
 * Auto-generated Google Maps link, based on event address fields
 * A giant **Merci** to doc75word for submitting the French localization!
 
