@@ -25,8 +25,8 @@ $options = get_option('aec_options');
 			<?php
 				$categories = $this->get_categories();
 				if (sizeof($categories) > 1) {
-					$out = '<li>' . __('Show Types', AEC_PLUGIN_NAME) . '</li>' . "\n";
-					$out .= '<li class="active"><a class="all">' . __('All', AEC_PLUGIN_NAME) . '</a></li>' . "\n";
+					$out = '<li>' . htmlentities(__('Show Types', AEC_PLUGIN_NAME)) . '</li>' . "\n";
+					$out .= '<li class="active"><a class="all">' . htmlentities(__('All', AEC_PLUGIN_NAME)) . '</a></li>' . "\n";
 					foreach ($categories as $category) {
 						 $out .= '<li><a class="cat' . $category->id . '">' . $category->category . '</a></li>' . "\n";
 					}
@@ -37,62 +37,61 @@ $options = get_option('aec_options');
 		</div>
 		<div id="datepicker"></div>
 		<div id="aec-calendar"></div>
-		<?php echo '<a href="http://eranmiller.com/" id="aec-credit">' . AEC_PLUGIN_NAME . ' v' . AEC_PLUGIN_VERSION . ' ' . __('Created By', AEC_PLUGIN_NAME) . ' Eran Miller</a>'; ?>
+		<?php echo '<a href="http://eranmiller.com/" id="aec-credit">' . AEC_PLUGIN_NAME . ' v' . AEC_PLUGIN_VERSION . ' ' . htmlentities(__('Created By', AEC_PLUGIN_NAME)) . ' Eran Miller</a>'; ?>
 	</div>
 
 <script type="text/javascript" src="<?php echo AEC_PLUGIN_URL; ?>js/jquery-1.5.1.min.js"></script>
-<script type="text/javascript" src="<?php echo AEC_PLUGIN_URL; ?>js/jquery-ui-1.8.11.custom.min.js"></script>
 <script type="text/javascript" src="<?php echo AEC_PLUGIN_URL; ?>js/jquery.fullcalendar.min.js"></script>
 <script type="text/javascript" src="<?php echo AEC_PLUGIN_URL; ?>js/jquery.simplemodal.1.4.1.min.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function() {	
 		var isFilter = (jQuery('#aec-filter li a').length > 0);
 		var calendar = jQuery('#aec-calendar').fullCalendar({
-			monthNames: ['<?php _e('January', AEC_PLUGIN_NAME); ?>',
-						 '<?php _e('February', AEC_PLUGIN_NAME); ?>',
-						 '<?php _e('March', AEC_PLUGIN_NAME); ?>',
-						 '<?php _e('April', AEC_PLUGIN_NAME); ?>',
-						 '<?php _e('May', AEC_PLUGIN_NAME); ?>',
-						 '<?php _e('June', AEC_PLUGIN_NAME); ?>',
-						 '<?php _e('July', AEC_PLUGIN_NAME); ?>',
-						 '<?php _e('August', AEC_PLUGIN_NAME); ?>',
-						 '<?php _e('September', AEC_PLUGIN_NAME); ?>',
-						 '<?php _e('October', AEC_PLUGIN_NAME); ?>',
-						 '<?php _e('November', AEC_PLUGIN_NAME); ?>',
-						 '<?php _e('December', AEC_PLUGIN_NAME); ?>'],
-			monthNamesShort: ['<?php _e('Jan', AEC_PLUGIN_NAME); ?>',
-							  '<?php _e('Feb', AEC_PLUGIN_NAME); ?>',
-							  '<?php _e('Mar', AEC_PLUGIN_NAME); ?>',
-							  '<?php _e('Apr', AEC_PLUGIN_NAME); ?>',
-							  '<?php _e('May', AEC_PLUGIN_NAME); ?>',
-							  '<?php _e('Jun', AEC_PLUGIN_NAME); ?>',
-							  '<?php _e('Jul', AEC_PLUGIN_NAME); ?>',
-							  '<?php _e('Aug', AEC_PLUGIN_NAME); ?>',
-							  '<?php _e('Sep', AEC_PLUGIN_NAME); ?>',
-							  '<?php _e('Oct', AEC_PLUGIN_NAME); ?>',
-							  '<?php _e('Nov', AEC_PLUGIN_NAME); ?>',
-							  '<?php _e('Dec', AEC_PLUGIN_NAME); ?>'],
-			dayNames: ['<?php _e('Sunday', AEC_PLUGIN_NAME); ?>',
-					   '<?php _e('Monday', AEC_PLUGIN_NAME); ?>',
-					   '<?php _e('Tuesday', AEC_PLUGIN_NAME); ?>',
-					   '<?php _e('Wednesday', AEC_PLUGIN_NAME); ?>',
-					   '<?php _e('Thursday', AEC_PLUGIN_NAME); ?>',
-					   '<?php _e('Friday', AEC_PLUGIN_NAME); ?>',
-					   '<?php _e('Saturday', AEC_PLUGIN_NAME); ?>'],
-			dayNamesShort: ['<?php _e('Sun', AEC_PLUGIN_NAME); ?>',
-							'<?php _e('Mon', AEC_PLUGIN_NAME); ?>',
-						    '<?php _e('Tue', AEC_PLUGIN_NAME); ?>',
-						    '<?php _e('Wed', AEC_PLUGIN_NAME); ?>',
-						    '<?php _e('Thu', AEC_PLUGIN_NAME); ?>',
-						    '<?php _e('Fri', AEC_PLUGIN_NAME); ?>',
-						    '<?php _e('Sat', AEC_PLUGIN_NAME); ?>'],
+			monthNames: ['<?php htmlentities(_e('January', AEC_PLUGIN_NAME)); ?>',
+						 '<?php htmlentities(_e('February', AEC_PLUGIN_NAME)); ?>',
+						 '<?php htmlentities(_e('March', AEC_PLUGIN_NAME)); ?>',
+						 '<?php htmlentities(_e('April', AEC_PLUGIN_NAME)); ?>',
+						 '<?php htmlentities(_e('May', AEC_PLUGIN_NAME)); ?>',
+						 '<?php htmlentities(_e('June', AEC_PLUGIN_NAME)); ?>',
+						 '<?php htmlentities(_e('July', AEC_PLUGIN_NAME)); ?>',
+						 '<?php htmlentities(_e('August', AEC_PLUGIN_NAME)); ?>',
+						 '<?php htmlentities(_e('September', AEC_PLUGIN_NAME)); ?>',
+						 '<?php htmlentities(_e('October', AEC_PLUGIN_NAME)); ?>',
+						 '<?php htmlentities(_e('November', AEC_PLUGIN_NAME)); ?>',
+						 '<?php htmlentities(_e('December', AEC_PLUGIN_NAME)); ?>'],
+			monthNamesShort: ['<?php htmlentities(_e('Jan', AEC_PLUGIN_NAME)); ?>',
+							  '<?php htmlentities(_e('Feb', AEC_PLUGIN_NAME)); ?>',
+							  '<?php htmlentities(_e('Mar', AEC_PLUGIN_NAME)); ?>',
+							  '<?php htmlentities(_e('Apr', AEC_PLUGIN_NAME)); ?>',
+							  '<?php htmlentities(_e('May', AEC_PLUGIN_NAME)); ?>',
+							  '<?php htmlentities(_e('Jun', AEC_PLUGIN_NAME)); ?>',
+							  '<?php htmlentities(_e('Jul', AEC_PLUGIN_NAME)); ?>',
+							  '<?php htmlentities(_e('Aug', AEC_PLUGIN_NAME)); ?>',
+							  '<?php htmlentities(_e('Sep', AEC_PLUGIN_NAME)); ?>',
+							  '<?php htmlentities(_e('Oct', AEC_PLUGIN_NAME)); ?>',
+							  '<?php htmlentities(_e('Nov', AEC_PLUGIN_NAME)); ?>',
+							  '<?php htmlentities(_e('Dec', AEC_PLUGIN_NAME)); ?>'],
+			dayNames: ['<?php htmlentities(_e('Sunday', AEC_PLUGIN_NAME)); ?>',
+					   '<?php htmlentities(_e('Monday', AEC_PLUGIN_NAME)); ?>',
+					   '<?php htmlentities(_e('Tuesday', AEC_PLUGIN_NAME)); ?>',
+					   '<?php htmlentities(_e('Wednesday', AEC_PLUGIN_NAME)); ?>',
+					   '<?php htmlentities(_e('Thursday', AEC_PLUGIN_NAME)); ?>',
+					   '<?php htmlentities(_e('Friday', AEC_PLUGIN_NAME)); ?>',
+					   '<?php htmlentities(_e('Saturday', AEC_PLUGIN_NAME)); ?>'],
+			dayNamesShort: ['<?php htmlentities(_e('Sun', AEC_PLUGIN_NAME)); ?>',
+							'<?php htmlentities(_e('Mon', AEC_PLUGIN_NAME)); ?>',
+						    '<?php htmlentities(_e('Tue', AEC_PLUGIN_NAME)); ?>',
+						    '<?php htmlentities(_e('Wed', AEC_PLUGIN_NAME)); ?>',
+						    '<?php htmlentities(_e('Thu', AEC_PLUGIN_NAME)); ?>',
+						    '<?php htmlentities(_e('Fri', AEC_PLUGIN_NAME)); ?>',
+						    '<?php htmlentities(_e('Sat', AEC_PLUGIN_NAME)); ?>'],
 			buttonText: {
-				today: '<?php _e('Today', AEC_PLUGIN_NAME); ?>',
-				month: '<?php _e('Month', AEC_PLUGIN_NAME); ?>',
-				week: '<?php _e('Week', AEC_PLUGIN_NAME); ?>',
-				day: '<?php _e('Day', AEC_PLUGIN_NAME); ?>'
+				today: '<?php htmlentities(_e('Today', AEC_PLUGIN_NAME)); ?>',
+				month: '<?php htmlentities(_e('Month', AEC_PLUGIN_NAME)); ?>',
+				week: '<?php htmlentities(_e('Week', AEC_PLUGIN_NAME)); ?>',
+				day: '<?php htmlentities(_e('Day', AEC_PLUGIN_NAME)); ?>'
 			},
-			allDayText: '<?php _e('All Day', AEC_PLUGIN_NAME); ?>',
+			allDayText: '<?php htmlentities(_e('All Day', AEC_PLUGIN_NAME)); ?>',
 			/*
 			titleFormat: {
 				month: 'MMMM yyyy',
@@ -165,7 +164,7 @@ $options = get_option('aec_options');
 			jQuery('#aec-modal').modal({
 				overlayId: 'aec-modal-overlay',
 				containerId: 'aec-modal-container',
-				closeHTML: '<div class="close"><a href="#" class="simplemodal-close" title="<?php _e('Close Event Details', AEC_PLUGIN_NAME); ?>">x</a></div>',
+				closeHTML: '<div class="close"><a href="#" class="simplemodal-close" title="<?php htmlentities(_e('Close Event Details', AEC_PLUGIN_NAME)); ?>">x</a></div>',
 				minHeight: 35,
 				opacity: 65,
 				position: ['0',],
@@ -178,7 +177,7 @@ $options = get_option('aec_options');
 						var title = jQuery('div.aec-title', modal.container),
 							content = jQuery('div.aec-content', modal.container),
 							closebtn = jQuery('div.close', modal.container);
-						title.html('<?php _e('Loading Event Details...', AEC_PLUGIN_NAME); ?>').show();
+						title.html('<?php htmlentities(_e('Loading Event Details...', AEC_PLUGIN_NAME)); ?>').show();
 						d.container.slideDown(250, function () {
 							jQuery.post('<?php echo AEC_PLUGIN_URL; ?>inc/show-event.php', { 'id': e.id, 'do': 'edit' }, function(data) {
 								title.html(data.title);

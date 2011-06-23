@@ -1,66 +1,53 @@
 <?php
-/*
-Template Name: calendar
-*/
 // View event details
-get_header();
 $options = get_option('aec_options');
 ?>
-<link rel="stylesheet" type="text/css" href="<?php echo AEC_PLUGIN_URL; ?>css/jquery-ui-1.8.11.custom.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo AEC_PLUGIN_URL; ?>css/jquery-ui-1.8.13.custom.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo AEC_PLUGIN_URL; ?>css/custom.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo AEC_PLUGIN_URL; ?>css/cat_colors.css" />
-	<div id="container">
-		<div id="content" role="main">
-<?php
-	if (post_password_required()) {
-		the_content();
-	} else {
-?>
-			<div id="aec-loading"><?php _e('Loading...', AEC_PLUGIN_NAME); ?></div>
-			<div id="aec-modal">
-				<div class="aec-title"></div>
-				<div class="aec-content"></div>
-			</div>
-			<div id="aec-header" class="ui-widget">
-				<?php 
-					if ($options['menu']) {
-						wp_register('', ''); ?> | <?php wp_loginout(); 
-					}
-				?>
-				<ul id="aec-filter">
-				<?php
-					$categories = $aec->get_categories();
-					if (sizeof($categories) > 1) {
-						$out = '<li><h3>' . __('Show Types', AEC_PLUGIN_NAME) . '</h3></li>' . "\n";
-						$out .= '<li class="active"><a class="all">' . __('All', AEC_PLUGIN_NAME) . '</a></li>' . "\n";
-						foreach ($categories as $category) {
-							 $out .= '<li><a class="cat' . $category->id . '">' . $category->category . '</a></li>' . "\n";
-						}
-						echo $out;
-					}
-				?>
-				</ul>
-			</div>
-			<div id="aec-calendar"></div>
-			<a href="http://eranmiller.com/" id="aec-credit"><?php echo AEC_PLUGIN_NAME . ' v' . AEC_PLUGIN_VERSION; ?> created by Eran Miller</a>
-			<?php } ?>
+	<div id="aec-container">
+		<div id="aec-loading"><?php _e('Loading...', AEC_PLUGIN_NAME); ?></div>
+		<div id="aec-modal">
+			<div class="aec-title"></div>
+			<div class="aec-content"></div>
 		</div>
+		<div id="aec-header">
+			<?php
+			if ($options['menu']) {
+				$out = '<div id="aec-menu">';
+				$out .= wp_loginout( admin_url() . 'admin.php?page=ajax-event-calendar.php', false);
+				$out .= wp_register(' | ', '', false);
+				$out .= '</div>';
+				echo $out;
+			}
+			?>
+			<ul id="aec-filter">
+			<?php
+				$categories = $this->get_categories();
+				if (sizeof($categories) > 1) {
+					$out = '<li>' . __('Show Types', AEC_PLUGIN_NAME) . '</li>' . "\n";
+					$out .= '<li class="active"><a class="all">' . __('All', AEC_PLUGIN_NAME) . '</a></li>' . "\n";
+					foreach ($categories as $category) {
+						 $out .= '<li><a class="cat' . $category->id . '">' . $category->category . '</a></li>' . "\n";
+					}
+					echo $out;
+				}
+			?>
+			</ul>
+		</div>
+		<div id="datepicker"></div>
+		<div id="aec-calendar"></div>
+		<?php echo '<a href="http://eranmiller.com/" id="aec-credit">' . AEC_PLUGIN_NAME . ' v' . AEC_PLUGIN_VERSION . ' ' . __('Created By', AEC_PLUGIN_NAME) . ' Eran Miller</a>'; ?>
 	</div>
 
 <script type="text/javascript" src="<?php echo AEC_PLUGIN_URL; ?>js/jquery-1.5.1.min.js"></script>
 <script type="text/javascript" src="<?php echo AEC_PLUGIN_URL; ?>js/jquery-ui-1.8.11.custom.min.js"></script>
-<script type="text/javascript" src="<?php echo AEC_PLUGIN_URL; ?>js/fullcalendar.min.js"></script>
+<script type="text/javascript" src="<?php echo AEC_PLUGIN_URL; ?>js/jquery.fullcalendar.min.js"></script>
 <script type="text/javascript" src="<?php echo AEC_PLUGIN_URL; ?>js/jquery.simplemodal.1.4.1.min.js"></script>
 <script type="text/javascript">
-	jQuery(document).ready(function() {
-		<?php
-			if (!$options['sidebar']) {
-				echo "jQuery('#content').css({ 'margin':'0' });";
-			}
-		?>
+	jQuery(document).ready(function() {	
 		var isFilter = (jQuery('#aec-filter li a').length > 0);
 		var calendar = jQuery('#aec-calendar').fullCalendar({
-			theme: true,
 			monthNames: ['<?php _e('January', AEC_PLUGIN_NAME); ?>',
 						 '<?php _e('February', AEC_PLUGIN_NAME); ?>',
 						 '<?php _e('March', AEC_PLUGIN_NAME); ?>',
@@ -85,20 +72,20 @@ $options = get_option('aec_options');
 							  '<?php _e('Oct', AEC_PLUGIN_NAME); ?>',
 							  '<?php _e('Nov', AEC_PLUGIN_NAME); ?>',
 							  '<?php _e('Dec', AEC_PLUGIN_NAME); ?>'],
-			dayNames: ['<?php _e('Monday', AEC_PLUGIN_NAME); ?>',
+			dayNames: ['<?php _e('Sunday', AEC_PLUGIN_NAME); ?>',
+					   '<?php _e('Monday', AEC_PLUGIN_NAME); ?>',
 					   '<?php _e('Tuesday', AEC_PLUGIN_NAME); ?>',
 					   '<?php _e('Wednesday', AEC_PLUGIN_NAME); ?>',
 					   '<?php _e('Thursday', AEC_PLUGIN_NAME); ?>',
 					   '<?php _e('Friday', AEC_PLUGIN_NAME); ?>',
-					   '<?php _e('Saturday', AEC_PLUGIN_NAME); ?>',
-					   '<?php _e('Sunday', AEC_PLUGIN_NAME); ?>'],
-			dayNamesShort: ['<?php _e('Mon', AEC_PLUGIN_NAME); ?>',
+					   '<?php _e('Saturday', AEC_PLUGIN_NAME); ?>'],
+			dayNamesShort: ['<?php _e('Sun', AEC_PLUGIN_NAME); ?>',
+							'<?php _e('Mon', AEC_PLUGIN_NAME); ?>',
 						    '<?php _e('Tue', AEC_PLUGIN_NAME); ?>',
 						    '<?php _e('Wed', AEC_PLUGIN_NAME); ?>',
 						    '<?php _e('Thu', AEC_PLUGIN_NAME); ?>',
 						    '<?php _e('Fri', AEC_PLUGIN_NAME); ?>',
-						    '<?php _e('Sat', AEC_PLUGIN_NAME); ?>',
-						    '<?php _e('Sun', AEC_PLUGIN_NAME); ?>'],
+						    '<?php _e('Sat', AEC_PLUGIN_NAME); ?>'],
 			buttonText: {
 				today: '<?php _e('Today', AEC_PLUGIN_NAME); ?>',
 				month: '<?php _e('Month', AEC_PLUGIN_NAME); ?>',
@@ -215,5 +202,3 @@ $options = get_option('aec_options');
 		}
 	});
 </script>
-<?php if ($options['sidebar']) { get_sidebar(); } ?>
-<?php get_footer(); ?>

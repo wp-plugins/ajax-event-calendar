@@ -5,7 +5,9 @@
 $rows = $this->report_monthly_activity();
 if ( count( $rows ) ) {
 	foreach ( $rows as $row ) {
-		echo '<p><strong>' . $row->cnt . '</strong> ' . $row->category . $this->plural($row->cnt) . '</p>';
+		echo '<p><strong>' . $row->cnt . '</strong> ' . $row->category . ' ';
+		echo _n('Event', 'Events', $row->cnt, AEC_PLUGIN_NAME);
+		echo '</p>';
 	}
 } else {
 	echo '<p><em>' . __('No events this month.', AEC_PLUGIN_NAME) . '</em></p>';
