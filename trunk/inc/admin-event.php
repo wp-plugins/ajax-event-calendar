@@ -164,8 +164,8 @@
 				$first_name = get_user_meta($event->user_id, 'first_name', true);
 				$last_name = get_user_meta($event->user_id, 'last_name', true);
 				$organization = (isset($organization)) ? '(' . get_user_meta($event->user_id, 'organization', true) . ')' : '';
-				$out = '<span>' . __('Created by', AEC_PLUGIN_NAME) . ': ';
-				$author = __('Ajax Event Calendar', AEC_PLUGIN_NAME);
+				$out = '<span>' . htmlentities(__('Created by', AEC_PLUGIN_NAME)) . ': ';
+				$author = htmlentities(__('Ajax Event Calendar', AEC_PLUGIN_NAME));
 				if ($event->user_id > 0) {
 					$author = $first_name . ' ' . $last_name . $organization;
 				}
@@ -229,7 +229,7 @@ jQuery().ready(function() {
 						className: data.className
 					}, false);
 					//calendar.fullCalendar('unselect');
-					jQuery.jGrowl('<strong>' + data.title + '</strong> <?php _e('has been added.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Success!', AEC_PLUGIN_NAME); ?>' });
+					jQuery.jGrowl('<strong>' + data.title + '</strong> <?php htmlentities(_e('has been added.', AEC_PLUGIN_NAME)); ?>', { header: '<?php htmlentities(_e('Success!', AEC_PLUGIN_NAME)); ?>' });
 				}
 			}, 'json');
 			jQuery('.time-picker').remove();
@@ -249,7 +249,7 @@ jQuery().ready(function() {
 					e.end = data.end;
 					e.className = data.className;
 					jQuery('#aec-calendar').fullCalendar('updateEvent', e);
-					jQuery.jGrowl('<strong>' + e.title + '</strong> <?php _e('has been updated.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Success!', AEC_PLUGIN_NAME); ?>' });
+					jQuery.jGrowl('<strong>' + e.title + '</strong> <?php htmlentities(_e('has been updated.', AEC_PLUGIN_NAME)); ?>', { header: '<?php htmlentities(_e('Success!', AEC_PLUGIN_NAME)); ?>' });
 				}
 			}, 'json');
 			jQuery('.time-picker').remove();
@@ -262,11 +262,11 @@ jQuery().ready(function() {
 		var id = jQuery('#id').val();
 		var title = jQuery('#title').val();
 
-		if (confirm('<?php _e('Delete this event?', AEC_PLUGIN_NAME); ?>')) {
+		if (confirm('<?php htmlentities(_e('Delete this event?', AEC_PLUGIN_NAME)); ?>')) {
 			jQuery.post('<?php echo AEC_PLUGIN_URL; ?>inc/admin-event.php', { 'id': id, 'action': 'delete' }, function(data) {
 				if (data) {
 					jQuery('#aec-calendar').fullCalendar('removeEvents', id);
-					jQuery.jGrowl('<strong>' + title + '</strong> <?php _e('has been deleted.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Success!', AEC_PLUGIN_NAME); ?>' });
+					jQuery.jGrowl('<strong>' + title + '</strong> <?php htmlentities(_e('has been deleted.', AEC_PLUGIN_NAME)); ?>', { header: '<?php htmlentities(_e('Success!', AEC_PLUGIN_NAME)); ?>' });
 					jQuery('.time-picker').remove();
 					jQuery.modal.close();
 				}
@@ -276,8 +276,6 @@ jQuery().ready(function() {
 
 	function validateForm() {
 		err = checkDuration();
-		
-		// to do: base required on plugin options
 		var required = [<?php echo $aec->get_required_fields(); ?>];
 		// check required fields
 		if (required.length > 0) {
@@ -315,7 +313,7 @@ jQuery().ready(function() {
 					end = jQuery.timePicker('#end_time').getTime();
 				if (start >= end) {
 					jQuery('#start_time, #end_time').addClass('aec-error');
-					jQuery('.duration').html('<?php _e('Invalid duration, please adjust your time inputs.', AEC_PLUGIN_NAME); ?>');
+					jQuery('.duration').html('<?php htmlentities(_e('Invalid duration, please adjust your time inputs.', AEC_PLUGIN_NAME)); ?>');
 					return true;
 				}
 			}

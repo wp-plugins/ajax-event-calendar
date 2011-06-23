@@ -17,7 +17,7 @@ class aec_upcoming_events extends WP_Widget{
 		$events = $this->get_events($weeks,$category);
 		echo $before_widget;
 		$es = sizeof($events);
-		echo $before_title . _n(sprintf('(%d) Upcoming Event', $es), sprintf('(%d) Upcoming Events', $es), $es, AEC_PLUGIN_NAME) . $after_title;
+		echo $before_title . sprintf(_n('(%d) Upcoming Event','(%d) Upcoming Events', $es, AEC_PLUGIN_NAME), $es) . $after_title;
 		$out = '<ul>';
 		if ($events){
 			foreach ($events as $event){
@@ -26,7 +26,8 @@ class aec_upcoming_events extends WP_Widget{
 				$start_time = trim($start_time);
 				$end_time = trim($end_time);
 
-				$out .= '<li class="cat' . $event->category_id . '" onclick="' . $event->id . '" >';
+				//$out .= '<li onclick="' . $event->id . '" >';
+				$out .= '<li title="' . $event->category . '">';
 				if ($start_date != $end_date) {
 					if ($event->allday) {
 						$out .= $start_date;
@@ -46,7 +47,7 @@ class aec_upcoming_events extends WP_Widget{
 			}
 		}else{
 			$out .= '<li>';
-			$out .= _n('No events listed in the next week', sprintf('No events listed in the next %d weeks', $weeks), $weeks, AEC_PLUGIN_NAME);
+			$out .= sprintf(_n('No events listed in the next week', 'No events listed in the next %d weeks', $weeks, AEC_PLUGIN_NAME), $weeks);
 			$out .= '</li>';
 		}
 		$out .= '</ul>';
@@ -102,7 +103,7 @@ class aec_upcoming_events extends WP_Widget{
 		$category = $instance['category'];
 ?>
 	<p>
-		<label for="<?php echo $this->get_field_id('category'); ?>"><?php _e('Display These Categories', AEC_PLUGIN_NAME); ?></label>
+		<label for="<?php echo $this->get_field_id('category'); ?>"><?php _e('Display this Category', AEC_PLUGIN_NAME); ?></label>
 		<select id="<?php echo $this->get_field_id('category'); ?>" name="<?php echo $this->get_field_name('category'); ?>" class="widefat" style="width:100%;">
 			<?php
 				echo '<option value="all">' . __('All', AEC_PLUGIN_NAME) . '</option>';

@@ -3,7 +3,7 @@
 Plugin Name: Ajax Event Calendar
 Plugin URI: http://wordpress.org/extend/plugins/ajax-event-calendar/
 Description: A Google Calendar-like interface that allows registered users (with the necessary credentials) to add, edit and delete events in a common calendar viewable by blog visitors.
-Version: 0.9.5
+Version: 0.9.6
 Author: Eran Miller
 Author URI: http://eranmiller.com
 License: GPL2
@@ -30,7 +30,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)){
 	die('Sorry, but you cannot access this page directly.');
 }
 
-define('AEC_PLUGIN_VERSION', '0.9.5');
+define('AEC_PLUGIN_VERSION', '0.9.6');
 define('AEC_DOMAIN', 'aec_');
 define('AEC_PLUGIN_FILE', basename(__FILE__));
 define('AEC_PLUGIN_NAME', str_replace('.php', '', AEC_PLUGIN_FILE));
@@ -69,6 +69,8 @@ if (!class_exists('ajax_event_calendar')){
 			
 		// PHP 5 constructor
 		function __construct(){
+			// on update, check here
+			add_action('plugins_loaded', array($this, 'on_update'));
 		    add_action('init', array($this, 'localize_plugin'), 10, 1);
 			add_action('admin_menu', array($this, 'set_admin_menu'));
 			add_action('admin_init', array($this, 'aec_options_init'));
@@ -76,43 +78,13 @@ if (!class_exists('ajax_event_calendar')){
 			add_filter('manage_users_columns', array($this, 'add_events_column'));
 			add_filter('manage_users_custom_column', array($this, 'manage_events_column'), 10, 3);
 			add_filter('plugin_action_links', array($this, 'settings_link'), 10, 2);
-			//placeholder for database update code
-			//add_action('plugins_loaded', array($this, 'update_database');
 			add_shortcode('calendar', array($this, 'show_calendar'));
-     		update_option(AEC_DOMAIN . 'version', AEC_PLUGIN_VERSION);
-			
-			$options = get_option(AEC_DOMAIN . 'options');
-			if ( !is_array($options) || !isset($options['reset']) || $options['reset']=='1') {
-				// Update Settings
-				update_option(AEC_DOMAIN . 'options', $this->plugin_default_options);
-				// Add Sample Event
-				$input['user_id'] = 0;	// system id
-				$input['title'] = 'Ajax Event Calendar [v' . AEC_PLUGIN_VERSION . '] Installed!';
-				$input['start_date'] = date('Y-m-d');
-				$input['start_time'] = date('H:00:00');
-				$input['end_date'] = date('Y-m-d');
-				$input['end_time'] = date('H:00:00');
-				$input['allDay'] = 1;
-				$input['category_id'] = 1;
-				$input['description'] = 'This is a sample event with all the fields populated.  <ul><li>Modify field options in the settings menu</li><li>Manage event categories in the calendar menu</li><li>Add user authorization in the user menu</li></ul>';
-				$input['link'] = AEC_PLUGIN_HOMEPAGE;
-				$input['venue'] = 'Plugins';
-				$input['address'] = 'WordPress';
-				$input['city'] = 'Chicago';
-				$input['state'] = 'IL';
-				$input['zip'] = '60605';
-				$input['contact'] = 'Eran Miller';
-				$input['contact_info'] = 'plugins@eranmiller.com';
-				$input['access'] = 0;
-				$input['rsvp'] = 0;
-				$this->add_event($input, false);
-			}
 		}
 
 		function install(){
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 			global $wpdb;
-
+			// database update: removed required fields and alter zip field to accomodate longer postal codes
 			if ($wpdb->get_var('SHOW TABLES LIKE "' . $wpdb->prefix . AEC_EVENT_TABLE . '"') != $wpdb->prefix . AEC_EVENT_TABLE) {
 				$sql = 'CREATE TABLE ' . $wpdb->prefix . AEC_EVENT_TABLE . ' (
 						id BIGINT(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -124,18 +96,18 @@ if (!class_exists('ajax_event_calendar')){
 						category_id TINYINT(4) UNSIGNED NOT NULL,
 						description VARCHAR(1000),
 						link VARCHAR(100),
-						venue VARCHAR(100) NOT NULL,
+						venue VARCHAR(100),
 						address VARCHAR(100),
-						city VARCHAR(50) NOT NULL,
-						state CHAR(2) NOT NULL,
-						zip MEDIUMINT(10) UNSIGNED NOT NULL,
-						contact VARCHAR(50) NOT NULL,
-						contact_info VARCHAR(50) NOT NULL,
+						city VARCHAR(50),
+						state CHAR(2),
+						zip VARCHAR(10),
+						contact VARCHAR(50),
+						contact_info VARCHAR(50),
 						access TINYINT(1) UNSIGNED DEFAULT 0,
 						rsvp TINYINT(1) UNSIGNED DEFAULT 0);';
 				dbDelta($sql);
 			}
-				
+
 			if ($wpdb->get_var('SHOW TABLES LIKE "' . $wpdb->prefix . AEC_CATEGORY_TABLE . '"') != $wpdb->prefix . AEC_CATEGORY_TABLE){
 				$sql = 'CREATE TABLE ' . $wpdb->prefix . AEC_CATEGORY_TABLE . ' (
 							id TINYINT(4) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -169,6 +141,67 @@ if (!class_exists('ajax_event_calendar')){
 			$role->add_cap(AEC_DOMAIN . 'run_reports');
 		}
 
+		function on_update(){
+			$plugin_updated = false;
+			$options = get_option(AEC_DOMAIN . 'options');
+			// Settings Initialization / Manual Update
+			if ( !is_array($options) || !isset($options['reset']) || $options['reset']=='1') {
+				update_option(AEC_DOMAIN . 'options', $this->plugin_default_options);
+			}
+			
+			// if current plugin version is less than 0.9.6			
+			if (version_compare(get_option(AEC_DOMAIN . 'version'), '0.9.6') == -1) {
+				// add title required field to options if not present
+				if (!isset($options['title'])) {
+					$options['title'] = 2;
+					update_option(AEC_DOMAIN . 'options', $options);
+				}
+				
+				// remove outdated widget option
+				delete_option('widget_upcoming_events');
+				
+				// update database fields
+				require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+				global $wpdb;
+				$sql = 'ALTER TABLE ' . $wpdb->prefix . AEC_EVENT_TABLE . ' ' 
+					. 'modify venue VARCHAR(100),'
+					. 'modify city VARCHAR(50),'
+					. 'modify state CHAR(2),'
+					. 'modify zip VARCHAR(10),'
+					. 'modify contact VARCHAR(50),'
+					. 'modify contact_info VARCHAR(50);';
+				$wpdb->query($sql);
+				
+				// update plugin version
+				update_option(AEC_DOMAIN . 'version', AEC_PLUGIN_VERSION);
+				$plugin_updated = true;
+			}
+			
+			// Add sample event once plugin has gone through all update routines
+			if ($plugin_updated) {
+				$input['user_id'] = 0;	// system id
+				$input['title'] = 'Ajax Event Calendar [v' . AEC_PLUGIN_VERSION . '] Installed!';
+				$input['start_date'] = date('Y-m-d');
+				$input['start_time'] = date('H:00:00');
+				$input['end_date'] = date('Y-m-d');
+				$input['end_time'] = date('H:00:00');
+				$input['allDay'] = 1;
+				$input['category_id'] = 1;
+				$input['description'] = 'This is a sample event with all the fields populated.  <ul><li>Modify field options in the settings menu</li><li>Manage event categories in the calendar menu</li><li>Add user authorization in the user menu</li></ul>';
+				$input['link'] = AEC_PLUGIN_HOMEPAGE;
+				$input['venue'] = 'Plugins';
+				$input['address'] = 'WordPress';
+				$input['city'] = 'Chicago';
+				$input['state'] = 'IL';
+				$input['zip'] = '60605';
+				$input['contact'] = 'Eran Miller';
+				$input['contact_info'] = 'plugins@eranmiller.com';
+				$input['access'] = 0;
+				$input['rsvp'] = 0;
+				$this->add_event($input, false);
+			}
+		}
+		
 		function set_admin_menu(){
 			if (function_exists('add_options_page'))
 				$page = add_menu_page('Ajax Event Calendar',  __('Calendar', AEC_PLUGIN_NAME), AEC_DOMAIN . 'add_events', AEC_PLUGIN_FILE, array($this, 'admin_page'), AEC_PLUGIN_URL . 'css/images/calendar.png', 30);
@@ -860,14 +893,10 @@ if (!class_exists('ajax_event_calendar')){
 			
 			$out = array();
 			if ($allday) $days += 1;
-			if ($days >= 1) { array_push($out, $days . ' ' . _n( 'day', 'days', $days, AEC_PLUGIN_NAME)); }
-			if ($hrs >= 1) { array_push($out, $hrs . ' ' . _n( 'hour', 'hours', $hrs, AEC_PLUGIN_NAME)); }
-			if ($mins >= 1) { array_push($out, $mins . ' ' . _n( 'minute', 'minutes', $mins, AEC_PLUGIN_NAME)); }
+			if ($days >= 1) { array_push($out, sprintf(_n('%d Day', '%d Days', $days, AEC_PLUGIN_NAME), $days)); }
+			if ($hrs >= 1) { array_push($out, sprintf(_n('%d Hour', '%d Hours', $hrs, AEC_PLUGIN_NAME), $hrs)); }
+			if ($mins >= 1) { array_push($out,sprintf(_n('%d Minute', '%d Minutes', $mins, AEC_PLUGIN_NAME), $mins)); }
 			return implode(', ', $out);
-		}
-		
-		function plural($value){
-			return ($value == 1) ? '' : 's';
 		}
 	}
 }
