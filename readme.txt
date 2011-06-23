@@ -11,16 +11,13 @@ Provides a hybrid Google/OSX interface for multiple users to manage events in a 
 
 Provides a hybrid Google/OSX interface which enables registered users (with required access) to add, edit and delete events in a community calendar, viewable by all blog visitors.
 
-* **ATTENTION!** The template override has been replaced with a new shortcode to accomodate a wider range of themes, see installation instructions for details
+* **ATTENTION!** The template override has been replaced with a new shortcode to accommodate a wider range of themes, see installation instructions for details
 * Users can only edit and delete events they create
 * Dynamic category-based near-instant event filtering
 * Dynamically generated calendar contributor list (sidebar widget)
 * Display upcoming events in a list (sidebar widget)
 * Auto-generated Google Maps link, based on event address fields
 * Multi-language support **The POT file is available in the /locales folder** - please email your translations so I can package them with the plugin
-
-* **TO DO**
-* Date/Time localization
 
 = Administrator only =
 
