@@ -19,9 +19,6 @@ Provides a hybrid Google/OSX interface which enables registered users (with requ
 * Auto-generated Google Maps link, based on event address fields
 * Multi-language support **The POT file is available in the /locales folder** - please email your translations so I can package them with the plugin
 
-* **TO DO**
-* Date/Time localization
-
 = Administrator only =
 
 * Administrators can edit and delete all events
