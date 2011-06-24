@@ -87,6 +87,7 @@ Two new roles "Calendar Contributor" and "Blog+Calendar Contributor" are added, 
 == Other Notes ==
 
 **Known Compatibility Issues**
+
 1. WP Minify plugin: disable the HTML minification option or the calendar detail view will not load properly.
 1. SEO Image Galleries: is incompatible and causes the calendar plugin not to function.
 
