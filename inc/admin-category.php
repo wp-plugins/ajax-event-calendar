@@ -22,7 +22,7 @@
 	<ul>
 		<li>
 			<input type="hidden" id="bgcolor" name="bgcolor" class="bg colors" value="#ABCABC" /> 
-			<input type="hidden" id="fgcolor" name="fgcolor" class="fg" />
+			<input type="hidden" id="fgcolor" name="fgcolor" class="fg" value="#FFFFFF" />
 			<input type="text" id="category" name="category" value="" /> 
 			<button class="add button-primary"><?php _e('Add', AEC_PLUGIN_NAME); ?></button>
 		</li>
@@ -33,12 +33,12 @@
 <?php
 		$out = '';
 		foreach ($categories as $category) {
-			$delete = ($category->id > 1) ? '<a class="delete">' . htmlentities(__('Delete', AEC_PLUGIN_NAME)) . '</a>' . "\n" : ' <em>' . htmlentities(__('This category is required and can only be edited.', AEC_PLUGIN_NAME)) . '</em>';
+			$delete = ($category->id > 1) ? '<a class="delete">' . __('Delete', AEC_PLUGIN_NAME) . '</a>' . "\n" : ' <em>' . __('This category is required and can only be edited.', AEC_PLUGIN_NAME) . '</em>';
 			$out .= '<li id="id_' . $category->id . '">' . "\n";
 			$out .= '<input type="hidden" name="bgcolor" value="#' . $category->bgcolor . '" class="bg colors" />' . "\n";
 			$out .= '<input type="hidden" name="fgcolor" value="#' . $category->fgcolor . '" class="fg" />' . "\n";
 			$out .= '<input type="text" name="category" value="' . $category->category . '" class="edit" />' . "\n";
-			$out .= '<span><button class="update button-secondary">' . htmlentities(__('Update', AEC_PLUGIN_NAME)) . '</button> ' . $delete . '</span>' . "\n";
+			$out .= '<span><button class="update button-secondary">' . __('Update', AEC_PLUGIN_NAME) . '</button> ' . $delete . '</span>' . "\n";
 			$out .= '</li>' . "\n";
 		}
 		echo $out;
@@ -47,7 +47,7 @@
 </div>
 <script>
 	jQuery(document).ready(function() {
-		jQuery.jGrowl.defaults.closerTemplate = '<div><?php htmlentities(_e('hide all notifications', AEC_PLUGIN_NAME)); ?></div>';
+		jQuery.jGrowl.defaults.closerTemplate = '<div><?php _e('hide all notifications', AEC_PLUGIN_NAME); ?></div>';
 		jQuery.jGrowl.defaults.position = 'bottom-right';
 		jQuery('.colors').miniColors({
 			change: function(hex, rgb) {
@@ -67,13 +67,13 @@
 			// check required fields
 			jQuery.each(required, function(index, value) {
 				var value = jQuery.trim(jQuery('#' + this).val());
-				 if (value.length > 1) {
+				if (value.length > 1) {
 					jQuery('#' + this).removeClass('error');
 					err= false;
-				 } else {
+				} else {
 					jQuery('#' + this).addClass('error');
 					err = true;
-				 }
+				}
 			});
 			if (err) {
 				jQuery('.add').attr('disabled', 'disabled');
@@ -92,7 +92,7 @@
 						row += '<input type="hidden" name="bgcolor" value="#' + data.bgcolor + '"  class="bg colors" /> \n';
 						row += '<input type="hidden" name="fgcolor" value="#' + data.fgcolor + '" class="fb" /> \n';
 						row += '<input type="text" name="category" value="' + data.category + '" class="edit" /> \n';
-						row += '<span><button class="update button-secondary"><?php htmlentities(_e('Update', AEC_PLUGIN_NAME)); ?></button> <a class="delete"><?php htmlentities(_e('Delete', AEC_PLUGIN_NAME)); ?></a></span> \n';
+						row += '<span><button class="update button-secondary"><?php _e('Update', AEC_PLUGIN_NAME); ?></button> <a class="delete"><?php _e('Delete', AEC_PLUGIN_NAME); ?></a></span> \n';
 						row += '</li> \n';
 
 					jQuery('#aec-category-table').append(row);
@@ -101,7 +101,7 @@
 							jQuery('.fg', jQuery(this).parent()[0]).val(getFG(rgb));
 						}
 					});
-					jQuery.jGrowl('<?php htmlentities(_e('Category type', AEC_PLUGIN_NAME)); ?> <strong>' + data.category + '</strong> <?php htmlentities(_e('has been created.', AEC_PLUGIN_NAME)); ?>', { header: '<?php htmlentities(_e('Success!', AEC_PLUGIN_NAME)); ?>' });
+					jQuery.jGrowl('<?php _e('Category type', AEC_PLUGIN_NAME); ?> <strong>' + data.category + '</strong> <?php _e('has been created.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Success!', AEC_PLUGIN_NAME); ?>' });
 					jQuery('#category').val('');	// clear field after submission
 				}
 			}, 'json');
@@ -118,12 +118,12 @@
 				json = { 'id': id, 'bgcolor': bg, 'fgcolor': fg, 'category': cat };
 				if (cat.length > 1) {
 					 jQuery.post('<?php echo AEC_PLUGIN_URL; ?>inc/admin-category.php', { 'category_data': json, 'action': 'update' }, function(data, textStatus, jqXHR){
-					if (data) {					
-							jQuery.jGrowl('<?php htmlentities(_e('Category type', AEC_PLUGIN_NAME)); ?> <strong>' + cat + '</strong> <?php htmlentities(_e('has been created.', AEC_PLUGIN_NAME)); ?>', { header: '<?php htmlentities(_e('Success!', AEC_PLUGIN_NAME)); ?>' });
+						if (data) {					
+							jQuery.jGrowl('<?php _e('Category type', AEC_PLUGIN_NAME); ?> <strong>' + cat + '</strong> <?php _e('has been created.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Success!', AEC_PLUGIN_NAME); ?>' });
 						}
 					});
 				} else {
-					jQuery.jGrowl('<?php htmlentities(_e('Category type cannot be a blank value.', AEC_PLUGIN_NAME)); ?>', { header: '<?php htmlentities(_e('Whoops!', AEC_PLUGIN_NAME)); ?>' });
+					jQuery.jGrowl('<?php _e('Category type cannot be a blank value.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Whoops!', AEC_PLUGIN_NAME); ?>' });
 				}
 		});
 		
@@ -134,19 +134,19 @@
 				id = html_id.replace('id_', ''),
 				cat = jQuery('.edit' , row).val();
 
-			if (confirm('<?php htmlentities(_e('Are you sure you want to delete this category type?', AEC_PLUGIN_NAME)); ?>')) {
+			if (confirm('<?php _e('Are you sure you want to delete this category type?', AEC_PLUGIN_NAME); ?>')) {
 				jQuery.post('<?php echo AEC_PLUGIN_URL; ?>inc/admin-category.php', { 'id': id, 'action': 'delete' }, function(data) {
 					if (data) {
 						if (data == 'false') {
-							if (confirm('<?php htmlentities(_e('Several events are associated with this category. Click OK to reassign these events to the default category.', AEC_PLUGIN_NAME)); ?>')) {
-								jQuery.post('<?php echo AEC_PLUGIN_URL; ?>inc/admin-category.php', { 'id': id, 'action': 'change' }, function(data) {
-									jQuery.jGrowl('<?php htmlentities(_e('Events have been reassigned to the default category.', AEC_PLUGIN_NAME)); ?>', { header: '<?php htmlentities(_e('Success!', AEC_PLUGIN_NAME)); ?>!' });
+							if (confirm('<?php _e('Several events are associated with this category. Click OK to reassign these events to the default category.', AEC_PLUGIN_NAME); ?>')) {
+								jQuery.post('<?php echo AEC_PLUGIN_URL; ?>inc/admin-category.php', { 'id': id, 'action': 'change'}, function(data) {
+									jQuery.jGrowl('<?php _e('Events have been reassigned to the default category.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Success!', AEC_PLUGIN_NAME); ?>!' });
 									jQuery(row).remove();
 								});
 							}
 						} else {
 							jQuery(row).remove();
-							jQuery.jGrowl('<?php htmlentities(_e('Category type', AEC_PLUGIN_NAME)); ?> <strong>' + cat + '</strong> <?php htmlentities(_e('has been deleted.', AEC_PLUGIN_NAME)); ?>', { header: '<?php htmlentities(_e('Success!', AEC_PLUGIN_NAME)); ?>' });
+							jQuery.jGrowl('<?php _e('Category type', AEC_PLUGIN_NAME); ?> <strong>' + cat + '</strong> <?php _e('has been deleted.', AEC_PLUGIN_NAME); ?>', { header: '<?php _e('Success!', AEC_PLUGIN_NAME); ?>' });
 						}
 					}
 				});
