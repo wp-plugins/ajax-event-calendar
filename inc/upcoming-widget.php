@@ -27,7 +27,7 @@ class aec_upcoming_events extends WP_Widget{
 				$end_time = trim($end_time);
 
 				//$out .= '<li onclick="' . $event->id . '" >';
-				$out .= '<li title="' . $event->category . '">';
+				$out .= '<li>';
 				if ($start_date != $end_date) {
 					if ($event->allday) {
 						$out .= $start_date;
@@ -58,9 +58,11 @@ class aec_upcoming_events extends WP_Widget{
 	function get_events($duration, $category_id){
 		global $wpdb;
 		$week = 604800;
+		// localize date using blog timezone
+		date_default_timezone_set(get_option('timezone_string'));
 		$start = date('Y-m-d');
 		$end = date('Y-m-d', strtotime($start) + ($duration * $week));
-		$andcategory = ($category_id=="all") ? '' : ' AND category_id = ' . $category_id;
+		$andcategory = ($category_id=="all") ? '' : ' AND category_id = ' . $category_id;		
 		$results = $wpdb->get_results('SELECT
 										id,
 										title,
@@ -69,12 +71,7 @@ class aec_upcoming_events extends WP_Widget{
 										allday,
 										category_id
 										FROM ' . $wpdb->prefix . AEC_EVENT_TABLE . '
-										WHERE ((start >= "' . $start . '"
-										AND start < "' . $end . '")
-										OR (end >= "' . $start . '"
-										AND end < "' . $end . '")
-										OR (start < "' . $start . '"
-										AND end > "' . $end . '"))' .
+										WHERE start >= "' . $start . '" AND start < "' . $end . '"' .
 										$andcategory .
 										' ORDER BY start;'
 									);

@@ -3,7 +3,7 @@
 Plugin Name: Ajax Event Calendar
 Plugin URI: http://wordpress.org/extend/plugins/ajax-event-calendar/
 Description: A Google Calendar-like interface that allows registered users (with the necessary credentials) to add, edit and delete events in a common calendar viewable by blog visitors.
-Version: 0.9.6
+Version: 0.9.7
 Author: Eran Miller
 Author URI: http://eranmiller.com
 License: GPL2
@@ -30,7 +30,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)){
 	die('Sorry, but you cannot access this page directly.');
 }
 
-define('AEC_PLUGIN_VERSION', '0.9.6');
+define('AEC_PLUGIN_VERSION', '0.9.7');
 define('AEC_DOMAIN', 'aec_');
 define('AEC_PLUGIN_FILE', basename(__FILE__));
 define('AEC_PLUGIN_NAME', str_replace('.php', '', AEC_PLUGIN_FILE));
@@ -70,7 +70,7 @@ if (!class_exists('ajax_event_calendar')){
 		// PHP 5 constructor
 		function __construct(){
 			// on update, check here
-			add_action('plugins_loaded', array($this, 'on_update'));
+			add_action('plugins_loaded', array($this, 'version_patches'));
 		    add_action('init', array($this, 'localize_plugin'), 10, 1);
 			add_action('admin_menu', array($this, 'set_admin_menu'));
 			add_action('admin_init', array($this, 'aec_options_init'));
@@ -139,17 +139,22 @@ if (!class_exists('ajax_event_calendar')){
 			$role = get_role('administrator');
 			$role->add_cap(AEC_DOMAIN . 'add_events');
 			$role->add_cap(AEC_DOMAIN . 'run_reports');
+			
+			// on installation completion update plugin version
+			update_option(AEC_DOMAIN . 'version', AEC_PLUGIN_VERSION);
 		}
 
-		function on_update(){
+		function version_patches(){
 			$plugin_updated = false;
 			$options = get_option(AEC_DOMAIN . 'options');
+			
 			// Settings Initialization / Manual Update
 			if ( !is_array($options) || !isset($options['reset']) || $options['reset']=='1') {
 				update_option(AEC_DOMAIN . 'options', $this->plugin_default_options);
 			}
 			
-			// if current plugin version is less than 0.9.6			
+			// Version Patches
+			// < 0.9.6
 			if (version_compare(get_option(AEC_DOMAIN . 'version'), '0.9.6') == -1) {
 				// add title required field to options if not present
 				if (!isset($options['title'])) {
@@ -159,7 +164,7 @@ if (!class_exists('ajax_event_calendar')){
 				
 				// remove outdated widget option
 				delete_option('widget_upcoming_events');
-				
+
 				// update database fields
 				require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 				global $wpdb;
@@ -171,12 +176,12 @@ if (!class_exists('ajax_event_calendar')){
 					. 'modify contact VARCHAR(50),'
 					. 'modify contact_info VARCHAR(50);';
 				$wpdb->query($sql);
-				
-				// update plugin version
+
+				// on patch completion update plugin version
 				update_option(AEC_DOMAIN . 'version', AEC_PLUGIN_VERSION);
 				$plugin_updated = true;
 			}
-			
+
 			// Add sample event once plugin has gone through all update routines
 			if ($plugin_updated) {
 				$input['user_id'] = 0;	// system id
@@ -718,6 +723,7 @@ if (!class_exists('ajax_event_calendar')){
 				if ($result === false){
 					$this->log($wpdb->print_error());
 				}
+				$this->generate_css();
 				echo $result;
 			}
 		}
@@ -729,7 +735,6 @@ if (!class_exists('ajax_event_calendar')){
 				$this->log($wpdb->print_error());
 			}
 			return $result;
-			$this->generate_css();
 		}
 
 		function remove_table($table_name){

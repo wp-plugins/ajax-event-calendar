@@ -3,7 +3,7 @@ Contributors: eranmiller
 Tags: multi-user, calendar, event, ajax, filter
 Requires at least: 3.1
 Tested up to: 3.1.3
-Stable tag: 0.9.6
+Stable tag: 0.9.7
 
 Provides a hybrid Google/OSX interface for multiple users to manage events in a community calendar.
 
@@ -17,9 +17,9 @@ Provides a hybrid Google/OSX interface which enables registered users (with requ
 * Dynamically generated calendar contributor list (sidebar widget)
 * Display upcoming events in a list (sidebar widget)
 * Auto-generated Google Maps link, based on event address fields
-* Multi-language support **The POT file is available in the /locales folder** - please email your translations so I can package them with the plugin
+* Multi-language support - please email translations to plugins@eranmiller.com so I can package them in future releases of the plugin
 
-= Administrator only =
+= Administrative =
 
 * Administrators can edit and delete all events
 * Current calendar month activity report
@@ -30,8 +30,8 @@ Provides a hybrid Google/OSX interface which enables registered users (with requ
 = Options =
 
 * Add, edit or delete event category types
-* Limit event creation to a pre-defined window of time: between the next 30-minute interval and one year
-* Displays the WordPress Login/Register links (Admin menu) on the front-end Calendar, links directly to event administration
+* Settings Toggle: Limit event creation to a pre-defined window of time: between the next 30-minute interval and one year
+* Settings Toggle: Display of WordPress Login/Register links (Admin menu) on the front-end Calendar, links directly to event administration
 * Front-end calendar can be password protected
 * Display a contributors list in sidebar by using "Calendar Contributors" Widget
 * Display a upcoming events in sidebar by using "Upcoming Events" Widget
@@ -43,17 +43,23 @@ Provides a hybrid Google/OSX interface which enables registered users (with requ
 
 == Frequently Asked Questions ==
 
-= I upgraded the plugin and neither the admin nor the front-end calendar appear =
-Go to the Calendar Options page in the Settings menu and if none of the checkboxes are selected, select **Reset Settings** and click **Save Settings**. If the calendar still does not appear, please post the issue in the [Support Forum](http://wordpress.org/tags/ajax-event-calendar?forum_id=10 "forum") and include your URL for troubleshooting purposes.
+= How do I manage (add, edit, delete) events? = 
+As with Google Calendars, to add an event, simply click on a date in the administrative calendar view.  Users can only edit and delete events they create.  Administrators can edit and delete all events.
+
+= The calendar won't let me create events prior to the current date =
+By default, event creation is restricted to "Enforce event creation between 30 minutes and one year from the current time".  To remove this restriction, uncheck the "Enforce event creation..." checkbox in the Settings menu, under the Calendar sub-menu.
+
+= I upgraded the plugin and the calendar no longer appears =
+Go to the Calendar Options page in the Settings menu and if none of the checkboxes are selected, select **Reset Settings** and click **Save Settings**.  If the calendar still does not appear, please post the issue in the [Support Forum](http://wordpress.org/tags/ajax-event-calendar?forum_id=10 "forum") and include your URL for troubleshooting purposes.
 
 = I upgraded the plugin to 0.9.6 and the front-end calendar no longer appears =
-To accommodate a wider range of themes, the front-end calendar installation, as of this version, depends on a shortcode - see Installation tab for details.
+To accommodate a wider range of themes, the front-end calendar installation, as of this version, depends on a shortcode - see the [Installation tab](http://wordpress.org/extend/plugins/ajax-event-calendar/installation/) for details.
 
 = What does this plugin remove when deleted? =
 The event and category databases, custom calendar roles and capabilities, plugin options and widget settings are permanently removed.
 
 = How does the calendar filter work? =
-The filter is appears only when more than one event category has been created.
+The filter appears only when more than one event category has been created.
 
 = What happens to user events when they are deleted? =
 All events associated with a deleted user are permanently deleted.
@@ -66,7 +72,17 @@ Two new roles "Calendar Contributor" and "Blog+Calendar Contributor" are added, 
 
 == Screenshots ==
 
-Coming in Version 1.0
+1. Plugin Setup
+2. Plugin Options
+3. New User Roles
+4. New Event field in Users table
+5. Two Widgets available
+6. Calendar Administration
+7. Category Administration
+8. Activity Report
+9. Event Detail Input Form
+10. Growl Notifications
+11. Calendar Localized in French
 
 == Other Notes ==
 
@@ -82,6 +98,11 @@ Hat Tip to the authors of these fine jQuery plugins (used in the creation of thi
 * Category color selection (miniColors)
 
 == Changelog ==
+= 0.9.7 =
+* Fixed localization bugs
+* Updated French localization (doc75word)
+* Revised Installation and FAQ Instructions
+
 = 0.9.6 =
 * Fixed po files to include plural translation strings
 * Fixed date localization bug on calendar
@@ -89,7 +110,7 @@ Hat Tip to the authors of these fine jQuery plugins (used in the creation of thi
 = 0.9.5 =
 * Added upcoming events widget
 * Added redirect to event administration page from front-end calendar page login link
-* Changed front-end calendar implementation from custom template to shortcode, to accommodate wider range of themes
+* Changed front-end calendar implementation from custom template to shortcode, to accomodate wider range of themes
 * Auto-generated Google Maps link, based on event address fields
 * A giant **Merci** to doc75word for submitting the French localization!
 
