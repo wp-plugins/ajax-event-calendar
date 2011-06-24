@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Ajax Event Calendar v0.9.6\n"
+"Project-Id-Version: Ajax Event Calendar v0.9.7\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-06-23 20:40-0600\n"
-"PO-Revision-Date: 2011-06-23 20:40-0600\n"
+"PO-Revision-Date: 2011-06-24 11:11-0600\n"
 "Last-Translator: Eran Miller <plugins@eranmiller.com>\n"
 "Language-Team: doc75word\n"
 "MIME-Version: 1.0\n"
@@ -649,7 +649,7 @@ msgstr "Lieu"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:59
 msgid "View Map"
-msgstr ""
+msgstr "Voir la carte"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:78
 msgid "Presented by"

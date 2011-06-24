@@ -52,12 +52,12 @@
 				$v[] = implode($csz, ', ');
 				$out .= implode($v, '<br>');
 				$out .= '</li>';
+				
+				// Google Map Link
+				$out .= '<li>';
+				$out .= '<a href="http://maps.google.com/?q=' . urlencode($v[1] . ' '. implode($csz, ' ')) . '" class="map cat' . $event->category_id . '" target="_blank">' . __('View Map', AEC_PLUGIN_NAME) . '</a>';
+				$out .= '</li>';
 			}
-			
-			// Google Map Link
-			$out .= '<li>';
-			$out .= '<a href="http://maps.google.com/?q=' . urlencode($v[1] . ' '. implode($csz, ' ')) . '" class="map cat' . $event->category_id . '" target="_blank">' . __('View Map', AEC_PLUGIN_NAME) . '</a>';
-			$out .= '</li>';
 			
 			if (!empty($event->contact) || !empty($event->contact_info)) {
 				$out .= '<li><h3>' . __('Contact Information', AEC_PLUGIN_NAME) . '</h3>';
