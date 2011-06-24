@@ -74,15 +74,15 @@ Two new roles "Calendar Contributor" and "Blog+Calendar Contributor" are added, 
 
 1. Plugin Setup
 2. Plugin Options
-3. New User Roles
-4. New Event field in Users table
-5. Two Widgets available
+3. Two new User Roles available
+4. New Event field in the Users table
+5. Two new Widgets available
 6. Calendar Administration
+9. Event Detail Input Form
 7. Category Administration
 8. Activity Report
-9. Event Detail Input Form
 10. Growl Notifications
-11. Calendar Localized in French
+11. Calendar and Widgets Localized in French
 
 == Other Notes ==
 
