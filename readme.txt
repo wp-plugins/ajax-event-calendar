@@ -3,7 +3,7 @@ Contributors: eranmiller
 Tags: multi-user, calendar, event, ajax, filter
 Requires at least: 3.1
 Tested up to: 3.2
-Stable tag: 0.9.7.1
+Stable tag: 0.9.8.1
 
 A fully localized Google/OSX hybrid interface for multiple users to manage events in a community calendar.
 
@@ -122,6 +122,10 @@ All events associated with a deleted category are re-assigned to the primary cat
 * Category color selection (miniColors)
 
 == Changelog ==
+= 0.9.8.1 =
+* replaced php 5.3.x dependent DateTime class with a modified strtotime to accommodate d/m/Y format
+* revised admin menu wording
+
 = 0.9.8 =
 * comprehensive refactoring of ajax elements (updated to jquery 1.6.1 for more secure ajax transactions)
 * localized all javascript
@@ -151,7 +155,7 @@ All events associated with a deleted category are re-assigned to the primary cat
 = 0.9.5 =
 * added upcoming events widget
 * added redirect to event administration page from front-end calendar page login link
-* changed front-end calendar implementation from custom template to shortcode, to accomodate wider range of themes
+* changed front-end calendar implementation from custom template to shortcode, to accommodate wider range of themes
 * auto-generated google maps link, based on event address fields
 * added french localization (doc75word) - merci!
 
@@ -240,6 +244,10 @@ All events associated with a deleted category are re-assigned to the primary cat
 * getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
+
+= 0.9.8.1 =
+* php 5.3.x dependency fix
+
 = 0.9.8 =
 * comprehensive refactoring of ajax actions and localization improvements
 
