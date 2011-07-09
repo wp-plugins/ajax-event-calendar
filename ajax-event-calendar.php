@@ -3,7 +3,7 @@
 Plugin Name: Ajax Event Calendar
 Plugin URI: http://wordpress.org/extend/plugins/ajax-event-calendar/
 Description: A Google Calendar-like interface that allows registered users (with the necessary credentials) to add, edit and delete events in a common calendar viewable by blog visitors.
-Version: 0.9.8
+Version: 0.9.8.1
 Author: Eran Miller
 Author URI: http://eranmiller.com
 License: GPL2
@@ -30,7 +30,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)){
 	die('Sorry, but you cannot access this page directly.');
 }
 
-define('AEC_PLUGIN_VERSION', '0.9.8');
+define('AEC_PLUGIN_VERSION', '0.9.8.1');
 define('AEC_DOMAIN', 'aec_');
 define('AEC_PLUGIN_FILE', basename(__FILE__));
 define('AEC_PLUGIN_NAME', str_replace('.php', '', AEC_PLUGIN_FILE));
@@ -189,13 +189,13 @@ if (!class_exists('ajax_event_calendar')){
 				$plugin_updated = true;
 			}
 
-			// < 0.9.8
-			if (version_compare(get_option(AEC_DOMAIN . 'version'), '0.9.8', '<')) {
+			// < 0.9.8.1
+			if (version_compare(get_option(AEC_DOMAIN . 'version'), '0.9.8.1', '<')) {
 
 				// remove capability - replaced by aec-manage-calendar
 				$role = get_role('administrator');
 				$role->remove_cap('aec_run_reports');
-				
+
 				// if not present, add options
 				if (!isset($options['show_weekends']) || !isset($options['show_map_link'])) {
 					$options['show_weekends'] = 1;
@@ -289,27 +289,50 @@ if (!class_exists('ajax_event_calendar')){
 
 		function process_duration($event){
 			$format	= ($event->allDay) ? AEC_WP_DATE_FORMAT : AEC_WP_DATE_TIME_FORMAT;
-			$start	= DateTime::createFromFormat($format, $event->start);
-			$end 	= DateTime::createFromFormat($format, $event->end);
+
+			// requires PHP 5.3 - placeholder
+			//$start	= DateTime::createFromFormat($format, $event->start);
+			//$end 		= DateTime::createFromFormat($format, $event->end);
+
+			$start 	= $this->date_convert($event->start, $format);
+			$end 	= $this->date_convert($event->end, $format);
+
 			if ($start && $end) {
-				$int = $start->diff($end);
-				$int->d = ($event->allDay) ? $int->d+1 : $int->d;		// add one to day value of "allday" events
+				$diff	= $end - $start;
+				$ysec	= 365*60*60*24;
+				$msec	= 30*60*60*24;	// assume a 30 day month
+				$dsec	= 60*60*24;
+				$hsec	= 60*60;
+				$mnsec	= 60;
+				$year 	= floor($diff / $ysec);
+				$month	= floor(($diff - $year * $ysec) / $msec);
+				$day 	= floor(($diff - $year * $ysec - $month * $msec) / $dsec);
+				$hour 	= floor(($diff - $year * $ysec - $month * $msec - $day * $dsec) / $hsec);
+				$minute = floor(($diff - $year * $ysec - $month * $msec - $day * $dsec - $hour * $hsec) / $mnsec);
+
+				$day = ($event->allDay) ? $day+1 : $day;		// add one to day value of "allday" events
 
 				$out = array();
-				if ($int->y) { array_push($out, sprintf(_n('%d Year', '%d Years', $int->y, AEC_PLUGIN_NAME), $int->y)); }
-				if ($int->m) { array_push($out, sprintf(_n('%d Month', '%d Months', $int->m, AEC_PLUGIN_NAME), $int->m)); }
-				if ($int->d) { array_push($out, sprintf(_n('%d Day', '%d Days', $int->d, AEC_PLUGIN_NAME), $int->d)); }
-				if ($int->h) { array_push($out, sprintf(_n('%d Hour', '%d Hours', $int->h, AEC_PLUGIN_NAME), $int->h)); }
-				if ($int->i) { array_push($out, sprintf(_n('%d Minute', '%d Minutes', $int->i, AEC_PLUGIN_NAME), $int->i)); }
+				if ($year) { array_push($out, sprintf(_n('%d Year', '%d Years', $year, AEC_PLUGIN_NAME), $year)); }
+				if ($month) { array_push($out, sprintf(_n('%d Month', '%d Months', $month, AEC_PLUGIN_NAME), $month)); }
+				if ($day) { array_push($out, sprintf(_n('%d Day', '%d Days', $day, AEC_PLUGIN_NAME), $day)); }
+				if ($hour) { array_push($out, sprintf(_n('%d Hour', '%d Hours', $hour, AEC_PLUGIN_NAME), $hour)); }
+				if ($minute) { array_push($out, sprintf(_n('%d Minute', '%d Minutes', $minute, AEC_PLUGIN_NAME), $minute)); }
 
 				return implode('<br>', $out);
 			}
 		}
 
-		function date_convert($date, $from, $to){
-			//ajax_event_calendar::log($date .' '. $from .' '. $to);
-			$convert = DateTime::createFromFormat($from, $date);
-			return $convert->format($to);
+		function date_convert($date, $from, $to=false){
+			// ajax_event_calendar::log($date .' '. $from .' '. $to);
+			// if date format is d/m/Y, modify token to 'd-m-Y' so strtotime parses date correctly
+			if (strpos($from, 'd') == 0) $date = str_replace("/", "-", $date);
+			if ($to) return date($to, strtotime($date));
+			return strtotime($date);
+
+			// PHP 5.3 placeholder
+			//$convert = DateTime::createFromFormat($from, $date);
+			//return $convert->format($to);
 		}
 
 		// convert php to jquery datepicker format
@@ -484,7 +507,7 @@ if (!class_exists('ajax_event_calendar')){
 
 		// front-end scripts and styles
 		function load_js_and_css($pages){
-			
+
 			if (empty($pages)) return $pages;
 			$shortcode_found = false;
 			foreach ($pages as $page) {
@@ -583,9 +606,8 @@ if (!class_exists('ajax_event_calendar')){
 			require_once AEC_PLUGIN_PATH . 'inc/show-event.php';
 		}
 
-		function add_event($display=true){
+		function add_event(){
 			if (!isset($_POST['event'])) return;
-
 			$input = $this->cleanse_event_input($_POST['event']);
 
 			global $wpdb;
@@ -630,7 +652,7 @@ if (!class_exists('ajax_event_calendar')){
 			if ($result === false){
 				$this->log($wpdb->print_error());
 			} else {
-				if ($display) {
+				if ($input['user_id']) {					// return events not generated by system (user id: 0)
 					$input['id'] = $wpdb->insert_id;		// id of newly created row
 					$input['allDay'] = ($input['allDay']) ? true : false;
 					$output = array(
@@ -651,6 +673,7 @@ if (!class_exists('ajax_event_calendar')){
 
 		function move_event(){
 			if (!isset($_POST)) return;
+			$input = $_POST;
 
 			global $wpdb;
 			$result = $wpdb->update($wpdb->prefix . AEC_EVENT_TABLE,
@@ -675,8 +698,8 @@ if (!class_exists('ajax_event_calendar')){
 
 		function update_event(){
 			if (!isset($_POST['event'])) return;
-
 			$input = $this->cleanse_event_input($_POST['event']);
+
 			global $wpdb;
 			$result = $wpdb->update($wpdb->prefix . AEC_EVENT_TABLE,
 									array('user_id' 		=> $input['user_id'],

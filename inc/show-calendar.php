@@ -9,9 +9,7 @@
 		$options = get_option('aec_options');
 		if ($options['menu']) {
 			$out = '<div id="aec-menu">';
-			// on login success, redirects to back-end calendar
-			$out .= wp_loginout( admin_url() . 'admin.php?page=ajax-event-calendar.php', false);
-			$out .= wp_register(' | ', '', false);
+			$out .= '<a href="' . admin_url() . 'admin.php?page=ajax-event-calendar.php">' . __('Add Events', AEC_PLUGIN_NAME) . '</a>';
 			$out .= '</div>';
 			echo $out;
 		}
