@@ -1,11 +1,17 @@
-/* ajax-event-calendar - version 0.9.5 */
+/* ajax-event-calendar v0.9.8 */
+ul.upcoming_events{list-style:none}
+ul.upcoming_events li:first-child{margin-top:3px}
+ul.upcoming_events li {font-size:11px;margin-top:1px;cursor:pointer}
+ul.upcoming_events li strong{font-size:14px}
+.round5{padding:5px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}
 ol#aec-category-table{list-style:none;margin-left:.4em}
+#aec-container{position:relative;float:none}
 #aec-calendar{font-size:12px;line-height:16px}
 #aec-calendar table{border:0 !important;margin:0 !important}
 #aec-calendar td{padding:0 !important}
 #aec-header{width:100%;clear:both;padding:0;margin-bottom:0}
 #aec-menu{float:left;padding:10px 0;}
-#aec-filter a{padding:3px 8px;line-height:20px;cursor:pointer;display:block;text-decoration:none;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}
+#aec-filter a{padding:3px 8px;line-height:20px;cursor:pointer;display:block;text-decoration:none}
 #aec-filter a.all,#aec-filter a.all:visited,#aec-filter a.all:active,#aec-filter a.all:hover{background:#000;color:#ddd}
 ul#aec-filter{float:right;font-size:12px;padding:10px 0;margin:0}
 #aec-filter li{list-style:none!important;float:left;padding:0 0 0 4px;margin:0}
@@ -15,23 +21,25 @@ ul#aec-filter{float:right;font-size:12px;padding:10px 0;margin:0}
 #aec-loading{color:#fff;font:2.5em/1em "Lucida Grande",Arial,sans-serif;padding:5em}
 #aec-modal-overlay{background-color:#000}
 #aec-modal-container{text-align:left;-moz-border-radius-bottomleft:6px;-moz-border-radius-bottomright:6px;-moz-box-shadow:0 0 64px #000;-webkit-border-bottom-left-radius:6px;-webkit-border-bottom-right-radius:6px;-webkit-box-shadow:0 0 64px #000;background-color:#eee;border-radius:0 0 6px 6px;box-shadow:0 0 64px #000;color:#333;font:16px/24px "Lucida Grande",Arial,sans-serif;padding-bottom:4px;width:600px}
-#aec-modal-container .aec-title{font-size:1.1em;background-color:#ddd;border-bottom:1px solid #ccc;color:#000;font-weight:700;padding:6px 8px;text-shadow:0 1px 0 #f4f4f4}
+#aec-modal-container .aec-title{background-color:#ddd;border-bottom:1px solid #ccc;color:#000;font-weight:700;padding:6px 8px;text-shadow:0 1px 0 #f4f4f4}
 #aec-modal-container .close{display:none;position:absolute;right:0;top:0}
 #aec-modal-container .close a{color:#777;display:block;font-weight:700;padding:6px 12px 0;text-decoration:none;text-shadow:0 1px 0 #f4f4f4}
 #aec-modal-container .close a:hover{color:#000}
 #aec-modal-container .aec-content{padding:0 12px}
 #aec-modal-container .aec-content ul{padding:0;margin:0}
-#aec-modal-container h2{font-size:1.1px;margin:10px 0 6px}
-#aec-modal-container h3{font-size:1em;margin:0;font-weight:700;padding-top:10px}
-#aec-modal-container p{font-size:.9em;margin-bottom:10px}
+#aec-modal-container h3{font-size:14px;font-weight:bold;margin:0;padding-top:10px}
+#aec-modal-container p{font-size:12px;margin-bottom:10px}
 #aec-modal-container span{color:#777}
-#aec-modal-container span.duration{padding-left:5px;font-size:.9em}
-#aec-modal-container li{font-size:.9em;margin:0;padding:0;list-style:none}
+#aec-modal-container span.duration-message{padding-left:5px;font-size:.9em}
+#aec-modal-container span.duration{top:50px;right:15px;position:absolute;font-weight:bold;background:#ddd;color:#333}
+#aec-modal-container li{font-size:12px;margin:0;padding:0;list-style:none}
 #aec-modal hr{margin:10px 0;padding:0}
-#aec-modal a.map{padding:5px;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px}
-#aec-modal a.link{position:absolute;padding:5px 10px;bottom:0;right:10px;font-size:1.15em;font-weight:bold;-moz-border-radius-topleft:6px;-moz-border-radius-topright:6px;-webkit-border-top-left-radius:6px;-webkit-border-top-right-radius:6px;border-radius:6px 6px 0 0;text-decoration:none}
+#aec-modal li.presented{font-size:11px;padding-top:5px;margin-top:5px;border-top:1px solid #ddd}
+#aec-modal a{text-decoration:none}
 #aec-modal a:hover{text-decoration:underline}
+#aec-modal a.link{position:absolute;padding:5px 10px;bottom:0;right:10px;font-size:1.15em;font-weight:bold;-moz-border-radius-topleft:6px;-moz-border-radius-topright:6px;-webkit-border-top-left-radius:6px;-webkit-border-top-right-radius:6px;border-radius:6px 6px 0 0}
 #aec-credit{visibility:hidden;position:absolute;height:1px;width:1px;overflow:hidden;top:-999px}
+
 .fc{direction:ltr;text-align:left}
 .fc table{border-collapse:collapse;border-spacing:0}
 html .fc,.fc table{font-size:1em}
@@ -129,13 +137,13 @@ table.fc-border-separate{border-collapse:separate}
 .fc-event-vert .ui-resizable-s{bottom:0!important;cursor:s-resize;font-family:monospace;font-size:11px!important;height:8px!important;line-height:8px!important;overflow:hidden!important;text-align:center;width:100%!important}
 .fc-agenda .ui-resizable-resizing{_overflow:hidden}
 
-div.time-picker{background:#fff;border:1px solid #aaa;height:191px;margin:0;overflow:auto;position:absolute;width:4em;z-index:1002}
-div.time-picker-12hours{width:6em}
+div.time-picker{background:#fff;border:1px solid #aaa;height:191px;margin:0;overflow:auto;position:absolute;width:6em;z-index:1002}
+div.time-picker-12hours{width:7em}
 div.time-picker ul{list-style-type:none;margin:0;padding:0}
-div.time-picker li{cursor:pointer;font:12px/1 "Lucida Grande",Arial,sans-serif;height:10px;margin:0;padding:4px 3px}
+div.time-picker li{cursor:pointer;height:10px;margin:0;padding:4px 3px}
 div.time-picker li.selected{background:#0063CE;color:#fff}
-form .aec_form{font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif}
 
+form .aec_form{font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif}
 .aec_form .edit{width:25em}
 .aec_form table{border-spacing:0}
 .aec_form tr.header{background:#eee}
@@ -147,7 +155,7 @@ form .aec_form{font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-s
 .aec_form em{color:red}
 .aec_form .picker{cursor:pointer;background:#fff}
 .aec_form{list-style:none;margin:0}
-.aec_form label{font-size:1.1em;display:inline;float:left;padding:5px 5px 3px 0;width:100px}
+.aec_form label{font-size:12px;display:inline;float:left;padding:5px 5px 3px 0;width:100px}
 .aec_form label.box{padding:0 0 0 5px;width:auto}
 .aec_form li ul li{border-bottom:0 solid red}
 .aec_form input{display:inline;padding:0.4em;width:25em}
@@ -224,6 +232,7 @@ label.h{display:inline;float:left;width:auto}
 .ml20{margin-left:20px}
 .offset1{margin-left:130px}
 .offset2{margin-left:105px}
+
 div.jGrowl{color:#fff;font-size:12px;padding:10px;position:absolute;z-index:9999}
 div.jGrowl{position:absolute}
 body > div.jGrowl{position:fixed}
@@ -236,7 +245,7 @@ div.center div.jGrowl-notification,div.center div.jGrowl-closer{margin-left:auto
 div.jGrowl div.jGrowl-notification,div.jGrowl div.jGrowl-closer{-moz-border-radius:5px;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=85);-webkit-border-radius:5px;background-color:#000;display:none;filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=85);font-family:Tahoma, Arial, Helvetica, sans-serif;font-size:1em;margin-bottom:5px;margin-top:5px;opacity:.85;padding:10px;text-align:left;width:235px;zoom:1}
 div.jGrowl div.jGrowl-notification{color:#fff;min-height:40px}
 div.jGrowl div.jGrowl-notification div.jGrowl-header{font-size:.85em;font-weight:700}
-div.jGrowl div.jGrowl-notification div.jGrowl-close{cursor:pointer;float:right;font-size:1em;font-weight:700;z-index:99}
+div.jGrowl div.jGrowl-notification div.jGrowl-close{cursor:pointer;float:right;font-size:1em;font-weight:700;z-index:9999}
 div.jGrowl div.jGrowl-closer{cursor:pointer;font-size:.9em;font-weight:700;padding-bottom:4px;padding-top:4px;text-align:center}
 
 .miniColors-trigger{height:24px;width:25px;background:url(images/arrow.gif) center no-repeat;vertical-align:middle;margin:0 .25em;display:inline-block;outline:none;float:left}
@@ -255,3 +264,4 @@ div.jGrowl{display:none}
 .fc-event-vert .fc-event-inner{border-width:0!important;padding:1px 0!important}.fc-event-bg{display:none!important}
 .fc-event .ui-resizable-handle{display:none!important}
 }
+
