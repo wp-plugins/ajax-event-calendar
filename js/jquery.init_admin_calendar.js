@@ -1,6 +1,6 @@
 /**
  * Handle: init_admin_calendar
- * Version: 0.9.8
+ * Version: 0.9.8.5
  * Deps: $jq
  * Enqueue: true
  */
@@ -137,6 +137,12 @@ $jq().ready(function(){
 		}
 
 		function eventDialog(e, actionTitle){
+			// check for modal html structure, if not present add it to the DOM
+			if ($jq('aec-modal').length == 0) {
+				var modal = '<div id="aec-modal"><div class="aec-title"></div><div class="aec-content"></div></div>';
+				$jq('body').prepend(modal);
+			}
+			
 			$jq('#aec-modal').modal({
 				overlayId: 'aec-modal-overlay',
 				containerId: 'aec-modal-container',
@@ -169,7 +175,7 @@ $jq().ready(function(){
 											step: 30,
 											show24Hours: custom.is24hrs,
 											separator: ':'
-										});
+										}).hide();
 										
 										if (custom.limit) $jq.datepicker.setDefaults({'minDate':'0', 'maxDate':'+1y'});
 										
@@ -194,14 +200,27 @@ $jq().ready(function(){
 											}
 										});
 										
+										/* recurring event placeholder
+										var repeat_end = $jq('#repeat_end').datepicker({
+											dateFormat: custom.datepicker_format,
+											firstDay: custom.start_of_week
+										}).hide();
+										*/
+										
 										checkRequired();
 										checkDuration();
+										
+										// recurring event placeholder
+										// $jq('#repeat_end').val($jq('#end_date').val());
 
+										// recurring event placeholder
+										// $jq('#start_date, #end_date, #start_time, #end_time, #allDay, #repeat_interval, #repeat_end').change(function(){
+										
 										$jq('#start_date, #end_date, #start_time, #end_time, #allDay').change(function(){
 											checkDuration();
 										});
 										
-										$jq('.required').parent().find('input').keyup(function(){
+										$jq('.required').parent().find('input, textarea').keyup(function(){
 											checkRequired();
 										});
 										
@@ -287,6 +306,16 @@ $jq().ready(function(){
 			var	allDay 	= $jq('#allDay').attr('checked'),
 				from 	= $jq('#start_date').val(),
 				to 		= $jq('#end_date').val();
+			// recurring event placeholder
+			//	repeat 	= $jq('#repeat_interval').val();
+			
+			/* recurring event placeholder
+			if (repeat > 0) {
+				$jq('#repeat_end').fadeIn(250);
+			} else {
+				$jq('#repeat_end').fadeOut(250);
+			}
+			*/
 			
 			if (allDay) {
 				$jq('#start_time, #end_time').fadeOut(250);
@@ -309,12 +338,12 @@ $jq().ready(function(){
 				validateForm(false);
 			}
 			
-			e = { 'start': from, 'end': to, 'allDay': (allDay)? 1:0 };
-			$jq('.duration-message').html(custom.calculating);
-			$jq.post(ajaxurl, { action: 'return_duration', 'event': e }, function(data){
-				$jq('.duration-message').html(data);
-				return;
-			});
+			//e = { 'start': from, 'end': to, 'allDay': (allDay)? 1:0 };
+			//$jq('.duration-message').html(custom.calculating);
+			//$jq.post(ajaxurl, { action: 'render_duration', 'event': e }, function(data){
+			//	$jq('.duration-message').html(data);
+			//	return;
+			//});
 		}
 		
 		function checkRequired(){		

@@ -3,10 +3,10 @@
 	<h2><?php _e('Ajax Event Calendar Options', AEC_PLUGIN_NAME); ?></h2>
 	<?php
 		$general = array(
-			'show_weekends' =>  __('Show weekends in the calendar.', AEC_PLUGIN_NAME),
-			'show_map_link' =>  __('Show map link if address fields are populated.', AEC_PLUGIN_NAME),
-			'menu' 			=>  __('Show administrative menu above the front-end calendar.', AEC_PLUGIN_NAME),
-			'limit' 		=>  __('Enforce event creation between 30 minutes and one year from the current time.', AEC_PLUGIN_NAME),
+			'show_weekends' => __('Display calendar weekends.', AEC_PLUGIN_NAME),
+			'show_map_link' => __('Display View Map link on event details, if the address fields are populated.', AEC_PLUGIN_NAME),
+			'menu' 			=> __('Display Add Events link on the front-end calendar.', AEC_PLUGIN_NAME),
+			'limit' 		=> __('Prevent users from adding events that have transpired.', AEC_PLUGIN_NAME)
 		);
 		$checkboxes = array(
 			'venue' 		=> __('Venue', AEC_PLUGIN_NAME),
@@ -44,7 +44,7 @@
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><?php _e('Check Required Form Fields', AEC_PLUGIN_NAME); ?></th>
+				<th scope="row"><?php _e('Checked fields are required', AEC_PLUGIN_NAME); ?></th>
 				<td>
 					<?php 
 					foreach ($checkboxes as $checkbox => $value) {
@@ -58,7 +58,7 @@
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><?php _e('Optional Checkboxes', AEC_PLUGIN_NAME); ?></th>
+				<th scope="row"><?php _e('Checked fields are displayed', AEC_PLUGIN_NAME); ?></th>
 				<td>
 					<?php
 					foreach ($optional as $field => $value) {

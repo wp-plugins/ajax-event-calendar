@@ -14,11 +14,12 @@ class aec_upcoming_events extends WP_Widget{
 		extract($args, EXTR_SKIP);
 		$weeks 		= ($instance['weeks']) ? apply_filters('widget_weeks', $instance['weeks']) : 3;
 		$category 	= ($instance['category']) ? apply_filters('widget_category', $instance['category']) : 'all';
-		$events 	= $this->get_events($weeks, $category);
+		$title 		= ($instance['title']) ? apply_filters('widget_title', $instance['title']) : __('Three Week Agenda', AEC_PLUGIN_NAME);
+		
 		echo $before_widget;
-		$es 		= sizeof($events);
-		echo $before_title . sprintf(_n('(%d) Upcoming Event','(%d) Upcoming Events', $es, AEC_PLUGIN_NAME), $es) . $after_title;
+		echo $before_title . $title . $after_title;
 		$out 		= '<ul class="upcoming_events">';
+		$events 	= $this->get_events($weeks, $category);
 		if ($events){
 			foreach ($events as $event){
 				// split date/time into form fields	
@@ -71,8 +72,11 @@ class aec_upcoming_events extends WP_Widget{
 		global $wpdb;
 		$week = 604800;
 		
-		// localize date using blog timezone
-		date_default_timezone_set(get_option('timezone_string'));
+		// check if blog timezone is not set
+		if ($tz = get_option('timezone_string')) {
+			date_default_timezone_set($tz);		// localize date using blog timezone
+		}
+
 		$start = date('Y-m-d');
 		$end = date('Y-m-d', strtotime($start) + ($duration * $week));
 		$andcategory = ($category_id=="all") ? '' : ' AND category_id = ' . $category_id;		
@@ -99,6 +103,7 @@ class aec_upcoming_events extends WP_Widget{
 		
 	function update($new_instance, $old_instance){
 		$instance = $old_instance;
+		$instance['title'] = $new_instance['title'];
 		$instance['weeks'] = $new_instance['weeks'];
 		$instance['category'] = $new_instance['category'];
 		return $instance;
@@ -106,10 +111,15 @@ class aec_upcoming_events extends WP_Widget{
 	
 	/** @see WP_Widget::form */
 	function form($instance){
-		$instance = wp_parse_args( (array) $instance, array( 'weeks' => '2', 'category' => 'all') );
+		$instance = wp_parse_args( (array) $instance, array( 'title' => __('Three Week Agenda', AEC_PLUGIN_NAME), 'weeks' => '3', 'category' => 'all') );
+		$title = $instance['title'];
 		$weeks = $instance['weeks'];
 		$category = $instance['category'];
 ?>
+	<p>
+		<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title', AEC_PLUGIN_NAME); ?></label>
+		<input id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" class="widefat" value="<?php echo $title; ?>">
+	</p>
 	<p>
 		<label for="<?php echo $this->get_field_id('category'); ?>"><?php _e('Display this Category', AEC_PLUGIN_NAME); ?></label>
 		<select id="<?php echo $this->get_field_id('category'); ?>" name="<?php echo $this->get_field_name('category'); ?>" class="widefat" style="width:100%;">

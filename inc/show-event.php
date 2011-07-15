@@ -1,7 +1,7 @@
 <?php
 	if (!isset($_POST['id'])) return;
 	$options 	= get_option('aec_options');
-	$event 		= $this->get_event($_POST['id']);
+	$event 		= $this->query_event($_POST['id']);
 	
 	// split date/time into form fields	
 	$start_date = $this->date_convert($event->start, AEC_WP_DATE_TIME_FORMAT, AEC_WP_DATE_FORMAT);
@@ -41,41 +41,36 @@
 		}
 	}
 	$out .= '</h3>';
-	$duration = $this->process_duration($event);
-	$out .= '<span class="duration round5">' . __('Duration', AEC_PLUGIN_NAME) . '<br>' . $duration . '</span>';
+	$out .= '<span class="duration round5"></span>';
 	$out .= '</li>';
-	$out .= '<li>' . stripslashes($event->description) . '</li>';
+	$out .= '<li>' . $event->description . '</li>';
 
-	if (!empty($event->venue) || !empty($event->address) ||
-		!empty($event->city) || !empty($event->state) ||
-		!empty($event->zip) ) {
-
+	if (!empty($event->venue) || !empty($event->address) || !empty($event->city) || !empty($event->state) || !empty($event->zip) ) {
 		$out .= '<li><h3>' . __('Location', AEC_PLUGIN_NAME) . '</h3>';
-		if (!empty($event->venue)) $out .= stripslashes($event->venue) . '<br>';
-		$city 	= (!empty($event->city)) ? stripslashes($event->city) . ', ' : '';
-		$state 	= (!empty($event->state)) ? strtoupper($event->state) . ', ' : '';
-		$zip	= (!empty($event->zip)) ? stripslashes($event->zip) : '';
+		if (!empty($event->venue)) $out .= $event->venue . '<br>';
+		$city 	= (!empty($event->city)) ? $event->city . ' ' : '';
+		$state 	= (!empty($event->state)) ? $event->state . ' ' : '';
+		$zip	= (!empty($event->zip)) ? $event->zip : '';
 		$csz 	= $city . $state . $zip;
 		if (!empty($event->address)) {
-			$address = stripslashes($event->address);
-			$out .= $address . '<br>' . $csz;
+			$out .= $event->address . '<br>' . $csz;
 		} else {
 			$out .= $csz;
 		}
 		$out .= '</li>';
 
 		// google map link
-		if ($options['show_map_link']) {
+		 if ($options['show_map_link'] && (!empty($event->address) || !empty($event->city) || !empty($event->state) || !empty($event->zip))) {
 			$out .= '<li>';
-			$out .= '<a href="http://maps.google.com/?q=' . urlencode($address . ' ' . $csz) . '" class="round5 cat' . $event->category_id . '" target="_blank">' . __('View Map', AEC_PLUGIN_NAME) . '</a>';
+			$out .= '<a href="http://maps.google.com/?q=' . urlencode($event->address . ' ' . $csz) . '" class="round5 cat' . $event->category_id . '" target="_blank">' . __('View Map', AEC_PLUGIN_NAME) . '</a>';
 			$out .= '</li>';
 		}
 	}
 
 	if (!empty($event->contact) || !empty($event->contact_info)) {
 		$out .= '<li><h3>' . __('Contact Information', AEC_PLUGIN_NAME) . '</h3>';
-		if (!empty($event->contact)) $out .= stripslashes($event->contact) . '<br>';
-		if (!empty($event->contact_info)) $out .= stripslashes($event->contact_info);
+		if (!empty($event->contact)) $out .= $event->contact . '<br>';
+		if (!empty($event->contact_info)) $out .= $event->contact_info;
 		$out .= '</li>';
 	}
 
@@ -100,16 +95,18 @@
 
 	$out .= '</ul>';
 
-	$categories = $this->get_categories();
+	$categories = $this->query_categories();
 	foreach ($categories as $category) {
-		if ($category->id == $event->category_id) $cat = $category->category;
+		if ($event->category_id == $category->id) {
+			$cat = $category->category;
+			break;
+		}
 	}
 
 	$output = array(
 		'title'		=> $event->title . ' (' . $cat . ')',
 		'content'	=> $out
 	);
-	header( "Content-Type: application/json" );
-	echo json_encode($output);
-	exit;
+	
+	$this->render_json($output);
 ?>

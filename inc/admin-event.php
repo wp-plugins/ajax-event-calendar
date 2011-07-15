@@ -7,7 +7,17 @@
 		if (isset($_POST['event']['id'])) {
 			
 			// populate form with content from database
-			$event = $this->get_event($_POST['event']['id']);
+			$event = $this->query_event($_POST['event']['id']);
+			$event->title 		= htmlentities(stripslashes($event->title));
+			$event->description = htmlentities(stripslashes($event->description));
+			$event->link 		= htmlentities(stripslashes($event->link));
+			$event->venue 		= htmlentities(stripslashes($event->venue));
+			$event->address 	= htmlentities(stripslashes($event->address));
+			$event->city	 	= htmlentities(stripslashes($event->city));
+			$event->state	 	= htmlentities(stripslashes($event->state));
+			$event->zip	 		= htmlentities(stripslashes($event->zip));
+			$event->contact		= htmlentities(stripslashes($event->contact));
+			$event->contact_info= htmlentities(stripslashes($event->contact_info));
 
 		// add new event
 		} else {
@@ -22,6 +32,8 @@
 			$event->start 			= $this->date_convert($_POST['event']['start'], AEC_DB_DATE_TIME_FORMAT, AEC_WP_DATE_TIME_FORMAT);
 			$event->end 			= $this->date_convert($_POST['event']['end'], AEC_DB_DATE_TIME_FORMAT, AEC_WP_DATE_TIME_FORMAT);
 			$event->allDay 			= $_POST['event']['allDay'];
+			$event->repeat_interval = 0;
+			$event->repeat_end		= '';
 			$event->category_id 	= 1;
 			$event->description 	= '';
 			$event->link 			= '';
@@ -56,42 +68,70 @@
 	<input type="hidden" name="rsvp" value="0">
     <ul>
 		<li>
-			<label><?php _e('Duration', AEC_PLUGIN_NAME); ?>
-			<span class="duration-message"></span>
-			</label>
+			<label><?php _e('Duration', AEC_PLUGIN_NAME); ?><br>
+					<input class="auto" type="checkbox" name="allDay" id="allDay" value="1" <?php echo $allday_checked ?>><label class="box"><?php _e('All Day', AEC_PLUGIN_NAME); ?></label></label>
 			<ul class="hvv">
 				<li>
 					<label for="start_date"><?php _e('From', AEC_PLUGIN_NAME); ?></label>
 					<input class="auto picker" type="text" name="start_date" id="start_date" size="11" readonly="readonly" value="<?php echo $start_date; ?>">
+				</li>
+				<li>
+					<label>&nbsp;</label>
 					<input class="auto picker cb" type="text" name="start_time" id="start_time" size="8" readonly="readonly" value="<?php echo strtoupper($start_time); ?>">
 				</li>
 				<li>
 					<label for="end_date"><?php _e('To', AEC_PLUGIN_NAME); ?></label>
 					<input class="auto picker" type="text" name="end_date" id="end_date" size="11" readonly="readonly" value="<?php echo $end_date; ?>">
-					<input class="auto picker cb" type="text" name="end_time" id="end_time" size="8" readonly="readonly" value="<?php echo strtoupper($end_time); ?>">
 				</li>
 				<li>
 					<label>&nbsp;</label>
-					<input class="auto" type="checkbox" name="allDay" id="allDay" value="1" <?php echo $allday_checked ?>>
-					<label for="allDay" class="box"><?php _e('All Day', AEC_PLUGIN_NAME); ?></label>
+					<input class="auto picker cb" type="text" name="end_time" id="end_time" size="8" readonly="readonly" value="<?php echo strtoupper($end_time); ?>">
+				</li>
+			</ul>
+			<label></label>
+			<span class="duration"></span>
+		</li>
+		<!-- recurring event placeholder
+		<li><label><?php //_e('Repeat', AEC_PLUGIN_NAME); ?></label>
+			<ul class="hvv">
+				<li>
+					<label for="repeat_interval"><?php _e('Interval', AEC_PLUGIN_NAME); ?></label>
+					<select class="auto" name="repeat_interval" id="repeat_interval">
+					<?php				
+						/*
+						$repeat_options = array('0' => __('None', AEC_PLUGIN_NAME), 
+												'1' => __('Daily', AEC_PLUGIN_NAME),
+												'7' => __('Weekly', AEC_PLUGIN_NAME));
+						foreach ($repeat_options as $option => $value) {
+							$selected = ($event->repeat_interval == $option) ? ' selected="selected"' : '';
+							print '<option value="' . $option . '">' . $value . '</option>';
+						}
+						*/
+					?>
+					</select>
+				</li>
+				<li>
+					<label for="repeat_end"><?php //_e('Until', AEC_PLUGIN_NAME); ?></label>
+					<input class="auto picker cb" type="text" name="repeat_end" id="repeat_end" size="11" readonly="readonly" value="<?php //cho $event->repeat_end; ?>">
 				</li>
 			</ul>
 		</li>
+		//-->
         <li>
             <label for="title"><?php _e('Title', AEC_PLUGIN_NAME); ?></label>
             <input type="text" name="title" id="title" value="<?php echo $event->title; ?>">
 		</li>
 		<li>
             <label for="category_id"><?php _e('Type', AEC_PLUGIN_NAME); ?></label>
-            <select class="large" name="category_id" id="category_id" >
-            <?php
-				$categories = $this->get_categories();
-				foreach ($categories as $category) {
-					$category_selected = ($category->id == $event->category_id) ? ' selected="selected"' : '';
-					print '<option value="' . $category->id . '"'. $category_selected . '>' . $category->category . '</option>';
-				}
+			<select class="large" name="category_id" id="category_id" >
+		<?php
+			$categories = $this->query_categories();
+			foreach ($categories as $category) {
+				$category_selected = ($category->id == $event->category_id) ? ' selected="selected"' : '';
+				echo '<option value="' . $category->id . '"'. $category_selected . '>' . stripslashes($category->category) . '</option>';
+			}
             ?>
-            </select>
+			</select>
         </li>
 		<li>
 			<label for="venue"><?php _e('Venue', AEC_PLUGIN_NAME); ?></label>

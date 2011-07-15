@@ -1,10 +1,8 @@
-/* ajax-event-calendar v0.9.8 */
 ul.upcoming_events{list-style:none}
 ul.upcoming_events li:first-child{margin-top:3px}
 ul.upcoming_events li {font-size:11px;margin-top:1px;cursor:pointer}
 ul.upcoming_events li strong{font-size:14px}
 .round5{padding:5px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}
-ol#aec-category-table{list-style:none;margin-left:.4em}
 #aec-container{position:relative;float:none}
 #aec-calendar{font-size:12px;line-height:16px}
 #aec-calendar table{border:0 !important;margin:0 !important}
@@ -30,8 +28,8 @@ ul#aec-filter{float:right;font-size:12px;padding:10px 0;margin:0}
 #aec-modal-container h3{font-size:14px;font-weight:bold;margin:0;padding-top:10px}
 #aec-modal-container p{font-size:12px;margin-bottom:10px}
 #aec-modal-container span{color:#777}
-#aec-modal-container span.duration-message{padding-left:5px;font-size:.9em}
-#aec-modal-container span.duration{top:50px;right:15px;position:absolute;font-weight:bold;background:#ddd;color:#333}
+#aec-modal-container span.duration-message{font-size:11px}
+#aec-modal-container span.duration{padding:2px 5px;top:50px;right:10px;position:absolute;font-weight:bold;background:#ddd;color:#333}
 #aec-modal-container li{font-size:12px;margin:0;padding:0;list-style:none}
 #aec-modal hr{margin:10px 0;padding:0}
 #aec-modal li.presented{font-size:11px;padding-top:5px;margin-top:5px;border-top:1px solid #ddd}
@@ -39,7 +37,6 @@ ul#aec-filter{float:right;font-size:12px;padding:10px 0;margin:0}
 #aec-modal a:hover{text-decoration:underline}
 #aec-modal a.link{position:absolute;padding:5px 10px;bottom:0;right:10px;font-size:1.15em;font-weight:bold;-moz-border-radius-topleft:6px;-moz-border-radius-topright:6px;-webkit-border-top-left-radius:6px;-webkit-border-top-right-radius:6px;border-radius:6px 6px 0 0}
 #aec-credit{visibility:hidden;position:absolute;height:1px;width:1px;overflow:hidden;top:-999px}
-
 .fc{direction:ltr;text-align:left}
 .fc table{border-collapse:collapse;border-spacing:0}
 html .fc,.fc table{font-size:1em}
@@ -133,7 +130,7 @@ table.fc-border-separate{border-collapse:separate}
 .fc-event-vert .fc-event-time{font-size:10px;white-space:nowrap}
 .fc-event-vert .fc-event-bg{background:#fff;filter:alpha(opacity=30);height:100%;left:0;opacity:.3;position:absolute;top:0;width:100%;z-index:1}
 .fc .ui-draggable-dragging .fc-event-bg,/* todo: something nicer like .fc-opacity */
-.fc-select-helper .fc-event-bg{display:none\9}
+.fc-select-helper .fc-event-bg{display:none}
 .fc-event-vert .ui-resizable-s{bottom:0!important;cursor:s-resize;font-family:monospace;font-size:11px!important;height:8px!important;line-height:8px!important;overflow:hidden!important;text-align:center;width:100%!important}
 .fc-agenda .ui-resizable-resizing{_overflow:hidden}
 
