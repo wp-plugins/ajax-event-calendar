@@ -28,8 +28,6 @@ ul#aec-filter{float:right;font-size:12px;padding:10px 0;margin:0}
 #aec-modal-container h3{font-size:14px;font-weight:bold;margin:0;padding-top:10px}
 #aec-modal-container p{font-size:12px;margin-bottom:10px}
 #aec-modal-container span{color:#777}
-#aec-modal-container span.duration-message{font-size:11px}
-#aec-modal-container span.duration{padding:2px 5px;top:50px;right:10px;position:absolute;font-weight:bold;background:#ddd;color:#333}
 #aec-modal-container li{font-size:12px;margin:0;padding:0;list-style:none}
 #aec-modal hr{margin:10px 0;padding:0}
 #aec-modal li.presented{font-size:11px;padding-top:5px;margin-top:5px;border-top:1px solid #ddd}

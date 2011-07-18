@@ -10,72 +10,14 @@ class aec_upcoming_events extends WP_Widget{
 		parent::WP_Widget(false, __('Upcoming Events', AEC_PLUGIN_NAME), $widget_ops);
 	}
 	
-	function widget($args, $instance){
-		extract($args, EXTR_SKIP);
-		$weeks 		= ($instance['weeks']) ? apply_filters('widget_weeks', $instance['weeks']) : 3;
-		$category 	= ($instance['category']) ? apply_filters('widget_category', $instance['category']) : 'all';
-		$title 		= ($instance['title']) ? apply_filters('widget_title', $instance['title']) : __('Three Week Agenda', AEC_PLUGIN_NAME);
-		
-		echo $before_widget;
-		echo $before_title . $title . $after_title;
-		$out 		= '<ul class="upcoming_events">';
-		$events 	= $this->get_events($weeks, $category);
-		if ($events){
-			foreach ($events as $event){
-				// split date/time into form fields	
-				$start_date = ajax_event_calendar::date_convert($event->start, AEC_DB_DATE_TIME_FORMAT, AEC_WP_DATE_FORMAT);
-				$start_time = ajax_event_calendar::date_convert($event->start, AEC_DB_DATE_TIME_FORMAT, AEC_WP_TIME_FORMAT);
-				$end_date 	= ajax_event_calendar::date_convert($event->end, AEC_DB_DATE_TIME_FORMAT, AEC_WP_DATE_FORMAT);
-				$end_time 	= ajax_event_calendar::date_convert($event->end, AEC_DB_DATE_TIME_FORMAT, AEC_WP_TIME_FORMAT);
-	
-				// link to event
-				$out .= '<li class="fc-event round5 cat' . $event->category_id . 
-						'" onClick="$jq.eventDialog({\'id\':' . $event->id . '});">';
-				
-				if ($start_date != $end_date) {
-					// multiple day event, spanning all day
-					if ($event->allDay) {
-							$out .= $start_date;
-							$out .= ' - ' . $end_date;
-						
-						// multiple day event, not spanning all day
-						} else {
-							$out .= $start_date . ' ' . $start_time;
-							$out .= '<br>' . $end_date . ' ' . $end_time;
-						}
-					
-				} else {
-						
-						// one day event, spanning all day
-						if ($event->allDay) {
-							$out .= $start_date;
-						
-						// one day event, spanning hours
-						} else {
-							$out .= $start_date;
-							$out .= '<br>' . $start_time . ' - ' . $end_time;
-						}
-				}
-				$out .= '<br><strong>' . $event->title . '</strong></li>';
-			}
-		}else{
-			$out .= '<li>';
-			$out .= sprintf(_n('No events listed in the next week', 'No events listed in the next %d weeks', $weeks, AEC_PLUGIN_NAME), $weeks);
-			$out .= '</li>';
-		}
-		$out .= '</ul>';
-		echo $out;
-		echo $after_widget;
-	}
-
-	function get_events($duration, $category_id){
+	function query_events_by_duration_and_category($duration, $category_id){
 		global $wpdb;
 		$week = 604800;
 		
 		// check if blog timezone is not set
-		if ($tz = get_option('timezone_string')) {
-			date_default_timezone_set($tz);		// localize date using blog timezone
-		}
+		//if ($tz = get_option('timezone_string')) {
+		//	date_default_timezone_set($tz);		// localize date using blog timezone
+		//}
 
 		$start = date('Y-m-d');
 		$end = date('Y-m-d', strtotime($start) + ($duration * $week));
@@ -88,17 +30,78 @@ class aec_upcoming_events extends WP_Widget{
 										allday as allDay,
 										category_id
 										FROM ' . $wpdb->prefix . AEC_EVENT_TABLE . '
-										WHERE start >= "' . $start . '" AND start < "' . $end . '"' .
+										WHERE ((start >= "' . $start . '"
+										AND start < "' . $end . '")
+										OR (end >= "' . $start . '"
+										AND end < "' . $end . '"))' .
 										$andcategory .
 										' ORDER BY start;'
 									);
 		if ($results !== false) return $results;
 	}
 	
-	function get_categories(){
+	function query_categories(){
 		global $wpdb;
 		$results = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . AEC_CATEGORY_TABLE . ' ORDER BY id;');
 		if ($results !== false) return $results;
+	}
+	
+	function widget($args, $instance){
+		extract($args, EXTR_SKIP);
+		$weeks 		= ($instance['weeks']) ? apply_filters('widget_weeks', $instance['weeks']) : 3;
+		$category 	= ($instance['category']) ? apply_filters('widget_category', $instance['category']) : 'all';
+		$title 		= ($instance['title']) ? apply_filters('widget_title', $instance['title']) : __('Three Week Agenda', AEC_PLUGIN_NAME);
+		
+		echo $before_widget;
+		echo $before_title . $title . $after_title;
+		$out 		= '<ul class="upcoming_events">';
+		$events 	= $this->query_events_by_duration_and_category($weeks, $category);
+		if ($events){
+			foreach ($events as $event){
+				// split database formatted datetime value into display formatted date and time values
+				$event->start_date	= ajax_event_calendar::date_convert($event->start, AEC_DB_DATE_TIME_FORMAT, AEC_WP_DATE_FORMAT);
+				$event->start_time 	= ajax_event_calendar::date_convert($event->start, AEC_DB_DATE_TIME_FORMAT, AEC_WP_TIME_FORMAT);
+				$event->end_date 	= ajax_event_calendar::date_convert($event->end, AEC_DB_DATE_TIME_FORMAT, AEC_WP_DATE_FORMAT);
+				$event->end_time 	= ajax_event_calendar::date_convert($event->end, AEC_DB_DATE_TIME_FORMAT, AEC_WP_TIME_FORMAT);
+				
+				// link to event
+				$out .= '<li class="fc-event round5 cat' . $event->category_id . 
+						'" onClick="$jq.eventDialog({\'id\':' . $event->id . '});">';
+				
+				if ($event->start_date != $event->end_date) {
+					// multiple day event, spanning all day
+					if ($event->allDay) {
+							$out .= $event->start_date;
+							$out .= ' - ' . $event->end_date;
+						
+						// multiple day event, not spanning all day
+						} else {
+							$out .= $event->start_date . ' ' . $event->start_time;
+							$out .= '<br>' . $event->end_date . ' ' . $event->end_time;
+						}
+					
+				} else {
+						
+						// one day event, spanning all day
+						if ($event->allDay) {
+							$out .= $event->start_date;
+						
+						// one day event, spanning hours
+						} else {
+							$out .= $event->start_date;
+							$out .= '<br>' . $event->start_time . ' - ' . $event->end_time;
+						}
+				}
+				$out .= '<br><strong>' . ajax_event_calendar::render_i18n_data($event->title) . '</strong></li>';
+			}
+		}else{
+			$out .= '<li>';
+			$out .= sprintf(_n('No events listed in the next week', 'No events listed in the next %d weeks', $weeks, AEC_PLUGIN_NAME), $weeks);
+			$out .= '</li>';
+		}
+		$out .= '</ul>';
+		echo $out;
+		echo $after_widget;
 	}
 		
 	function update($new_instance, $old_instance){
@@ -125,7 +128,7 @@ class aec_upcoming_events extends WP_Widget{
 		<select id="<?php echo $this->get_field_id('category'); ?>" name="<?php echo $this->get_field_name('category'); ?>" class="widefat" style="width:100%;">
 			<?php
 				echo '<option value="all">' . __('All', AEC_PLUGIN_NAME) . '</option>';
-				$categories = $this->get_categories();
+				$categories = $this->query_categories();
 				foreach ($categories as $cat) {
 					$category_selected = ($cat->id == $category) ? ' selected="selected"' : '';
 					echo '<option value="' . $cat->id . '"' . $category_selected . '>' . $cat->category . '</option>';

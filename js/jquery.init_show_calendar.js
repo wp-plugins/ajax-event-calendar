@@ -10,7 +10,6 @@ $jq().ready(function(){
 	var isFilter = ($jq('#aec-filter li a').length > 0);
 	var isCalendar = ($jq('#aec-calendar').length > 0);
 	if (isCalendar) {
-		console.log('calendar loaded...');
 		var calendar = $jq('#aec-calendar').fullCalendar({
 			monthNames: [custom.january, custom.february, custom.march, custom.april, custom.may, custom.june, custom.july,
 						 custom.august, custom.september, custom.october, custom.november, custom.december], 
@@ -24,6 +23,7 @@ $jq().ready(function(){
 				week: custom.week,
 				day: custom.day
 			},
+			// aspectRatio: 2,
 			allDayText: custom.all_day,
 			timeFormat:{
 				agenda: custom.agenda_time_format,

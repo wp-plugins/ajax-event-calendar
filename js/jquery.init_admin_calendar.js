@@ -84,26 +84,23 @@ $jq().ready(function(){
 						return false;
 					}
 				}
-
-				// compile event object for fullcalendar and php processing
 				start 	= toUnixDate(start);
 				end 	= toUnixDate(end);
 				allDay 	= (allDay) ? 1:0;
-				e 		= { 'start': start, 'end': end, 'allDay': allDay };
+				e 		= { 'start': start, 'end': end, 'allDay': allDay };  // object for fullcalendar/php processing
 				eventDialog(e, custom.add_event);
 			},
 			eventResize: function(e, dayDelta, minuteDelta, revertFunc, js, ui, view){
 				eventtime = (e.end == null) ? e.start : e.end;
-				if (custom.limit && eventtime < now){
+				if (custom.limit == true && eventtime < now){
 					$jq.jGrowl(custom.error_past_resize, { header: custom.whoops });
 					revertFunc();
 					return false;
 				}
 				moveEvent(e);
 			},
-			// important: parameters must be listed as shown for revertFunc and view to function
 			eventDrop: function(e, dayDelta, minuteDelta, allDay, revertFunc, js, ui, view){
-				if (custom.limit && e.start < now){
+				if (custom.limit == true && e.start < now){
 					$jq.jGrowl(custom.error_past_move, { header: custom.whoops });
 					revertFunc();
 					return;
@@ -177,13 +174,14 @@ $jq().ready(function(){
 											separator: ':'
 										}).hide();
 										
-										if (custom.limit) $jq.datepicker.setDefaults({'minDate':'0', 'maxDate':'+1y'});
+										// toggle limit
+										if (custom.limit == true) $jq.datepicker.setDefaults({'minDate':'0', 'maxDate':'+1y'});
 										
-										// TODO: localize datepicker
-										// $jq.datepicker.setDefaults($jq.datepicker.regional[custom.locale]);
+										// toggle weekends
+										if (custom.show_weekends == false) $jq.datepicker.setDefaults({'beforeShowDay':$jq.datepicker.noWeekends});
 										
-										// TODO : hide weekends in datepicker
-										// if (!custom.show_weekends) $jq.datepicker.noweekends();
+										// localize datepicker
+										$jq.datepicker.setDefaults($jq.datepicker.regional[custom.locale]);
 										
 										var dates = $jq('#start_date, #end_date').datepicker({
 											dateFormat: custom.datepicker_format,
@@ -199,7 +197,7 @@ $jq().ready(function(){
 												checkDuration();
 											}
 										});
-										
+
 										/* recurring event placeholder
 										var repeat_end = $jq('#repeat_end').datepicker({
 											dateFormat: custom.datepicker_format,
@@ -207,21 +205,20 @@ $jq().ready(function(){
 										}).hide();
 										*/
 										
-										checkRequired();
+										validateForm();
 										checkDuration();
 										
-										// recurring event placeholder
-										// $jq('#repeat_end').val($jq('#end_date').val());
-
-										// recurring event placeholder
-										// $jq('#start_date, #end_date, #start_time, #end_time, #allDay, #repeat_interval, #repeat_end').change(function(){
+										/* recurring event placeholder
+										$jq('#repeat_end').val($jq('#end_date').val());
+										$jq('#start_date, #end_date, #start_time, #end_time, #allDay, #repeat_interval, #repeat_end').change(function(){
+										*/
 										
 										$jq('#start_date, #end_date, #start_time, #end_time, #allDay').change(function(){
 											checkDuration();
 										});
 										
 										$jq('.required').parent().find('input, textarea').keyup(function(){
-											checkRequired();
+											validateForm();
 										});
 										
 										$jq('#cancel_event').click(function(e){
@@ -306,10 +303,10 @@ $jq().ready(function(){
 			var	allDay 	= $jq('#allDay').attr('checked'),
 				from 	= $jq('#start_date').val(),
 				to 		= $jq('#end_date').val();
-			// recurring event placeholder
-			//	repeat 	= $jq('#repeat_interval').val();
 			
-			/* recurring event placeholder
+			/*
+			// recurring event placeholder
+			repeat 	= $jq('#repeat_interval').val();
 			if (repeat > 0) {
 				$jq('#repeat_end').fadeIn(250);
 			} else {
@@ -334,19 +331,14 @@ $jq().ready(function(){
 					}
 				}
 				from 	= $jq('#start_date').val() + ' ' + $jq('#start_time').val(),
-				to 		= $jq('#end_date').val() + ' ' + $jq('#end_time').val();
+				to 		= $jq('#end_date').val() + ' ' + $jq('#end_time').val(),
+				allDay  = (allDay) ? 1:0;
 				validateForm(false);
 			}
-			
-			//e = { 'start': from, 'end': to, 'allDay': (allDay)? 1:0 };
-			//$jq('.duration-message').html(custom.calculating);
-			//$jq.post(ajaxurl, { action: 'render_duration', 'event': e }, function(data){
-			//	$jq('.duration-message').html(data);
-			//	return;
-			//});
+			// $jq('.duration').html(calcDuration(from, to, allDay));
 		}
-		
-		function checkRequired(){		
+				
+		function validateForm(err){
 			var err = false;
 			 
 			// convert required fields string into array
@@ -365,10 +357,7 @@ $jq().ready(function(){
 					$jq('#' + this).removeClass('aec-error');
 				}
 			});
-			validateForm(err);
-		}
-		
-		function validateForm(err){
+			
 			if (err) {
 				$jq('.button-primary').attr('disabled', 'disabled');
 				return false;
@@ -376,4 +365,33 @@ $jq().ready(function(){
 			$jq('.button-primary').removeAttr('disabled');
 			return true;
 		}
+		
+	/*
+		function calcDuration(from, to, allDay) {
+			var milliseconds = new Date(to).getTime() - new Date(from).getTime();
+			var diff = new Object();
+			diff.weeks = Math.floor(milliseconds/1000/60/60/24/7);
+			milliseconds -= diff.weeks*1000*60*60*24*7;
+			diff.days = Math.floor(milliseconds/1000/60/60/24);
+			milliseconds -= diff.days*1000*60*60*24;
+			diff.hours = Math.floor(milliseconds/1000/60/60);
+			milliseconds -= diff.hours*1000*60*60;
+			diff.minutes = Math.floor(milliseconds/1000/60);
+			milliseconds -= diff.minutes*1000*60;
+			diff.seconds = Math.floor(milliseconds/1000);
+
+			// format output
+			var out = new Array();
+			if (allDay) diff.days += 1;
+			if (diff.weeks > 0) out.push(diff.weeks + ' ' + _n(diff.weeks, custom.week, custom.weeks));
+			if (diff.days > 0) out.push(diff.days + ' ' + _n(diff.days, custom.day, custom.days));
+			if (diff.hours > 0) out.push(diff.hours + ' ' + _n(diff.hours, custom.hour, custom.hours));
+			if (diff.minutes > 0) out.push(diff.minutes + ' ' + _n(diff.minutes, custom.minute, custom.minutes));
+			return out.join(', ');
+		}
+		
+		function _n(quantity, singular, plural){
+			return (quantity != 1) ? plural : singular;
+		}
+	*/
 });

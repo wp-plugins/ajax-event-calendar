@@ -5,19 +5,19 @@
 
 		// edit existing event
 		if (isset($_POST['event']['id'])) {
-			
+
 			// populate form with content from database
-			$event = $this->query_event($_POST['event']['id']);
-			$event->title 		= htmlentities(stripslashes($event->title));
-			$event->description = htmlentities(stripslashes($event->description));
-			$event->link 		= htmlentities(stripslashes($event->link));
-			$event->venue 		= htmlentities(stripslashes($event->venue));
-			$event->address 	= htmlentities(stripslashes($event->address));
-			$event->city	 	= htmlentities(stripslashes($event->city));
-			$event->state	 	= htmlentities(stripslashes($event->state));
-			$event->zip	 		= htmlentities(stripslashes($event->zip));
-			$event->contact		= htmlentities(stripslashes($event->contact));
-			$event->contact_info= htmlentities(stripslashes($event->contact_info));
+			$event 					= $this->query_event($_POST['event']['id']);
+			$event->title 			= $this->render_i18n_data($event->title);
+			$event->description 	= $this->render_i18n_data($event->description);
+			$event->link 			= $this->render_i18n_data($event->link);
+			$event->venue 			= $this->render_i18n_data($event->venue);
+			$event->address 		= $this->render_i18n_data($event->address);
+			$event->city	 		= $this->render_i18n_data($event->city);
+			$event->state		 	= $this->render_i18n_data($event->state);
+			$event->zip	 			= $this->render_i18n_data($event->zip);
+			$event->contact			= $this->render_i18n_data($event->contact);
+			$event->contact_info	= $this->render_i18n_data($event->contact_info);
 
 		// add new event
 		} else {
@@ -25,15 +25,16 @@
 			
 			// initialize form for new event
 			get_currentuserinfo();	// wp data
-
 			$event->id 				= '';
 			$event->user_id 		= $current_user->ID;
 			$event->title 			= '';
-			$event->start 			= $this->date_convert($_POST['event']['start'], AEC_DB_DATE_TIME_FORMAT, AEC_WP_DATE_TIME_FORMAT);
-			$event->end 			= $this->date_convert($_POST['event']['end'], AEC_DB_DATE_TIME_FORMAT, AEC_WP_DATE_TIME_FORMAT);
+			$event->start 			= $_POST['event']['start'];
+			$event->end 			= $_POST['event']['end'];
 			$event->allDay 			= $_POST['event']['allDay'];
-			$event->repeat_interval = 0;
-			$event->repeat_end		= '';
+
+			// recurring event placeholder
+			// $event->repeat_interval = 0;
+			// $event->repeat_end		= '';
 			$event->category_id 	= 1;
 			$event->description 	= '';
 			$event->link 			= '';
@@ -47,13 +48,8 @@
 			$event->access			= 0;
 			$event->rsvp			= 0;
 		}
+		$event = $this->render_date_time_fields($event);
 	}
-
-	// split date/time into form fields
-	$start_date = $this->date_convert($event->start, AEC_WP_DATE_TIME_FORMAT, AEC_WP_DATE_FORMAT);
-	$start_time = $this->date_convert($event->start, AEC_WP_DATE_TIME_FORMAT, AEC_WP_TIME_FORMAT);
-	$end_date = $this->date_convert($event->end, AEC_WP_DATE_TIME_FORMAT, AEC_WP_DATE_FORMAT);
-	$end_time = $this->date_convert($event->end, AEC_WP_DATE_TIME_FORMAT, AEC_WP_TIME_FORMAT);
 
 	// populate checkboxes
 	$allday_checked					= ($event->allDay) ? 'checked="checked" ' : '';
@@ -73,23 +69,21 @@
 			<ul class="hvv">
 				<li>
 					<label for="start_date"><?php _e('From', AEC_PLUGIN_NAME); ?></label>
-					<input class="auto picker" type="text" name="start_date" id="start_date" size="11" readonly="readonly" value="<?php echo $start_date; ?>">
+					<input class="auto picker" type="text" name="start_date" id="start_date" size="11" readonly="readonly" value="<?php echo $event->start_date; ?>">
 				</li>
 				<li>
 					<label>&nbsp;</label>
-					<input class="auto picker cb" type="text" name="start_time" id="start_time" size="8" readonly="readonly" value="<?php echo strtoupper($start_time); ?>">
+					<input class="auto picker cb" type="text" name="start_time" id="start_time" size="8" readonly="readonly" value="<?php echo strtoupper($event->start_time); ?>">
 				</li>
 				<li>
 					<label for="end_date"><?php _e('To', AEC_PLUGIN_NAME); ?></label>
-					<input class="auto picker" type="text" name="end_date" id="end_date" size="11" readonly="readonly" value="<?php echo $end_date; ?>">
+					<input class="auto picker" type="text" name="end_date" id="end_date" size="11" readonly="readonly" value="<?php echo $event->end_date; ?>">
 				</li>
 				<li>
 					<label>&nbsp;</label>
-					<input class="auto picker cb" type="text" name="end_time" id="end_time" size="8" readonly="readonly" value="<?php echo strtoupper($end_time); ?>">
+					<input class="auto picker cb" type="text" name="end_time" id="end_time" size="8" readonly="readonly" value="<?php echo strtoupper($event->end_time); ?>">
 				</li>
 			</ul>
-			<label></label>
-			<span class="duration"></span>
 		</li>
 		<!-- recurring event placeholder
 		<li><label><?php //_e('Repeat', AEC_PLUGIN_NAME); ?></label>
@@ -128,7 +122,7 @@
 			$categories = $this->query_categories();
 			foreach ($categories as $category) {
 				$category_selected = ($category->id == $event->category_id) ? ' selected="selected"' : '';
-				echo '<option value="' . $category->id . '"'. $category_selected . '>' . stripslashes($category->category) . '</option>';
+				echo '<option value="' . $category->id . '"'. $category_selected . '>' . $this->render_i18n_data($category->category) . '</option>';
 			}
             ?>
 			</select>

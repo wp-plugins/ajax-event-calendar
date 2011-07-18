@@ -46,6 +46,7 @@ If you enjoy the use of this plugin please [rate it and confirm compatibility](h
 * Lithuanian
 * Polish
 * Portuguese
+* Russian
 * Spanish
 * Turkish
 
@@ -125,17 +126,18 @@ Send translations to plugins@eranmiller.com and I will package them in future re
 
 == Changelog ==
 = 0.9.8.5 =
-* significant php refactoring, minimal javascript refactoring
+* removed event duration display (localization support missing)
+* minicalendar localization, noweekends fix
 * excised orphaned options
-* upcoming widget undefined timezone fix
 * improved instructional text on the calendar settings page
 * added hex input field and more instructional text to category management
-* fixed front-end calendar rendering for single-page theme
-* revised javascript enqueuing and rendering
-* upcoming widget addition of user input title
-* adjusted uninstall script to new capabilities and roles
+* fixed front-end calendar for themes that display multiple pages simultaneously
+* revised javascript enqueuing and rendering, fixes theme/plugin conflicts
+* upcoming widget addition of user input title, undefined timezone fix, and ongoing event fix
 * shortcode respectful of position within post text fix
+* updated uninstall script with new capabilities and roles
 * event detail form description validation fix
+* added russian localization (reddylabeu) - spasiba!
 * added danish localization (kfe1970) - tak!
 * added polish localization (szymon) - dziekuje!
 
@@ -261,6 +263,9 @@ Send translations to plugins@eranmiller.com and I will package them in future re
 * getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
+= 0.9.8.5
+* fixes to javascript theme and plugin conflicts
+
 = 0.9.8.2 =
 * minor fixes to upgrade issues
 
