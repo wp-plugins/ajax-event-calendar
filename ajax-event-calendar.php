@@ -43,6 +43,7 @@ define('AEC_WP_DATE_FORMAT', get_option('date_format'));
 define('AEC_WP_TIME_FORMAT', get_option('time_format'));
 define('AEC_WP_DATETIME_FORMAT', AEC_WP_DATE_FORMAT . ' ' . AEC_WP_TIME_FORMAT);
 define('AEC_DB_DATETIME_FORMAT', 'Y-m-d H:i:s');
+define('AEC_LOCALE', substr(get_locale(), 0, 2));	//  for javascript localization scripts
 
 // logs WordPress errors to /wp-content/debug.log
 define('AEC_DEBUG', true);	// do not modify this setting the plugin is functioning
@@ -318,7 +319,7 @@ if (!class_exists('ajax_event_calendar')){
 			$is24HrTime	= $this->parse_time_format(AEC_WP_TIME_FORMAT);
 			
 			return array(
-				'locale'					=> substr(get_locale(), 0, 2),	// first two characters of locale
+				'locale'					=> AEC_LOCALE,
 				'start_of_week' 			=> get_option('start_of_week'),
 				'datepicker_format' 		=> ($isEuroDate) ? 'dd-mm-yy' : 'mm/dd/yy',	// jquery datepicker format
 				'is24HrTime'				=> $is24HrTime,
@@ -405,6 +406,8 @@ if (!class_exists('ajax_event_calendar')){
 		}
 
 		function render_admin_menu(){
+			if (function_exists('add_options_page')) {
+			
 				// define help text
 				$help = '<h3>' . __('Ajax Event Calendar', AEC_PLUGIN_NAME) . ' <small>[v' . AEC_PLUGIN_VERSION . ']</small></h3>';
 				$help .= __('Plugin help available', AEC_PLUGIN_NAME) . ' <a href="' . AEC_PLUGIN_HOMEPAGE . '" target="_blank">' . __('here', AEC_PLUGIN_NAME) . '</a>';
@@ -418,21 +421,24 @@ if (!class_exists('ajax_event_calendar')){
 				add_action("admin_print_styles-$page", array($this, 'admin_calendar_styles'));
 				add_contextual_help($page, $help);
 
-				// sub menu page: category management
-				$sub_category = add_submenu_page(AEC_PLUGIN_FILE, 'Categories', __('Categories', AEC_PLUGIN_NAME), AEC_DOMAIN . 'manage_calendar', 'event_categories', array($this, 'render_admin_category'));
-				add_contextual_help($sub_category, $help);
+				if (current_user_can(AEC_DOMAIN . 'manage_calendar')) {
+					// sub menu page: category management
+					$sub_category = add_submenu_page(AEC_PLUGIN_FILE, 'Categories', __('Categories', AEC_PLUGIN_NAME), AEC_DOMAIN . 'manage_calendar', 'event_categories', array($this, 'render_admin_category'));
+					add_contextual_help($sub_category, $help);
 
-				// category admin specific scripts and styles
-				add_action("admin_print_scripts-$sub_category", array($this, 'admin_category_scripts'));
-				add_action("admin_print_styles-$sub_category", array($this, 'admin_category_styles'));
+					// category admin specific scripts and styles
+					add_action("admin_print_scripts-$sub_category", array($this, 'admin_category_scripts'));
+					add_action("admin_print_styles-$sub_category", array($this, 'admin_category_styles'));
 
-				// sub menu page: activity report
-				$sub_report = add_submenu_page(AEC_PLUGIN_FILE, 'Activity Report', __('Activity Report', AEC_PLUGIN_NAME), AEC_DOMAIN . 'manage_calendar', 'activity_report', array($this, 'render_activity_report'));
-				add_contextual_help($sub_report, $help);
+					// sub menu page: activity report
+					$sub_report = add_submenu_page(AEC_PLUGIN_FILE, 'Activity Report', __('Activity Report', AEC_PLUGIN_NAME), AEC_DOMAIN . 'manage_calendar', 'activity_report', array($this, 'render_activity_report'));
+					add_contextual_help($sub_report, $help);
 
-				// sub settings page: calendar options
-				$sub_options = add_options_page('Calendar', __('Ajax Event Calendar', AEC_PLUGIN_NAME), AEC_DOMAIN . 'manage_calendar', __FILE__, array($this, 'render_calendar_options'));
-				add_contextual_help($sub_options, $help);
+					// sub settings page: calendar options
+					$sub_options = add_options_page('Calendar', __('Ajax Event Calendar', AEC_PLUGIN_NAME), AEC_DOMAIN . 'manage_calendar', __FILE__, array($this, 'render_calendar_options'));
+					add_contextual_help($sub_options, $help);
+				}
+			}
 		}
 		
 		function render_frontend_calendar(){
@@ -674,7 +680,7 @@ if (!class_exists('ajax_event_calendar')){
 			wp_enqueue_script('jquery-ui-selectable');
 			wp_enqueue_script('jquery-ui-resizable');
 			wp_enqueue_script('jquery-ui-datepicker');
-			wp_enqueue_script('datepicker-locale');
+			if (AEC_LOCALE != 'en') wp_enqueue_script('datepicker-locale');	// if not english load localization
 			wp_enqueue_script('timePicker');
 			wp_enqueue_script('growl');
 			wp_enqueue_script('fullcalendar');
@@ -787,7 +793,6 @@ if (!class_exists('ajax_event_calendar')){
 		}
 
 		function add_event(){
-		return;
 			if (!isset($_POST['event'])) return;
 			$input = $this->cleanse_event_input($_POST['event']);			
 
@@ -963,6 +968,15 @@ if (!class_exists('ajax_event_calendar')){
 			return $this->return_result($result);
 		}
 
+		/*  
+		// placeholder for when delete_user hook includes reassign id
+		function reassign_events_by_user($old_id, $new_id){
+			global $wpdb;
+			$result = $wpdb->query($wpdb->prepare('UPDATE '. $wpdb->prefix . AEC_EVENT_TABLE . ' SET user_id = %d WHERE user_id = %d;', $new_id, $old_id));
+			return $this->return_result($result);
+		}
+		*/
+		
 		function delete_category(){
 			if (!isset($_POST['id'])) return;
 			global $wpdb;

@@ -21,7 +21,7 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 * Users assigned the Calendar Contributor role can edit and delete events they create
 * Auto-generated Google Maps link, based on event address fields
 * Date and time formatting, via integrated blog settings
-* Multi-language Support
+* Multi-language Support (available in 10 languages other than English)
 
 = Administator Options =
 
@@ -49,6 +49,7 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 * Russian
 * Spanish
 * Turkish
+* Don't see your language on this list?  Send PO translation files to plugins@eranmiller.com
 
 == Installation ==
 
@@ -62,8 +63,7 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 == Frequently Asked Questions ==
 
 = I've installed the plugin but the Calendar option does not appear in the Administrative menu (under Comments) =
-The issue is likely caused when more than [two menu items attempt to inhabit the same menu position](http://core.trac.wordpress.org/ticket/15595).  To resolve this problem: 
-
+The issue is likely caused when more than [two menu items attempt to inhabit the same menu position](http://core.trac.wordpress.org/ticket/15595).  To resolve this problem:
 Edit the ajax-event-calendar.php file. -- Search for the text "add_menu_page('Ajax Event Calendar'". -- Increment the number at the end of the line by one (initially set to 30). -- Save the file.  -- Refresh the browser window. -- Repeat until the Calendar option appears in the admin menu.
 
 = I upgraded the plugin to version 0.9.6 and the front-end calendar dissappeared =
@@ -81,8 +81,8 @@ To add a category, simply enter the desired category name in the input field, se
 = How does the calendar filter work? =
 The filter appears on the front-end Calendar when more than one event category has been created.
 
-= What does this plugin remove when deleted? =
-The event and category databases, calendar contributor role, plugin capabilities, plugin options and widget settings are **permanently removed**.
+= What happens when the plugin is deleted? =
+The event and category databases, custom roles, plugin capabilities, plugin options and widget settings are **permanently removed**.
 
 = What happens to user events when they are deleted? =
 All events associated with a deleted user are **permanently deleted**.
@@ -92,13 +92,9 @@ All events associated with a deleted category are re-assigned to the primary cat
 
 = What capabilities does this plugin include and how can I assign them to a role? =
 The plugin comes with a custom role called Calendar Contributor (which allows assigned users to add, edit and delete their own calendar events). For more options install the [Capability Manager](http://wordpress.org/extend/plugins/capsman/) plugin and the following plugin capabilities to roles as desired:
-
 **aec_add_events**: allows a user to add, edit and delete their own calendar events
 **aec_manage_events**: allows a user to add, edit and delete all calendar events
 **aec_manage_calendar**: allows a user to modify calendar settings, control which event fields to display and require, modify categories, and view the activity report
-
-= I would like to add a language to the supported list =
-Send translations to plugins@eranmiller.com and I will package them in future releases of the plugin
 
 == Screenshots ==
 
