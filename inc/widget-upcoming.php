@@ -15,9 +15,9 @@ class aec_upcoming_events extends WP_Widget{
 		$week = 604800;
 		
 		// check if blog timezone is not set
-		//if ($tz = get_option('timezone_string')) {
+		// if ($tz = get_option('timezone_string')) {
 		//	date_default_timezone_set($tz);		// localize date using blog timezone
-		//}
+		// }
 
 		$start = date('Y-m-d');
 		$end = date('Y-m-d', strtotime($start) + ($duration * $week));
@@ -59,10 +59,10 @@ class aec_upcoming_events extends WP_Widget{
 		if ($events){
 			foreach ($events as $event){
 				// split database formatted datetime value into display formatted date and time values
-				$event->start_date	= ajax_event_calendar::date_convert($event->start, AEC_DB_DATE_TIME_FORMAT, AEC_WP_DATE_FORMAT);
-				$event->start_time 	= ajax_event_calendar::date_convert($event->start, AEC_DB_DATE_TIME_FORMAT, AEC_WP_TIME_FORMAT);
-				$event->end_date 	= ajax_event_calendar::date_convert($event->end, AEC_DB_DATE_TIME_FORMAT, AEC_WP_DATE_FORMAT);
-				$event->end_time 	= ajax_event_calendar::date_convert($event->end, AEC_DB_DATE_TIME_FORMAT, AEC_WP_TIME_FORMAT);
+				$event->start_date	= ajax_event_calendar::date_convert($event->start, AEC_DB_DATETIME_FORMAT, AEC_WP_DATE_FORMAT);
+				$event->start_time 	= ajax_event_calendar::date_convert($event->start, AEC_DB_DATETIME_FORMAT, AEC_WP_TIME_FORMAT);
+				$event->end_date 	= ajax_event_calendar::date_convert($event->end, AEC_DB_DATETIME_FORMAT, AEC_WP_DATE_FORMAT);
+				$event->end_time 	= ajax_event_calendar::date_convert($event->end, AEC_DB_DATETIME_FORMAT, AEC_WP_TIME_FORMAT);
 				
 				// link to event
 				$out .= '<li class="fc-event round5 cat' . $event->category_id . 

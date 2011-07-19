@@ -2,7 +2,11 @@
 	if (!isset($_POST['id'])) return;
 	$options 	= get_option('aec_options');
 	$event 		= $this->query_event($_POST['id']);
-	
+	$event->start_date	= ajax_event_calendar::date_convert($event->start, AEC_DB_DATETIME_FORMAT, AEC_WP_DATE_FORMAT);
+	$event->start_time 	= ajax_event_calendar::date_convert($event->start, AEC_DB_DATETIME_FORMAT, AEC_WP_TIME_FORMAT);
+	$event->end_date 	= ajax_event_calendar::date_convert($event->end, AEC_DB_DATETIME_FORMAT, AEC_WP_DATE_FORMAT);
+	$event->end_time 	= ajax_event_calendar::date_convert($event->end, AEC_DB_DATETIME_FORMAT, AEC_WP_TIME_FORMAT);
+
 	$out = '<ul>';
 	$out .= '<li><h3>';
 
@@ -13,7 +17,7 @@
 			$out .= ' - ' . $event->end_date;
 			$event->start = $event->start_date;
 			$event->end = $event->end_date;
-
+			
 		// multiple day event, not spanning all day
 		} else {
 			$out .= $event->start_date . ' ' . $event->start_time;

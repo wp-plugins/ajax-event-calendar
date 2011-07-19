@@ -2,7 +2,7 @@
 Contributors: eranmiller
 Tags: multi-user, categories, calendar, event, ajax, filter, upcoming, widget
 Requires at least: 3.1
-Tested up to: 3.2
+Tested up to: 3.2.1
 Stable tag: 0.9.8.1
 
 A fully localized Google/OSX hybrid interface for multiple users to manage events in a community calendar.
@@ -11,7 +11,7 @@ A fully localized Google/OSX hybrid interface for multiple users to manage event
 
 A fully localized Google/OSX hybrid interface which enables users (registered with the necessary access) to add, edit and delete events in a community calendar viewable by all blog visitors.  The calendar can be added to a page or a post using the "[calendar]" shortcode.
 
-If you enjoy the use of this plugin please [rate it and confirm compatibility](http://wordpress.org/extend/plugins/ajax-event-calendar/)
+If you enjoy this plugin please [rate it and confirm compatibility](http://wordpress.org/extend/plugins/ajax-event-calendar/)
 
 =  Features =
 
@@ -53,7 +53,11 @@ If you enjoy the use of this plugin please [rate it and confirm compatibility](h
 == Installation ==
 
 1. The easiest method of installation is via the integrated WordPress plugin installer
-1. To display the front-end calendar follow the instructions in the screenshots section
+1. To create the front-end calendar: create a page or a post with any desired title.
+1. Add [calendar] shortcode to the body of the page
+1. Select any desired publish options
+1. Select any desired template options
+1. Save the page or post
 
 == Frequently Asked Questions ==
 
@@ -102,7 +106,7 @@ Send translations to plugins@eranmiller.com and I will package them in future re
 2. Plugin Options, in the Settings Menu
 3. New User Role
 4. New Event field in Users table
-5. Two New Widgets: Upcoming Events and Calendar Contributors
+5. Upcoming Events Widget Options
 6. Back-end Calendar Administration
 7. Category Administration
 8. Activity Report

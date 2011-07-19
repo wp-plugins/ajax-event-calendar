@@ -170,7 +170,7 @@ $jq().ready(function(){
 										
 										var times = $jq('#start_time, #end_time').timePicker({ 
 											step: 30,
-											show24Hours: custom.is24hrs,
+											show24Hours: custom.is24HrTime,
 											separator: ':'
 										}).hide();
 										

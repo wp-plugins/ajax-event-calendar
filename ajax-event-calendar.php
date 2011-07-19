@@ -41,8 +41,8 @@ define('AEC_CATEGORY_TABLE', AEC_DOMAIN . 'event_category');
 define('AEC_PLUGIN_HOMEPAGE', 'http://wordpress.org/extend/plugins/' . AEC_PLUGIN_NAME . '/');
 define('AEC_WP_DATE_FORMAT', get_option('date_format'));
 define('AEC_WP_TIME_FORMAT', get_option('time_format'));
-define('AEC_WP_DATE_TIME_FORMAT', AEC_WP_DATE_FORMAT . ' ' . AEC_WP_TIME_FORMAT);
-define('AEC_DB_DATE_TIME_FORMAT', 'Y-m-d H:i:00');
+define('AEC_WP_DATETIME_FORMAT', AEC_WP_DATE_FORMAT . ' ' . AEC_WP_TIME_FORMAT);
+define('AEC_DB_DATETIME_FORMAT', 'Y-m-d H:i:s');
 
 // logs WordPress errors to /wp-content/debug.log
 define('AEC_DEBUG', true);	// do not modify this setting the plugin is functioning
@@ -51,7 +51,7 @@ if (!class_exists('ajax_event_calendar')){
 	class ajax_event_calendar{
 
 		private $required_fields = array();
-
+		
 		function __construct(){
 			add_action('plugins_loaded', array($this, 'version_patches'));
 		    add_action('init', array($this, 'localize_plugin'), 10, 1);
@@ -269,7 +269,26 @@ if (!class_exists('ajax_event_calendar')){
 				$this->generate_css();
 
 				// add sample event once plugin has gone through all update routines
-				include_once(AEC_PLUGIN_PATH . 'unit_tests.php');
+				$_POST['event']['user_id'] = 0;	// system id
+				$_POST['event']['title'] = 'Ajax Event Calendar [v' . AEC_PLUGIN_VERSION . '] Installed!';
+				$_POST['event']['start_date'] = date(AEC_WP_DATE_FORMAT);
+				$_POST['event']['start_time'] = '00:00:00';
+				$_POST['event']['end_date'] = date(AEC_WP_DATE_FORMAT);
+				$_POST['event']['end_time'] = '00:00:00';
+				$_POST['event']['allDay'] = 1;
+				$_POST['event']['category_id'] = 1;
+				$_POST['event']['description'] = "Now that the calendar is installed...these are a few next steps:<ul><li>Add the front-end calendar page (illustrated in the Screenshots section via the Event Link)</li><li>Change the event categories</li><li>Add the calendar widgets to your sidebar</li><li>Modify the calendar options (via the WP Settings: General and Ajax Event Calendar menus)</li><li>Authorize calendar contributors (via the WP Users menu)</li></ul><br>Can't find what you're looking for in the FAQ? <a href='http://wordpress.org/tags/ajax-event-calendar?forum_id=10' target='_blank'>Check out the forum</a> and post your questions there.<br><br>If you use and enjoy this plugin, please remember to vote via the Event Link.<br>Thanks!<br>Eran";
+				$_POST['event']['link'] = AEC_PLUGIN_HOMEPAGE;
+				$_POST['event']['venue'] = 'Cloud Gate';
+				$_POST['event']['address'] = '201 East Randolph Street';
+				$_POST['event']['city'] = 'Chicago';
+				$_POST['event']['state'] = 'IL';
+				$_POST['event']['zip'] = '60601-6530';
+				$_POST['event']['contact'] = 'Eran Miller';
+				$_POST['event']['contact_info'] = 'plugins@eranmiller.com';
+				$_POST['event']['access'] = 1;
+				$_POST['event']['rsvp'] = 0;
+				$this->add_event();
 			}
 		}
 
@@ -295,17 +314,18 @@ if (!class_exists('ajax_event_calendar')){
 				if ($value == 2) $this->add_required_field($option);
 			}
 
-			$is24hrs = $this->parse_time_format(AEC_WP_TIME_FORMAT);
-
+			$isEuroDate	= $this->parse_date_format(AEC_WP_DATE_FORMAT);
+			$is24HrTime	= $this->parse_time_format(AEC_WP_TIME_FORMAT);
+			
 			return array(
 				'locale'					=> substr(get_locale(), 0, 2),	// first two characters of locale
 				'start_of_week' 			=> get_option('start_of_week'),
-				'is24hrs'					=> $is24hrs,
+				'datepicker_format' 		=> ($isEuroDate) ? 'dd-mm-yy' : 'mm/dd/yy',	// jquery datepicker format
+				'is24HrTime'				=> $is24HrTime,
 				'show_weekends'				=> $options['show_weekends'],
-				'agenda_time_format' 		=> ($is24hrs) ? 'H:mm{ - H:mm}' : 'h:mmt{ - h:mmt}',
-				'other_time_format' 		=> ($is24hrs) ? 'H:mm' : 'h:mmt',
-				'axis_time_format' 			=> ($is24hrs) ? 'HH:mm' : 'h:mmt',
-				'datepicker_format' 		=> $this->convert_date_format(AEC_WP_DATE_FORMAT),
+				'agenda_time_format' 		=> ($is24HrTime) ? 'H:mm{ - H:mm}' : 'h:mmt{ - h:mmt}',
+				'other_time_format' 		=> ($is24HrTime) ? 'H:mm' : 'h:mmt',
+				'axis_time_format' 			=> ($is24HrTime) ? 'HH:mm' : 'h:mmt',
 				'limit' 					=> $options['limit'],
 				'calculating'				=> __('Calculating...', AEC_PLUGIN_NAME),
 				'today'						=> __('Today', AEC_PLUGIN_NAME),
@@ -463,6 +483,7 @@ if (!class_exists('ajax_event_calendar')){
 			if (!current_user_can(AEC_DOMAIN . 'add_events'))
 				wp_die(__('You do not have sufficient permissions to access this page.', AEC_PLUGIN_NAME));
 			require_once AEC_PLUGIN_PATH . 'inc/admin-event.php';
+			exit();
 		}
 
 		function render_admin_category(){
@@ -720,17 +741,8 @@ if (!class_exists('ajax_event_calendar')){
 			global $wpdb;
 			$event = $wpdb->get_row($wpdb->prepare('SELECT * FROM ' . $wpdb->prefix . AEC_EVENT_TABLE . ' WHERE id = %d ORDER BY start;', $id));
 			if ($this->return_result($event)) {
-				return $this->render_date_time_fields($event);
+				return $event;
 			}
-		}
-
-		// split database formatted datetime value into display formatted date and time values
-		function render_date_time_fields($event){
-			$event->start_date	= $this->date_convert($event->start, AEC_DB_DATE_TIME_FORMAT, AEC_WP_DATE_FORMAT);
-			$event->start_time 	= $this->date_convert($event->start, AEC_DB_DATE_TIME_FORMAT, AEC_WP_TIME_FORMAT);
-			$event->end_date 	= $this->date_convert($event->end, AEC_DB_DATE_TIME_FORMAT, AEC_WP_DATE_FORMAT);
-			$event->end_time 	= $this->date_convert($event->end, AEC_DB_DATE_TIME_FORMAT, AEC_WP_TIME_FORMAT);
-			return $event;
 		}
 		
 		// output 6 primary fields for fullcalendar input
@@ -775,8 +787,10 @@ if (!class_exists('ajax_event_calendar')){
 		}
 
 		function add_event(){
+		return;
 			if (!isset($_POST['event'])) return;
-			$input = $this->cleanse_event_input($_POST['event']);
+			$input = $this->cleanse_event_input($_POST['event']);			
+
 			global $wpdb;
 			$result = $wpdb->insert($wpdb->prefix . AEC_EVENT_TABLE,
 									array('user_id' 		=> $input['user_id'],
@@ -988,9 +1002,16 @@ if (!class_exists('ajax_event_calendar')){
 			return $clean;
 		}
 
+		function parse_date_format($format){
+			// d | j	 1 | 01, day of the month
+			// m | n	 3 | 03, month of the year
+			// if d or j, then Euro date format otherwise US date format
+			return (strpos($format, 'd') !== false || strpos($format, 'j') !== false) ? true : false;
+		}
+
 		function parse_time_format($format){
-			// g | G	 12- | 24-hour, without leading zeros
-			// h | H	 12- | 24-hour, with leading zeros
+			// H | G	 24-hour, with | without leading zeros
+			// g | H	 24-hour, with | without leading zeros
 			return (strpos($format, 'G') !== false || strpos($format, 'H') !== false) ? true : false;
 		}
 
@@ -999,12 +1020,8 @@ if (!class_exists('ajax_event_calendar')){
 			// merge date fields and convert to database format
 			$start 	= $clean['start_date'] . ' ' . $clean['start_time'];
 			$end 	= $clean['end_date'] . ' ' . $clean['end_time'];
-			$this->log(AEC_WP_DATE_TIME_FORMAT);
-			$this->log($start);
-			$clean['start'] = $this->date_convert($start, AEC_WP_DATE_TIME_FORMAT, AEC_DB_DATE_TIME_FORMAT);
-			$clean['end']	= $this->date_convert($end, AEC_WP_DATE_TIME_FORMAT, AEC_DB_DATE_TIME_FORMAT);
-			$this->log('---');
-			$this->log($clean['start']);
+			$clean['start'] = $this->date_convert($start, AEC_WP_DATETIME_FORMAT, AEC_DB_DATETIME_FORMAT);
+			$clean['end']	= $this->date_convert($end, AEC_WP_DATETIME_FORMAT, AEC_DB_DATETIME_FORMAT);
 			return $clean;
 		}
 
@@ -1051,34 +1068,6 @@ if (!class_exists('ajax_event_calendar')){
 			// PHP 5.3 placeholder
 			// $convert = DateTime::createFromFormat($from, $date);
 			// return $convert->format($to);
-		}
-
-		// convert php to jquery datepicker format
-		function convert_date_format($format){
-			$php = array(
-				'j',    // day, no leading zero
-				'd',    // day, 2 digits
-				'l',    // day, full name  (lowercase 'L')
-				'n',    // month, no leading zero
-				'm',    // month, 2 digits
-				'F',    // month, full name
-				'Y'     // year, 4 digits
-				//'y'	// year, 2 digits
-			);
-			$jqdp = array(
-				'd',	// day, no leading zero
-				'dd',	// day, 2 digits
-				'DD',	// day, full name
-				'm',	// month, no leading zero
-				'mm',	// month, 2 digits
-				'MM',	// month, full name
-				'yy'	// year, 4 digits
-				//'y'	// year, 2 digits
-			);
-			foreach($php as &$p){
-				$p = '/'.$p.'/';
-			}
-			return preg_replace($php, $jqdp, $format);
 		}
 
 		function return_result($result){

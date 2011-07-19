@@ -30,8 +30,7 @@
 			$event->title 			= '';
 			$event->start 			= $_POST['event']['start'];
 			$event->end 			= $_POST['event']['end'];
-			$event->allDay 			= $_POST['event']['allDay'];
-
+			$event->allDay 			= $_POST['event']['allDay'];			
 			// recurring event placeholder
 			// $event->repeat_interval = 0;
 			// $event->repeat_end		= '';
@@ -48,7 +47,13 @@
 			$event->access			= 0;
 			$event->rsvp			= 0;
 		}
-		$event = $this->render_date_time_fields($event);
+		// split database formatted datetime value into display formatted date and time values
+		$datepicker_format	= ($this->parse_date_format(AEC_WP_DATE_FORMAT)) ? 'd-m-Y' : 'm/d/Y';	// php date format
+		$timepicker_format  = ($this->parse_time_format(AEC_WP_TIME_FORMAT)) ? 'H:i' : 'h:i A';		// php time format
+		$event->start_date	= $this->date_convert($event->start, AEC_DB_DATETIME_FORMAT, $datepicker_format);
+		$event->start_time 	= $this->date_convert($event->start, AEC_DB_DATETIME_FORMAT, $timepicker_format);
+		$event->end_date 	= $this->date_convert($event->end, AEC_DB_DATETIME_FORMAT, $datepicker_format);
+		$event->end_time 	= $this->date_convert($event->end, AEC_DB_DATETIME_FORMAT, $timepicker_format);
 	}
 
 	// populate checkboxes
