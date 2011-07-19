@@ -654,7 +654,7 @@ if (!class_exists('ajax_event_calendar')){
 		}
 
 		function admin_calendar_variables(){
-			$is_admin = (current_user_can('manage_options') == true) ? 1 : 0;
+			$is_admin = (current_user_can(AEC_DOMAIN . 'manage_calendar')) ? 1 : 0;
 			return array_merge($this->localized_variables(),
 				array(
 					'admin' 					=> $is_admin,
@@ -1019,8 +1019,8 @@ if (!class_exists('ajax_event_calendar')){
 		function parse_date_format($format){
 			// d | j	 1 | 01, day of the month
 			// m | n	 3 | 03, month of the year
-			// if d or j, then Euro date format otherwise US date format
-			return (strpos($format, 'd') !== false || strpos($format, 'j') !== false) ? true : false;
+			// if date format begins with d or j assign Euro format, otherwise US format
+			return (strpos($format, 'd') === 0 || strpos($format, 'j') === 0) ? true : false;
 		}
 
 		function parse_time_format($format){
