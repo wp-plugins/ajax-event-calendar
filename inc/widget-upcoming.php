@@ -65,7 +65,7 @@ class aec_upcoming_events extends WP_Widget{
 				$event->end_time 	= ajax_event_calendar::date_convert($event->end, AEC_DB_DATETIME_FORMAT, AEC_WP_TIME_FORMAT);
 				
 				// link to event			
-				$out .= '<li class="fc-event round5 cat"' . $event->category_id . '" onClick="$jq.eventDialog({\'id\':' . $event->id . '});">';
+				$out .= '<li class="fc-event round5 cat' . $event->category_id . '" onClick="$jq.eventDialog({\'id\':' . $event->id . '});">';
 				
 				if ($event->start_date != $event->end_date) {
 					// multiple day event, spanning all day
@@ -113,7 +113,7 @@ class aec_upcoming_events extends WP_Widget{
 	
 	/** @see WP_Widget::form */
 	function form($instance){
-		$instance = wp_parse_args( (array) $instance, array( 'title' => __('Three Week Agenda', AEC_PLUGIN_NAME), 'weeks' => '3', 'category' => 'all', 'format' => false) );
+		$instance = wp_parse_args((array) $instance, array( 'title' => __('Three Week Agenda', AEC_PLUGIN_NAME), 'weeks' => '3', 'category' => 'all'));
 		$title = $instance['title'];
 		$weeks = $instance['weeks'];
 		$category = $instance['category'];
