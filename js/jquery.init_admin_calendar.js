@@ -215,6 +215,7 @@ $jq().ready(function(){
 										
 										$jq('#start_date, #end_date, #start_time, #end_time, #allDay').change(function(){
 											checkDuration();
+											
 										});
 										
 										$jq('.required').parent().find('input, textarea').keyup(function(){
@@ -335,9 +336,9 @@ $jq().ready(function(){
 				allDay  = (allDay) ? 1:0;
 				validateForm(false);
 			}
-			// $jq('.duration').html(calcDuration(from, to, allDay));
+			$jq('.duration-message').html(calcDuration(from, to, allDay));
 		}
-				
+
 		function validateForm(err){
 			var err = false;
 			 
@@ -365,10 +366,44 @@ $jq().ready(function(){
 			$jq('.button-primary').removeAttr('disabled');
 			return true;
 		}
+
+		// Convert dates for duration processing
+		function convertDate(datetime){
+			var dt 		= datetime.split(' ');
+				date 	= dt[0];
+				time 	= dt[1];
+				
+			// US Date Format
+			if (date.indexOf('/') >= 0) {
+				var dateparts	= date.split('/');
+				var month 		= dateparts[0];
+				var day 		= dateparts[1];
+			}
+			
+			// European Date Format
+			if (date.indexOf('-') >= 0) {
+				var dateparts	= date.split('-');
+				var day 		= dateparts[0];
+				var month 		= dateparts[1];
+			}
+				
+			var year 			= dateparts[2];
+			
+			if (undefined !== time) {
+				// 24Hr Time format
+				hours		= time.substr(0,2);
+				if (!custom.is24HrTime) hours = 12 + parseInt(hours, 10);
+				minutes		= time.substr(3,2);
+				return month + '/' + day + '/' + year + ' ' + hours + ':' + minutes + ':' + '00';
+			}		
+			return month + '/' + day + '/' + year;
+		}		
 		
-	/*
-		function calcDuration(from, to, allDay) {
+		function calcDuration(from, to, allDay){
+			from = convertDate(from);
+			to = convertDate(to);
 			var milliseconds = new Date(to).getTime() - new Date(from).getTime();
+			
 			var diff = new Object();
 			diff.weeks = Math.floor(milliseconds/1000/60/60/24/7);
 			milliseconds -= diff.weeks*1000*60*60*24*7;
@@ -393,5 +428,4 @@ $jq().ready(function(){
 		function _n(quantity, singular, plural){
 			return (quantity != 1) ? plural : singular;
 		}
-	*/
 });

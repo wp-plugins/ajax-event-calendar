@@ -89,6 +89,7 @@
 					<input class="auto picker cb" type="text" name="end_time" id="end_time" size="8" readonly="readonly" value="<?php echo strtoupper($event->end_time); ?>">
 				</li>
 			</ul>
+			<label>&nbsp;</label><span class="duration-message"></span>
 		</li>
 		<!-- recurring event placeholder
 		<li><label><?php //_e('Repeat', AEC_PLUGIN_NAME); ?></label>

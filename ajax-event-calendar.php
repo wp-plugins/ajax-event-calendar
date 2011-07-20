@@ -440,7 +440,7 @@ if (!class_exists('ajax_event_calendar')){
 				}
 			}
 		}
-		
+
 		function render_frontend_calendar(){
 			$out  = '<div id="aec-container">';
 			$out .= '<div id="aec-loading">' . __('Loading...', AEC_PLUGIN_NAME) . '</div>';
