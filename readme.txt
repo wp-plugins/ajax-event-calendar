@@ -38,7 +38,7 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 * Display a contributors list using the "Calendar Contributors" sidebar widget
 * Display a list of upcoming events using the "Upcoming Events" sidebar widget
 
-= Languages =
+= 10 Languages and counting... =
 * Danish
 * Dutch
 * French

@@ -484,7 +484,7 @@ if (!class_exists('ajax_event_calendar')){
 		function render_frontend_modal(){
 			require_once AEC_PLUGIN_PATH . 'inc/show-event.php';
 		}
-
+		
 		function render_admin_modal(){
 			if (!current_user_can(AEC_DOMAIN . 'add_events'))
 				wp_die(__('You do not have sufficient permissions to access this page.', AEC_PLUGIN_NAME));
@@ -1084,6 +1084,27 @@ if (!class_exists('ajax_event_calendar')){
 			// return $convert->format($to);
 		}
 
+		function return_duration($event){
+			$diff	= strtotime($event->end) - strtotime($event->start);
+			$wsec	= 7*60*60*24;
+			$dsec	= 60*60*24;
+			$hsec	= 60*60;
+			$msec	= 60;
+			$week 	= floor($diff / $wsec);
+			$day 	= floor(($diff - $week * $wsec) / $dsec);
+			$hour 	= floor(($diff - $week * $wsec - $day * $dsec) / $hsec);
+			$minute = floor(($diff - $week * $wsec - $day * $dsec - $hour * $hsec) / $msec);
+			$day = ($event->allDay) ? $day+1 : $day;		// add one to day value of "allday" events
+
+			$out = array();
+			if ($week) { array_push($out, sprintf(_n('%d Week', '%d Weeks', $week, AEC_PLUGIN_NAME), $week)); }
+			if ($day) { array_push($out, sprintf(_n('%d Day', '%d Days', $day, AEC_PLUGIN_NAME), $day)); }
+			if ($hour) { array_push($out, sprintf(_n('%d Hour', '%d Hours', $hour, AEC_PLUGIN_NAME), $hour)); }
+			if ($minute) { array_push($out, sprintf(_n('%d Minute', '%d Minutes', $minute, AEC_PLUGIN_NAME), $minute)); }
+
+			return implode(', ', $out);
+		}
+		
 		function return_result($result){
 			if ($result === false){
 				$this->log($wpdb->print_error());

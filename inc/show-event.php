@@ -39,6 +39,7 @@
 		}
 	}
 	$out .= '</h3>';
+	$out .= '<span class="duration round5">' . __('Duration', AEC_PLUGIN_NAME) . ': ' . $this->return_duration($event) . '</span>';
 	$out .= '</li>';
 	$out .= '<li>' . $event->description . '</li>';
 
