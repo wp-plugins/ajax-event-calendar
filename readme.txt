@@ -9,7 +9,7 @@ A fully localized Google/OSX hybrid interface for multiple users to manage event
 
 == Description ==
 
-A fully localized Google/OSX hybrid interface which enables users (registered with the necessary access) to add, edit and delete events in a community calendar viewable by all blog visitors.  The calendar can be added to a page or a post using the "[calendar]" shortcode.
+This plugin allows authorized users to add, edit (as well as visually move and resize) and delete events in a community calendar viewable by all blog visitors.  The calendar can be added to a page or a post using the "[calendar]" shortcode.
 
 If you enjoy this plugin please [rate it and confirm compatibility](http://wordpress.org/extend/plugins/ajax-event-calendar/)
 
