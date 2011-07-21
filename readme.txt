@@ -49,7 +49,8 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 * Russian
 * Spanish
 * Turkish
-* Don't see your language on this list?  Send PO translation files to plugins@eranmiller.com
+* Please Note: not all translations have been completed.
+* Don't see your language or want to help complete a translation?  Send PO translation files to plugins@eranmiller.com
 
 == Installation ==
 
