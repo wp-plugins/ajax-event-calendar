@@ -3,7 +3,7 @@ Contributors: eranmiller
 Tags: multi-user, categories, calendar, event, ajax, filter, upcoming, widget
 Requires at least: 3.1
 Tested up to: 3.2.1
-Stable tag: 0.9.8.5
+Stable tag: 0.9.8.1
 
 A fully localized Google/OSX hybrid interface for multiple users to manage events in a community calendar.
 
