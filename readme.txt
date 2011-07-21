@@ -3,7 +3,7 @@ Contributors: eranmiller
 Tags: multi-user, categories, calendar, event, ajax, filter, upcoming, widget
 Requires at least: 3.1
 Tested up to: 3.2.1
-Stable tag: 0.9.8.1
+Stable tag: 0.9.8.5
 
 A fully localized Google/OSX hybrid interface for multiple users to manage events in a community calendar.
 
@@ -49,8 +49,8 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 * Russian
 * Spanish
 * Turkish
-* Please Note: not all translations have been completed.
-* Don't see your language or want to help complete a translation?  Send PO translation files to plugins@eranmiller.com
+* Note: not all translations have been completed.
+* Don't see your language, found a typo in a translation or want to help complete a translation? Post it on this forum! Send PO translation files to plugins@eranmiller.com
 
 == Installation ==
 
