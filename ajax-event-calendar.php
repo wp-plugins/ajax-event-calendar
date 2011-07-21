@@ -65,9 +65,11 @@ if (!class_exists('ajax_event_calendar')){
 
 			add_shortcode('calendar', array($this, 'render_frontend_calendar'));
 			
+			// wordpress overrides
 			add_filter('manage_users_columns', array($this, 'add_events_column'));
 			add_filter('manage_users_custom_column', array($this, 'manage_events_column'), 10, 3);
 			add_filter('plugin_action_links', array($this, 'settings_link'), 10, 2);
+			add_filter('option_page_capability_' . AEC_DOMAIN . 'plugin_options', array($this, 'set_option_page_capability'));
 
 			// ajax hooks
 			add_action('wp_ajax_nopriv_get_events', array($this, 'render_events'));
@@ -437,6 +439,7 @@ if (!class_exists('ajax_event_calendar')){
 					// sub settings page: calendar options
 					$sub_options = add_options_page('Calendar', __('Ajax Event Calendar', AEC_PLUGIN_NAME), AEC_DOMAIN . 'manage_calendar', __FILE__, array($this, 'render_calendar_options'));
 					add_contextual_help($sub_options, $help);
+					
 				}
 			}
 		}
@@ -544,6 +547,10 @@ if (!class_exists('ajax_event_calendar')){
 			}
 			$out .= '</div>' . "\n";
 			print $out;
+		}
+		
+		function twentyeleven_option_page_capability( $capability ) {
+			return 'edit_theme_options';
 		}
 
 		function render_calendar_options(){
@@ -1155,6 +1162,10 @@ if (!class_exists('ajax_event_calendar')){
 				array_unshift($links, $settings);	// make the 'Settings' link appear first
 			}
 			return $links;
+		}
+
+		function set_option_page_capability($capability){
+			return AEC_DOMAIN . 'manage_calendar';
 		}
 
 		function decommission_options($keys){

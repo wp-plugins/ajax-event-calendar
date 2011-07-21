@@ -16,7 +16,7 @@ $jq().ready(function(){
 			monthNamesShort: [custom.jan, custom.feb, custom.mar, custom.apr, custom.may, custom.jun, custom.jul, custom.aug,
 							custom.sep, custom.oct, custom.nov, custom.dec],
 			dayNames: [custom.sunday, custom.monday, custom.tuesday, custom.wednesday, custom.thursday, custom.friday, custom.saturday],
-			dayNamesShort: [custom.sun, custom.mon, custom.tues, custom.wed, custom.thu, custom.fri, custom.sat],
+			dayNamesShort: [custom.sun, custom.mon, custom.tue, custom.wed, custom.thu, custom.fri, custom.sat],
 			buttonText:{
 				today: custom.today,
 				month: custom.month,
@@ -91,6 +91,10 @@ $jq().ready(function(){
 	}
 	
 	function eventDialog(e){
+		// adjusts modal top for WordPress admin bar
+		var wpadminbar = $jq('#wpadminbar');
+		var wpadminbar_height = (wpadminbar.length > 0) ? wpadminbar.height() : '0';
+
 		// check for modal html structure, if not present add it to the DOM
 		if ($jq('aec-modal').length == 0) {
 			var modal = '<div id="aec-modal"><div class="aec-title"></div><div class="aec-content"></div></div>';
@@ -102,7 +106,7 @@ $jq().ready(function(){
 			closeHTML: '<div class="close"><a href="#" class="simplemodal-close" title="' + custom.close_event_form + '">x</a></div>',
 			minHeight: 35,
 			opacity: 65,
-			position: ['0',],
+			position: [wpadminbar_height,],
 			overlayClose: true,
 			onOpen: function (d) {
 				var modal = this;

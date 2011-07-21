@@ -126,7 +126,10 @@ The plugin comes with a custom role called Calendar Contributor (which allows as
 
 == Changelog ==
 = 0.9.8.5 =
-* removed event duration display (localization support missing)
+* calendar weekday (tue) short name localization fix
+* plugin options page save settings for manage_calendar capability fix
+* automatically adjusts modal top when WordPress admin bar is visible (contributed by Carl W.)
+* event duration display fix
 * minicalendar localization, noweekends fix
 * excised orphaned options
 * improved instructional text on the calendar settings page
@@ -264,7 +267,7 @@ The plugin comes with a custom role called Calendar Contributor (which allows as
 
 == Upgrade Notice ==
 = 0.9.8.5
-* fixes to javascript theme and plugin conflicts
+* fixes to theme/javascript conflicts, localization and much more!
 
 = 0.9.8.2 =
 * minor fixes to upgrade issues
