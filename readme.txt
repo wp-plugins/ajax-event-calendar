@@ -9,9 +9,11 @@ A fully localized Google/OSX hybrid interface for multiple users to manage event
 
 == Description ==
 
-This plugin allows authorized users to add, edit (as well as visually move and resize) and delete events in a community calendar viewable by all blog visitors.  The calendar can be added to a page or a post using the "[calendar]" shortcode.
+This plugin allows authorized users to add, edit (as well as visually move and resize) and delete events in a community calendar viewable by all blog visitors.  The calendar can be added to a page or a post using the "[calendar]" shortcode.  
 
-If you enjoy this plugin please [rate it and confirm compatibility](http://wordpress.org/extend/plugins/ajax-event-calendar/)
+Have questions or comments? [Post them in the support forum](http://wordpress.org/tags/ajax-event-calendar?forum_id=10).
+
+If you enjoy this plugin please [rate it and confirm compatibility](http://wordpress.org/extend/plugins/ajax-event-calendar/).
 
 =  Features =
 
@@ -38,7 +40,7 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 * Display a contributors list using the "Calendar Contributors" sidebar widget
 * Display a list of upcoming events using the "Upcoming Events" sidebar widget
 
-= 10 Languages and counting... =
+= 11 Languages and counting... =
 * Danish
 * Dutch
 * French
@@ -49,7 +51,8 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 * Russian
 * Spanish
 * Turkish
-* Please Note: not all translations have been completed.
+* Tamil
+* Please Note: not all translations are complete.
 * Don't see your language or want to help complete a translation?  Send PO translation files to plugins@eranmiller.com
 
 == Installation ==
@@ -64,8 +67,13 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 == Frequently Asked Questions ==
 
 = I've installed the plugin but the Calendar option does not appear in the Administrative menu (under Comments) =
-The issue is likely caused when more than [two menu items attempt to inhabit the same menu position](http://core.trac.wordpress.org/ticket/15595).  To resolve this problem:
-Edit the ajax-event-calendar.php file. -- Search for the text "add_menu_page('Ajax Event Calendar'". -- Increment the number at the end of the line by one (initially set to 30). -- Save the file.  -- Refresh the browser window. -- Repeat until the Calendar option appears in the admin menu.
+The issue is likely caused when more than [two menu items attempt to inhabit the same menu position](http://core.trac.wordpress.org/ticket/15595).  To resolve...
+Edit the ajax-event-calendar.php file.
+Search for the text "add_menu_page('Ajax Event Calendar'".
+Increment the number at the end of the line by one (initially set to 30).
+Save the file.
+Refresh the browser window.
+Repeat until the Calendar option appears in the admin menu.
 
 = I upgraded the plugin to version 0.9.6 and the front-end calendar dissappeared =
 As of version 0.9.6, to accommodate the widest range of display options, the front-end calendar display was altered and is now triggered by the inclusion of the "[calendar]" shortcode in either a page or a post.  See the [installation tab](http://wordpress.org/extend/plugins/ajax-event-calendar/installation/) for details.
@@ -126,6 +134,12 @@ The plugin comes with a custom role called Calendar Contributor (which allows as
 * Category color selection (miniColors)
 
 == Changelog ==
+= 0.9.8.51 =
+* beta release
+* fixed date/time field processing via event add/update form
+* fixed duration style
+* added tamil localization (Bage) - nandri!
+
 = 0.9.8.5 =
 * calendar weekday (tue) short name localization fix
 * plugin options page save settings for manage_calendar capability fix
@@ -267,7 +281,10 @@ The plugin comes with a custom role called Calendar Contributor (which allows as
 * getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
-= 0.9.8.5
+= 0.9.8.51 =
+* major fix to add/update date fields, validation and duration style
+
+= 0.9.8.5 =
 * fixes to theme/javascript conflicts, localization and much more!
 
 = 0.9.8.2 =

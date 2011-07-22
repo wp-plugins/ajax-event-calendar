@@ -331,13 +331,13 @@ $jq().ready(function(){
 						$jq('.duration-message').html(custom.error_invalid_duration);
 						validateForm(true);
 						return;
-					} else {
-						$jq('#start_time, #end_time').removeClass('aec-error');
 					}
+					$jq('#start_time, #end_time').removeClass('aec-error');
 				}
 				from 	= $jq('#start_date').val() + ' ' + $jq('#start_time').val(),
 				to 		= $jq('#end_date').val() + ' ' + $jq('#end_time').val(),
 				allDay  = (allDay) ? 1:0;
+				$jq('#start_time, #end_time').removeClass('aec-error');
 				validateForm(false);
 			}
 			$jq('.duration-message').html(calcDuration(from, to, allDay));
@@ -417,7 +417,6 @@ $jq().ready(function(){
 			milliseconds -= diff.hours*1000*60*60;
 			diff.minutes = Math.floor(milliseconds/1000/60);
 			milliseconds -= diff.minutes*1000*60;
-			diff.seconds = Math.floor(milliseconds/1000);
 
 			// format output
 			var out = new Array();

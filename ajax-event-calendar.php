@@ -3,7 +3,7 @@
 Plugin Name: Ajax Event Calendar
 Plugin URI: http://wordpress.org/extend/plugins/ajax-event-calendar/
 Description: A fully localized Google Calendar/OSX hybrid interface which enables users (registered with the necessary access) to add, edit and delete events in a community calendar viewable by all blog visitors.
-Version: 0.9.8.5
+Version: 0.9.8.51 beta
 Author: Eran Miller
 Author URI: http://eranmiller.com
 License: GPL2
@@ -30,7 +30,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)){
 	die('Sorry, but you cannot access this page directly.');
 }
 
-define('AEC_PLUGIN_VERSION', '0.9.8.5');
+define('AEC_PLUGIN_VERSION', '0.9.8.51');
 define('AEC_DOMAIN', 'aec_');
 define('AEC_PLUGIN_FILE', basename(__FILE__));
 define('AEC_PLUGIN_NAME', str_replace('.php', '', AEC_PLUGIN_FILE));
@@ -41,18 +41,20 @@ define('AEC_CATEGORY_TABLE', AEC_DOMAIN . 'event_category');
 define('AEC_PLUGIN_HOMEPAGE', 'http://wordpress.org/extend/plugins/' . AEC_PLUGIN_NAME . '/');
 define('AEC_WP_DATE_FORMAT', get_option('date_format'));
 define('AEC_WP_TIME_FORMAT', get_option('time_format'));
-define('AEC_WP_DATETIME_FORMAT', AEC_WP_DATE_FORMAT . ' ' . AEC_WP_TIME_FORMAT);
 define('AEC_DB_DATETIME_FORMAT', 'Y-m-d H:i:s');
 define('AEC_LOCALE', substr(get_locale(), 0, 2));	//  for javascript localization scripts
 
 // logs WordPress errors to /wp-content/debug.log
-define('AEC_DEBUG', true);	// do not modify this setting the plugin is functioning
+define('AEC_DEBUG', false);	// do not modify this setting the plugin is functioning
+
+// overrides the location of the WP error log to the AEC plugin root
+// @ini_set('error_log', AEC_PLUGIN_PATH . AEC_DOMAIN . 'debug.log');
 
 if (!class_exists('ajax_event_calendar')){
 	class ajax_event_calendar{
 
 		private $required_fields = array();
-		
+
 		function __construct(){
 			add_action('plugins_loaded', array($this, 'version_patches'));
 		    add_action('init', array($this, 'localize_plugin'), 10, 1);
@@ -64,7 +66,7 @@ if (!class_exists('ajax_event_calendar')){
 			add_action('delete_user', array($this, 'confirm_delete_user_events'));
 
 			add_shortcode('calendar', array($this, 'render_frontend_calendar'));
-			
+
 			// wordpress overrides
 			add_filter('manage_users_columns', array($this, 'add_events_column'));
 			add_filter('manage_users_custom_column', array($this, 'manage_events_column'), 10, 3);
@@ -269,14 +271,15 @@ if (!class_exists('ajax_event_calendar')){
 				// on patch completion update plugin version
 				update_option(AEC_DOMAIN . 'version', AEC_PLUGIN_VERSION);
 
+				// re-creates cat_colors.css file on update
 				$this->generate_css();
 
 				// add sample event once plugin has gone through all update routines
 				$_POST['event']['user_id'] = 0;	// system id
 				$_POST['event']['title'] = 'Ajax Event Calendar [v' . AEC_PLUGIN_VERSION . '] Installed!';
-				$_POST['event']['start_date'] = date(AEC_WP_DATE_FORMAT);
+				$_POST['event']['start_date'] = date(AEC_DB_DATE_FORMAT);
 				$_POST['event']['start_time'] = '00:00:00';
-				$_POST['event']['end_date'] = date(AEC_WP_DATE_FORMAT);
+				$_POST['event']['end_date'] = date(AEC_DB_DATE_FORMAT);
 				$_POST['event']['end_time'] = '00:00:00';
 				$_POST['event']['allDay'] = 1;
 				$_POST['event']['category_id'] = 1;
@@ -307,7 +310,7 @@ if (!class_exists('ajax_event_calendar')){
 	    function localize_plugin($page){
 			load_plugin_textdomain( AEC_PLUGIN_NAME, false, AEC_PLUGIN_NAME . '/locale/' );
 		}
-		
+
 		// localized javascript variables
 		function localized_variables(){
 			$options = get_option(AEC_DOMAIN . 'options');
@@ -319,7 +322,7 @@ if (!class_exists('ajax_event_calendar')){
 
 			$isEuroDate	= $this->parse_date_format(AEC_WP_DATE_FORMAT);
 			$is24HrTime	= $this->parse_time_format(AEC_WP_TIME_FORMAT);
-			
+
 			return array(
 				'locale'					=> AEC_LOCALE,
 				'start_of_week' 			=> get_option('start_of_week'),
@@ -397,7 +400,7 @@ if (!class_exists('ajax_event_calendar')){
 				'whoops'					=> __('Whoops!', AEC_PLUGIN_NAME)
 			);
 		}
-		
+
 		function render_message($message, $errormsg=false){
 			if ($errormsg) {
 				echo '<div id="message" class="error">';
@@ -409,7 +412,7 @@ if (!class_exists('ajax_event_calendar')){
 
 		function render_admin_menu(){
 			if (function_exists('add_options_page')) {
-			
+
 				// define help text
 				$help = '<h3>' . __('Ajax Event Calendar', AEC_PLUGIN_NAME) . ' <small>[v' . AEC_PLUGIN_VERSION . ']</small></h3>';
 				$help .= __('Plugin help available', AEC_PLUGIN_NAME) . ' <a href="' . AEC_PLUGIN_HOMEPAGE . '" target="_blank">' . __('here', AEC_PLUGIN_NAME) . '</a>';
@@ -439,7 +442,7 @@ if (!class_exists('ajax_event_calendar')){
 					// sub settings page: calendar options
 					$sub_options = add_options_page('Calendar', __('Ajax Event Calendar', AEC_PLUGIN_NAME), AEC_DOMAIN . 'manage_calendar', __FILE__, array($this, 'render_calendar_options'));
 					add_contextual_help($sub_options, $help);
-					
+
 				}
 			}
 		}
@@ -487,7 +490,7 @@ if (!class_exists('ajax_event_calendar')){
 		function render_frontend_modal(){
 			require_once AEC_PLUGIN_PATH . 'inc/show-event.php';
 		}
-		
+
 		function render_admin_modal(){
 			if (!current_user_can(AEC_DOMAIN . 'add_events'))
 				wp_die(__('You do not have sufficient permissions to access this page.', AEC_PLUGIN_NAME));
@@ -511,15 +514,15 @@ if (!class_exists('ajax_event_calendar')){
 			$out .= '</form>' . "\n";
 			$out .= '<form id="aec-category-list">' . "\n";
 			foreach ($categories as $category) {
-				$delete = ($category->id > 1) ? 
-					'<button class="button-secondary delete">' . __('Delete', AEC_PLUGIN_NAME) . '</button>' . "\n" : 
+				$delete = ($category->id > 1) ?
+					'<button class="button-secondary delete">' . __('Delete', AEC_PLUGIN_NAME) . '</button>' . "\n" :
 					' <em>' . __('This category is required and can only be edited.', AEC_PLUGIN_NAME) . '</em>';
 				$out .= '<p id="id_' . $category->id . '">' . "\n";
 				$out .= '<input type="hidden" name="id" value="' . $category->id . '" />' . "\n";
 				$out .= '<input type="hidden" name="fgcolor" value="#' . $category->fgcolor . '" class="fg" />' . "\n";
 				$out .= '<input type="text" name="bgcolor" size="7" maxlength="7" autocomplete="off" value="#' . $category->bgcolor . '" class="bg colors" />' . "\n";
 				$out .= '<input type="text" name="category" value="' . $this->render_i18n_data($category->category) . '" class="edit" />' . "\n";
-				$out .= '<button id="category_update" class="update button-secondary">' . __('Update', AEC_PLUGIN_NAME) . '</button>' . "\n";	
+				$out .= '<button id="category_update" class="update button-secondary">' . __('Update', AEC_PLUGIN_NAME) . '</button>' . "\n";
 				$out .= $delete;
 				$out .= '</p>' . "\n";
 			}
@@ -531,7 +534,7 @@ if (!class_exists('ajax_event_calendar')){
 		function render_activity_report(){
 			if (!current_user_can(AEC_DOMAIN . 'manage_calendar'))
 				wp_die(__('You do not have sufficient permissions to access this page.', AEC_PLUGIN_NAME));
-			
+
 			$out  = '<div class="wrap">' . "\n";
 			$out .= '<h2>' . __('Activity Report', AEC_PLUGIN_NAME) . '</h2>' . "\n";
 			$out .= '<h5>' . __('Number of events scheduled for the current month, by type:', AEC_PLUGIN_NAME) . '</h5>' . "\n";
@@ -548,7 +551,7 @@ if (!class_exists('ajax_event_calendar')){
 			$out .= '</div>' . "\n";
 			print $out;
 		}
-		
+
 		function twentyeleven_option_page_capability( $capability ) {
 			return 'edit_theme_options';
 		}
@@ -592,7 +595,7 @@ if (!class_exists('ajax_event_calendar')){
 				foreach($events as $event){
 					array_push($output, $this->render_event($this->convert_object_to_array($event), true));
 				}
-								
+
 				$this->render_json($output);
 			}
 		}
@@ -632,7 +635,7 @@ if (!class_exists('ajax_event_calendar')){
 			return $output;
 		}
 
-		
+
 		function frontend_calendar_variables(){
 			$options = get_option(AEC_DOMAIN . 'options');
 			return array_merge($this->localized_variables(),
@@ -665,7 +668,7 @@ if (!class_exists('ajax_event_calendar')){
 			return array_merge($this->localized_variables(),
 				array(
 					'admin' 					=> $is_admin,
-					// if moving editing to front-end add ajaxurl 
+					// if moving editing to front-end add ajaxurl
 					//'ajaxurl'  				=> admin_url('admin-ajax.php'),		// required for non-admin ajax pages
 					'required_fields'			=> join(",", $this->get_required_fields()),
 					'editable'					=> true,
@@ -757,7 +760,7 @@ if (!class_exists('ajax_event_calendar')){
 				return $event;
 			}
 		}
-		
+
 		// output 6 primary fields for fullcalendar input
 		function query_events($user_id, $start, $end){
 			global $wpdb;
@@ -801,7 +804,7 @@ if (!class_exists('ajax_event_calendar')){
 
 		function add_event(){
 			if (!isset($_POST['event'])) return;
-			$input = $this->cleanse_event_input($_POST['event']);			
+			$input = $this->cleanse_event_input($_POST['event']);
 
 			global $wpdb;
 			$result = $wpdb->insert($wpdb->prefix . AEC_EVENT_TABLE,
@@ -892,7 +895,7 @@ if (!class_exists('ajax_event_calendar')){
 		function update_event(){
 			if (!isset($_POST['event'])) return;
 			$input = $this->cleanse_event_input($_POST['event']);
-
+			
 			global $wpdb;
 			$result = $wpdb->update($wpdb->prefix . AEC_EVENT_TABLE,
 									array('user_id' 		=> $input['user_id'],
@@ -956,8 +959,8 @@ if (!class_exists('ajax_event_calendar')){
 									),
 									array ('%d') //id
 								);
-			$this->generate_css();
 			if ($this->return_result($result)){
+				$this->generate_css();
 				$this->render_category($input);
 			}
 		}
@@ -975,7 +978,7 @@ if (!class_exists('ajax_event_calendar')){
 			return $this->return_result($result);
 		}
 
-		/*  
+		/*
 		// placeholder for when delete_user hook includes reassign id
 		function reassign_events_by_user($old_id, $new_id){
 			global $wpdb;
@@ -983,7 +986,7 @@ if (!class_exists('ajax_event_calendar')){
 			return $this->return_result($result);
 		}
 		*/
-		
+
 		function delete_category(){
 			if (!isset($_POST['id'])) return;
 			global $wpdb;
@@ -1019,7 +1022,6 @@ if (!class_exists('ajax_event_calendar')){
 				// trim whitespace from input
 				$clean[$key] = trim($value);
 			}
-
 			return $clean;
 		}
 
@@ -1035,14 +1037,36 @@ if (!class_exists('ajax_event_calendar')){
 			// g | H	 24-hour, with | without leading zeros
 			return (strpos($format, 'G') !== false || strpos($format, 'H') !== false) ? true : false;
 		}
-
+		
+		// restricts jquery datepicker format (based on WP date format) to ensure accurate localization
+		function get_wp_date_format(){
+			return ($this->parse_date_format(AEC_WP_DATE_FORMAT)) ? 'd-m-Y' : 'm/d/Y';
+		}
+		
+		// restricts jquery timepicker format (based on WP time format) to ensure accurate localization
+		function get_wp_time_format(){
+			return ($this->parse_time_format(AEC_WP_TIME_FORMAT)) ? 'H:i' : 'h:i A';
+		}		
+		
+		// split datetime fields
+		function split_datetime($datetime){
+			$out = array();
+			array_push($out, $this->date_convert($datetime, AEC_DB_DATETIME_FORMAT, $this->get_wp_date_format()));
+			array_push($out, $this->date_convert($datetime, AEC_DB_DATETIME_FORMAT, $this->get_wp_time_format()));
+			return $out;
+		}
+		
+		// merge date and time fields, while converting to database format
+		function merge_date_time($date, $time){
+			$datetime = "{$date} {$time}";
+			$format = "{$this->get_wp_date_format()} {$this->get_wp_time_format()}";
+			return $this->date_convert($datetime, $format, AEC_DB_DATETIME_FORMAT);			
+		}
+		
 		function cleanse_event_input($input){
 			$clean = $this->parse_input($input);
-			// merge date fields and convert to database format
-			$start 	= $clean['start_date'] . ' ' . $clean['start_time'];
-			$end 	= $clean['end_date'] . ' ' . $clean['end_time'];
-			$clean['start'] = $this->date_convert($start, AEC_WP_DATETIME_FORMAT, AEC_DB_DATETIME_FORMAT);
-			$clean['end']	= $this->date_convert($end, AEC_WP_DATETIME_FORMAT, AEC_DB_DATETIME_FORMAT);
+			$clean['start'] = $this->merge_date_time($clean['start_date'], $clean['start_time']);
+			$clean['end']	= $this->merge_date_time($clean['end_date'], $clean['end_time']);
 			return $clean;
 		}
 
@@ -1080,11 +1104,10 @@ if (!class_exists('ajax_event_calendar')){
 		}
 
 		function date_convert($date, $from, $to=false){
-			// ajax_event_calendar::log($date .' '. $from .' '. $to);
 			// if date format is d/m/Y, modify token to 'd-m-Y' so strtotime parses date correctly
 			if (strpos($from, 'd') == 0) $date = str_replace("/", "-", $date);
-			if ($to) return date_i18n($to, strtotime($date));
-			return strtotime($date);
+			if ($to){ return date_i18n($to, strtotime($date)); }
+			return strtotime($date);		
 
 			// PHP 5.3 placeholder
 			// $convert = DateTime::createFromFormat($from, $date);
@@ -1092,26 +1115,25 @@ if (!class_exists('ajax_event_calendar')){
 		}
 
 		function return_duration($event){
-			$diff	= strtotime($event->end) - strtotime($event->start);
-			$wsec	= 7*60*60*24;
-			$dsec	= 60*60*24;
-			$hsec	= 60*60;
-			$msec	= 60;
-			$week 	= floor($diff / $wsec);
-			$day 	= floor(($diff - $week * $wsec) / $dsec);
-			$hour 	= floor(($diff - $week * $wsec - $day * $dsec) / $hsec);
-			$minute = floor(($diff - $week * $wsec - $day * $dsec - $hour * $hsec) / $msec);
-			$day = ($event->allDay) ? $day+1 : $day;		// add one to day value of "allday" events
-
+			$seconds	= strtotime($event->end) - strtotime($event->start);
+			$weeks 		= floor($seconds/60/60/24/7);
+			$seconds -= $weeks*60*60*24*7;
+			$days 		= floor($seconds/60/60/24);
+			$seconds -= $days*60*60*24;
+			$hours 		= floor($seconds/60/60);
+			$seconds -= $hours*60*60;
+			$minutes 	= floor($seconds/60);
+			
+			// format output
 			$out = array();
-			if ($week) { array_push($out, sprintf(_n('%d Week', '%d Weeks', $week, AEC_PLUGIN_NAME), $week)); }
-			if ($day) { array_push($out, sprintf(_n('%d Day', '%d Days', $day, AEC_PLUGIN_NAME), $day)); }
-			if ($hour) { array_push($out, sprintf(_n('%d Hour', '%d Hours', $hour, AEC_PLUGIN_NAME), $hour)); }
-			if ($minute) { array_push($out, sprintf(_n('%d Minute', '%d Minutes', $minute, AEC_PLUGIN_NAME), $minute)); }
-
-			return implode(', ', $out);
+			if ($event->allDay) $days += 1;
+			if ($weeks) { array_push($out, sprintf(_n('%d Week', '%d Weeks', $weeks, AEC_PLUGIN_NAME), $weeks)); }
+			if ($days) { array_push($out, sprintf(_n('%d Day', '%d Days', $days, AEC_PLUGIN_NAME), $days)); }
+			if ($hours) { array_push($out, sprintf(_n('%d Hour', '%d Hours', $hours, AEC_PLUGIN_NAME), $hours)); }
+			if ($minutes) { array_push($out, sprintf(_n('%d Minute', '%d Minutes', $minutes, AEC_PLUGIN_NAME), $minutes)); }
+			return join(', ', $out);
 		}
-		
+
 		function return_result($result){
 			if ($result === false){
 				$this->log($wpdb->print_error());
@@ -1192,9 +1214,6 @@ if (!class_exists('ajax_event_calendar')){
 }
 
 register_activation_hook(__FILE__, array('ajax_event_calendar', 'install'));
-
-// overrides the location of the WP error log
-// @ini_set('error_log', AEC_PLUGIN_PATH . AEC_DOMAIN . 'debug.log');
 
 if (class_exists('ajax_event_calendar')){
 	if (version_compare(PHP_VERSION, '5', '<'))

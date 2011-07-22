@@ -8,6 +8,7 @@
 	$event->end_time 	= ajax_event_calendar::date_convert($event->end, AEC_DB_DATETIME_FORMAT, AEC_WP_TIME_FORMAT);
 
 	$out = '<ul>';
+	$out .= '<span class="duration round5">' . __('Duration', AEC_PLUGIN_NAME) . ': ' . $this->return_duration($event) . '</span>';
 	$out .= '<li><h3>';
 
 	if ($event->start_date != $event->end_date) {
@@ -39,7 +40,6 @@
 		}
 	}
 	$out .= '</h3>';
-	$out .= '<span class="duration round5">' . __('Duration', AEC_PLUGIN_NAME) . ': ' . $this->return_duration($event) . '</span>';
 	$out .= '</li>';
 	$out .= '<li>' . $event->description . '</li>';
 

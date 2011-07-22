@@ -47,13 +47,10 @@
 			$event->access			= 0;
 			$event->rsvp			= 0;
 		}
+		
 		// split database formatted datetime value into display formatted date and time values
-		$datepicker_format	= ($this->parse_date_format(AEC_WP_DATE_FORMAT)) ? 'd-m-Y' : 'm/d/Y';	// php date format
-		$timepicker_format  = ($this->parse_time_format(AEC_WP_TIME_FORMAT)) ? 'H:i' : 'h:i A';		// php time format
-		$event->start_date	= $this->date_convert($event->start, AEC_DB_DATETIME_FORMAT, $datepicker_format);
-		$event->start_time 	= $this->date_convert($event->start, AEC_DB_DATETIME_FORMAT, $timepicker_format);
-		$event->end_date 	= $this->date_convert($event->end, AEC_DB_DATETIME_FORMAT, $datepicker_format);
-		$event->end_time 	= $this->date_convert($event->end, AEC_DB_DATETIME_FORMAT, $timepicker_format);
+		list($event->start_date, $event->start_time) = $this->split_datetime($event->start);
+		list($event->end_date, $event->end_time) = $this->split_datetime($event->end);
 	}
 
 	// populate checkboxes
