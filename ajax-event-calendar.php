@@ -2,7 +2,7 @@
 /*
 Plugin Name: Ajax Event Calendar
 Plugin URI: http://wordpress.org/extend/plugins/ajax-event-calendar/
-Description: A fully localized Calendar that allows authorized users to add, edit (as well as visually move and resize) and delete events in a community calendar.
+Description: A fully localized community calendar that allows authorized users to manage events in custom categories.
 Version: 0.9.8.6
 Author: Eran Miller
 Author URI: http://eranmiller.com

@@ -3,7 +3,7 @@ Contributors: eranmiller
 Tags: multi-user, categories, calendar, event, ajax, filter, upcoming, widget, google
 Requires at least: 3.1
 Tested up to: 3.2.1
-Stable tag: 0.9.8.1
+Stable tag: 0.9.8.6
 
 A fully localized community calendar that allows authorized users to manage events in custom categories.
 

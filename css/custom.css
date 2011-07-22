@@ -30,7 +30,7 @@ ul#aec-filter{float:right;font-size:12px;padding:10px 0;margin:0}
 #aec-modal-container span{color:#777}
 #aec-modal-container span.duration-message{padding-left:5px;font-size:.9em}
 #aec-modal-container li{font-size:12px;margin:0;padding:0;list-style:none}
-#aec-modal span.duration{background:#ddd;color:#333;float:right;font-size:11px;margin-top:10px;padding:0 5px}
+#aec-modal span.duration{background:#ddd;color:#333;float:right;font-size:11px;padding:0 5px}
 #aec-modal hr{margin:10px 0;padding:0}
 #aec-modal li.presented{font-size:11px;padding-top:5px;margin-top:5px;border-top:1px solid #ddd}
 #aec-modal a{text-decoration:none}
