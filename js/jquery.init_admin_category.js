@@ -1,6 +1,6 @@
 /**
  * Handle: init_admin_category
- * Version: 0.9.8.5
+ * Version: 0.9.8.6
  * Deps: $jq
  * Enqueue: true
  */

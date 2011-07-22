@@ -1,6 +1,5 @@
 <?php
 	$options = get_option('aec_options');
-
 	if (isset($_POST['event'])) {
 
 		// edit existing event

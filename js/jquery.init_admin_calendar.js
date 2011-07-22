@@ -1,6 +1,6 @@
 /**
  * Handle: init_admin_calendar
- * Version: 0.9.8.5
+ * Version: 0.9.8.6
  * Deps: $jq
  * Enqueue: true
  */
@@ -45,8 +45,7 @@ $jq().ready(function(){
 			weekends: (custom.show_weekends=='1') ? true : false,
 			events:{
 				url: ajaxurl,
-				data:{ action: 'get_events',
-					   'edit': custom.editable },
+				data:{ action: 'get_events' },
 				type: 'POST'
 			},
 			header:{
@@ -63,14 +62,14 @@ $jq().ready(function(){
 			},
 			eventClick: function(e, js, view){
 				eventtime = (e.end == null) ? e.start : e.end;
-				if (custom.limit && (eventtime < now && custom.admin == false)){
+				if (custom.limit == true && custom.admin == false && eventtime < now){
 					$jq.jGrowl(custom.error_past_edit, { header: custom.whoops });
 					return;
 				}
 				eventDialog(e, custom.edit_event);
 			},
 			select: function(start, end, allDay, js, view){
-				if (custom.limit){
+				if (custom.limit == true){					
 					if (start < today || (start < now && view.name == 'agendaWeek')){
 						$jq.jGrowl(custom.error_past_create, { header: custom.whoops });
 						return false;

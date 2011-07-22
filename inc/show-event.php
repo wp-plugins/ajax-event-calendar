@@ -41,7 +41,9 @@
 	}
 	$out .= '</h3>';
 	$out .= '</li>';
-	$out .= '<li>' . $event->description . '</li>';
+	
+	// displays lines breaks in the description area as entered in form
+	$out .= '<li>' . nl2br($event->description) . '</li>';
 
 	if (!empty($event->venue) || !empty($event->address) || !empty($event->city) || !empty($event->state) || !empty($event->zip) ) {
 		$out .= '<li><h3>' . __('Location', AEC_PLUGIN_NAME) . '</h3>';

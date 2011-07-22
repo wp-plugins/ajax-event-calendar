@@ -1,17 +1,17 @@
 === Ajax Event Calendar ===
 Contributors: eranmiller
-Tags: multi-user, categories, calendar, event, ajax, filter, upcoming, widget
+Tags: multi-user, categories, calendar, event, ajax, filter, upcoming, widget, google
 Requires at least: 3.1
 Tested up to: 3.2.1
 Stable tag: 0.9.8.1
 
-A fully localized Google/OSX hybrid interface for multiple users to manage events in a community calendar.
+A fully localized community calendar that allows authorized users to manage events in custom categories.
 
 == Description ==
 
 This plugin allows authorized users to add, edit (as well as visually move and resize) and delete events in a community calendar viewable by all blog visitors.  The calendar can be added to a page or a post using the "[calendar]" shortcode.  
 
-Have questions or comments? [Post them in the support forum](http://wordpress.org/tags/ajax-event-calendar?forum_id=10).
+Have questions or comments about the plugin? [Post them in the support forum](http://wordpress.org/tags/ajax-event-calendar?forum_id=10).
 
 If you enjoy this plugin please [rate it and confirm compatibility](http://wordpress.org/extend/plugins/ajax-event-calendar/).
 
@@ -40,19 +40,21 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 * Display a contributors list using the "Calendar Contributors" sidebar widget
 * Display a list of upcoming events using the "Upcoming Events" sidebar widget
 
-= 11 Languages and counting... =
-* Danish
-* Dutch
-* French
-* German
-* Lithuanian
-* Polish
-* Portuguese
-* Russian
-* Spanish
-* Turkish
-* Tamil
-* Please Note: not all translations are complete.
+= Big Thanks to those who have provided the plugin translations (13 and counting!) =
+* Danish (kfe1970) - Tak
+* Dutch (Maikel) - Bedankt
+* French (doc75word) - Merci
+* German (Tobias) - Danke
+* Indonesian (Nanang) - Matur Tampiasih
+* Lithuanian (juliuslt) - Aciu
+* Norwegian (Julius) - Takk
+* Polish (Szymon) - Dziekuje
+* Portuguese (rgranzoti, ricardorodh) - Obrigado
+* Russian (reddylabeu) - Spasiba
+* Spanish (Fernando) - Gracias
+* Tamil (Bage) - Nandri
+* Turkish (Darth crow) - Sag Olun
+* Note: not all translations are up-to-date.
 * Don't see your language or want to help complete a translation?  Send PO translation files to plugins@eranmiller.com
 
 == Installation ==
@@ -75,35 +77,51 @@ Save the file.
 Refresh the browser window.
 Repeat until the Calendar option appears in the admin menu.
 
+
 = I upgraded the plugin to version 0.9.6 and the front-end calendar dissappeared =
 As of version 0.9.6, to accommodate the widest range of display options, the front-end calendar display was altered and is now triggered by the inclusion of the "[calendar]" shortcode in either a page or a post.  See the [installation tab](http://wordpress.org/extend/plugins/ajax-event-calendar/installation/) for details.
+
 
 = I upgraded the plugin and the calendar no longer appears =
 Go to the Calendar Options page in the Settings menu and if you don't have access to the page or none of the checkboxes are selected, select **Reset Settings** and click **Save Settings**.  If the calendar still does not appear, please post the issue in the [Support Forum](http://wordpress.org/tags/ajax-event-calendar?forum_id=10 "forum") be sure to include your URL in the description.
 
+
 = How do I manage (add, edit, delete) events? = 
 As with Google Calendar: to add an event, in the administrative calendar page click on a date (or range of dates) in the month view, or click on a half-hour (or range of hours) timeslot in the week view.  Only users assigned the aec_add_events capability can edit and delete events they create.  Users assigned the aec_manage_events capability can edit and delete all events.
+
 
 = How do I manage (add, edit, delete) categories? = 
 To add a category, simply enter the desired category name in the input field, select a background color via the colorpicker or enter the hex value in the field provided, then click Add.  Only users assigned the aec_manage_calendar capability can manage categories.
 
+
 = How does the calendar filter work? =
 The filter appears on the front-end Calendar when more than one event category has been created.
+
 
 = What happens when the plugin is deleted? =
 The event and category databases, custom roles, plugin capabilities, plugin options and widget settings are **permanently removed**.
 
+
 = What happens to user events when they are deleted? =
 All events associated with a deleted user are **permanently deleted**.
+
 
 = What happens to events associated with a deleted category? =
 All events associated with a deleted category are re-assigned to the primary category type.
 
-= What capabilities does this plugin include and how can I assign them to a role? =
-The plugin comes with a custom role called Calendar Contributor (which allows assigned users to add, edit and delete their own calendar events). For more options install the [Capability Manager](http://wordpress.org/extend/plugins/capsman/) plugin and the following plugin capabilities to roles as desired:
+
+= What roles/capabilities does this plugin include? =
+The plugin comes with a custom role called Calendar Contributor (which allows assigned users to add, edit and delete their own calendar events). 
+
 **aec_add_events**: allows a user to add, edit and delete their own calendar events
+
 **aec_manage_events**: allows a user to add, edit and delete all calendar events
+
 **aec_manage_calendar**: allows a user to modify calendar settings, control which event fields to display and require, modify categories, and view the activity report
+
+
+= I am an administrator and want to grant calendar rights to a user without giving them access to all administrative menus =
+For more options install the [Members](http://wordpress.org/extend/plugins/members/) plugin and assign the capabilities listed above as desired to existing, or newly created roles.
 
 == Screenshots ==
 
@@ -128,17 +146,25 @@ The plugin comes with a custom role called Calendar Contributor (which allows as
 1. SEO Image Galleries - the SEO javascript implementation causes this plugin's javascript to cease functioning.
 
 **Hat Tip to these fine plugins which were instrumental in the creation of this plugin:**
-* Google Calendar interface experience (FullCalendar)
-* Growl feedback (jGrowl)
-* OSX modal forms (simpleModal)
-* Category color selection (miniColors)
+1. Google Calendar interface experience (FullCalendar)
+1. Growl feedback (jGrowl)
+1. OSX modal forms (simpleModal)
+1. Category color selection (miniColors)
 
 == Changelog ==
-= 0.9.8.51 =
+
+= 0.9.8.6 =
+* added line break detection so the description field displays as it is entered
+* limit creation of expired events fix
+* added norwegian localization
+* added indonesian localization
+* updated tamil localization
+
+= 0.9.8.51 beta =
 * beta release
 * fixed date/time field processing via event add/update form
 * fixed duration style
-* added tamil localization (Bage) - nandri!
+* added tamil localization
 
 = 0.9.8.5 =
 * calendar weekday (tue) short name localization fix
@@ -155,31 +181,32 @@ The plugin comes with a custom role called Calendar Contributor (which allows as
 * shortcode respectful of position within post text fix
 * updated uninstall script with new capabilities and roles
 * event detail form description validation fix
-* added russian localization (reddylabeu) - spasiba!
-* added danish localization (kfe1970) - tak!
-* added polish localization (szymon) - dziekuje!
+* added russian localization
+* added danish localization
+* added polish localization
 
 = 0.9.8.1 =
 * replaced php 5.3.x dependent DateTime class with a modified strtotime to accommodate d/m/Y format
 * revised admin menu wording
+* added german localization
 
 = 0.9.8 =
-* comprehensive refactoring of ajax elements (updated to jquery 1.6.1 for more secure ajax transactions)
+* comprehensive refactoring of ajax elements
 * localized all javascript
 * fixed google map link generator and added toggle display control
 * added formatting, styling and linked event details to upcoming events widget 
 * hooked calendar start of week into wordpress blog setting
 * hooked calendar date format into wordpress blog setting
 * hooked calendar time format into wordpress blog setting
-* added spanish localization (fernando) - gracias!
-* added turkish localization (darth crow) - sag olun!
-* added lithuanian localization (juliuslt) - aciu!
-* updated portuguese localization (ricardorodh) - obrigado!
-* added dutch localization (Maikel) - bedankt!
+* added spanish localization
+* added turkish localization
+* added lithuanian localization
+* updated portuguese localization
+* added dutch localization
 
 = 0.9.7.1 =
 * event display fix
-* updated french localization (doc75word)
+* updated french localization
 
 = 0.9.7 =
 * fixed localization bugs
@@ -194,10 +221,10 @@ The plugin comes with a custom role called Calendar Contributor (which allows as
 * added redirect to event administration page from front-end calendar page login link
 * changed front-end calendar implementation from custom template to shortcode, to accommodate wider range of themes
 * auto-generated google maps link, based on event address fields
-* added french localization (doc75word) - merci!
+* added french localization
 
 = 0.9.1 =
-* added portuguese localization (rgranzoti) - obrigado!
+* added portuguese localization
 * added more localization
 * fixed default option initialization
 * further improved event detail page ui
@@ -205,8 +232,8 @@ The plugin comes with a custom role called Calendar Contributor (which allows as
 = 0.9 =
 * improved event detail page ui
 * refactored event detail page (to address instances of event detail not loading)
-* added event detail form field options - plugin options page now located under "settings" menu
-* added multi-language support (open call for translations)
+* added event detail form field options - plugin options page now located in "settings" menu
+* added multi-language support
 
 = 0.8 =
 * fixed css conflicts with themes
@@ -281,7 +308,10 @@ The plugin comes with a custom role called Calendar Contributor (which allows as
 * getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
-= 0.9.8.51 =
+= 0.9.8.6 =
+* fixed creation of past events, localization, style modifications
+
+= 0.9.8.51 beta =
 * major fix to add/update date fields, validation and duration style
 
 = 0.9.8.5 =
@@ -306,10 +336,10 @@ The plugin comes with a custom role called Calendar Contributor (which allows as
 * improved and fixed localization
 
 = 0.9.5 =
-* added upcoming events widget, wider theme support, french
+* added upcoming events widget, wider theme support
 
 = 0.9.1 =
-* more localization, fixed default option initialization, ui improvements, portuguese
+* more localization, fixed default option initialization, ui improvements
 
 = 0.9 =
 * added form field options, foundation for localization, ui improvements
