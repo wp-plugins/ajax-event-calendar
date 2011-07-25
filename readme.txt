@@ -23,7 +23,7 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 * Users assigned the Calendar Contributor role can edit and delete events they create
 * Auto-generated Google Maps link, based on event address fields
 * Date and time formatting, via integrated blog settings
-* Multi-language Support (available in 10 languages other than English)
+* Multi-language Support
 
 = Administator Options =
 
@@ -159,6 +159,7 @@ For more options install the [Members](http://wordpress.org/extend/plugins/membe
 * limit creation of expired events fix
 * added norwegian localization
 * added indonesian localization
+* added italian localization
 * updated tamil localization
 
 = 0.9.8.51 beta =
