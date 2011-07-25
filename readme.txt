@@ -40,11 +40,12 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 * Display a contributors list using the "Calendar Contributors" sidebar widget
 * Display a list of upcoming events using the "Upcoming Events" sidebar widget
 
-= Big Thanks to those who have provided plugin translations (13 and counting!) =
+= A Big Thanks to those who have provided translations (14 and counting!) =
 * Danish (kfe1970) - Tak
 * Dutch (Maikel) - Bedankt
 * French (doc75word) - Merci
 * German (Tobias) - Danke
+* Italian (Ernesto) - Grazie
 * Indonesian (Nanang) - Matur Tampiasih
 * Lithuanian (juliuslt) - Aciu
 * Norwegian (Julius) - Takk
