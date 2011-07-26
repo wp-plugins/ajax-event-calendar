@@ -22,8 +22,8 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 * Upcoming events list, that displays details of an event when clicked (sidebar widget)
 * Users assigned the Calendar Contributor role can edit and delete events they create
 * Auto-generated Google Maps link, based on event address fields
-* Date and time formatting, via integrated blog settings
-* Multi-language Support
+* Date and time formatting via integrated blog settings
+* Multi-language Support (14 and counting!)
 
 = Administator Options =
 
@@ -40,7 +40,7 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 * Display a contributors list using the "Calendar Contributors" sidebar widget
 * Display a list of upcoming events using the "Upcoming Events" sidebar widget
 
-= A Big Thanks to those who have provided translations (14 and counting!) =
+= A Big Thanks to those who have provided translations =
 * Danish (kfe1970) - Tak
 * Dutch (Maikel) - Bedankt
 * French (doc75word) - Merci
