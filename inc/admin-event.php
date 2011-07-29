@@ -202,7 +202,7 @@
         </li>
 		<?php
 		if ($event->id) {
-			$is_admin = (current_user_can(AEC_DOMAIN . 'manage_calendar') == true) ? 1 : 0;
+			$is_admin = (current_user_can('aec_manage_calendar') == true) ? 1 : 0;
 			if ($is_admin) {
 				$first_name 	= get_user_meta($event->user_id, 'first_name', true);
 				$last_name		= get_user_meta($event->user_id, 'last_name', true);

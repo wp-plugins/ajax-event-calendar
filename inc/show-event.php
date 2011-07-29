@@ -21,7 +21,7 @@
 		// multiple day event, not spanning all day
 		} else {
 			$out .= $event->start_date . ' ' . $event->start_time;
-			$out .= '<br>' . $event->end_date . ' ' . $event->end_time;
+			$out .= ' - ' . $event->end_date . ' ' . $event->end_time;
 		}
 		
 	} else {
@@ -35,7 +35,7 @@
 		// one day event, spanning hours
 		} else {
 			$out .= $event->start_date;
-			$out .= '<br>' . $event->start_time . ' - ' . $event->end_time;
+			$out .= ' - ' . $event->start_time . ' - ' . $event->end_time;
 		}
 	}
 	$out .= '<span class="duration round5">' . __('Duration', AEC_PLUGIN_NAME) . ': ' . $this->return_duration($event) . '</span>';

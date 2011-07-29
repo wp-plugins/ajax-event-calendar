@@ -1,42 +1,36 @@
 <?php
 /**
- * Contributor List Widget Class
+ * Upcoming Event Widget Class
  */
 
 class aec_upcoming_events extends WP_Widget{
 
 	function aec_upcoming_events(){
-		$widget_ops = array('description' => __('Displays events upcoming in the following weeks.', AEC_PLUGIN_NAME));
-		parent::WP_Widget(false, __('Upcoming Events', AEC_PLUGIN_NAME), $widget_ops);
+		$widget_ops = array('description' => __('Displays upcoming events with optional filters.', AEC_PLUGIN_NAME));
+		parent::WP_Widget(false, __('AEC Upcoming Events', AEC_PLUGIN_NAME), $widget_ops);
 	}
 	
-	function query_events_by_duration_and_category($duration, $category_id){
+	function query_events_by_category($category_id, $eventlimit){
 		global $wpdb;
-		$week = 604800;
-		
-		// check if blog timezone is not set
-		// if ($tz = get_option('timezone_string')) {
-		//	date_default_timezone_set($tz);		// localize date using blog timezone
-		// }
-
 		$start = date('Y-m-d');
-		$end = date('Y-m-d', strtotime($start) + ($duration * $week));
-		$andcategory = ($category_id=="all") ? '' : ' AND category_id = ' . $category_id;		
-		$results = $wpdb->get_results('SELECT
-										id,
-										title,
-										start,
-										end,
-										allday as allDay,
-										category_id
-										FROM ' . $wpdb->prefix . AEC_EVENT_TABLE . '
-										WHERE ((start >= "' . $start . '"
-										AND start < "' . $end . '")
-										OR (end >= "' . $start . '"
-										AND end < "' . $end . '"))' .
-										$andcategory .
-										' ORDER BY start;'
-									);
+		$andcategory = ($category_id) ? ' AND category_id = ' . $category_id : '';
+
+		$results = $wpdb->get_results($wpdb->prepare('SELECT
+													id,
+													title,
+													start,
+													end,
+													allDay,
+													category_id
+													FROM ' . $wpdb->prefix . AEC_EVENT_TABLE . '
+													WHERE (start >= %s
+													OR end >= %s)' .
+													$andcategory . '
+													ORDER BY start 
+													LIMIT %d;',
+													$start,
+													$start,
+													$eventlimit));
 		if ($results !== false) return $results;
 	}
 	
@@ -48,14 +42,15 @@ class aec_upcoming_events extends WP_Widget{
 	
 	function widget($args, $instance){
 		extract($args, EXTR_SKIP);
-		$weeks 		= ($instance['weeks']) ? apply_filters('widget_weeks', $instance['weeks']) : 3;
-		$category 	= ($instance['category']) ? apply_filters('widget_category', $instance['category']) : 'all';
-		$title 		= ($instance['title']) ? apply_filters('widget_title', $instance['title']) : __('Three Week Agenda', AEC_PLUGIN_NAME);
+		$whitelabel	= ($instance['whitelabel']) ? apply_filters('widget_whitelabel', $instance['whitelabel']) : false;
+		$eventlimit	= ($instance['eventlimit']) ? apply_filters('widget_eventlimit', $instance['eventlimit']) : 4;
+		$category 	= ($instance['category']) ? apply_filters('widget_category', $instance['category']) : 0;
+		$title 		= ($instance['title']) ? apply_filters('widget_title', $instance['title']) : __('Upcoming Events', AEC_PLUGIN_NAME);
 		
 		echo $before_widget;
 		echo $before_title . $title . $after_title;
 		$out 		= '<ul class="upcoming_events">';
-		$events 	= $this->query_events_by_duration_and_category($weeks, $category);
+		$events 	= $this->query_events_by_category($category, $eventlimit);
 		if ($events){
 			foreach ($events as $event){
 				// split database formatted datetime value into display formatted date and time values
@@ -65,33 +60,14 @@ class aec_upcoming_events extends WP_Widget{
 				$event->end_time 	= ajax_event_calendar::date_convert($event->end, AEC_DB_DATETIME_FORMAT, AEC_WP_TIME_FORMAT);
 				
 				// link to event			
-				$out .= '<li class="fc-event round5 cat' . $event->category_id . '" onClick="$jq.eventDialog({\'id\':' . $event->id . '});">';
-				
-				if ($event->start_date != $event->end_date) {
-					// multiple day event, spanning all day
-					if ($event->allDay) {
-							$out .= $event->start_date;
-							$out .= ' - ' . $event->end_date;
-						
-						// multiple day event, not spanning all day
-						} else {
-							$out .= $event->start_date . ' ' . $event->start_time;
-							$out .= '<br>' . $event->end_date . ' ' . $event->end_time;
-						}
-					
-				} else {
-						
-						// one day event, spanning all day
-						if ($event->allDay) {
-							$out .= $event->start_date;
-						
-						// one day event, spanning hours
-						} else {
-							$out .= $event->start_date;
-							$out .= '<br>' . $event->start_time . ' - ' . $event->end_time;
-						}
-				}
-				$out .= '<br><strong>' . ajax_event_calendar::render_i18n_data($event->title) . '</strong></li>';
+				$class = ($whitelabel) ? '' : ' cat' . $event->category_id;
+				$out .= '<li class="fc-event round5' . $class . '" onClick="jQuery.eventDialog({\'id\':' . $event->id . '});">';
+				$out .= '<strong>' . ajax_event_calendar::render_i18n_data($event->title) . '</strong><br>';
+				$out .= $event->start_date;
+				// multiple day event, not spanning all day
+				if (!$event->allDay)
+					$out .= ' ' . $event->start_time;
+				$out .= '</li>';
 			}
 		}else{
 			$out .= '<li>';
@@ -105,17 +81,19 @@ class aec_upcoming_events extends WP_Widget{
 		
 	function update($new_instance, $old_instance){
 		$instance = $old_instance;
+		$instance['whitelabel'] = (isset($new_instance['whitelabel']) ? 1 : 0);
+		$instance['eventlimit'] = $new_instance['eventlimit'];
 		$instance['title'] = $new_instance['title'];
-		$instance['weeks'] = $new_instance['weeks'];
 		$instance['category'] = $new_instance['category'];
 		return $instance;
 	}
 	
 	/** @see WP_Widget::form */
 	function form($instance){
-		$instance = wp_parse_args((array) $instance, array( 'title' => __('Three Week Agenda', AEC_PLUGIN_NAME), 'weeks' => '3', 'category' => 'all'));
+		$instance = wp_parse_args((array) $instance, array('eventlimit' => 4, 'title' => __('Upcoming Events', AEC_PLUGIN_NAME), 'category' => 0, 'whitelabel' => false));
+		$whitelabel = $instance['whitelabel'];
+		$eventlimit = $instance['eventlimit'];
 		$title = $instance['title'];
-		$weeks = $instance['weeks'];
 		$category = $instance['category'];
 ?>
 	<p>
@@ -123,29 +101,33 @@ class aec_upcoming_events extends WP_Widget{
 		<input id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" class="widefat" value="<?php echo $title; ?>">
 	</p>
 	<p>
-		<label for="<?php echo $this->get_field_id('category'); ?>"><?php _e('Display this Category', AEC_PLUGIN_NAME); ?></label>
+		<label for="<?php echo $this->get_field_id('category'); ?>"><?php _e('Event category displayed', AEC_PLUGIN_NAME); ?></label>
 		<select id="<?php echo $this->get_field_id('category'); ?>" name="<?php echo $this->get_field_name('category'); ?>" class="widefat" style="width:100%;">
 			<?php
-				echo '<option value="all">' . __('All', AEC_PLUGIN_NAME) . '</option>';
+				echo '<option value="0">' . __('All', AEC_PLUGIN_NAME) . '</option>';
 				$categories = $this->query_categories();
 				foreach ($categories as $cat) {
 					$category_selected = ($cat->id == $category) ? ' selected="selected"' : '';
-					echo '<option value="' . $cat->id . '"' . $category_selected . '>' . $cat->category . '</option>';
+					echo '<option value="' . $cat->id . '"' . $category_selected . '>' . ajax_event_calendar::render_i18n_data($cat->category) . '</option>';
 				}
 			?>
 		</select>
 	</p>
 	<p>
-		<label for="<?php echo $this->get_field_id('weeks'); ?>"><?php _e('Number of Weeks from Today', AEC_PLUGIN_NAME); ?></label>
-		<select id="<?php echo $this->get_field_id('weeks'); ?>" name="<?php echo $this->get_field_name('weeks'); ?>" class="widefat" style="width:100%;">
+		<label for="<?php echo $this->get_field_id('eventlimit'); ?>"><?php _e('Maximum events displayed', AEC_PLUGIN_NAME); ?></label>
+		<select id="<?php echo $this->get_field_id('eventlimit'); ?>" name="<?php echo $this->get_field_name('eventlimit'); ?>" class="widefat" style="width:100%;">
 			<?php
-				$limit = range(1, 12);
-				foreach ($limit as $week) {
-					$week_selected = ($week == $weeks) ? ' selected="selected"' : '';
-					echo '<option value="' . $week . '"' . $week_selected . '>' . $week . '</option>';
+				$limitrange = range(2, 12);
+				foreach ($limitrange as $event) {
+					$selected_eventlimit = ($event == $eventlimit) ? ' selected="selected"' : '';
+					echo '<option value="' . $event . '"' . $selected_eventlimit . '>' . $event . '</option>';
 				}
 			?>
 		</select>
+	</p>
+	<p>
+		<input class="checkbox" type="checkbox" <?php checked($whitelabel, true ); ?> id="<?php echo $this->get_field_id('whitelabel'); ?>" name="<?php echo $this->get_field_name('whitelabel'); ?>" />
+		<label for="<?php echo $this->get_field_id('whitelabel'); ?>"><?php _e('Hide category colors', AEC_PLUGIN_NAME); ?></label>
 	</p>
 	<?php
 	}

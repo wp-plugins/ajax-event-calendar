@@ -1,5 +1,6 @@
 === Ajax Event Calendar ===
 Contributors: eranmiller
+Donate link: http://eranmiller.com/plugins/donate/
 Tags: multi-user, categories, calendar, event, ajax, filter, upcoming, widget, google
 Requires at least: 3.1
 Tested up to: 3.2.1
@@ -17,13 +18,14 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 
 =  Features =
 
-* Dynamic category-based near-instant event filtering
-* Dynamically generated calendar contributor list (sidebar widget)
-* Upcoming events list, that displays details of an event when clicked (sidebar widget)
 * Users assigned the Calendar Contributor role can edit and delete events they create
+* Instantly filter events by category
+* Shortcode options enable multiple instances of calendar data filtered by various display options
+* Customizable upcoming events list (sidebar widget), displays event details when clicked 
+* Dynamically generated calendar contributor list (sidebar widget)
 * Auto-generated Google Maps link, based on event address fields
 * Date and time formatting, via integrated blog settings
-* Multi-language Support
+* Multi-language Support (15 translations and counting!)
 
 = Administator Options =
 
@@ -38,19 +40,20 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 * Toggle Add Events link on the front-end Calendar (links to the administrative calendar via login)
 * Toggle the display of weekends on the calendars
 * Display a contributors list using the "Calendar Contributors" sidebar widget
-* Display a list of upcoming events using the "Upcoming Events" sidebar widget
+* Display a filtered list of upcoming events using the "Upcoming Events" sidebar widget
 
-= A Big Thanks to those who have provided translations (14 and counting!) =
+= A Big Thanks to those who have provided translations =
 * Danish (kfe1970) - Tak
 * Dutch (Maikel) - Bedankt
 * French (doc75word) - Merci
 * German (Tobias) - Danke
-* Italian (Ernesto) - Grazie
+* Italian (Ernesto, eros.mazzurco) - Grazie
 * Indonesian (Nanang) - Matur Tampiasih
 * Lithuanian (juliuslt) - Aciu
 * Norwegian (Julius) - Takk
 * Polish (Szymon) - Dziekuje
 * Portuguese (rgranzoti, ricardorodh) - Obrigado
+* Romanian (Razvan) - Multumesc
 * Russian (reddylabeu) - Spasiba
 * Spanish (Fernando) - Gracias
 * Tamil (Bage) - Nandri
@@ -60,12 +63,13 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 
 == Installation ==
 
-1. The easiest method of installation is via the integrated WordPress plugin installer
+1. [WordPress plugin installation](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins)
 1. To create the front-end calendar: create a page or a post with any desired title.
 1. Add [calendar] shortcode to the body of the page
 1. Select any desired publish options
 1. Select any desired template options
 1. Save the page or post
+1. Blog timezone option should be set to a city (the plugin may malfunction if set to a numeric offet) value
 
 == Frequently Asked Questions ==
 
@@ -78,38 +82,26 @@ Save the file.
 Refresh the browser window.
 Repeat until the Calendar option appears in the admin menu.
 
-
-= I upgraded the plugin to version 0.9.6 and the front-end calendar dissappeared =
-As of version 0.9.6, to accommodate the widest range of display options, the front-end calendar display was altered and is now triggered by the inclusion of the "[calendar]" shortcode in either a page or a post.  See the [installation tab](http://wordpress.org/extend/plugins/ajax-event-calendar/installation/) for details.
-
-
 = I upgraded the plugin and the calendar no longer appears =
 Go to the Calendar Options page in the Settings menu and if you don't have access to the page or none of the checkboxes are selected, select **Reset Settings** and click **Save Settings**.  If the calendar still does not appear, please post the issue in the [Support Forum](http://wordpress.org/tags/ajax-event-calendar?forum_id=10 "forum") be sure to include your URL in the description.
-
 
 = How do I manage (add, edit, delete) events? = 
 As with Google Calendar: to add an event, in the administrative calendar page click on a date (or range of dates) in the month view, or click on a half-hour (or range of hours) timeslot in the week view.  Only users assigned the aec_add_events capability can edit and delete events they create.  Users assigned the aec_manage_events capability can edit and delete all events.
 
-
 = How do I manage (add, edit, delete) categories? = 
 To add a category, simply enter the desired category name in the input field, select a background color via the colorpicker or enter the hex value in the field provided, then click Add.  Only users assigned the aec_manage_calendar capability can manage categories.
-
 
 = How does the calendar filter work? =
 The filter appears on the front-end Calendar when more than one event category has been created.
 
-
 = What happens when the plugin is deleted? =
 The event and category databases, custom roles, plugin capabilities, plugin options and widget settings are **permanently removed**.
-
 
 = What happens to user events when they are deleted? =
 All events associated with a deleted user are **permanently deleted**.
 
-
 = What happens to events associated with a deleted category? =
 All events associated with a deleted category are re-assigned to the primary category type.
-
 
 = What roles/capabilities does this plugin include? =
 The plugin comes with a custom role called Calendar Contributor (which allows assigned users to add, edit and delete their own calendar events). 
@@ -119,7 +111,6 @@ The plugin comes with a custom role called Calendar Contributor (which allows as
 **aec_manage_events**: allows a user to add, edit and delete all calendar events
 
 **aec_manage_calendar**: allows a user to modify calendar settings, control which event fields to display and require, modify categories, and view the activity report
-
 
 = I am an administrator and want to grant calendar rights to a user without giving them access to all administrative menus =
 For more options install the [Members](http://wordpress.org/extend/plugins/members/) plugin and assign the capabilities listed above as desired to existing, or newly created roles.
@@ -144,15 +135,36 @@ For more options install the [Members](http://wordpress.org/extend/plugins/membe
 
 **Known Compatibility Issues**
 1. WP Minify plugin - to ensure proper display of the calendar detail view - disable the HTML minification option.
-1. SEO Image Galleries - the SEO javascript implementation causes this plugin's javascript to cease functioning.
+2. SEO Image Galleries - the SEO javascript implementation causes this plugin's javascript to cease functioning.
 
 **Hat Tip to these fine plugins which were instrumental in the creation of this plugin:**
 1. Google Calendar interface experience (FullCalendar)
-1. Growl feedback (jGrowl)
-1. OSX modal forms (simpleModal)
-1. Category color selection (miniColors)
+2. Growl feedback (jGrowl)
+3. OSX modal forms (simpleModal)
+4. Category color selection (miniColors)
 
 == Changelog ==
+= 0.9.9 =
+* timezone fix (blog timezone must be set to a city value, not a numeric offset value)
+* duration calculation on admin event detail fix
+* added filter label customization option
+* added filter to admin calendar view
+* added optional shortcode parameter to filter display of events by category_id [calendar category=3] (IDs can be found on manage categories page)
+* added optional shortcode parameter to toggle the calendar view between week and month [calendar view=week]
+* added optional shortcode parameter to display a specific calendar month on load [calendar month=10]
+* added optional shortcode parameter to display a specific calendar year on load [calendar year=2012]
+* added optional shortcode parameter to hide calendar week and month buttons [calendar views=false]
+* added optional shortcode parameter to hide calendar month navigation prev and next buttons [calendar nav=false]
+* modified upcoming widget filter from number of weeks to maximum events displayed
+* modified upcoming widget format to display only start date and time
+* modified show event detail so that date/time format displays on a single line
+* added upcoming events option to toggle category colors in widget
+* added aec prefix to widgets for visual grouping
+* added donate link
+* updated help text 
+* added romanian localization
+* updated norwegian localization
+* updated italian localization
 
 = 0.9.8.6 =
 * added line break detection so the description field displays as it is entered

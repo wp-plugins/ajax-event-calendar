@@ -1,16 +1,16 @@
 /**
  * Handle: init_show_calendar
- * Version: 0.9.8.6
- * Deps: $jq
+ * Version: 0.9.9
+ * Deps: jQuery
  * Enqueue: true
  */
 
-$jq = jQuery.noConflict();
-$jq().ready(function(){
-	var isFilter = ($jq('#aec-filter li a').length > 0);
-	var isCalendar = ($jq('#aec-calendar').length > 0);
+jQuery(document).ready(function($) {
+	var minievents 	= [];
+	var isFilter 	= ($('#aec-filter li a').length > 0);
+	var isCalendar	= ($('#aec-calendar').length > 0);
 	if (isCalendar) {
-		var calendar = $jq('#aec-calendar').fullCalendar({
+		var calendar = $('#aec-calendar').fullCalendar({
 			monthNames: [custom.january, custom.february, custom.march, custom.april, custom.may, custom.june, custom.july,
 						 custom.august, custom.september, custom.october, custom.november, custom.december], 
 			monthNamesShort: [custom.jan, custom.feb, custom.mar, custom.apr, custom.may, custom.jun, custom.jul, custom.aug,
@@ -41,7 +41,7 @@ $jq().ready(function(){
 			eventRender: function(e, element) {
 				// check if filter is active
 				if (isFilter) {
-					var filter = $jq('#aec-filter li.active').children();
+					var filter = $('#aec-filter li.active').children();
 					// if filter is not "all", hide all category types other than the selected
 					if (!filter.hasClass('all') && !filter.hasClass(e.className[0])) {
 						element.hide();
@@ -51,20 +51,23 @@ $jq().ready(function(){
 			events:{
 				url: custom.ajaxurl,
 				data:{ action: 'get_events',
-					   'edit' : custom.editable },
+					   'category_id': shortcode.category_id },
 				type: 'POST'
 			},
 			header:{
-				left: 'prev,next today',
+				left: shortcode.nav,
 				center: 'title',
-				right: 'month,agendaWeek'
+				right: shortcode.views
 			},
+			defaultView: shortcode.view,
+			month: shortcode.month,
+			year: shortcode.year,
 			editable: custom.editable,
 			selectable: custom.editable,
 			selectHelper: custom.editable,
 			loading: function(b){
-				if (b) $jq('#aec-loading').modal({ overlayId: 'aec-modal-overlay', close: false });
-				else $jq.modal.close();
+				if (b) $('#aec-loading').modal({ overlayId: 'aec-modal-overlay', close: false });
+				else $.modal.close();
 			},
 			eventClick: function(e){
 				eventDialog(e);
@@ -73,34 +76,53 @@ $jq().ready(function(){
 	};
 	
 	if (isFilter) {
-		filter($jq('#aec-filter .all')); // filter: activate all
-		$jq('#aec-filter li a').click(function() {
+		filter($('#aec-filter .all')); // filter: activate all
+		$('#aec-filter li a').click(function() {
 			filter(this);
 		});
 	};
 
 	function filter(active) {
-		$jq('#aec-filter li').next().fadeTo(0, 0.5).removeClass('active');
-		$jq(active).parent().fadeTo(250, 1).addClass('active');
+		$('#aec-filter li').next().fadeTo(0, 0.5).removeClass('active');
+		$(active).parent().fadeTo(250, 1).addClass('active');
 		calendar.fullCalendar('rerenderEvents');
 	}
 
+	/*
+	function fetchMiniEvents(year, month)
+	{
+		if (undefined == year || undefined == month) {
+			var d 			= new Date(),
+				year		= d.getFullYear(),
+				month		= d.getMonth()+1
+		}
+
+		$.post(custom.ajaxurl, { action:'get_mini_events', 'month': month, 'year': year }, function(data) {
+			$.each(data, function(index, value) {
+				minievents.push(new Date(value));
+			});
+		});
+	}
+	
+	fetchMiniEvents();
+	*/
+		
 	// public method for sidebar widget access
-	$jq.eventDialog = function(e) {
+	$.eventDialog = function(e) {
 		eventDialog(e);
 	}
 	
 	function eventDialog(e){
 		// adjusts modal top for WordPress admin bar
-		var wpadminbar = $jq('#wpadminbar');
+		var wpadminbar = $('#wpadminbar');
 		var wpadminbar_height = (wpadminbar.length > 0) ? wpadminbar.height() : '0';
 
 		// check for modal html structure, if not present add it to the DOM
-		if ($jq('aec-modal').length == 0) {
+		if ($('aec-modal').length == 0) {
 			var modal = '<div id="aec-modal"><div class="aec-title"></div><div class="aec-content"></div></div>';
-			$jq('body').prepend(modal);
+			$('body').prepend(modal);
 		}
-		$jq('#aec-modal').modal({
+		$('#aec-modal').modal({
 			overlayId: 'aec-modal-overlay',
 			containerId: 'aec-modal-container',
 			closeHTML: '<div class="close"><a href="#" class="simplemodal-close" title="' + custom.close_event_form + '">x</a></div>',
@@ -112,13 +134,13 @@ $jq().ready(function(){
 				var modal = this;
 				modal.container = d.container[0];
 				d.overlay.fadeIn(150, function () {
-					$jq('#aec-modal', modal.container).show();
-					var title = $jq('div.aec-title', modal.container),
-						content = $jq('div.aec-content', modal.container),
-						closebtn = $jq('div.close', modal.container);
+					$('#aec-modal', modal.container).show();
+					var title = $('div.aec-title', modal.container),
+						content = $('div.aec-content', modal.container),
+						closebtn = $('div.close', modal.container);
 					title.html(custom.loading_event_form).show();
 					d.container.slideDown(150, function () {
-						$jq.post(custom.ajaxurl, { action:'get_event', 'id': e.id }, function(data) {
+						$.post(custom.ajaxurl, { action:'get_event', 'id': e.id }, function(data) {
 							title.html(data.title);
 							content.html(data.content);
 							var h = content.height() + title.height() + 20;
@@ -138,4 +160,33 @@ $jq().ready(function(){
 			}
 		});
 	}
+/*
+	$("div.aec-minical").datepicker({
+		beforeShowDay: function(date) {
+			var result = [true, '', null];
+			var matching = $.grep(minievents, function(event) {		
+				return event.valueOf() === date.valueOf();
+			});
+			
+			if (matching.length) {
+				result = [true, 'highlight', null];
+			}
+			return result;
+		},
+		onChangeMonthYear: fetchMiniEvents,
+		firstDay: custom.start_of_week,
+		onSelect: function(dateText){				
+			var date,
+				selectedDate = new Date(dateText),
+				i = 0,
+				event = null;
+			calendar.fullCalendar('gotoDate',selectedDate);
+			var view = calendar.fullCalendar('getView');
+			if (view.name == 'agendaWeek')
+				calendar.fullCalendar( 'changeView', 'agendaWeek' );
+			else
+				calendar.fullCalendar( 'changeView', 'month' );
+		}
+	});	
+*/
 });

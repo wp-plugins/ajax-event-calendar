@@ -25,10 +25,14 @@
 		);
 	?>
 	<form method="post" action="options.php">
-		<?php settings_fields(AEC_DOMAIN . 'plugin_options'); ?>
-		<?php $options = get_option(AEC_DOMAIN . 'options'); ?>
+		<?php settings_fields('aec_plugin_options'); ?>
+		<?php $options = get_option('aec_options'); ?>
 		<input type="hidden" name="aec_options[title]" value="2" />
 		<table class="form-table">
+			<tr>
+				<th scope="row"><label for="filter_label"><?php _e('Front-end calendar filter label', AEC_PLUGIN_NAME); ?></label></th>
+				<td><input type='text' name='aec_options[filter_label]' id='filter_label' value="<?php esc_attr_e($options['filter_label']); ?>" /></td>
+			</tr>
 			<tr>
 				<th scope="row"><?php _e('General Options', AEC_PLUGIN_NAME); ?></th>
 				<td>
@@ -46,7 +50,7 @@
 			<tr>
 				<th scope="row"><?php _e('Checked fields are required', AEC_PLUGIN_NAME); ?></th>
 				<td>
-					<?php 
+					<?php
 					foreach ($checkboxes as $checkbox => $value) {
 						$checked = ($options[$checkbox] == 2) ? ' checked="checked" ' : ' ';
 						echo '<input type="hidden" name="aec_options[' . $checkbox . ']" value="1" />';

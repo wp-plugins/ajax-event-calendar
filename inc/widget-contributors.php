@@ -7,7 +7,7 @@ class aec_contributor_list extends WP_Widget{
 
 	function aec_contributor_list(){
 		$widget_ops = array('description' => __('A list of calendar contributors linked to their organization websites', AEC_PLUGIN_NAME));
-		parent::WP_Widget(false, __('Calendar Contributors', AEC_PLUGIN_NAME), $widget_ops);
+		parent::WP_Widget(false, __('AEC Contributors', AEC_PLUGIN_NAME), $widget_ops);
 	}
 	
 	function widget($args, $instance){

@@ -1,3 +1,8 @@
+table.ui-datepicker-calendar tbody td.highlight > a {
+    background: #FFEB80;
+    color: #363636;
+    border: 1px solid #FFDE2E;
+}
 ul.upcoming_events{list-style:none}
 ul.upcoming_events li:first-child{margin-top:3px}
 ul.upcoming_events li {font-size:11px;margin-top:1px;cursor:pointer}
