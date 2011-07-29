@@ -145,6 +145,7 @@ For more options install the [Members](http://wordpress.org/extend/plugins/membe
 
 == Changelog ==
 = 0.9.9 =
+* javascript compatability fix (hopefully the last required)
 * timezone fix (blog timezone must be set to a city value, not a numeric offset value)
 * duration calculation on admin event detail fix
 * added filter label customization option
