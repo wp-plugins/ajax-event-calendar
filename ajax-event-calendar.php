@@ -82,6 +82,7 @@ if (!class_exists('ajax_event_calendar')){
 			add_action('wp_ajax_admin_event', array($this, 'render_admin_modal'));
 			add_action('wp_ajax_add_event', array($this, 'add_event'));
 			add_action('wp_ajax_update_event', array($this, 'update_event'));
+			add_action('wp_ajax_copy_event', array($this, 'copy_event'));
 			add_action('wp_ajax_delete_event', array($this, 'delete_event'));
 			add_action('wp_ajax_move_event', array($this, 'move_event'));
 			add_action('wp_ajax_add_category', array($this, 'add_category'));
@@ -98,8 +99,9 @@ if (!class_exists('ajax_event_calendar')){
 			wp_register_script('growl', AEC_PLUGIN_URL . 'js/jquery.jgrowl.min.js', array('jquery'), '1.2.5', true);
 			wp_register_script('miniColors', AEC_PLUGIN_URL . 'js/jquery.miniColors.min.js', array('jquery'), '0.1', true);
 			wp_register_script('jeditable', AEC_PLUGIN_URL . 'js/jquery.jeditable.min.js', array('jquery'), '1.7.1', true);
-			wp_register_script('init_admin_calendar', AEC_PLUGIN_URL . 'js/jquery.init_admin_calendar.js', array('jquery', 'fullcalendar', 'simplemodal', 'growl', 'timePicker', 'jquery-ui-datepicker'), AEC_PLUGIN_VERSION, true);
-			wp_register_script('init_show_calendar', AEC_PLUGIN_URL . 'js/jquery.init_show_calendar.js', array('jquery', 'simplemodal', 'fullcalendar'), AEC_PLUGIN_VERSION, true);
+			wp_register_script('mousewheel', AEC_PLUGIN_URL . 'js/jquery.mousewheel.min.js', array('jquery'), '3.0.4', true);
+			wp_register_script('init_admin_calendar', AEC_PLUGIN_URL . 'js/jquery.init_admin_calendar.js', array('jquery', 'fullcalendar', 'simplemodal', 'growl', 'mousewheel', 'timePicker', 'jquery-ui-datepicker'), AEC_PLUGIN_VERSION, true);
+			wp_register_script('init_show_calendar', AEC_PLUGIN_URL . 'js/jquery.init_show_calendar.js', array('jquery', 'mousewheel', 'simplemodal', 'fullcalendar'), AEC_PLUGIN_VERSION, true);
 			wp_register_script('init_show_category', AEC_PLUGIN_URL . '/js/jquery.init_admin_category.js', array('jquery', 'jeditable', 'miniColors', 'growl'), AEC_PLUGIN_VERSION, true);
 
 			// register styles
@@ -450,6 +452,7 @@ if (!class_exists('ajax_event_calendar')){
 			// shortcode defaults
 			extract(shortcode_atts(array(
 				'category'		=> false,
+				'filter'		=> 'all',
 				'month'			=> date('m')-1,
 				'year'			=> date('Y'),
 				'view' 			=> 'month',
@@ -465,6 +468,8 @@ if (!class_exists('ajax_event_calendar')){
 			$out  = "<script type='text/javascript'>\n";
 			$out .= "var shortcode = {\n";
 			$out .= "category_id: '{$category}',\n";
+			if ($filter != 'all') $filter = 'cat' . $filter;
+			$out .= "filter: '{$filter}',\n";
 			$out .= "view: '{$view}',\n";
 			$out .= "month: '{$month}',\n";
 			$out .= "year: '{$year}',\n";
@@ -700,6 +705,7 @@ if (!class_exists('ajax_event_calendar')){
 				wp_enqueue_script('jquery');
 				wp_enqueue_script('fullcalendar');
 				wp_enqueue_script('simplemodal');
+				wp_enqueue_script('mousewheel');
 				wp_enqueue_script('jquery-ui-datepicker');	// for mini-calwidget
 				if (AEC_LOCALE != 'en') wp_enqueue_script('datepicker-locale');	// if not in English, load localization
 				wp_enqueue_script('init_show_calendar');
@@ -747,6 +753,7 @@ if (!class_exists('ajax_event_calendar')){
 			wp_enqueue_script('growl');
 			wp_enqueue_script('fullcalendar');
 			wp_enqueue_script('simplemodal');
+			wp_enqueue_script('mousewheel');
 			wp_enqueue_script('init_admin_calendar');
 			wp_localize_script('init_admin_calendar', 'custom', $this->admin_calendar_variables());
 		}
@@ -803,7 +810,7 @@ if (!class_exists('ajax_event_calendar')){
 									);
 			return $this->return_result($result);
 		}
-
+		
 		function query_event($id){
 			global $wpdb;
 			$event = $wpdb->get_row($wpdb->prepare('SELECT * FROM ' . $wpdb->prefix . AEC_EVENT_TABLE . ' WHERE id = %d ORDER BY start;', $id));
@@ -819,24 +826,6 @@ if (!class_exists('ajax_event_calendar')){
 			$andcategory = ($category_id) ? ' AND category_id = ' . $category_id : '';
 			$start = date('Y-m-d', $start);
 			$end = date('Y-m-d', $end);
-			$sql = 'SELECT
-										id,
-										title,
-										start,
-										end,
-										allDay,
-										category_id
-										FROM ' . $wpdb->prefix . AEC_EVENT_TABLE . '
-										WHERE ((start >= "' . $start . '"
-										AND start < "' . $end . '")
-										OR (end >= "' . $start . '"
-										AND end < "' . $end . '")
-										OR (start < "' . $start . '"
-										AND end > "' . $end . '"))' .
-										$anduser .
-										$andcategory .
-										' ORDER BY start;';
-			$this->log($sql);
 			$result = $wpdb->get_results('SELECT
 										id,
 										title,
@@ -882,11 +871,8 @@ if (!class_exists('ajax_event_calendar')){
 			$result = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . AEC_CATEGORY_TABLE . ' ORDER BY id;');
 			return $this->return_result($result);
 		}
-
-		function add_event(){
-			if (!isset($_POST['event'])) return;
-			$input = $this->cleanse_event_input($_POST['event']);
-
+		
+		function insert_event($input){
 			global $wpdb;
 			$result = $wpdb->insert($wpdb->prefix . AEC_EVENT_TABLE,
 									array('user_id' 		=> $input['user_id'],
@@ -933,7 +919,22 @@ if (!class_exists('ajax_event_calendar')){
 				}
 			}
 		}
+		
+		function add_event(){
+			if (!isset($_POST['event'])) return;
+			$input = $this->cleanse_event_input($_POST['event']);
+			$this->insert_event($input);
+		}
 
+		function copy_event(){
+			$clone = $_POST['clone'];
+			$input = $this->convert_object_to_array($this->query_event($clone['id']));
+			$input['start'] = $clone['start'];
+			$input['end'] = $clone['end'];
+			$this->insert_event($input);
+			return;
+		}
+		
 		function add_category(){
 			if (!isset($_POST['category_data'])) return;
 			$input = $this->cleanse_category_input($_POST['category_data']);
@@ -1213,7 +1214,7 @@ if (!class_exists('ajax_event_calendar')){
 			}
 			return $result;
 		}
-
+		
 		// dynamically creates cat_colors.css file
 		function generate_css(){
 			$categories = $this->query_categories();

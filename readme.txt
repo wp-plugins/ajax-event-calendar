@@ -10,42 +10,52 @@ A fully localized community calendar that allows authorized users to manage even
 
 == Description ==
 
-This plugin allows authorized users to add, edit (as well as visually move and resize) and delete events in a community calendar viewable by all blog visitors.  The calendar can be added to a page or a post using the "[calendar]" shortcode.  
+This plugin allows authorized users to add, edit (via drag n' drop and resize) and delete events in a community calendar viewable by all blog visitors.  The calendar can be added to a page or a post using the "[calendar]" shortcode with several filtering parameters.  All shortcode parameters can be applied together with exception of category and filter, which are mutually exclusive fuctionality.
+<br>[calendar category=3]	display events from one category, hides category filter
+<br>[calendar filter=3]		display events from one category, defaults category filter to the selected category id
+<br>category ids can be referenced on the **Categories** page
+<br>[calendar view=week]	toggle the calendar view between week and month
+<br>[calendar month=10]		display events from a specific calendar month on load
+<br>[calendar year=2012]	display events from a specific calendar year on load
+<br>[calendar views=false]	hides calendar week and month buttons
+<br>[calendar nav=false] 	hides calendar prev and next navigation buttons
 
-Have questions or comments about the plugin? [Post them in the support forum](http://wordpress.org/tags/ajax-event-calendar?forum_id=10).
+Have questions or comments about the plugin?
+<br>[Post them in the support forum](http://wordpress.org/tags/ajax-event-calendar?forum_id=10).
 
 If you enjoy this plugin please [rate it and confirm compatibility](http://wordpress.org/extend/plugins/ajax-event-calendar/).
 
 =  Features =
 
-* Users assigned the Calendar Contributor role can edit and delete events they create
+* Users assigned the Calendar Contributor role (have the aec_add_events capability) can edit and delete events they create
+* User roles that have the aec_manage_events capability can edit and delete events created by others
 * Instantly filter events by category
 * Shortcode options enable multiple instances of calendar data filtered by various display options
 * Customizable upcoming events list (sidebar widget), displays event details when clicked 
 * Dynamically generated calendar contributor list (sidebar widget)
 * Auto-generated Google Maps link, based on event address fields
-* Date and time formatting, via integrated blog settings
+* Format Date and Time via integrated blog settings
+* Navigate between months with the calendar navigation buttons or the mouse wheel
 * Multi-language Support (15 translations and counting!)
 
-= Administator Options =
+= User roles that have the aec_manage_calendar capability can... =
 
-* Edit and delete any event
-* Create, edit and delete event categories
-* View an activity report of the current month's event creation
-* View the total number of events created ("event counts") by user, in the blog Users menu
+* Manage Categories Create, edit and delete event categories
+* View an **Activity Report** of the current month's event distribution by category
+* Keep track of the number of **Events** created by each user in the **Users** menu
 * Modify calendar date and time formats via blog settings
 * Modify which event fields to display and require
 * Prevent users from adding events that have transpired
 * Password protect the front-end calendar
-* Toggle Add Events link on the front-end Calendar (links to the administrative calendar via login)
-* Toggle the display of weekends on the calendars
+* Toggle the **Add Events** link on the front-end Calendar (links to the administrative calendar via login)
+* Toggle the display of weekends on the calendar
 * Display a contributors list using the "Calendar Contributors" sidebar widget
 * Display a filtered list of upcoming events using the "Upcoming Events" sidebar widget
 
 = A Big Thanks to those who have provided translations =
 * Danish (kfe1970) - Tak
 * Dutch (Maikel) - Bedankt
-* French (doc75word) - Merci
+* French (doc75word, luc) - Merci
 * German (Tobias) - Danke
 * Italian (Ernesto, eros.mazzurco) - Grazie
 * Indonesian (Nanang) - Matur Tampiasih
@@ -59,19 +69,24 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 * Tamil (Bage) - Nandri
 * Turkish (Darth crow) - Sag Olun
 * Note: not all translations are up-to-date.
-* Don't see your language or want to help complete a translation?  Send PO translation files to plugins@eranmiller.com
+* Don't see your language?  Want to help complete a translation?
+<br>Send PO files to plugins@eranmiller.com
 
 == Installation ==
 
 1. [WordPress plugin installation](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins)
 1. To create the front-end calendar: create a page or a post with any desired title.
-1. Add [calendar] shortcode to the body of the page
-1. Select any desired publish options
-1. Select any desired template options
+1. Add [calendar] shortcode to the body of the page (works with native WordPress page publishing and template options)
 1. Save the page or post
-1. Blog timezone option should be set to a city (the plugin may malfunction if set to a numeric offet) value
+1. Blog time zone option should be set to a city (the plugin may malfunction if set to a numeric offet) value
 
 == Frequently Asked Questions ==
+
+= How do I manage (add, edit, delete) events? = 
+As with Google Calendar: to add an event, in the administrative calendar page click on a date (or range of dates) in the month view, or click on a half-hour (or range of hours) timeslot in the week view.  Only users assigned the aec_add_events capability can edit and delete events they create.  Users assigned the aec_manage_events capability can edit and delete all events.
+
+= How do I manage (add, edit, delete) categories? = 
+To add a category, simply enter the desired category name in the input field, select a background color via the colorpicker or enter the hex value in the field provided, then click Add.  Only users assigned the aec_manage_calendar capability can manage categories.
 
 = I've installed the plugin but the Calendar option does not appear in the Administrative menu (under Comments) =
 The issue is likely caused when more than [two menu items attempt to inhabit the same menu position](http://core.trac.wordpress.org/ticket/15595).  To resolve...
@@ -82,17 +97,17 @@ Save the file.
 Refresh the browser window.
 Repeat until the Calendar option appears in the admin menu.
 
-= I upgraded the plugin and the calendar no longer appears =
-Go to the Calendar Options page in the Settings menu and if you don't have access to the page or none of the checkboxes are selected, select **Reset Settings** and click **Save Settings**.  If the calendar still does not appear, please post the issue in the [Support Forum](http://wordpress.org/tags/ajax-event-calendar?forum_id=10 "forum") be sure to include your URL in the description.
-
-= How do I manage (add, edit, delete) events? = 
-As with Google Calendar: to add an event, in the administrative calendar page click on a date (or range of dates) in the month view, or click on a half-hour (or range of hours) timeslot in the week view.  Only users assigned the aec_add_events capability can edit and delete events they create.  Users assigned the aec_manage_events capability can edit and delete all events.
-
-= How do I manage (add, edit, delete) categories? = 
-To add a category, simply enter the desired category name in the input field, select a background color via the colorpicker or enter the hex value in the field provided, then click Add.  Only users assigned the aec_manage_calendar capability can manage categories.
+= I just upgraded plugins/themes and the front-end calendar no longer appears =
+Check for errors in your browser javascript console.  Other plugins or your theme may be causing a javascript conflict that prevents the calendar from functioning.  Disable any newly updated plugins/themes and isolate the cause of the error by reactivating them one at a time.  Contact the author of the plugin or theme causing the error.
 
 = How does the calendar filter work? =
 The filter appears on the front-end Calendar when more than one event category has been created.
+
+= Calendar categories are not displaying in the calendar and only the "all" link in the event filter has a background color =
+On the categories page and **press** update on any of the existing categories. Return to the front-end calendar and refresh the page to reload the css file. If the category colors still do not appear, the problem is likely caused by insufficient permission.  Internet hosts setup security differently, and your host is  denying the plugin permission to create the cat_colors.css file (which contains the category color styles).  BEFORE activating your plugin, change to CHMOD777 for the plugin **css** folder.  Permissions can be modified via FTP client or your host's administrative panel; ask your host provider for assistance.
+
+= All apostrophes in the event detail form, returns \' when I save the event.  And returns \\' on subsequent saves =
+This will occur when your PHP server is configured to use magic quotes gpc.  The developers of PHP [strongly recommend against using magic quotes](http://php.net/manual/en/security.magicquotes.php), in fact the functionality has been removed from newer versions of PHP.  To correct this behavior, edit your php.ini file and disable that setting (or ask your host provider to do so).  If you are unable (or don't have access) to edit your php.ini file, you can try [this solution](http://wordpress.org/support/topic/plugin-ajax-event-calendar-ajax-event-calendar-dont-like-the-apostrophes?replies=11#post-2260027).
 
 = What happens when the plugin is deleted? =
 The event and category databases, custom roles, plugin capabilities, plugin options and widget settings are **permanently removed**.
@@ -105,12 +120,9 @@ All events associated with a deleted category are re-assigned to the primary cat
 
 = What roles/capabilities does this plugin include? =
 The plugin comes with a custom role called Calendar Contributor (which allows assigned users to add, edit and delete their own calendar events). 
-
-**aec_add_events**: allows a user to add, edit and delete their own calendar events
-
-**aec_manage_events**: allows a user to add, edit and delete all calendar events
-
-**aec_manage_calendar**: allows a user to modify calendar settings, control which event fields to display and require, modify categories, and view the activity report
+<br>**aec_add_events**: allows a user to add, edit and delete their own calendar events
+<br>**aec_manage_events**: allows a user to add, edit and delete all calendar events
+<br>**aec_manage_calendar**: allows a user to modify calendar settings, control which event fields to display and require, modify categories, and view the activity report
 
 = I am an administrator and want to grant calendar rights to a user without giving them access to all administrative menus =
 For more options install the [Members](http://wordpress.org/extend/plugins/members/) plugin and assign the capabilities listed above as desired to existing, or newly created roles.
@@ -134,10 +146,12 @@ For more options install the [Members](http://wordpress.org/extend/plugins/membe
 == Other Notes ==
 
 **Known Compatibility Issues**
+
 1. WP Minify plugin - to ensure proper display of the calendar detail view - disable the HTML minification option.
 2. SEO Image Galleries - the SEO javascript implementation causes this plugin's javascript to cease functioning.
 
 **Hat Tip to these fine plugins which were instrumental in the creation of this plugin:**
+
 1. Google Calendar interface experience (FullCalendar)
 2. Growl feedback (jGrowl)
 3. OSX modal forms (simpleModal)
@@ -145,12 +159,13 @@ For more options install the [Members](http://wordpress.org/extend/plugins/membe
 
 == Changelog ==
 = 0.9.9 =
-* javascript compatability fix (hopefully the last required)
-* timezone fix (blog timezone must be set to a city value, not a numeric offset value)
+* time zone fix (blog time zone must be set to a city value, not a numeric offset value)
 * duration calculation on admin event detail fix
 * added filter label customization option
 * added filter to admin calendar view
+* added option to navigation between calendar months by scrolling the mouse wheel (disabled when calendar shortcode nav=false)
 * added optional shortcode parameter to filter display of events by category_id [calendar category=3] (IDs can be found on manage categories page)
+* added optional shortcode parameter to set default filter category_id option [calendar filter=3]
 * added optional shortcode parameter to toggle the calendar view between week and month [calendar view=week]
 * added optional shortcode parameter to display a specific calendar month on load [calendar month=10]
 * added optional shortcode parameter to display a specific calendar year on load [calendar year=2012]
@@ -166,6 +181,7 @@ For more options install the [Members](http://wordpress.org/extend/plugins/membe
 * added romanian localization
 * updated norwegian localization
 * updated italian localization
+* updated french localization
 
 = 0.9.8.6 =
 * added line break detection so the description field displays as it is entered
@@ -192,7 +208,7 @@ For more options install the [Members](http://wordpress.org/extend/plugins/membe
 * added hex input field and more instructional text to category management
 * fixed front-end calendar for themes that display multiple pages simultaneously
 * revised javascript enqueuing and rendering, fixes theme/plugin conflicts
-* upcoming widget addition of user input title, undefined timezone fix, and ongoing event fix
+* upcoming widget addition of user input title, undefined time zone fix, and ongoing event fix
 * shortcode respectful of position within post text fix
 * updated uninstall script with new capabilities and roles
 * event detail form description validation fix
@@ -358,33 +374,3 @@ For more options install the [Members](http://wordpress.org/extend/plugins/membe
 
 = 0.9 =
 * added form field options, foundation for localization, ui improvements
-
-= 0.8 =
-* css conflicts, sidebar toggle option, password protection support
-
-= 0.7.6 =
-* fixed toggle admin menu option
-
-= 0.7.5 =
-* fixed css, filters and modals
-
-= 0.7.4 =
-* fixed activity report missing file
-
-= 0.7.3 =
-* fixed update issues
-
-= 0.7.2 =
-* fixed truncated plugin description
-
-= 0.7.1 =
-* fixed widget file path
-
-= 0.7 =
-* fixed css collision and added plugin options
-
-= 0.6.1 =
-* updated plugin link
-
-= 0.6 =
-* first official plugin release
