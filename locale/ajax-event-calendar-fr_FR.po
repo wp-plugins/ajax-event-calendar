@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ajax Event Calendar v0.9.8.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-25 09:24-0600\n"
-"PO-Revision-Date: 2011-07-25 09:24-0600\n"
+"POT-Creation-Date: 2011-07-22 16:57-0600\n"
+"PO-Revision-Date: 2011-08-02 20:23-0600\n"
 "Last-Translator: Eran Miller <plugins@eranmiller.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "Aujourd'hui"
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:338
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:69
 msgid "All Day"
-msgstr "Journée complète"
+msgstr "Toute la journée"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:339
 msgid "Months"
@@ -221,11 +221,11 @@ msgstr "sam."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:387
 msgid "Close Event Form"
-msgstr "Fermer le formulaire d'évènement"
+msgstr "Fermer le formulaire d'événement"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:388
 msgid "Loading Event Form..."
-msgstr "Chargement du formulaire d'évènement..."
+msgstr "Chargement du formulaire d'événement..."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:389
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:525
@@ -241,7 +241,7 @@ msgstr "Effacer"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:391
 msgid "Category type"
-msgstr "Type de Catégorie"
+msgstr "Type de catégorie"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:392
 msgid "hide all notifications"
@@ -249,7 +249,7 @@ msgstr "cacher toutes les notifications"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:393
 msgid "has been created."
-msgstr "a été crée."
+msgstr "a été créé."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:394
 msgid "has been modified."
@@ -261,29 +261,29 @@ msgstr "a été effacé(e)."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:396
 msgid "Add Event"
-msgstr "Editer l'évènement"
+msgstr "Éditer l'événement"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:397
 msgid "Edit Event"
-msgstr "Editer l'évènement"
+msgstr "Éditer l'événement"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:398
 msgid "Delete this event?"
-msgstr "Effacer cet évènement ?"
+msgstr "Voulez-vous effacer cet événement ?"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:399
 msgid "Success!"
-msgstr "Succès!"
+msgstr "Réussi !"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:400
 msgid "Whoops!"
-msgstr "Oups!"
+msgstr "Oups !"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:417
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:443
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:211
 msgid "Ajax Event Calendar"
-msgstr ""
+msgstr "Ajax Event Calendar"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:418
 msgid "Plugin help available"
@@ -296,7 +296,7 @@ msgstr "ici"
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:419
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:210
 msgid "Created by"
-msgstr "Crée par"
+msgstr "Créé par"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:422
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:483
@@ -324,7 +324,7 @@ msgstr "Ajouter des événements"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:464
 msgid "Show Types"
-msgstr "Montrer les Types"
+msgstr "Montrer les catégories"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:465
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:129
@@ -333,7 +333,7 @@ msgstr "Tous"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:473
 msgid "Created By"
-msgstr "Crée par"
+msgstr "Créé par"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:480
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:496
@@ -341,11 +341,11 @@ msgstr "Crée par"
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:536
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:557
 msgid "You do not have sufficient permissions to access this page."
-msgstr "Vous n'avez pas les permissions suffisantes pour accéder à cette page."
+msgstr "Vous n'êtes pas autorisé à accéder à cette page."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:508
 msgid "Add a new, or edit/delete an existing calendar category.  To change the category tile color, click the color swatch or edit the field containing the hex value, then click Update.  The foreground color (black or white) is automatically assigned for optimal readbility based on the selected background color."
-msgstr "Ajouter, éditer ou modifier une catégorie de calendrier existante. Pour changer la couleur d'une pastille de catégorie, cliquer sur la couleur ou éditer le champ contenant la valeur hexadécimale, puis cliquer sur Mettre à jour. La couleur de la police (blanc ou noir) est assignée automatiquement pour une lisibilité optimale basée sur la couleur du fond."
+msgstr "Ajouter, éditer ou modifier une catégorie de calendrier existante. Pour changer la couleur d'une pastille de catégorie, cliquer sur la couleur ou éditer le champ contenant la valeur hexadécimale, puis cliquer sur « Mettre à jour ». La couleur de la police (blanc ou noir) est assignée automatiquement pour une lisibilité optimale basée sur la couleur du fond."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:513
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:200
@@ -354,41 +354,41 @@ msgstr "Ajouter"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:519
 msgid "This category is required and can only be edited."
-msgstr "Cette catégorie est requise et ne peut qu'être éditée."
+msgstr "Catégorie par défaut uniquement modifiable."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:540
 msgid "Number of events scheduled for the current month, by type:"
-msgstr "Nombre d'évènements prévus pour le mois courant, par type:"
+msgstr "Nombre d'événements prévus pour ce mois-ci, par catégorie :"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:545
 msgid "Event"
 msgid_plural "Events"
-msgstr[0] "Evènements"
-msgstr[1] "Evènements"
+msgstr[0] "Événement"
+msgstr[1] "Événements"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:549
 msgid "No events this month."
-msgstr "Pas d'évènements ce mois."
+msgstr "Aucun événement ce mois-ci."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:671
 msgid "You cannot create events in the past."
-msgstr "Vous ne pouvez pas créer un évènement dans le passé."
+msgstr "Vous ne pouvez pas créer d'événement dans le passé."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:672
 msgid "You cannot create events more than a year in advance."
-msgstr "Vous ne pouvez pas créer d'évènements plus d'un an à l'avance."
+msgstr "Vous ne pouvez pas créer d'événement plus d'un an à l'avance."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:673
 msgid "You cannot resize expired events."
-msgstr "Vous ne pouvez pas redimensionner les évènements expirés."
+msgstr "Vous ne pouvez pas redimensionner les événements expirés."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:674
 msgid "You cannot move events into the past."
-msgstr "Vous ne pouvez pas déplacer un évènement vers le passé."
+msgstr "Vous ne pouvez pas déplacer un événement vers le passé."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:675
 msgid "You cannot edit expired events."
-msgstr "Vous ne pouvez pas éditer les évènements expirés."
+msgstr "Vous ne pouvez pas éditer les événements expirés."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:676
 msgid "Invalid duration, please adjust your time inputs."
@@ -396,19 +396,19 @@ msgstr "Durée invalide, merci de vérifier les horaires."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:707
 msgid "Category type cannot be a blank value."
-msgstr "Le type de Catégories ne peut être une valeur vide."
+msgstr "Le nom de la catégorie ne peut être une valeur vide."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:708
 msgid "Are you sure you want to delete this category type?"
-msgstr "Êtes-vous sur de vouloir effacer ce type de Catégorie ?"
+msgstr "Êtes-vous sûr de vouloir effacer cette catégorie ?"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:709
 msgid "Several events are associated with this category. Click OK to reassign these events to the default category."
-msgstr "Plusieurs évènements sont associés à cette catégorie. Cliquer sur OK pour réaffecter ces évènements à la catégorie par défaut."
+msgstr "Plusieurs événements sont associés à cette catégorie. Cliquer sur OK pour réassigner ces événements à la catégorie par défaut."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:710
 msgid "Events have been reassigned to the default category."
-msgstr "Les évènements ont été réassignés à la catégorie par défaut."
+msgstr "Les événements ont été réassignés à la catégorie par défaut."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1126
 #, fuzzy, php-format
@@ -440,7 +440,7 @@ msgstr[1] "%d minutes"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1166
 msgid "Events"
-msgstr "Evènements"
+msgstr "Événements"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1179
 msgid "Settings"
@@ -451,7 +451,7 @@ msgid "Sorry, "
 msgstr "Désolé, "
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:68
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:41
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:11
 msgid "Duration"
 msgstr "Durée"
 
@@ -461,7 +461,7 @@ msgstr "De"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:80
 msgid "To"
-msgstr "A"
+msgstr "À"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:94
 msgid "Interval"
@@ -487,7 +487,7 @@ msgstr "Adresse"
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:140
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:13
 msgid "Neighborhood or Street Address"
-msgstr "Quartier ou Adresse"
+msgstr "Quartier ou adresse"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:144
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:14
@@ -497,12 +497,12 @@ msgstr "Ville"
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:148
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:15
 msgid "State"
-msgstr "Etat"
+msgstr "État"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:152
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:16
 msgid "Postal Code"
-msgstr "Code Postal"
+msgstr "Code postal"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:158
 msgid "Website Link"
@@ -529,13 +529,13 @@ msgstr "Téléphone ou adresse mail"
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:23
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:79
 msgid "This event is accessible to people with disabilities."
-msgstr "Cet évènement est accessible pour les personnes handicapées."
+msgstr "Cet événement est accessible pour les personnes handicapées."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:191
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:24
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:80
 msgid "Please register with the contact person for this event."
-msgstr "Merci de vous enregistrer auprès du contact pour cet évènement."
+msgstr "Merci de vous inscrire auprès du contact pour cet événement."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:195
 msgid "Cancel"
@@ -547,15 +547,15 @@ msgstr "Options d'Ajax Event Calendar"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:6
 msgid "Display calendar weekends."
-msgstr "Afficher les week-end dans le calendrier."
+msgstr "Afficher les week-ends dans le calendrier."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:7
 msgid "Display View Map link on event details, if the address fields are populated."
-msgstr "Afficher un lien Visualiser la Carte dans le détail de l'événement, si le champ adresse a été renseigné."
+msgstr "Afficher un lien « Visualiser la carte » dans le détail de l'événement, si le champ « adresse » a été renseigné."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:8
 msgid "Display Add Events link on the front-end calendar."
-msgstr "Afficher le lien pour l'ajout d’événement sur le calendrier du site."
+msgstr "Afficher le lien d'ajout d'événement sur le calendrier à partir du site."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:9
 msgid "Prevent users from adding events that have transpired."
@@ -564,20 +564,20 @@ msgstr "Empêcher les utilisateurs d'ajouter des événements expirés. "
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:17
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:94
 msgid "Event Link"
-msgstr "Lien de l'évènement"
+msgstr "Lien de l'événement"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:19
 msgid "Contact Name"
-msgstr "Nom du Contact"
+msgstr "Nom du contact"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:20
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:71
 msgid "Contact Information"
-msgstr "Information du Contact"
+msgstr "Information du contact"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:33
 msgid "General Options"
-msgstr "Options Générales"
+msgstr "Préférences"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:47
 msgid "Checked fields are required"
@@ -589,15 +589,15 @@ msgstr "Les champs cochés sont affichés"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:75
 msgid "Restore Original Settings"
-msgstr "Restaurer la configuration originale"
+msgstr "Restaurer la configuration d'origine"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:79
 msgid "Resets plugin settings on Save"
-msgstr "Restaurer les préfèrences du plugin à la réactivation"
+msgstr "Restaurer les préférences du plugin après avoir enregistré"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:84
 msgid "Save Changes"
-msgstr "Sauver les modifications"
+msgstr "Enregistrer les modifications"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:49
 msgid "Location"
@@ -613,7 +613,7 @@ msgstr "Présenté par"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:9
 msgid "A list of calendar contributors linked to their organization websites"
-msgstr "Une liste des contributeurs au calendrier avec un lien vers le site web de leur organisation"
+msgstr "Une liste des contributeurs au calendrier avec un lien vers leur site web"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:10
 msgid "Calendar Contributors"
@@ -628,19 +628,19 @@ msgstr[1] "(%d) Contributeurs"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:26
 msgid "No contributors as of yet."
-msgstr "Pas encore de contributeurs."
+msgstr "Aucun contributeur pour le moment."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:59
 msgid "No options available."
-msgstr "Pas d'options disponibles."
+msgstr "Aucune option disponible."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:9
 msgid "Displays events upcoming in the following weeks."
-msgstr "Affiche les évènements à venir dans les prochaines semaines."
+msgstr "Affiche les événements à venir dans les prochaines semaines."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:10
 msgid "Upcoming Events"
-msgstr "Évènements à venir"
+msgstr "Événements à venir"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:53
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:116
@@ -651,8 +651,8 @@ msgstr "Agenda sur trois semaines"
 #, php-format
 msgid "No events listed in the next week"
 msgid_plural "No events listed in the next %d weeks"
-msgstr[0] "Pas d'évènement listé pour la prochaine semaine"
-msgstr[1] "Pas d'évènement listé pour les %d prochaines semaines"
+msgstr[0] "Pas d'événement listé pour la prochaine semaine"
+msgstr[1] "Pas d'événement listé pour les %d prochaines semaines"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:122
 msgid "Widget Title"
@@ -660,7 +660,7 @@ msgstr "Titre du Widget"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:126
 msgid "Display this Category"
-msgstr "Affiche cette Catégorie"
+msgstr "Afficher cette catégorie"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:139
 msgid "Number of Weeks from Today"
@@ -704,8 +704,8 @@ msgstr "Nombre de semaines à partir d'aujourd'hui"
 #~ msgid "(%d) Upcoming Event"
 
 #~ msgid_plural "(%d) Upcoming Events"
-#~ msgstr[0] "(%d) évènement à venir"
-#~ msgstr[1] "(%d) évènements à venir"
+#~ msgstr[0] "(%d) événement à venir"
+#~ msgstr[1] "(%d) événements à venir"
 
 #~ msgid "has been added."
 #~ msgstr "a été ajouté(e)."
@@ -723,7 +723,7 @@ msgstr "Nombre de semaines à partir d'aujourd'hui"
 #~ msgstr "Code postal"
 
 #~ msgid "created by"
-#~ msgstr "Crée par"
+#~ msgstr "Créé par"
 
 #~ msgid "Calendar Options"
 #~ msgstr "Options du calendrier"
