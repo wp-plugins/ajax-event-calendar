@@ -73,10 +73,19 @@ jQuery(document).ready(function($) {
 				eventDialog(e);
 			}
 		});
+
+		// mousewheel navigation
+		if (shortcode.nav) {
+			$('#aec-calendar').mousewheel(function(e, delta) {
+				var dir = (delta > 0) ? 'prev' : 'next';
+				calendar.fullCalendar(dir);
+				return false;
+			});
+		}
 	};
-	
+
 	if (isFilter) {
-		filter($('#aec-filter .all')); // filter: activate all
+		filter($('#aec-filter .' + shortcode.filter));
 		$('#aec-filter li a').click(function() {
 			filter(this);
 		});

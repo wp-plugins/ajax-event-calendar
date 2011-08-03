@@ -1,6 +1,6 @@
 /**
  * Handle: init_admin_calendar
- * Version: 0.9.8.6
+ * Version: 0.9.9
  * Deps: jQuery
  * Enqueue: true
  */
@@ -66,6 +66,7 @@ jQuery(document).ready(function($) {
 			editable: custom.editable,
 			selectable: custom.editable,
 			selectHelper: custom.editable,
+			dragOpacity: 0.4,
 			loading: function(b){
 				if (b) $('#aec-loading').modal({ overlayId: 'aec-modal-overlay', close: false });
 				else $.modal.close();
@@ -108,17 +109,34 @@ jQuery(document).ready(function($) {
 				}
 				moveEvent(e);
 			},
+			eventDragStart: function(e, js, ui, view){
+				if (js.ctrlKey) {
+					$(this).clone(true).insertBefore($(this));
+					
+				}
+			},
 			eventDrop: function(e, dayDelta, minuteDelta, allDay, revertFunc, js, ui, view){
 				if (custom.limit == true && e.start < now){
 					$.jGrowl(custom.error_past_move, { header: custom.whoops });
 					revertFunc();
 					return;
 				}
-				// if (!confirm("Did you mean to move this event?")){revertFunc();}
-				moveEvent(e);
+				if (js.ctrlKey) {
+					$.fn.copyEvent(e, js);
+					//console.log(calendar.fullCalendar("clientEvents"));
+				} else {
+					moveEvent(e);
+				}
 			}
 		});
-
+		
+		// mousewheel navigation
+		$('#aec-calendar').mousewheel(function(e, delta) {
+			var dir = (delta > 0) ? 'prev' : 'next';
+			calendar.fullCalendar(dir);
+			return false;
+		});
+		
 		function roundUp(date){
 			var inc = 30 * 60 * 1000; // 30 minutes
 			return new Date(inc * Math.ceil(date / inc));
@@ -128,6 +146,25 @@ jQuery(document).ready(function($) {
 			return $.fullCalendar.formatDate(date, 'yyyy-MM-dd HH:mm:ss'); // unix datetime
 		}
 
+		$.fn.copyEvent = function(e) {
+			var selectedIndex = parseInt(e._id.replace(/_fc/,'')-1); // I've appended id's to the event DOM objects to reference them
+			var clone = {'id': e.id, 'start': toUnixDate(e.start), 'end': toUnixDate(e.end)};
+			$.post(ajaxurl,{ action: 'copy_event', 'clone': clone }, function(data){
+				if (data){
+					$.jGrowl('<strong>' + e.title + '</strong> ' + custom.copy_has_been_created,{ header: custom.success });
+					var newEvent = $.extend({}, calendar.fullCalendar("clientEvents")[ selectedIndex ] );
+					newEvent.source = null;
+					newEvent._id = "_fc" + parseInt(calendar.fullCalendar("clientEvents").length+1);
+					newEvent.id = data.id;
+					newEvent.start = new Date(e.start);
+					newEvent.allDay = e.allDay;
+					newEvent.title = e.title + " copy";
+					newEvent.className = e.className;
+					calendar.fullCalendar("renderEvent", newEvent);
+				}
+			});
+		}
+		
 		// update dragged/resized event
 		function moveEvent(e){
 			var start	= toUnixDate(e.start),
