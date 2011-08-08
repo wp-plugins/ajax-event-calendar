@@ -69,9 +69,9 @@ class aec_upcoming_events extends WP_Widget{
 					$out .= ' ' . $event->start_time;
 				$out .= '</li>';
 			}
-		}else{
+		} else {
 			$out .= '<li>';
-			$out .= sprintf(_n('No events listed in the next week', 'No events listed in the next %d weeks', $weeks, AEC_PLUGIN_NAME), $weeks);
+			$out .= __('No upcoming events', AEC_PLUGIN_NAME);
 			$out .= '</li>';
 		}
 		$out .= '</ul>';

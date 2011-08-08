@@ -1,7 +1,7 @@
 === Ajax Event Calendar ===
 Contributors: eranmiller
 Donate link: http://eranmiller.com/plugins/donate/
-Tags: multi-user, categories, calendar, event, ajax, filter, upcoming, widget, google
+Tags: multi-user, categories, calendar, event, ajax, filter, upcoming, widget, google, localized, rtl-support
 Requires at least: 3.1
 Tested up to: 3.2.1
 Stable tag: 0.9.8.6
@@ -11,19 +11,24 @@ A fully localized community calendar that allows authorized users to manage even
 == Description ==
 
 This plugin allows authorized users to add, edit (via drag n' drop and resize) and delete events in a community calendar viewable by all blog visitors.  The calendar can be added to a page or a post using the "[calendar]" shortcode with several filtering parameters.  All shortcode parameters can be applied together with exception of category and filter, which are mutually exclusive fuctionality.
-<br>[calendar category=3]	display events from one category, hides category filter
-<br>[calendar filter=3]		display events from one category, defaults category filter to the selected category id
-<br>category ids can be referenced on the **Categories** page
-<br>[calendar view=week]	toggle the calendar view between week and month
-<br>[calendar month=10]		display events from a specific calendar month on load
-<br>[calendar year=2012]	display events from a specific calendar year on load
-<br>[calendar views=false]	hides calendar week and month buttons
-<br>[calendar nav=false] 	hides calendar prev and next navigation buttons
+<br>[calendar categories="1,2,3"]	display events from one or more (comma separated) categories by id*
+<br>[calendar excluded=true]		if true, will display all except the selected category(ies) from the above option
+<br>[calendar filter=3]				defaults the category filter to the entered id*
+<br>[calendar month=10]				on load, display events from a specific calendar month
+<br>[calendar year=2012]			on load, display events from a specific calendar year
+<br>[calendar views=false]			hides calendar week and month buttons
+<br>[calendar nav=false] 			hides calendar prev and next navigation buttons
+<br>[calendar view=week]			if week, displays the week view of the calendar
+<br>[calendar scroll=true]			if true, will enable navigating between calendar months/weeks by scrolling the mouse wheel
+<br>*category ids can be referenced on the **Categories** page
 
 Have questions or comments about the plugin?
 <br>[Post them in the support forum](http://wordpress.org/tags/ajax-event-calendar?forum_id=10).
 
-If you enjoy this plugin please [rate it and confirm compatibility](http://wordpress.org/extend/plugins/ajax-event-calendar/).
+If you use this plugin, please [rate it and confirm compatibility](http://wordpress.org/extend/plugins/ajax-event-calendar/).
+
+If you use enjoy this plugin, consider [making a donation](http://eranmiller.com/plugins/donate/).
+
 
 =  Features =
 
@@ -35,8 +40,8 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 * Dynamically generated calendar contributor list (sidebar widget)
 * Auto-generated Google Maps link, based on event address fields
 * Format Date and Time via integrated blog settings
-* Navigate between months with the calendar navigation buttons or the mouse wheel
-* Multi-language Support (15 translations and counting!)
+* Navigate between months/weeks with the calendar navigation buttons or the mouse wheel
+* Multi-language support, including right-to-left languages (16 translations and counting!)
 
 = User roles that have the aec_manage_calendar capability can... =
 
@@ -44,15 +49,16 @@ If you enjoy this plugin please [rate it and confirm compatibility](http://wordp
 * View an **Activity Report** of the current month's event distribution by category
 * Keep track of the number of **Events** created by each user in the **Users** menu
 * Modify calendar date and time formats via blog settings
-* Modify which event fields to display and require
-* Prevent users from adding events that have transpired
+* Determine which event fields to hide, display or require
+* Prevent users from adding or modifying expired events
 * Password protect the front-end calendar
 * Toggle the **Add Events** link on the front-end Calendar (links to the administrative calendar via login)
 * Toggle the display of weekends on the calendar
 * Display a contributors list using the "Calendar Contributors" sidebar widget
 * Display a filtered list of upcoming events using the "Upcoming Events" sidebar widget
 
-= A Big Thanks to those who have provided translations =
+= A BIG Thank You to those who have provided translations =
+* Arabic (Sultan G) - Shukran 
 * Danish (kfe1970) - Tak
 * Dutch (Maikel) - Bedankt
 * French (doc75word, luc) - Merci
@@ -159,25 +165,34 @@ For more options install the [Members](http://wordpress.org/extend/plugins/membe
 
 == Changelog ==
 = 0.9.9 =
+* added options to hide any non-essential input field in the event form
 * time zone fix (blog time zone must be set to a city value, not a numeric offset value)
 * duration calculation on admin event detail fix
+* added default cat_colors.css file to distribution, to address reported file authorization failures
 * added filter label customization option
 * added filter to admin calendar view
-* added option to navigation between calendar months by scrolling the mouse wheel (disabled when calendar shortcode nav=false)
-* added optional shortcode parameter to filter display of events by category_id [calendar category=3] (IDs can be found on manage categories page)
-* added optional shortcode parameter to set default filter category_id option [calendar filter=3]
-* added optional shortcode parameter to toggle the calendar view between week and month [calendar view=week]
-* added optional shortcode parameter to display a specific calendar month on load [calendar month=10]
-* added optional shortcode parameter to display a specific calendar year on load [calendar year=2012]
-* added optional shortcode parameter to hide calendar week and month buttons [calendar views=false]
-* added optional shortcode parameter to hide calendar month navigation prev and next buttons [calendar nav=false]
+* added support for right-to-left language localization
+* added display of uneditable events in administrative mode (nod to Treyer Lukas)
+* added option to navigation between calendar months by scrolling the mouse wheel
+* added optional shortcode parameter to only display events from one or more categories [calendar categories="1,2,3"] default: displays all categories 
+* added optional shortcode parameter to exclude display of categories in the categories option[calendar excluded=true] default: false
+* added optional shortcode parameter to set default filter category_id option [calendar filter=3] default: All
+* added optional shortcode parameter to toggle the calendar view between week and month [calendar view=week] default: month
+* added optional shortcode parameter to display a specific calendar month on load [calendar month=10] default: current month
+* added optional shortcode parameter to display a specific calendar year on load [calendar year=2012] default: current year
+* added optional shortcode parameter to hide calendar week and month buttons [calendar views=false] default: true
+* added optional shortcode parameter to hide calendar month navigation prev and next buttons [calendar nav=false] default: true
+* added optional shortcode parameter to enable calendar month navigation via the mouse wheel [calendar scroll=true] default: false
+* replaced loading modal with growl to reduce impact of visual transition
 * modified upcoming widget filter from number of weeks to maximum events displayed
 * modified upcoming widget format to display only start date and time
 * modified show event detail so that date/time format displays on a single line
 * added upcoming events option to toggle category colors in widget
 * added aec prefix to widgets for visual grouping
+* added id field (to support new shortcode options) and modified layout of category management for improved readability
 * added donate link
-* updated help text 
+* updated help text
+* added arabic localization
 * added romanian localization
 * updated norwegian localization
 * updated italian localization
@@ -339,6 +354,9 @@ For more options install the [Members](http://wordpress.org/extend/plugins/membe
 * getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
+= 0.9.9 =
+* shortcode options, code optimizations, fixes to javascript conflicts
+
 = 0.9.8.6 =
 * fixed creation of past events, localization, style modifications
 

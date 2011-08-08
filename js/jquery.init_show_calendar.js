@@ -6,22 +6,27 @@
  */
 
 jQuery(document).ready(function($) {
-	var minievents 	= [];
+	$.jGrowl.defaults.closerTemplate = '<div>' + custom.hide_all_notifications + '</div>';
+	$.jGrowl.defaults.position = (custom.is_rtl == '1') ? 'bottom-left' : 'bottom-right';
 	var isFilter 	= ($('#aec-filter li a').length > 0);
 	var isCalendar	= ($('#aec-calendar').length > 0);
 	if (isCalendar) {
 		var calendar = $('#aec-calendar').fullCalendar({
+			isRTL: custom.is_rtl,
 			monthNames: [custom.january, custom.february, custom.march, custom.april, custom.may, custom.june, custom.july,
 						 custom.august, custom.september, custom.october, custom.november, custom.december], 
 			monthNamesShort: [custom.jan, custom.feb, custom.mar, custom.apr, custom.may, custom.jun, custom.jul, custom.aug,
 							custom.sep, custom.oct, custom.nov, custom.dec],
 			dayNames: [custom.sunday, custom.monday, custom.tuesday, custom.wednesday, custom.thursday, custom.friday, custom.saturday],
 			dayNamesShort: [custom.sun, custom.mon, custom.tue, custom.wed, custom.thu, custom.fri, custom.sat],
+			buttonIcons: false,
 			buttonText:{
 				today: custom.today,
 				month: custom.month,
 				week: custom.week,
-				day: custom.day
+				day: custom.day,
+				prev: '&nbsp;&#9668;&nbsp;',  // left triangle
+				next: '&nbsp;&#9658;&nbsp;',  // right triangle
 			},
 			// aspectRatio: 2,
 			allDayText: custom.all_day,
@@ -37,7 +42,7 @@ jQuery(document).ready(function($) {
 			firstDay: custom.start_of_week,
 			firstHour: 8,
 			weekMode: 'liquid',
-			weekends: (custom.show_weekends=='1')?true:false,
+			weekends: (custom.show_weekends == '1') ? true : false,
 			eventRender: function(e, element) {
 				// check if filter is active
 				if (isFilter) {
@@ -51,7 +56,10 @@ jQuery(document).ready(function($) {
 			events:{
 				url: custom.ajaxurl,
 				data:{ action: 'get_events',
-					   'category_id': shortcode.category_id },
+					   'readonly': true,
+					   'categories': shortcode.categories,
+					   'excluded': (shortcode.excluded) ? 1 : 0,
+				},
 				type: 'POST'
 			},
 			header:{
@@ -66,8 +74,8 @@ jQuery(document).ready(function($) {
 			selectable: custom.editable,
 			selectHelper: custom.editable,
 			loading: function(b){
-				if (b) $('#aec-loading').modal({ overlayId: 'aec-modal-overlay', close: false });
-				else $.modal.close();
+				if (b) $.jGrowl(custom.loading, {sticky:true});
+				else $('.jGrowl-close').trigger('click');
 			},
 			eventClick: function(e){
 				eventDialog(e);
@@ -75,7 +83,7 @@ jQuery(document).ready(function($) {
 		});
 
 		// mousewheel navigation
-		if (shortcode.nav) {
+		if (shortcode.scroll) {
 			$('#aec-calendar').mousewheel(function(e, delta) {
 				var dir = (delta > 0) ? 'prev' : 'next';
 				calendar.fullCalendar(dir);
@@ -96,25 +104,6 @@ jQuery(document).ready(function($) {
 		$(active).parent().fadeTo(250, 1).addClass('active');
 		calendar.fullCalendar('rerenderEvents');
 	}
-
-	/*
-	function fetchMiniEvents(year, month)
-	{
-		if (undefined == year || undefined == month) {
-			var d 			= new Date(),
-				year		= d.getFullYear(),
-				month		= d.getMonth()+1
-		}
-
-		$.post(custom.ajaxurl, { action:'get_mini_events', 'month': month, 'year': year }, function(data) {
-			$.each(data, function(index, value) {
-				minievents.push(new Date(value));
-			});
-		});
-	}
-	
-	fetchMiniEvents();
-	*/
 		
 	// public method for sidebar widget access
 	$.eventDialog = function(e) {
@@ -127,7 +116,7 @@ jQuery(document).ready(function($) {
 		var wpadminbar_height = (wpadminbar.length > 0) ? wpadminbar.height() : '0';
 
 		// check for modal html structure, if not present add it to the DOM
-		if ($('aec-modal').length == 0) {
+		if ($('#aec-modal').length == 0) {
 			var modal = '<div id="aec-modal"><div class="aec-title"></div><div class="aec-content"></div></div>';
 			$('body').prepend(modal);
 		}
@@ -156,6 +145,7 @@ jQuery(document).ready(function($) {
 							d.container.animate({ height: h }, 150, function () {
 								closebtn.show();
 								content.show();
+								$('.duration').html(calcDuration(data.start, data.end, data.allDay));
 							});
 						}, 'json');
 					});
@@ -163,39 +153,49 @@ jQuery(document).ready(function($) {
 			},
 			onClose: function (d){
 				var modal = this;
-				d.container.animate({ top:'-' + (d.container.height() + 20) }, 250, function (){
+				d.container.animate({ top:'-' + (d.container.height() + 20) }, 250, function(){
+					$('.time-picker').remove();
 					modal.close();
 				});
 			}
 		});
 	}
-/*
-	$("div.aec-minical").datepicker({
-		beforeShowDay: function(date) {
-			var result = [true, '', null];
-			var matching = $.grep(minievents, function(event) {		
-				return event.valueOf() === date.valueOf();
-			});
-			
-			if (matching.length) {
-				result = [true, 'highlight', null];
-			}
-			return result;
-		},
-		onChangeMonthYear: fetchMiniEvents,
-		firstDay: custom.start_of_week,
-		onSelect: function(dateText){				
-			var date,
-				selectedDate = new Date(dateText),
-				i = 0,
-				event = null;
-			calendar.fullCalendar('gotoDate',selectedDate);
-			var view = calendar.fullCalendar('getView');
-			if (view.name == 'agendaWeek')
-				calendar.fullCalendar( 'changeView', 'agendaWeek' );
-			else
-				calendar.fullCalendar( 'changeView', 'month' );
+
+	function calcDuration(from, to, allDay){
+		var mills = new Date(to).getTime() - new Date(from).getTime();
+		var diff = new Object();
+		diff.weeks = Math.floor(mills/1000/60/60/24/7);
+		mills -= diff.weeks*1000*60*60*24*7;
+		diff.days = Math.floor(mills/1000/60/60/24);
+		mills -= diff.days*1000*60*60*24;
+		diff.hours = Math.floor(mills/1000/60/60);
+		mills -= diff.hours*1000*60*60;
+		diff.minutes = Math.floor(mills/1000/60);
+		mills -= diff.minutes*1000*60;
+
+		// format output
+		var out = new Array();
+		if (allDay == true) diff.days += 1;
+		_jn(out, diff.weeks, custom.week, custom.weeks);
+		_jn(out, diff.days, custom.day, custom.days);
+		if (allDay == false) {
+			_jn(out, diff.hours, custom.hour, custom.hours);
+			_jn(out, diff.minutes, custom.minute, custom.minutes);
 		}
-	});	
-*/
+		if (custom.is_rtl) out.reverse();
+		return out.join(', ');
+	}
+	
+	function _jn(arr, quantity, singular, plural){
+		if (quantity > 0) {
+			var out = new Array();
+			out.push(quantity);
+			out.push((quantity != 1) ? plural : singular);
+			if (custom.is_rtl) out.reverse();
+			element = out.join(' ');
+			arr.push(element);
+		}
+		return
+	}
+
 });

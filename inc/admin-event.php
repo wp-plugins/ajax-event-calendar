@@ -47,6 +47,16 @@
 			$event->rsvp			= 0;
 		}
 		
+		/*
+		intervals
+		- yearly
+			every # year(s)
+		- weekly
+			every # week on X day of the week
+		- daily
+			every # day(s)
+		*/
+		
 		// split database formatted datetime value into display formatted date and time values
 		list($event->start_date, $event->start_time) = $this->split_datetime($event->start);
 		list($event->end_date, $event->end_time) = $this->split_datetime($event->end);
@@ -57,16 +67,31 @@
 	$accessible_checked 			= ($event->access) ? 'checked="checked" ' : '';
 	$rsvp_checked 					= ($event->rsvp) ? 'checked="checked" ' : '';
 ?>
-	<form method="post" action="" id="event_form" class="aec_form">
+<!doctype html> 
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Event Form</title>
+</head>
+<body>
+	<form method="post" action="<?php echo __FILE__; ?>" id="event_form" class="aec_form">
 	<input type="hidden" name="id" id="id" value="<?php echo $event->id; ?>">
     <input type="hidden" name="user_id" id="user_id" value="<?php echo $event->user_id; ?>">
 	<input type="hidden" name="allDay" value="0">
+	<input type="hidden" name="venue" value="">
+	<input type="hidden" name="address" value="">
+	<input type="hidden" name="city" value="">
+	<input type="hidden" name="state" value="">
+	<input type="hidden" name="zip" value="">
+	<input type="hidden" name="link" value="">
+	<input type="hidden" name="description" value="">
+	<input type="hidden" name="contact" value="">
+	<input type="hidden" name="contact_info" value="">
 	<input type="hidden" name="access" value="0">
 	<input type="hidden" name="rsvp" value="0">
     <ul>
 		<li>
-			<label><?php _e('Duration', AEC_PLUGIN_NAME); ?><br>
-					<input class="auto" type="checkbox" name="allDay" id="allDay" value="1" <?php echo $allday_checked ?>><label class="box"><?php _e('All Day', AEC_PLUGIN_NAME); ?></label></label>
+			<label><?php _e('Duration', AEC_PLUGIN_NAME); ?></label>
 			<ul class="hvv">
 				<li>
 					<label for="start_date"><?php _e('From', AEC_PLUGIN_NAME); ?></label>
@@ -84,6 +109,11 @@
 					<label>&nbsp;</label>
 					<input class="auto picker cb" type="text" name="end_time" id="end_time" size="8" readonly="readonly" value="<?php echo strtoupper($event->end_time); ?>">
 				</li>
+				<li>
+					<label>&nbsp;</label>
+					<input class="auto" type="checkbox" name="allDay" id="allDay" value="1" <?php echo $allday_checked ?>>
+					<label class="box" for="allDay"><?php _e('All Day', AEC_PLUGIN_NAME); ?></label>
+				</li>
 			</ul>
 			<label>&nbsp;</label><span class="duration-message"></span>
 		</li>
@@ -93,7 +123,7 @@
 				<li>
 					<label for="repeat_interval"><?php _e('Interval', AEC_PLUGIN_NAME); ?></label>
 					<select class="auto" name="repeat_interval" id="repeat_interval">
-					<?php				
+					<?php
 						/*
 						$repeat_options = array('0' => __('None', AEC_PLUGIN_NAME), 
 												'1' => __('Daily', AEC_PLUGIN_NAME),
@@ -129,53 +159,93 @@
             ?>
 			</select>
         </li>
+		<?php if ($options['venue'] > 0) { ?>
 		<li>
 			<label for="venue"><?php _e('Venue', AEC_PLUGIN_NAME); ?></label>
 			<input class="" type="text" name="venue" id="venue" value="<?php echo $event->venue; ?>">
 		</li>
+		<?php 
+			} 
+			if ($options['address'] > 0 || $options['city'] > 0 || $options['state'] > 0 || $options['zip'] > 0) { 
+		?>
 		<li>
 			<label><?php _e('Address', AEC_PLUGIN_NAME); ?></label>
 			<ul class="hvv">
+				<?php if ($options['address'] > 0) { ?>
 				<li>
 					<label for="address"><?php _e('Neighborhood or Street Address', AEC_PLUGIN_NAME); ?></label>
 					<input class="" type="text" name="address" id="address" value="<?php echo $event->address; ?>">
 				</li>
+				<?php 
+					}
+					if ($options['city'] > 0) { 
+				?>
 				<li class="cb">
 					<label for="city"><?php _e('City', AEC_PLUGIN_NAME); ?></label>
 					<input class="auto" type="text" name="city" id="city" size="22" value="<?php echo $event->city; ?>">
 				</li>
+				<?php 
+					}
+					if ($options['state'] > 0) { 
+				?>
 				<li>
 					<label for="state"><?php _e('State', AEC_PLUGIN_NAME); ?></label>
 					<input class="auto" type="text" name="state" id="state" size="3" maxlength="2" value="<?php echo $event->state; ?>">
 				</li>
+				<?php 
+					}
+					if ($options['zip'] > 0) { 
+				?>
 				<li>
 					<label for="zip"><?php _e('Postal Code', AEC_PLUGIN_NAME); ?></label>
 					<input class="auto" type="text" name="zip" id="zip" size="10" maxlength="10" value="<?php echo $event->zip; ?>">
 				</li>
+				<?php } ?>
 			</ul>
         </li>
+		<?php 
+			}
+			if ($options['link'] > 0) { 
+		?>
         <li>
 			<label for="link"><?php _e('Website Link', AEC_PLUGIN_NAME); ?></label>
             <input type="text" name="link" id="link" class="wide" value="<?php echo $event->link; ?>">
 		</li>
+		<?php 
+			}
+			if ($options['description'] > 0) { 
+		?>
 		<li>
             <label for="description"><?php _e('Description', AEC_PLUGIN_NAME); ?></label>
             <textarea class="wide" name="description" id="description"><?php echo $event->description; ?></textarea>
         </li>
-        <li>
+        <?php 
+			}
+			if ($options['contact'] > 0 || $options['contact_info']) { 
+		?>
+		<li>
 			<label><?php _e('Contact Person', AEC_PLUGIN_NAME); ?></label>
 			<ul class="hvv">
+				<?php if ($options['contact'] > 0) { ?>
 				<li>
 					<label for="contact"><?php _e('Name', AEC_PLUGIN_NAME); ?></label>
 					<input class="semi" type="text" name="contact" id="contact" value="<?php echo $event->contact; ?>">
 				</li>
+				<?php 
+					}
+					if ($options['contact_info'] > 0) { 
+				?>
 				<li>
 					<label for="contact_info"><?php _e('Phone or Email Address', AEC_PLUGIN_NAME); ?></label>
 					<input class="semi" type="text" name="contact_info" id="contact_info" value="<?php echo $event->contact_info; ?>">
 				</li>
+				<?php } ?>
 			</ul>
 		</li>
-		<?php if ($options['accessible']) { ?>
+		<?php 
+			}
+			if ($options['accessible']) { 
+		?>
 		<li>
 			<label></label>
 			<input type="checkbox" value="1" name="access" id="access" <?php echo $accessible_checked; ?>/>
@@ -208,7 +278,7 @@
 				$last_name		= get_user_meta($event->user_id, 'last_name', true);
 				$organization 	= (isset($organization)) ? ' (' . get_user_meta($event->user_id, 'organization', true) . ')' : '';
 				$out 			= '<li><span>' . __('Created by', AEC_PLUGIN_NAME) . ': ';
-				$author 		= ($event->user_id > 0) ? $first_name . ' ' . $last_name . $organization : __('Ajax Event Calendar', AEC_PLUGIN_NAME);
+				$author 		= ($event->user_id > 0) ? "{$first_name} {$last_name} {$organization}" : __('Ajax Event Calendar', AEC_PLUGIN_NAME);
 
 				$out 			.= '<strong>' . $author . '</strong></span></li>';
 				echo $out;
@@ -217,3 +287,5 @@
 		?>
     </ul>
 </form>
+</body>
+</html>

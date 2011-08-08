@@ -38,7 +38,7 @@
 			$out .= ' - ' . $event->start_time . ' - ' . $event->end_time;
 		}
 	}
-	$out .= '<span class="duration round5">' . __('Duration', AEC_PLUGIN_NAME) . ': ' . $this->return_duration($event) . '</span>';
+	$out .= '<span class="duration round5"></span>';
 	$out .= '</h3>';
 	$out .= '</li>';
 	
@@ -48,15 +48,12 @@
 	if (!empty($event->venue) || !empty($event->address) || !empty($event->city) || !empty($event->state) || !empty($event->zip) ) {
 		$out .= '<li><h3>' . __('Location', AEC_PLUGIN_NAME) . '</h3>';
 		if (!empty($event->venue)) $out .= $event->venue . '<br>';
-		$city 	= (!empty($event->city)) ? $event->city . ' ' : '';
-		$state 	= (!empty($event->state)) ? $event->state . ' ' : '';
+		$city 	= (!empty($event->city)) ? $event->city : '';
+		$state 	= (!empty($event->state)) ? $event->state : '';
 		$zip	= (!empty($event->zip)) ? $event->zip : '';
-		$csz 	= $city . $state . $zip;
-		if (!empty($event->address)) {
-			$out .= $event->address . '<br>' . $csz;
-		} else {
-			$out .= $csz;
-		}
+		$csz 	= ($options['state']) ? "{$city} {$state}, {$zip}" : "{$zip} {$city}";
+
+		$out .= (!empty($event->address)) ? $event->address . '<br>' . $csz : $csz;
 		$out .= '</li>';
 
 		// google map link
@@ -105,7 +102,10 @@
 
 	$output = array(
 		'title'		=> $event->title . ' (' . $cat . ')',
-		'content'	=> $out
+		'content'	=> $out,
+		'start'		=> date('m/d/Y H:i:00', strtotime($event->start)),
+		'end'		=> date('m/d/Y H:i:00', strtotime($event->end)),
+		'allDay'	=> $event->allDay
 	);
 	
 	$this->render_json($output);

@@ -50,8 +50,9 @@ jQuery(document).ready(function($) {
 			if (data) {
 				var row =  '<p id="id_' + data.id + '"> \n';
 					row += '<input type="hidden" name="fgcolor" value="#' + data.fgcolor + '" class="fg" /> \n';
-					row += '<input type="text" name="bgcolor" size="7" maxlength="7" autocomplete="off" value="#' + data.bgcolor + '" class="bg colors" /> \n';
+					row += '<input type="text" name="id" value="' + data.id + '" size="2" readonly="readonly" /> \n';
 					row += '<input type="text" name="category" value="" class="edit" /> \n';
+					row += '<input type="text" name="bgcolor" size="7" maxlength="7" autocomplete="off" value="#' + data.bgcolor + '" class="bg colors" /> \n';
 					row += '<button class="button-secondary update">' + custom.update_btn + '</button> \n';
 					row += '<button class="button-secondary delete">' + custom.delete_btn + '</button> \n';
 					row += '</p> \n';

@@ -8,25 +8,28 @@
 jQuery(document).ready(function($) {
 	var isFilter = ($('#aec-filter li a').length > 0);
 	$.jGrowl.defaults.closerTemplate = '<div>' + custom.hide_all_notifications + '</div>';
-	$.jGrowl.defaults.position = 'bottom-right';
-	
+	$.jGrowl.defaults.position = (custom.is_rtl=='1') ? 'bottom-left' : 'bottom-right';
 	var d 			= new Date(),
 		now 		= d.getTime(),
 		twoHours 	= (120 * 60 * 1000),
 		today 		= new Date(d.getFullYear(), d.getMonth(), d.getDate()),
 		nextYear 	= new Date(d.getFullYear()+1, d.getMonth(), d.getDate()),
 		calendar 	= $('#aec-calendar').fullCalendar({
+			isRTL: (custom.is_rtl=='1') ? true : false,
 			monthNames: [custom.january, custom.february, custom.march, custom.april, custom.may, custom.june, custom.july,
 						 custom.august, custom.september, custom.october, custom.november, custom.december], 
 			monthNamesShort: [custom.jan, custom.feb, custom.mar, custom.apr, custom.may, custom.jun, custom.jul, custom.aug,
 							custom.sep, custom.oct, custom.nov, custom.dec],
 			dayNames: [custom.sunday, custom.monday, custom.tuesday, custom.wednesday, custom.thursday, custom.friday, custom.saturday],
 			dayNamesShort: [custom.sun, custom.mon, custom.tue, custom.wed, custom.thu, custom.fri, custom.sat],
+			buttonIcons: false,
 			buttonText:{
 				today: custom.today,
 				month: custom.month,
 				week: custom.week,
-				day: custom.day
+				day: custom.day,
+				prev: '&nbsp;&#9668;&nbsp;',  // left triangle
+				next: '&nbsp;&#9658;&nbsp;',  // right triangle
 			},
 			aspectRatio: 2,
 			allDayText: custom.all_day,
@@ -66,15 +69,19 @@ jQuery(document).ready(function($) {
 			editable: custom.editable,
 			selectable: custom.editable,
 			selectHelper: custom.editable,
-			dragOpacity: 0.4,
+			dragOpacity: 0.3,
 			loading: function(b){
-				if (b) $('#aec-loading').modal({ overlayId: 'aec-modal-overlay', close: false });
-				else $.modal.close();
+				if (b) $.jGrowl(custom.loading, {sticky:true});
+				else $('.jGrowl-close').trigger('click');
 			},
 			eventClick: function(e, js, view){
+				if ($(this).hasClass('fc-event-disabled')){
+					$.jGrowl(custom.error_no_rights, {header:custom.whoops});
+					return;
+				}
 				eventtime = (e.end == null) ? e.start : e.end;
 				if (custom.limit == true && custom.admin == false && eventtime < now){
-					$.jGrowl(custom.error_past_edit, { header: custom.whoops });
+					$.jGrowl(custom.error_past_edit, {header:custom.whoops});
 					return;
 				}
 				eventDialog(e, custom.edit_event);
@@ -109,24 +116,27 @@ jQuery(document).ready(function($) {
 				}
 				moveEvent(e);
 			},
+			/* copy event incomplete...
 			eventDragStart: function(e, js, ui, view){
 				if (js.ctrlKey) {
-					$(this).clone(true).insertBefore($(this));
-					
+					$(this).draggable('option','helper','clone');
+					//$(this).clone(true).insertBefore($(this));
 				}
 			},
+			*/
 			eventDrop: function(e, dayDelta, minuteDelta, allDay, revertFunc, js, ui, view){
 				if (custom.limit == true && e.start < now){
 					$.jGrowl(custom.error_past_move, { header: custom.whoops });
 					revertFunc();
 					return;
 				}
+				/* copy event incomplete...
 				if (js.ctrlKey) {
-					$.fn.copyEvent(e, js);
-					//console.log(calendar.fullCalendar("clientEvents"));
+					copyEvent(e);
 				} else {
+				*/
 					moveEvent(e);
-				}
+				//}
 			}
 		});
 		
@@ -146,8 +156,9 @@ jQuery(document).ready(function($) {
 			return $.fullCalendar.formatDate(date, 'yyyy-MM-dd HH:mm:ss'); // unix datetime
 		}
 
-		$.fn.copyEvent = function(e) {
-			var selectedIndex = parseInt(e._id.replace(/_fc/,'')-1); // I've appended id's to the event DOM objects to reference them
+		/* copy event incomplete...
+		function copyEvent(e){
+			var selectedIndex = parseInt(e._id.replace(/_fc/,'')-1);
 			var clone = {'id': e.id, 'start': toUnixDate(e.start), 'end': toUnixDate(e.end)};
 			$.post(ajaxurl,{ action: 'copy_event', 'clone': clone }, function(data){
 				if (data){
@@ -158,12 +169,14 @@ jQuery(document).ready(function($) {
 					newEvent.id = data.id;
 					newEvent.start = new Date(e.start);
 					newEvent.allDay = e.allDay;
-					newEvent.title = e.title + " copy";
+					newEvent.title = e.title;
 					newEvent.className = e.className;
-					calendar.fullCalendar("renderEvent", newEvent);
+					//newEvent.editable = data.editable;
+					//calendar.fullCalendar("renderEvent", newEvent);
 				}
 			});
 		}
+		*/
 		
 		// update dragged/resized event
 		function moveEvent(e){
@@ -181,7 +194,7 @@ jQuery(document).ready(function($) {
 
 		function eventDialog(e, actionTitle){
 			// check for modal html structure, if not present add it to the DOM
-			if ($('aec-modal').length == 0) {
+			if ($('#aec-modal').length == 0) {
 				var modal = '<div id="aec-modal"><div class="aec-title"></div><div class="aec-content"></div></div>';
 				$('body').prepend(modal);
 			}
@@ -343,6 +356,7 @@ jQuery(document).ready(function($) {
 				onClose: function (d){
 					var modal = this;
 					d.container.animate({ top:'-' + (d.container.height() + 20) }, 350, function (){
+						$('.time-picker').remove();
 						modal.close();
 					});
 				}
@@ -364,9 +378,9 @@ jQuery(document).ready(function($) {
 				$('#repeat_end').fadeOut(250);
 			}
 			*/
-			
+
 			if (allDay) {
-				$('#start_time, #end_time').fadeTo(150,0.2).attr("disabled","disabled");
+				$('#start_time, #end_time').fadeTo(150,0.3).attr("disabled","disabled");
 				
 			} else {
 				$('#start_time, #end_time').fadeTo(150,1).removeAttr("disabled");
@@ -473,16 +487,27 @@ jQuery(document).ready(function($) {
 
 			// format output
 			var out = new Array();
-			if (allDay) diff.days += 1;
-			if (diff.weeks > 0) out.push(diff.weeks + ' ' + _n(diff.weeks, custom.week, custom.weeks));
-			if (diff.days > 0) out.push(diff.days + ' ' + _n(diff.days, custom.day, custom.days));
-			if (diff.hours > 0) out.push(diff.hours + ' ' + _n(diff.hours, custom.hour, custom.hours));
-			if (diff.minutes > 0) out.push(diff.minutes + ' ' + _n(diff.minutes, custom.minute, custom.minutes));
+			if (allDay == true) diff.days += 1;
+			_jn(out, diff.weeks, custom.week, custom.weeks);
+			_jn(out, diff.days, custom.day, custom.days);
+			if (allDay == false) {
+				_jn(out, diff.hours, custom.hour, custom.hours);
+				_jn(out, diff.minutes, custom.minute, custom.minutes);
+			}
+			if (custom.is_rtl) out.reverse();
 			return out.join(', ');
 		}
 		
-		function _n(quantity, singular, plural){
-			return (quantity != 1) ? plural : singular;
+		function _jn(arr, quantity, singular, plural){
+			if (quantity > 0) {
+				var out = new Array();
+				out.push(quantity);
+				out.push((quantity != 1) ? plural : singular);
+				if (custom.is_rtl) out.reverse();
+				element = out.join(' ');
+				arr.push(element);
+			}
+			return;
 		}
 		
 		if (isFilter) {

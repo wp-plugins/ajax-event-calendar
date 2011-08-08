@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ajax Event Calendar v0.9.8.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-25 09:24-0600\n"
-"PO-Revision-Date: 2011-07-25 09:24-0600\n"
+"POT-Creation-Date: 2011-08-08 18:24-0600\n"
+"PO-Revision-Date: 2011-08-08 18:24-0600\n"
 "Last-Translator: Eran Miller <plugins@eranmiller.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,16 +17,20 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: C:\\wamp\\www\\wordpress\\wp-content\\plugins\\ajax-event-calendar\n"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:336
-msgid "Calculating..."
-msgstr ""
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:30
+msgid "Sorry, "
+msgstr "Atsiprašome, "
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:273
+msgid "Show Types"
+msgstr "Rodyti"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:337
 msgid "Today"
 msgstr "Šiandien"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:338
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:69
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:115
 msgid "All Day"
 msgstr "Visa diena"
 
@@ -235,14 +239,14 @@ msgid "Loading Event Form..."
 msgstr "Kraunama renginio forma..."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:389
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:525
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:198
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:564
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:268
 msgid "Update"
 msgstr "Pakeisti"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:390
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:518
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:197
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:557
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:267
 msgid "Delete"
 msgstr "Ištrinti"
 
@@ -279,275 +283,266 @@ msgid "Delete this event?"
 msgstr "Ištrinti renginį?"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:399
+#, fuzzy
+msgid "Loading Events..."
+msgstr "Kraunama renginio forma..."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:400
 msgid "Success!"
 msgstr "Pavyko!"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:400
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:401
 msgid "Whoops!"
 msgstr "Ups!"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:417
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:443
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:211
-msgid "Ajax Event Calendar"
-msgstr "Ajax Renginių Kalendorius"
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:409
+#, php-format
+msgid "Ajax Event Calendar <small>[v%s]</small></h3>"
+msgstr ""
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:410
+#, php-format
+msgid "Have questions about this plugin? <a href=\"%s\" target=\"_blank\">Check out the FAQ</a>."
+msgstr ""
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:411
+#, php-format
+msgid "Submit your questions and comments about this plugin <a href=\"%s\" target=\"_blank\">in the support forum</a>."
+msgstr ""
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:412
+msgid "You are welcome to request help from others in your native language, but I am only able to assist in English."
+msgstr ""
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:413
+#, php-format
+msgid "If you use this plugin, please <a href=\"%s\" target=\"_blank\">rate and vote on compatibility</a>."
+msgstr ""
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:414
+msgid "Consider making a donation to support continued development of this plugin."
+msgstr ""
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:415
+#, php-format
+msgid "Thank you, <a href=\"%s\" target=\"_blank\">Eran Miller</a>."
+msgstr ""
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:418
-msgid "Plugin help available"
-msgstr "Galima įskiepio pagalba"
-
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:418
-msgid "here"
-msgstr "čia"
-
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:419
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:210
-msgid "Created by"
-msgstr "Sukūrė"
-
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:422
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:483
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:509
 msgid "Calendar"
 msgstr "Kalendorius"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:431
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:507
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:427
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:546
 msgid "Categories"
 msgstr "Kategorijos"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:439
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:539
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:435
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:578
 msgid "Activity Report"
 msgstr "Veiklos ataskaita"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:452
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:484
-msgid "Loading..."
-msgstr "Kraunama..."
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:439
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:281
+msgid "Ajax Event Calendar"
+msgstr "Ajax Renginių Kalendorius"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:457
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:490
 #, fuzzy
 msgid "Add Events"
 msgstr "Pridėti renginį"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:464
-msgid "Show Types"
-msgstr "Rodyti"
-
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:465
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:129
-msgid "All"
-msgstr "Visus"
-
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:473
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:497
 msgid "Created By"
 msgstr "Sukūrė"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:480
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:496
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:503
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:536
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:557
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:504
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:535
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:542
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:575
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:596
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Jūs šio puslapio pasiekti negalite."
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:508
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:520
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:107
+msgid "All"
+msgstr "Visus"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:547
 msgid "Add a new, or edit/delete an existing calendar category.  To change the category tile color, click the color swatch or edit the field containing the hex value, then click Update.  The foreground color (black or white) is automatically assigned for optimal readbility based on the selected background color."
 msgstr ""
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:513
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:200
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:552
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:270
 msgid "Add"
 msgstr "Pridėti"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:519
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:558
 msgid "This category is required and can only be edited."
 msgstr "Ši kategorija gali būti tik redaguojama"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:540
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:579
 msgid "Number of events scheduled for the current month, by type:"
 msgstr "Renginių skaičius šį mėnesį pagal kategorijas:"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:545
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:584
 msgid "Event"
 msgid_plural "Events"
 msgstr[0] "Renginys"
 msgstr[1] "Renginiai"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:549
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:588
 msgid "No events this month."
 msgstr "Šį mėnesį renginių nėra."
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:671
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:758
+#, fuzzy
+msgid "You cannot edit events created by other users."
+msgstr "Negalite sukurti renginio praeityje"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:759
 msgid "You cannot create events in the past."
 msgstr "Negalite sukurti renginio praeityje"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:672
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:760
 msgid "You cannot create events more than a year in advance."
 msgstr "Negalite kurti renginių daugiau nei metams į priekį"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:673
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:761
 msgid "You cannot resize expired events."
 msgstr "Negalite pakeisti pasibaigusių renginių"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:674
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:762
 msgid "You cannot move events into the past."
 msgstr "Negalite perkelti renginio į praeitį"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:675
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:763
 msgid "You cannot edit expired events."
 msgstr "Negalite redakuoti pasibaigusių renginių"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:676
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:764
 msgid "Invalid duration, please adjust your time inputs."
 msgstr "Klaidinga trukmė. Patikrinkite renginio laikus."
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:707
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:790
 msgid "Category type cannot be a blank value."
 msgstr "Kategorijos pavadinimas negali būti tuščias."
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:708
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:791
 msgid "Are you sure you want to delete this category type?"
 msgstr "Ar tikrai norite ištrinti kategoriją?"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:709
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:792
 msgid "Several events are associated with this category. Click OK to reassign these events to the default category."
 msgstr "Šioje kategorijoje buvo renginių. Jie bus priskirti pirminei kategorijai."
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:710
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:793
 msgid "Events have been reassigned to the default category."
 msgstr "Renginiai buvo priskirti pirminei kategorijai."
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1126
-#, fuzzy, php-format
-msgid "%d Week"
-msgid_plural "%d Weeks"
-msgstr[0] "Savaitė"
-msgstr[1] "Savaitė"
-
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1127
-#, php-format
-msgid "%d Day"
-msgid_plural "%d Days"
-msgstr[0] "%d diena"
-msgstr[1] "%d dienos"
-
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1128
-#, php-format
-msgid "%d Hour"
-msgid_plural "%d Hours"
-msgstr[0] "%d valanda"
-msgstr[1] "%d valandos"
-
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1129
-#, php-format
-msgid "%d Minute"
-msgid_plural "%d Minutes"
-msgstr[0] "%d minutė"
-msgstr[1] "%d minutės"
-
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1166
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1294
 msgid "Events"
 msgstr "Renginiai"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1179
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1307
 msgid "Settings"
 msgstr "Nustatymai"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1216
-msgid "Sorry, "
-msgstr "Atsiprašome, "
-
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:68
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:41
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:94
 msgid "Duration"
 msgstr "Trukmė"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:72
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:97
 msgid "From"
 msgstr "Nuo"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:80
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:105
 msgid "To"
 msgstr "iki"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:94
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:124
 msgid "Interval"
 msgstr ""
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:117
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:147
 msgid "Title"
 msgstr "Pavadinimas"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:121
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:151
 msgid "Type"
 msgstr "Kategorija"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:133
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:164
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:12
 msgid "Venue"
 msgstr "Vieta"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:137
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:172
 msgid "Address"
 msgstr "Adresas"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:140
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:176
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:13
 msgid "Neighborhood or Street Address"
 msgstr "Adresas"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:144
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:184
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:14
 msgid "City"
 msgstr "Miestas"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:148
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:192
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:15
 msgid "State"
 msgstr "Regionas"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:152
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:200
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:16
 msgid "Postal Code"
 msgstr "Pašto kodas"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:158
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:211
 msgid "Website Link"
 msgstr "Renginio puslapis"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:162
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:219
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:18
 msgid "Description"
 msgstr "Aprašymas"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:166
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:227
 msgid "Contact Person"
 msgstr "Kontaktinis asmuo"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:169
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:231
 msgid "Name"
 msgstr "Vardas"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:173
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:239
 msgid "Phone or Email Address"
 msgstr "Telefonas ir el. paštas"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:182
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:252
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:23
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:79
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:76
 msgid "This event is accessible to people with disabilities."
 msgstr "Renginys tinkamas neįgaliems žmonėms"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:191
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:261
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:24
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:80
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:77
 msgid "Please register with the contact person for this event."
 msgstr "Prašome užsiregistruoti per kontaktinį žmogų."
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:195
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:265
 msgid "Cancel"
 msgstr "Atšaukti"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:280
+msgid "Created by"
+msgstr "Sukūrė"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:3
 msgid "Ajax Event Calendar Options"
@@ -558,20 +553,25 @@ msgid "Display calendar weekends."
 msgstr ""
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:7
-msgid "Display View Map link on event details, if the address fields are populated."
+msgid "Display \"View Map\" link on event details (uses populated address fields)."
 msgstr ""
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:8
 #, fuzzy
-msgid "Display Add Events link on the front-end calendar."
+msgid "Display \"Add Events\" link on the front-end calendar."
 msgstr "Rodyti administracinį meniu virš kalendoriaus puslapyje."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:9
-msgid "Prevent users from adding events that have transpired."
+#, fuzzy
+msgid "Prevent users from adding or editing expired events."
+msgstr "Negalite redakuoti pasibaigusių renginių"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:15
+msgid "if hidden, address is formatted as: {Postal Code} {City}"
 msgstr ""
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:17
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:94
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:91
 msgid "Event Link"
 msgstr "Nuoroda"
 
@@ -580,31 +580,49 @@ msgid "Contact Name"
 msgstr "Kontaktinis asmuo"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:20
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:71
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:68
 msgid "Contact Information"
 msgstr "Kontaktinė informacija"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:33
+#, fuzzy
+msgid "Category filter label"
+msgstr "Kategorija"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:37
 msgid "General Options"
 msgstr "Bendri nustatymai"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:47
-msgid "Checked fields are required"
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:50
+msgid "Hide, display or require form fields.  Hidden fields will not appear in the event form."
 msgstr ""
 
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:59
+msgid "Hide"
+msgstr ""
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:60
+#, fuzzy
+msgid "Display"
+msgstr "Diena"
+
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:61
+msgid "Require"
+msgstr ""
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:69
 msgid "Checked fields are displayed"
 msgstr ""
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:75
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:83
 msgid "Restore Original Settings"
 msgstr "Atstatyti pradinius nustatymus"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:79
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:87
 msgid "Resets plugin settings on Save"
 msgstr "Atstatyti įskiepio nustatymus, paspaudus \"Išsaugoti\""
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:84
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:92
 msgid "Save Changes"
 msgstr "Išsaugoti"
 
@@ -612,11 +630,11 @@ msgstr "Išsaugoti"
 msgid "Location"
 msgstr "Vieta"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:65
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:62
 msgid "View Map"
 msgstr "Žiūrėti žemėlapyje"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:85
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:82
 msgid "Presented by"
 msgstr "Pristato"
 
@@ -625,7 +643,8 @@ msgid "A list of calendar contributors linked to their organization websites"
 msgstr "Renginio organizatorių sąrašas"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:10
-msgid "Calendar Contributors"
+#, fuzzy
+msgid "AEC Contributors"
 msgstr "Kalendoriaus bendraautoriai"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:18
@@ -644,36 +663,86 @@ msgid "No options available."
 msgstr "Nėra pasirinkimų."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:9
-msgid "Displays events upcoming in the following weeks."
+#, fuzzy
+msgid "Displays upcoming events with optional filters."
 msgstr "Ateinančių savaičių renginiai."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:10
+#, fuzzy
+msgid "AEC Upcoming Events"
+msgstr "Artėjantys renginiai"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:48
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:93
 msgid "Upcoming Events"
 msgstr "Artėjantys renginiai"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:53
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:116
-msgid "Three Week Agenda"
-msgstr ""
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:74
+#, fuzzy
+msgid "No upcoming events"
+msgstr "Artėjantys renginiai"
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:98
-#, php-format
-msgid "No events listed in the next week"
-msgid_plural "No events listed in the next %d weeks"
-msgstr[0] "Kitą savaitę renginių nenumatyta"
-msgstr[1] "Per ateinančias (%d) savaites renginių nenumatyta"
-
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:122
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:100
 msgid "Widget Title"
 msgstr ""
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:126
-msgid "Display this Category"
-msgstr "Rodyti šią kategoriją"
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:104
+msgid "Event category displayed"
+msgstr ""
 
-#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:139
-msgid "Number of Weeks from Today"
-msgstr "Savaičių skaičius nuo šiandienos"
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:117
+msgid "Maximum events displayed"
+msgstr ""
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:130
+msgid "Hide category colors"
+msgstr ""
+
+#~ msgid "Plugin help available"
+#~ msgstr "Galima įskiepio pagalba"
+
+#~ msgid "here"
+#~ msgstr "čia"
+
+#~ msgid "Loading..."
+#~ msgstr "Kraunama..."
+
+#, fuzzy
+#~ msgid "%d Week"
+
+#~ msgid_plural "%d Weeks"
+#~ msgstr[0] "Savaitė"
+#~ msgstr[1] "Savaitė"
+
+#~ msgid "%d Day"
+
+#~ msgid_plural "%d Days"
+#~ msgstr[0] "%d diena"
+#~ msgstr[1] "%d dienos"
+
+#~ msgid "%d Hour"
+
+#~ msgid_plural "%d Hours"
+#~ msgstr[0] "%d valanda"
+#~ msgstr[1] "%d valandos"
+
+#~ msgid "%d Minute"
+
+#~ msgid_plural "%d Minutes"
+#~ msgstr[0] "%d minutė"
+#~ msgstr[1] "%d minutės"
+
+#~ msgid "No events listed in the next week"
+
+#~ msgid_plural "No events listed in the next %d weeks"
+#~ msgstr[0] "Kitą savaitę renginių nenumatyta"
+#~ msgstr[1] "Per ateinančias (%d) savaites renginių nenumatyta"
+
+#~ msgid "Display this Category"
+#~ msgstr "Rodyti šią kategoriją"
+
+#~ msgid "Number of Weeks from Today"
+#~ msgstr "Savaičių skaičius nuo šiandienos"
 
 #, fuzzy
 #~ msgid "%d Year"
@@ -697,10 +766,6 @@ msgstr "Savaičių skaičius nuo šiandienos"
 #~ "Add new, or edit existing category type (and associated calendar tile "
 #~ "color)."
 #~ msgstr "Pridėti naują arba pakeisti egzistuojančia kategoriją"
-
-#, fuzzy
-#~ msgid "Daily"
-#~ msgstr "Diena"
 
 #, fuzzy
 #~ msgid "Weekly"
