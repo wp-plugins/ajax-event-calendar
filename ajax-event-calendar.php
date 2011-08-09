@@ -82,7 +82,7 @@ if (!class_exists('ajax_event_calendar')){
 			add_action('admin_menu', array($this, 'render_admin_menu'));
 			add_action('admin_init', array($this, 'admin_options_initialize'));
 			add_action('wp_print_scripts', array($this, 'frontend_calendar_scripts'));
-			add_action('wp_print_styles', array($this, 'frontend_calendar_styles'));
+			add_action('wp_print_styles', array($this, 'calendar_styles'));
 			add_action('delete_user', array($this, 'delete_events_by_user'));
 
 			// ajax hooks
@@ -128,6 +128,10 @@ if (!class_exists('ajax_event_calendar')){
 			wp_register_style('custom_rtl', AEC_PLUGIN_URL . 'css/custom_rtl.css', null, AEC_PLUGIN_VERSION);
 			wp_register_style('categories', AEC_PLUGIN_URL . 'css/cat_colors.css', null, AEC_PLUGIN_VERSION);
 			wp_register_style('jq_ui_css', AEC_PLUGIN_URL . 'css/jquery-ui-1.8.13.custom.css', null, '1.8.13');
+			
+			// custom user css
+			//if (file_exists(STYLESHEETPATH . '/user.css'))
+			//	wp_register_style('user_css', STYLESHEETPATH . '/user.css', null, AEC_PLUGIN_VERSION);
 		}
 
 		function install(){
@@ -324,7 +328,7 @@ if (!class_exists('ajax_event_calendar')){
 			$is24HrTime	= $this->parse_time_format(AEC_WP_TIME_FORMAT);
 
 			return array(
-				'is_rtl'					=> $this->return_is_rtl(),
+				'is_rtl'					=> is_rtl(),
 				'locale'					=> AEC_LOCALE,
 				'start_of_week' 			=> get_option('start_of_week'),
 				'datepicker_format' 		=> ($isEuroDate) ? 'dd-mm-yy' : 'mm/dd/yy',	// jquery datepicker format
@@ -419,7 +423,7 @@ if (!class_exists('ajax_event_calendar')){
 
 				// calendar admin specific scripts and styles
 				add_action("admin_print_scripts-$page", array($this, 'admin_calendar_scripts'));
-				add_action("admin_print_styles-$page", array($this, 'admin_calendar_styles'));
+				add_action("admin_print_styles-$page", array($this, 'calendar_styles'));
 				add_contextual_help($page, $help);
 
 				if (current_user_can('aec_manage_calendar')) {
@@ -725,25 +729,14 @@ CONTENT;
 			}
 		}
 
-		// TODO: optimize these two style request methods!
-		function frontend_calendar_styles(){
-			if (!is_admin()) {
-				wp_enqueue_style('jq_ui_css');
-				wp_enqueue_style('categories');
-				wp_enqueue_style('custom');
-				if ($this->return_is_rtl()) {
-					wp_enqueue_style('custom_rtl');
-				}
-			}
-		}
-
-		function admin_calendar_styles(){
+		function calendar_styles(){
 			wp_enqueue_style('jq_ui_css');
 			wp_enqueue_style('categories');
 			wp_enqueue_style('custom');
-			if ($this->return_is_rtl()) {
+			if (is_rtl()) {
 				wp_enqueue_style('custom_rtl');
 			}
+			//wp_enqueue_style('user_css');
 		}
 
 		function admin_calendar_variables(){
@@ -807,7 +800,7 @@ CONTENT;
 		function admin_category_styles(){
 			wp_enqueue_style('categories');
 			wp_enqueue_style('custom');
-			if ($this->return_is_rtl()) {
+			if (is_rtl()) {
 				wp_enqueue_style('custom_rtl');
 			}
 		}
@@ -1225,10 +1218,6 @@ CONTENT;
 			global $current_user;
 			get_currentuserinfo();
 			return (current_user_can('aec_manage_events')) ? false : $current_user->ID;
-		}
-
-		function return_is_rtl(){
-			return (get_bloginfo('text_direction') == "rtl") ? true : false;
 		}
 
 		function return_integer($input){

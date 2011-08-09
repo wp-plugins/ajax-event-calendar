@@ -46,6 +46,7 @@ class aec_upcoming_events extends WP_Widget{
 		$eventlimit	= ($instance['eventlimit']) ? apply_filters('widget_eventlimit', $instance['eventlimit']) : 4;
 		$category 	= ($instance['category']) ? apply_filters('widget_category', $instance['category']) : 0;
 		$title 		= ($instance['title']) ? apply_filters('widget_title', $instance['title']) : __('Upcoming Events', AEC_PLUGIN_NAME);
+		$callink	= ($instance['callink']) ? apply_filters('widget_callink', $instance['callink']) : 0;
 		
 		echo $before_widget;
 		echo $before_title . $title . $after_title;
@@ -74,6 +75,7 @@ class aec_upcoming_events extends WP_Widget{
 			$out .= __('No upcoming events', AEC_PLUGIN_NAME);
 			$out .= '</li>';
 		}
+		if ($callink) $out .= "<h3 class='widget-title'><a href='{$callink}'>" . __('Link to Calendar', AEC_PLUGIN_NAME) . '</a></h3>';
 		$out .= '</ul>';
 		echo $out;
 		echo $after_widget;
@@ -82,6 +84,7 @@ class aec_upcoming_events extends WP_Widget{
 	function update($new_instance, $old_instance){
 		$instance = $old_instance;
 		$instance['whitelabel'] = (isset($new_instance['whitelabel']) ? 1 : 0);
+		$instance['callink'] = $new_instance['callink'];
 		$instance['eventlimit'] = $new_instance['eventlimit'];
 		$instance['title'] = $new_instance['title'];
 		$instance['category'] = $new_instance['category'];
@@ -90,11 +93,12 @@ class aec_upcoming_events extends WP_Widget{
 	
 	/** @see WP_Widget::form */
 	function form($instance){
-		$instance = wp_parse_args((array) $instance, array('eventlimit' => 4, 'title' => __('Upcoming Events', AEC_PLUGIN_NAME), 'category' => 0, 'whitelabel' => false));
+		$instance = wp_parse_args((array) $instance, array('eventlimit' => 4, 'title' => __('Upcoming Events', AEC_PLUGIN_NAME), 'category' => 0, 'whitelabel' => false, 'callink' => ''));
 		$whitelabel = $instance['whitelabel'];
 		$eventlimit = $instance['eventlimit'];
 		$title = $instance['title'];
 		$category = $instance['category'];
+		$callink = $instance['callink'];
 ?>
 	<p>
 		<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title', AEC_PLUGIN_NAME); ?></label>
@@ -124,6 +128,10 @@ class aec_upcoming_events extends WP_Widget{
 				}
 			?>
 		</select>
+	</p>
+	<p>
+		<label for="<?php echo $this->get_field_id('callink'); ?>"><?php _e('Link to calendar', AEC_PLUGIN_NAME); ?></label>
+		<input id="<?php echo $this->get_field_id('callink'); ?>" name="<?php echo $this->get_field_name('callink'); ?>" class="widefat" value="<?php echo $callink; ?>" />
 	</p>
 	<p>
 		<input class="checkbox" type="checkbox" <?php checked($whitelabel, true ); ?> id="<?php echo $this->get_field_id('whitelabel'); ?>" name="<?php echo $this->get_field_name('whitelabel'); ?>" />

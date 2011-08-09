@@ -29,7 +29,6 @@ If you use this plugin, please [rate it and confirm compatibility](http://wordpr
 
 If you use enjoy this plugin, consider [making a donation](http://eranmiller.com/plugins/donate/).
 
-
 =  Features =
 
 * Users assigned the Calendar Contributor role (have the aec_add_events capability) can edit and delete events they create
@@ -41,7 +40,7 @@ If you use enjoy this plugin, consider [making a donation](http://eranmiller.com
 * Auto-generated Google Maps link, based on event address fields
 * Format Date and Time via integrated blog settings
 * Navigate between months/weeks with the calendar navigation buttons or the mouse wheel
-* Multi-language support, including right-to-left languages (16 translations and counting!)
+* Multi-language support, including right-to-left languages (17 translations and counting!)
 
 = User roles that have the aec_manage_calendar capability can... =
 
@@ -58,7 +57,8 @@ If you use enjoy this plugin, consider [making a donation](http://eranmiller.com
 * Display a filtered list of upcoming events using the "Upcoming Events" sidebar widget
 
 = A BIG Thank You to those who have provided translations =
-* Arabic (Sultan G) - Shukran 
+* Arabic (Sultan G) - Shukran
+* Catalan (Isaac T) - Gracias
 * Danish (kfe1970) - Tak
 * Dutch (Maikel) - Bedankt
 * French (doc75word, luc) - Merci

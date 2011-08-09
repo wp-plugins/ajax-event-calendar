@@ -74,6 +74,9 @@ jQuery(document).ready(function($) {
 				if (b) $.jGrowl(custom.loading, {sticky:true});
 				else $('.jGrowl-close').trigger('click');
 			},
+			eventMouseover: function(e, js, view){
+				
+			},
 			eventClick: function(e, js, view){
 				if ($(this).hasClass('fc-event-disabled')){
 					$.jGrowl(custom.error_no_rights, {header:custom.whoops});
@@ -273,7 +276,7 @@ jQuery(document).ready(function($) {
 										
 										/* recurring event placeholder
 										$('#repeat_end').val($('#end_date').val());
-										$('#start_date, #end_date, #start_time, #end_time, #allDay, #repeat_interval, #repeat_end').change(function(){
+										$('#start_date, #end_date, #start_time, #end_time, #allDay, #repeat_int, #repeat_end').change(function(){
 										*/
 										
 										$('#start_date, #end_date, #start_time, #end_time, #allDay').change(function(){
@@ -371,7 +374,7 @@ jQuery(document).ready(function($) {
 			
 			/*
 			// recurring event placeholder
-			repeat 	= $('#repeat_interval').val();
+			repeat 	= $('#repeat_int').val();
 			if (repeat > 0) {
 				$('#repeat_end').fadeIn(250);
 			} else {

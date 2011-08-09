@@ -12,7 +12,7 @@
 			'venue' 		=> __('Venue', AEC_PLUGIN_NAME),
 			'address' 		=> __('Neighborhood or Street Address', AEC_PLUGIN_NAME),
 			'city' 			=> __('City', AEC_PLUGIN_NAME),
-			'state' 		=> array(__('State', AEC_PLUGIN_NAME), __('if hidden, address is formatted as: {Postal Code} {City}', AEC_PLUGIN_NAME)),
+			'state' 		=> array(__('State', AEC_PLUGIN_NAME), __('if State is hidden, the address format displayed is: {Postal Code} {City}', AEC_PLUGIN_NAME)),
 			'zip' 			=> __('Postal Code', AEC_PLUGIN_NAME),
 			'link' 			=> __('Event Link', AEC_PLUGIN_NAME),
 			'description' 	=> __('Description', AEC_PLUGIN_NAME),

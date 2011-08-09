@@ -30,9 +30,6 @@
 			$event->start 			= $_POST['event']['start'];
 			$event->end 			= $_POST['event']['end'];
 			$event->allDay 			= $_POST['event']['allDay'];			
-			// recurring event placeholder
-			// $event->repeat_interval = 0;
-			// $event->repeat_end		= '';
 			$event->category_id 	= 1;
 			$event->description 	= '';
 			$event->link 			= '';
@@ -45,12 +42,12 @@
 			$event->contact_info 	= '';
 			$event->access			= 0;
 			$event->rsvp			= 0;
+			// recurring event placeholder
+			// $event->repeat_int		= 0;
+			// $event->repeat_end		= $_POST['event']['repeat_end'];
 		}
-		
 		/*
 		intervals
-		- yearly
-			every # year(s)
 		- weekly
 			every # week on X day of the week
 		- daily
@@ -63,9 +60,9 @@
 	}
 
 	// populate checkboxes
-	$allday_checked					= ($event->allDay) ? 'checked="checked" ' : '';
-	$accessible_checked 			= ($event->access) ? 'checked="checked" ' : '';
-	$rsvp_checked 					= ($event->rsvp) ? 'checked="checked" ' : '';
+	$allday_checked		= ($event->allDay) ? 'checked="checked" ' : '';
+	$accessible_checked = ($event->access) ? 'checked="checked" ' : '';
+	$rsvp_checked 		= ($event->rsvp) ? 'checked="checked" ' : '';
 ?>
 <!doctype html> 
 <html>
@@ -121,15 +118,15 @@
 		<li><label><?php //_e('Repeat', AEC_PLUGIN_NAME); ?></label>
 			<ul class="hvv">
 				<li>
-					<label for="repeat_interval"><?php _e('Interval', AEC_PLUGIN_NAME); ?></label>
-					<select class="auto" name="repeat_interval" id="repeat_interval">
+					<label for="repeat_int"><?php _e('Interval', AEC_PLUGIN_NAME); ?></label>
+					<select class="auto" name="repeat_int" id="repeat_int">
 					<?php
 						/*
 						$repeat_options = array('0' => __('None', AEC_PLUGIN_NAME), 
 												'1' => __('Daily', AEC_PLUGIN_NAME),
 												'7' => __('Weekly', AEC_PLUGIN_NAME));
 						foreach ($repeat_options as $option => $value) {
-							$selected = ($event->repeat_interval == $option) ? ' selected="selected"' : '';
+							$selected = ($event->repeat_int == $option) ? ' selected="selected"' : '';
 							print '<option value="' . $option . '">' . $value . '</option>';
 						}
 						*/
@@ -138,7 +135,7 @@
 				</li>
 				<li>
 					<label for="repeat_end"><?php //_e('Until', AEC_PLUGIN_NAME); ?></label>
-					<input class="auto picker cb" type="text" name="repeat_end" id="repeat_end" size="11" readonly="readonly" value="<?php //cho $event->repeat_end; ?>">
+					<input class="auto picker cb" type="text" name="repeat_end" id="repeat_end" size="11" readonly="readonly" value="<?php // echo $event->repeat_end; ?>">
 				</li>
 			</ul>
 		</li>
