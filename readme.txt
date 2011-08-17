@@ -4,7 +4,7 @@ Donate link: http://eranmiller.com/plugins/donate/
 Tags: multi-user, calendar, category, event, ajax, filter, upcoming, widget, google, localized, rtl-support
 Requires at least: 3.1
 Tested up to: 3.2.1
-Stable tag: 0.9.9.1
+Stable tag: 0.9.9.2
 
 A fully localized community calendar that allows authorized users to manage events in custom categories.
 
@@ -39,7 +39,7 @@ Experiencing problems? [Read the FAQ](http://wordpress.org/extend/plugins/ajax-e
 * Auto-generated Google Maps link, based on event address fields
 * Format Date and Time via integrated blog settings
 * Navigate between months/weeks with the calendar navigation buttons or the mouse wheel
-* Multi-language support, including right-to-left languages (18 translations and counting!)
+* Multi-language support, including right-to-left languages (19 translations and counting!)
 
 = User roles that have the aec_manage_calendar capability can... =
 
@@ -67,6 +67,7 @@ Experiencing problems? [Read the FAQ](http://wordpress.org/extend/plugins/ajax-e
 * German (Tobias) - Danke
 * Italian (Ernesto, eros.mazzurco) - Grazie
 * Indonesian (Nanang) - Matur Tampiasih
+* Latvian (Kaspars) - Paldies
 * Lithuanian (juliuslt) - Aciu
 * Norwegian (Julius) - Takk
 * Polish (Szymon) - Dziekuje
@@ -74,7 +75,7 @@ Experiencing problems? [Read the FAQ](http://wordpress.org/extend/plugins/ajax-e
 * Romanian (Razvan) - Multumesc
 * Russian (reddylabeu) - Spasiba
 * Spanish (Fernando) - Gracias
-* Swedish (Kent) - Tack
+* Swedish (Hirschan) - Tack
 * Tamil (Bage) - Nandri
 * Turkish (Darth crow) - Sag Olun
 * Note: not all translations are up-to-date.
@@ -161,6 +162,14 @@ Hat Tip to these fine plugins which were instrumental in the creation of this pl
 <br>4. Category color selection (miniColors)
 
 == Changelog ==
+= 0.9.9.2 =
+* added latvian localization
+* updated arabic localization
+* updated swedish localization
+* updated spanish localization
+* fixed option to toggle link target in new window
+* critical IE bug fixed 
+
 = 0.9.9.1 =
 * optimized mousewheel scroll
 * optimized loading events notification
@@ -360,6 +369,9 @@ Hat Tip to these fine plugins which were instrumental in the creation of this pl
 * getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
+= 0.9.9.2 = 
+* critical IE bug fixed 
+
 = 0.9.9.1 =
 * shortcode options, code optimizations, fixes to javascript conflicts
 

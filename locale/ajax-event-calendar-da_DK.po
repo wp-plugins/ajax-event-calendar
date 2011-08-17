@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ajax Event Calendar v0.9.8.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-16 16:27-0600\n"
-"PO-Revision-Date: 2011-08-16 16:27-0600\n"
+"POT-Creation-Date: 2011-08-17 09:49-0600\n"
+"PO-Revision-Date: 2011-08-17 09:50-0600\n"
 "Last-Translator: Eran Miller <plugins@eranmiller.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ajax-event-calendar.php:30
 msgid "Sorry, "
-msgstr ""
+msgstr "Sorry, "
 
 # @ ajax-event-calendar
 #: ajax-event-calendar.php:364
@@ -362,43 +362,43 @@ msgstr "Ajax Kalender"
 
 #: ajax-event-calendar.php:438
 msgid "Have questions about this plugin?"
-msgstr ""
+msgstr "Have questions about this plugin?"
 
 #: ajax-event-calendar.php:440
 msgid "Check out the FAQ"
-msgstr ""
+msgstr "Check out the FAQ"
 
 #: ajax-event-calendar.php:442
 msgid "Submit your questions and comments about this plugin"
-msgstr ""
+msgstr "Submit your questions and comments about this plugin"
 
 #: ajax-event-calendar.php:444
 msgid "in the forum"
-msgstr ""
+msgstr "in the forum"
 
 #: ajax-event-calendar.php:446
 msgid "You are welcome to request help from others in your native language, but I am only able to assist in English."
-msgstr ""
+msgstr "You are welcome to request help from others in your native language, but I am only able to assist in English."
 
 #: ajax-event-calendar.php:447
 msgid "If you use this plugin"
-msgstr ""
+msgstr "If you use this plugin"
 
 #: ajax-event-calendar.php:449
 msgid "please rate and vote on compatibility"
-msgstr ""
+msgstr "please rate and vote on compatibility"
 
 #: ajax-event-calendar.php:451
 msgid "Consider making a donation to support continued development of this plugin."
-msgstr ""
+msgstr "Consider making a donation to support continued development of this plugin."
 
 #: ajax-event-calendar.php:453
 msgid "DONATE"
-msgstr ""
+msgstr "DONATE"
 
 #: ajax-event-calendar.php:455
 msgid "Thank you,"
-msgstr ""
+msgstr "Thank you,"
 
 # @ ajax-event-calendar
 #: ajax-event-calendar.php:459
@@ -445,7 +445,7 @@ msgstr "Alle"
 
 #: ajax-event-calendar.php:588
 msgid "Add a new, or edit/delete an existing calendar category.  To change the category tile color, click the color swatch or edit the field containing the hex value, then click Update.  The foreground color (black or white) is automatically assigned for optimal readbility based on the selected background color."
-msgstr ""
+msgstr "Add a new, or edit/delete an existing calendar category.  To change the category tile color, click the color swatch or edit the field containing the hex value, then click Update.  The foreground color (black or white) is automatically assigned for optimal readbility based on the selected background color."
 
 # @ ajax-event-calendar
 #: ajax-event-calendar.php:593
@@ -633,14 +633,14 @@ msgstr "Telefon eller email adresse"
 # @ ajax-event-calendar
 #: inc/admin-event.php:213
 #: inc/admin-options.php:30
-#: inc/show-event.php:70
+#: inc/show-event.php:66
 msgid "This event is accessible to people with disabilities."
 msgstr "Denne begivenhed er tilgængelig for mennesker med handicap."
 
 # @ ajax-event-calendar
 #: inc/admin-event.php:222
 #: inc/admin-options.php:31
-#: inc/show-event.php:71
+#: inc/show-event.php:67
 msgid "Please register with the contact person for this event."
 msgstr "Tilmelding kan ske hos kontaktpersonen for denne begivenhed."
 
@@ -661,7 +661,7 @@ msgstr "Ajax Kalender Indstillinger"
 
 #: inc/admin-options.php:9
 msgid "Hide"
-msgstr ""
+msgstr "Hide"
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:9
@@ -671,7 +671,7 @@ msgstr "Dag"
 
 #: inc/admin-options.php:9
 msgid "Require"
-msgstr ""
+msgstr "Require"
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:12
@@ -687,7 +687,7 @@ msgstr "Du kan ikke redigere udløbet begivenheder."
 
 #: inc/admin-options.php:14
 msgid "Display calendar weekends."
-msgstr ""
+msgstr "Display calendar weekends."
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:15
@@ -703,11 +703,11 @@ msgstr "Vis administrativ tilføj begivenheds link over kalender."
 
 #: inc/admin-options.php:17
 msgid "{Event Detail} links open in a new window (when unchecked, links open in the same window)."
-msgstr ""
+msgstr "{Event Detail} links open in a new window (when unchecked, links open in the same window)."
 
 #: inc/admin-options.php:18
 msgid "URLs entered in the description field are converted into clickable links."
-msgstr ""
+msgstr "URLs entered in the description field are converted into clickable links."
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:19
@@ -723,11 +723,11 @@ msgstr "Generelle indstillinger"
 
 #: inc/admin-options.php:20
 msgid "Hide, display or require form fields.  Hidden fields do not appear in the event form."
-msgstr ""
+msgstr "Hide, display or require form fields.  Hidden fields do not appear in the event form."
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:26
-#: inc/show-event.php:88
+#: inc/show-event.php:84
 msgid "Event Link"
 msgstr "Begivenheds Link"
 
@@ -738,7 +738,7 @@ msgstr "Navn på kontaktperson"
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:29
-#: inc/show-event.php:63
+#: inc/show-event.php:59
 msgid "Contact Information"
 msgstr "Kontakt information"
 
@@ -754,17 +754,17 @@ msgid "Save Changes"
 msgstr "Gem Ændringer"
 
 # @ ajax-event-calendar
-#: inc/show-event.php:52
+#: inc/show-event.php:48
 msgid "Location"
 msgstr "Placering"
 
 # @ ajax-event-calendar
-#: inc/show-event.php:56
+#: inc/show-event.php:52
 msgid "View Map"
 msgstr "Vis Kort"
 
 # @ ajax-event-calendar
-#: inc/show-event.php:77
+#: inc/show-event.php:73
 msgid "Presented by"
 msgstr "Præsenteret af"
 
@@ -829,23 +829,23 @@ msgstr "Kalender"
 
 #: inc/widget-upcoming.php:104
 msgid "Widget Title"
-msgstr ""
+msgstr "Widget Title"
 
 #: inc/widget-upcoming.php:108
 msgid "Event category displayed"
-msgstr ""
+msgstr "Event category displayed"
 
 #: inc/widget-upcoming.php:121
 msgid "Maximum events displayed"
-msgstr ""
+msgstr "Maximum events displayed"
 
 #: inc/widget-upcoming.php:133
 msgid "Link to calendar"
-msgstr ""
+msgstr "Link to calendar"
 
 #: inc/widget-upcoming.php:138
 msgid "Hide category colors"
-msgstr ""
+msgstr "Hide category colors"
 
 # @ ajax-event-calendar
 #~ msgid "Show Types"

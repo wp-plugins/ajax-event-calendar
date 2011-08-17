@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Ajax Event Calendar v0.9.9\n"
+"Project-Id-Version: Ajax Event Calendar v0.9.9.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-16 16:27-0600\n"
-"PO-Revision-Date: 2011-08-16 16:27-0600\n"
+"PO-Revision-Date: 2011-08-17 10:00-0600\n"
 "Last-Translator: Eran Miller <plugins@eranmiller.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -341,7 +341,7 @@ msgstr "Laddar händelse ..."
 # @ ajax-event-calendar
 #: ajax-event-calendar.php:427
 msgid "Success!"
-msgstr "Det funka!!!"
+msgstr "Det funkade!!!"
 
 # @ ajax-event-calendar
 #: ajax-event-calendar.php:428
@@ -357,20 +357,19 @@ msgstr "Ajax Event Calender"
 
 #: ajax-event-calendar.php:438
 msgid "Have questions about this plugin?"
-msgstr ""
+msgstr "Har du frågor om detta plugin?"
 
 #: ajax-event-calendar.php:440
 msgid "Check out the FAQ"
-msgstr ""
+msgstr "Kolla i FAQ"
 
 #: ajax-event-calendar.php:442
-#, fuzzy
 msgid "Submit your questions and comments about this plugin"
-msgstr "Skicka in dina frågor och kommentarer om detta plugin <a href=\"%s\" target=\"_blank\"> till supportforum </ a>."
+msgstr "Skicka in dina frågor och kommentarer om detta plugin"
 
 #: ajax-event-calendar.php:444
 msgid "in the forum"
-msgstr ""
+msgstr "i forumet"
 
 #: ajax-event-calendar.php:446
 msgid "You are welcome to request help from others in your native language, but I am only able to assist in English."
@@ -378,11 +377,11 @@ msgstr "Du är välkommen att begära hjälp från andra på ditt modersmål, me
 
 #: ajax-event-calendar.php:447
 msgid "If you use this plugin"
-msgstr ""
+msgstr "Om du använder detta plugin"
 
 #: ajax-event-calendar.php:449
 msgid "please rate and vote on compatibility"
-msgstr ""
+msgstr "Vänligen rösta och betygsätt kompatibiliteten"
 
 #: ajax-event-calendar.php:451
 msgid "Consider making a donation to support continued development of this plugin."
@@ -390,11 +389,11 @@ msgstr "Skänk gärna en slant för att stödja fortsatt utveckling av denna gra
 
 #: ajax-event-calendar.php:453
 msgid "DONATE"
-msgstr ""
+msgstr "DONERA"
 
 #: ajax-event-calendar.php:455
 msgid "Thank you,"
-msgstr ""
+msgstr "Tack ska du ha,"
 
 # @ ajax-event-calendar
 #: ajax-event-calendar.php:459
@@ -642,7 +641,7 @@ msgstr "Anmäl dig till kontaktpersonen för denna händelse."
 # @ ajax-event-calendar
 #: inc/admin-event.php:226
 msgid "Cancel"
-msgstr "Radera"
+msgstr "Avbryt"
 
 # @ ajax-event-calendar
 #: inc/admin-event.php:241
@@ -683,40 +682,35 @@ msgstr "Visa helger i kalendern"
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:15
-#, fuzzy
 msgid "Display {View Map} link on event details (uses populated address fields)."
-msgstr "Visa länken Visa karta  i händelsedetaljer."
+msgstr "Visa länken {Visa karta} i händelsedetaljer."
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:16
-#, fuzzy
 msgid "Display {Add Events} link on the front-end calendar."
-msgstr "Visa Lägg till händelser -länken ovanför front-end kalendern."
+msgstr "Visa {Lägg till händelser} -länken ovanför frontend-kalendern."
 
 #: inc/admin-options.php:17
 msgid "{Event Detail} links open in a new window (when unchecked, links open in the same window)."
-msgstr ""
+msgstr "{Händelsedetalj} länkar öppnas i ett nytt fönster (omarkerade länkar öppnas i samma fönster)"
 
 #: inc/admin-options.php:18
 msgid "URLs entered in the description field are converted into clickable links."
-msgstr ""
+msgstr "Webbadresser som anges i Beskrivningsfältet omvandlas till klickbara länkar."
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:19
-#, fuzzy
 msgid "Address format"
-msgstr "Adress"
+msgstr "Adressformat"
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:20
-#, fuzzy
 msgid "Form Options"
-msgstr "Allmänna inställningar"
+msgstr "Formulär-inställningar"
 
 #: inc/admin-options.php:20
-#, fuzzy
 msgid "Hide, display or require form fields.  Hidden fields do not appear in the event form."
-msgstr "Dölj, Visa eller Krävs fält. Dolda fält kommer inte att visas på händelsesidan."
+msgstr "Dölj, Visa eller Krävs fält. Dolda fält kommer inte att visas i händelseformuläret."
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:26
@@ -737,9 +731,8 @@ msgstr "Kontakt information"
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:32
-#, fuzzy
 msgid "Resets plugin settings on Save."
-msgstr "Återställ inställningar för plugin när du klickar Spara"
+msgstr "Återställ plugin-inställningar när du klickar Spara"
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:86
@@ -812,9 +805,8 @@ msgstr "Inga kommande händelser"
 
 # @ ajax-event-calendar
 #: inc/widget-upcoming.php:78
-#, fuzzy
 msgid "Link to Calendar"
-msgstr "Kalender"
+msgstr "Länk till kalender"
 
 #: inc/widget-upcoming.php:104
 msgid "Widget Title"
@@ -830,7 +822,7 @@ msgstr "Maximalt antal visade händelser"
 
 #: inc/widget-upcoming.php:133
 msgid "Link to calendar"
-msgstr ""
+msgstr "Länk till kalender"
 
 #: inc/widget-upcoming.php:138
 msgid "Hide category colors"
