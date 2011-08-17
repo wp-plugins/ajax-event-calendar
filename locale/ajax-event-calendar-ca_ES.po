@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Ajax Event Calendar v0.9.8.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-16 16:27-0600\n"
-"PO-Revision-Date: 2011-08-16 16:27-0600\n"
+"PO-Revision-Date: 2011-08-17 09:49-0600\n"
 "Last-Translator: Eran Miller <plugins@eranmiller.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -358,43 +358,43 @@ msgstr "Calendari d'Esdeveniments Ajax"
 
 #: ajax-event-calendar.php:438
 msgid "Have questions about this plugin?"
-msgstr ""
+msgstr "Have questions about this plugin?"
 
 #: ajax-event-calendar.php:440
 msgid "Check out the FAQ"
-msgstr ""
+msgstr "Check out the FAQ"
 
 #: ajax-event-calendar.php:442
 msgid "Submit your questions and comments about this plugin"
-msgstr ""
+msgstr "Submit your questions and comments about this plugin"
 
 #: ajax-event-calendar.php:444
 msgid "in the forum"
-msgstr ""
+msgstr "in the forum"
 
 #: ajax-event-calendar.php:446
 msgid "You are welcome to request help from others in your native language, but I am only able to assist in English."
-msgstr ""
+msgstr "You are welcome to request help from others in your native language, but I am only able to assist in English."
 
 #: ajax-event-calendar.php:447
 msgid "If you use this plugin"
-msgstr ""
+msgstr "If you use this plugin"
 
 #: ajax-event-calendar.php:449
 msgid "please rate and vote on compatibility"
-msgstr ""
+msgstr "please rate and vote on compatibility"
 
 #: ajax-event-calendar.php:451
 msgid "Consider making a donation to support continued development of this plugin."
-msgstr ""
+msgstr "Consider making a donation to support continued development of this plugin."
 
 #: ajax-event-calendar.php:453
 msgid "DONATE"
-msgstr ""
+msgstr "DONATE"
 
 #: ajax-event-calendar.php:455
 msgid "Thank you,"
-msgstr ""
+msgstr "Thank you,"
 
 # @ ajax-event-calendar
 #: ajax-event-calendar.php:459
@@ -658,7 +658,7 @@ msgstr "Opcions del Calendari d'Esdeveniments Ajax"
 
 #: inc/admin-options.php:9
 msgid "Hide"
-msgstr ""
+msgstr "Hide"
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:9
@@ -668,7 +668,7 @@ msgstr "Dia"
 
 #: inc/admin-options.php:9
 msgid "Require"
-msgstr ""
+msgstr "Require"
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:12
@@ -701,11 +701,11 @@ msgstr "Mostrar l'enllaç 'Afegir esdeveniments' al calendari que veu tothom."
 
 #: inc/admin-options.php:17
 msgid "{Event Detail} links open in a new window (when unchecked, links open in the same window)."
-msgstr ""
+msgstr "{Event Detail} links open in a new window (when unchecked, links open in the same window)."
 
 #: inc/admin-options.php:18
 msgid "URLs entered in the description field are converted into clickable links."
-msgstr ""
+msgstr "URLs entered in the description field are converted into clickable links."
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:19
@@ -721,7 +721,7 @@ msgstr "Opcions generals"
 
 #: inc/admin-options.php:20
 msgid "Hide, display or require form fields.  Hidden fields do not appear in the event form."
-msgstr ""
+msgstr "Hide, display or require form fields.  Hidden fields do not appear in the event form."
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:26
@@ -832,17 +832,17 @@ msgstr "Títol del Giny"
 
 #: inc/widget-upcoming.php:108
 msgid "Event category displayed"
-msgstr ""
+msgstr "Event category displayed"
 
 #: inc/widget-upcoming.php:121
 msgid "Maximum events displayed"
-msgstr ""
+msgstr "Maximum events displayed"
 
 #: inc/widget-upcoming.php:133
 msgid "Link to calendar"
-msgstr ""
+msgstr "Link to calendar"
 
 #: inc/widget-upcoming.php:138
 msgid "Hide category colors"
-msgstr ""
+msgstr "Hide category colors"
 
