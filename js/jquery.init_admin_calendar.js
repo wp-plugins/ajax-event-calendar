@@ -491,7 +491,6 @@ jQuery(document).ready(function($) {
 			// format output
 			var out = new Array();
 			if (allDay == true) diff.days += 1;
-			console.log(diff);
 			_jn(out, diff.weeks, custom.week, custom.weeks);
 			_jn(out, diff.days, custom.day, custom.days);
 			if (allDay == false) {
