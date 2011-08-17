@@ -1,17 +1,17 @@
 /**
  * Handle: init_admin_calendar
- * Version: 0.9.9
+ * Version: 0.9.9.1
  * Deps: jQuery
  * Enqueue: true
  */
 
 jQuery(document).ready(function($) {
-	var isFilter = ($('#aec-filter li a').length > 0);
 	$.jGrowl.defaults.closerTemplate = '<div>' + custom.hide_all_notifications + '</div>';
 	$.jGrowl.defaults.position = (custom.is_rtl=='1') ? 'bottom-left' : 'bottom-right';
+	var isFilter = ($('#aec-filter li a').length > 0);
 	var d 			= new Date(),
 		now 		= d.getTime(),
-		twoHours 	= (120 * 60 * 1000),
+		twoHours 	= (7200000),	// milliseconds
 		today 		= new Date(d.getFullYear(), d.getMonth(), d.getDate()),
 		nextYear 	= new Date(d.getFullYear()+1, d.getMonth(), d.getDate()),
 		calendar 	= $('#aec-calendar').fullCalendar({
@@ -72,7 +72,7 @@ jQuery(document).ready(function($) {
 			dragOpacity: 0.3,
 			loading: function(b){
 				if (b) $.jGrowl(custom.loading, {sticky:true});
-				else $('.jGrowl-close').trigger('click');
+				else $('#jGrowl').jGrowl('close');
 			},
 			eventMouseover: function(e, js, view){
 				
@@ -145,13 +145,13 @@ jQuery(document).ready(function($) {
 		
 		// mousewheel navigation
 		$('#aec-calendar').mousewheel(function(e, delta) {
-			var dir = (delta > 0) ? 'prev' : 'next';
-			calendar.fullCalendar(dir);
+			// TODO: add month selector
+			calendar.fullCalendar('incrementDate', 0, delta, 0);
 			return false;
 		});
 		
 		function roundUp(date){
-			var inc = 30 * 60 * 1000; // 30 minutes
+			var inc = 1800000; // 30 minutes
 			return new Date(inc * Math.ceil(date / inc));
 		}
 		
@@ -299,16 +299,7 @@ jQuery(document).ready(function($) {
 											if (!validateForm()) return;
 											$.post(ajaxurl, { action: 'add_event', 'event': $('#event_form').serialize() }, function(data){
 												if (data) {
-													var calendar = $('#aec-calendar').fullCalendar('renderEvent',
-													{
-														id: 		data.id,
-														title: 		data.title,
-														allDay: 	data.allDay,
-														start: 		data.start,
-														end:		data.end,
-														className:	data.className
-													}, false);
-													// calendar.fullCalendar('unselect');
+													renderEvent(data);
 													$.jGrowl('<strong>' + data.title + '</strong> ' + custom.has_been_created, { header: custom.success });
 												}
 											}, 'json');
@@ -322,12 +313,7 @@ jQuery(document).ready(function($) {
 											$.post(ajaxurl, { action: 'update_event', 'event': $('#event_form').serialize() }, function(data){
 												if (data) {
 													var e 		= $('#aec-calendar').fullCalendar('clientEvents', data.id)[0];
-													e.title 	= data.title;
-													e.allDay	= data.allDay;
-													e.start 	= data.start;
-													e.end 		= data.end;
-													e.className = data.className;
-													$('#aec-calendar').fullCalendar('updateEvent', e);
+													updateEvent(e, data);
 													$.jGrowl('<strong>' + e.title + '</strong> ' + custom.has_been_modified, { header: custom.success });
 												}
 											}, 'json');
@@ -365,23 +351,38 @@ jQuery(document).ready(function($) {
 				}
 			});
 		}
-
+		function renderEvent(event){
+			calendar.fullCalendar('renderEvent', {
+				id: 		event.id,
+				title: 		event.title,
+				allDay: 	event.allDay,
+				start: 		event.start,
+				end:		event.end,
+				className:	event.className
+			}, false);
+		}
+		function updateEvent(e, event){
+			e.title 	= event.title;
+			e.allDay	= event.allDay;
+			e.start 	= event.start;
+			e.end 		= event.end;
+			e.className = event.className;
+			calendar.fullCalendar('updateEvent', e);
+		}
 		// modal window javascript
 		function checkDuration(){
 			var	allDay 	= $('#allDay').attr('checked'),
 				from 	= $('#start_date').val(),
 				to 		= $('#end_date').val();
 			
-			/*
-			// recurring event placeholder
+/* recurring event placeholder
 			repeat 	= $('#repeat_int').val();
 			if (repeat > 0) {
 				$('#repeat_end').fadeIn(250);
 			} else {
 				$('#repeat_end').fadeOut(250);
-			}
-			*/
-
+			} 
+*/
 			if (allDay) {
 				$('#start_time, #end_time').fadeTo(150,0.3).attr("disabled","disabled");
 				
@@ -476,21 +477,21 @@ jQuery(document).ready(function($) {
 			from = convertDate(from);
 			to = convertDate(to);
 
-			var milliseconds = new Date(to).getTime() - new Date(from).getTime();
-			
+			var mills = new Date(to).getTime() - new Date(from).getTime();
 			var diff = new Object();
-			diff.weeks = Math.floor(milliseconds/1000/60/60/24/7);
-			milliseconds -= diff.weeks*1000*60*60*24*7;
-			diff.days = Math.floor(milliseconds/1000/60/60/24);
-			milliseconds -= diff.days*1000*60*60*24;
-			diff.hours = Math.floor(milliseconds/1000/60/60);
-			milliseconds -= diff.hours*1000*60*60;
-			diff.minutes = Math.floor(milliseconds/1000/60);
-			milliseconds -= diff.minutes*1000*60;
+			diff.weeks = Math.floor(mills/604800000);
+			mills -= diff.weeks*604800000;
+			diff.days = Math.floor(mills/86400000);
+			mills -= diff.days*86400000;
+			diff.hours = Math.floor(mills/3600000);
+			mills -= diff.hours*3600000;
+			diff.minutes = Math.floor(mills/60000);
+			mills -= diff.minutes*60000;
 
 			// format output
 			var out = new Array();
 			if (allDay == true) diff.days += 1;
+			console.log(diff);
 			_jn(out, diff.weeks, custom.week, custom.weeks);
 			_jn(out, diff.days, custom.day, custom.days);
 			if (allDay == false) {

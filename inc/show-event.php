@@ -7,90 +7,92 @@
 	$event->end_date 	= ajax_event_calendar::date_convert($event->end, AEC_DB_DATETIME_FORMAT, AEC_WP_DATE_FORMAT);
 	$event->end_time 	= ajax_event_calendar::date_convert($event->end, AEC_DB_DATETIME_FORMAT, AEC_WP_TIME_FORMAT);
 
-	$out = '<ul>';
-	$out .= '<li><h3>';
+	
+	$out = '<h3>';
 
 	if ($event->start_date != $event->end_date) {
 		// multiple day event, spanning all day
 		if ($event->allDay) {
-			$out .= $event->start_date;
-			$out .= ' - ' . $event->end_date;
-			$event->start = $event->start_date;
-			$event->end = $event->end_date;
-			
+			$out .= "{$event->start_date} - {$event->end_date}";
 		// multiple day event, not spanning all day
 		} else {
-			$out .= $event->start_date . ' ' . $event->start_time;
-			$out .= ' - ' . $event->end_date . ' ' . $event->end_time;
+			$out .= "{$event->start_date} {$event->start_time} - {$event->end_date} {$event->end_time}";
 		}
-		
 	} else {
-			
 		// one day event, spanning all day
 		if ($event->allDay) {
 			$out .= $event->start_date;
-			$event->start = $event->start_date;
-			$event->end = $event->end_date;
-		
 		// one day event, spanning hours
 		} else {
-			$out .= $event->start_date;
-			$out .= ' - ' . $event->start_time . ' - ' . $event->end_time;
+			$out .= "{$event->start_date} {$event->start_time} - {$event->end_time}";
 		}
 	}
-	$out .= '<span class="duration round5"></span>';
-	$out .= '</h3>';
-	$out .= '</li>';
+	$out .= "<span class='duration round5'></span></h3>\n";
 	
-	// displays lines breaks in the description area as entered in form
-	$out .= '<li>' . nl2br($event->description) . '</li>';
+	// maintain lines breaks entered in textarea
+	$description = nl2br($event->description);
+	
+	// convert urls in text into clickable links
+	if ($options['make_links'])
+		$description = make_clickable($description);
+	
+	// make links open in a new window
+	if ($options['popup_links'])
+		$description = popuplinks($description);
+	
+	$out .= "<p>{$description}</p>\n";
 
 	if (!empty($event->venue) || !empty($event->address) || !empty($event->city) || !empty($event->state) || !empty($event->zip) ) {
-		$out .= '<li><h3>' . __('Location', AEC_PLUGIN_NAME) . '</h3>';
-		if (!empty($event->venue)) $out .= $event->venue . '<br>';
+		
 		$city 	= (!empty($event->city)) ? $event->city : '';
 		$state 	= (!empty($event->state)) ? $event->state : '';
 		$zip	= (!empty($event->zip)) ? $event->zip : '';
-		$csz 	= ($options['state']) ? "{$city} {$state}, {$zip}" : "{$zip} {$city}";
+		$csz 	= ($options['addy_format']) ? "{$zip} {$city}" : "{$city} {$state}, {$zip}";
 
-		$out .= (!empty($event->address)) ? $event->address . '<br>' . $csz : $csz;
-		$out .= '</li>';
+		$out .= '<h3>' . __('Location', AEC_PLUGIN_NAME) . "</h3>\n";
 
 		// google map link
 		 if ($options['show_map_link'] && (!empty($event->address) || !empty($csz))) {
-			$out .= '<li>';
-			$out .= '<a href="http://maps.google.com/?q=' . urlencode($event->address . ' ' . $csz) . '" class="round5 cat' . $event->category_id . '" target="_blank">' . __('View Map', AEC_PLUGIN_NAME) . '</a>';
-			$out .= '</li>';
+			$out .= "<a href='http://maps.google.com/?q=" . urlencode($event->address . " " . $csz) . "' class='round5 maplink cat{$event->category_id}' target='_blank'>" . __('View Map', AEC_PLUGIN_NAME) . "</a>\n";
 		}
+		if (!empty($event->venue)) $out .= "<p>{$event->venue}\n";
+		$out .= (!empty($event->address)) ? "<br>{$event->address}<br>{$csz}</p>" : "<br>{$csz}</p>";	
 	}
 
 	if (!empty($event->contact) || !empty($event->contact_info)) {
-		$out .= '<li><h3>' . __('Contact Information', AEC_PLUGIN_NAME) . '</h3>';
-		if (!empty($event->contact)) $out .= $event->contact . '<br>';
-		if (!empty($event->contact_info)) $out .= $event->contact_info;
-		$out .= '</li>';
+		$out .= "<h3>" . __('Contact Information', AEC_PLUGIN_NAME) . "</h3>\n";
+		$contact = (!empty($event->contact)) ? $event->contact : '';
+		$cntinfo = (!empty($event->contact_info)) ? "(" . make_clickable($event->contact_info) . ")" : '';
+		$out .= "<p>{$contact} {$cntinfo}</p>\n";
 	}
 
 	if ($event->access || $event->rsvp) {
-		$out .= '<hr>';
-		if ($event->access) $out .= '<li>' . __('This event is accessible to people with disabilities.', AEC_PLUGIN_NAME) . '</li>';
-		if ($event->rsvp) $out .= '<li>' . __('Please register with the contact person for this event.' , AEC_PLUGIN_NAME) . '</li>';
+		if ($event->access) $out .= '<p>' . __('This event is accessible to people with disabilities.', AEC_PLUGIN_NAME) . '</p>';
+		if ($event->rsvp) $out .= '<p>' . __('Please register with the contact person for this event.' , AEC_PLUGIN_NAME) . '</p>';
 	}
 
 	$org = get_userdata($event->user_id);
 	if (!empty($org->organization)) {
-			$out .= '<li class="presented">' . __('Presented by', AEC_PLUGIN_NAME) . ' ';
+		$organization = stripslashes($org->organization);
+			$out .= '<p class="presented">' . __('Presented by', AEC_PLUGIN_NAME) . ' ';
 		if (!empty($org->user_url)) {
-			$out .= '<a href="' . $org->user_url . '" target="_blank">' . stripslashes($org->organization) . '</a>';
+			$out .= "<a href='{$org->user_url}' target='_blank'>{$organization}</a>";
 		} else {
-			$out .= stripslashes($org->organization);
+			$out .= $organization;
 		}
-		$out .= '</li>';
+		$out .= "</p>\n";
 	}
 
-	if (!empty($event->link)) $out .= '<li><a href="' . $event->link . '" class="link cat' . $event->category_id . '" target="_blank">' . __('Event Link', AEC_PLUGIN_NAME) . '</a></li>';
-
-	$out .= '</ul>';
+	if (!empty($event->link)) {
+		$link  = "<a href='{$event->link}' class='link round5 cat{$event->category_id}'>";
+		$link .= __('Event Link', AEC_PLUGIN_NAME);
+		$link .= "</a>\n";
+		// make links open in a new window
+		if ($options['popup_links']) 
+			popuplinks($link);
+		
+		$out .= $link;
+	}
 
 	$categories = $this->query_categories();
 	foreach ($categories as $category) {
@@ -99,13 +101,18 @@
 			break;
 		}
 	}
-
+			
+	if ($event->allDay) {
+		$event->start = $event->start_date;
+		$event->end = $event->end_date;
+	}
+	
 	$output = array(
-		'title'		=> $event->title . ' (' . $cat . ')',
+		'title'		=> "{$event->title} ({$cat})",
 		'content'	=> $out,
-		'start'		=> date('m/d/Y H:i:00', strtotime($event->start)),
-		'end'		=> date('m/d/Y H:i:00', strtotime($event->end)),
-		'allDay'	=> $event->allDay
+		'start'		=> date('m/d/Y H:i:00', strtotime($event->start)),	// used by javascript duration calculation
+		'end'		=> date('m/d/Y H:i:00', strtotime($event->end)),	// used by javascript duration calculation
+		'allDay'	=> $event->allDay									// used by javascript duration calculation
 	);
 	
 	$this->render_json($output);

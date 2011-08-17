@@ -2,91 +2,85 @@
 	<div class="icon32" id="icon-options-general"><br></div>
 	<h2><?php _e('Ajax Event Calendar Options', AEC_PLUGIN_NAME); ?></h2>
 	<?php
-		$general = array(
-			'show_weekends' => __('Display calendar weekends.', AEC_PLUGIN_NAME),
-			'show_map_link' => __('Display "View Map" link on event details (uses populated address fields).', AEC_PLUGIN_NAME),
-			'menu' 			=> __('Display "Add Events" link on the front-end calendar.', AEC_PLUGIN_NAME),
-			'limit' 		=> __('Prevent users from adding or editing expired events.', AEC_PLUGIN_NAME)
-		);
-		$fields = array(
-			'venue' 		=> __('Venue', AEC_PLUGIN_NAME),
-			'address' 		=> __('Neighborhood or Street Address', AEC_PLUGIN_NAME),
-			'city' 			=> __('City', AEC_PLUGIN_NAME),
-			'state' 		=> array(__('State', AEC_PLUGIN_NAME), __('if State is hidden, the address format displayed is: {Postal Code} {City}', AEC_PLUGIN_NAME)),
-			'zip' 			=> __('Postal Code', AEC_PLUGIN_NAME),
-			'link' 			=> __('Event Link', AEC_PLUGIN_NAME),
-			'description' 	=> __('Description', AEC_PLUGIN_NAME),
-			'contact' 		=> __('Contact Name', AEC_PLUGIN_NAME),
-			'contact_info'	=> __('Contact Information', AEC_PLUGIN_NAME)
-		);
-		$optional = array(
-			'accessible'	=> __('This event is accessible to people with disabilities.', AEC_PLUGIN_NAME),
-			'rsvp' 			=> __('Please register with the contact person for this event.', AEC_PLUGIN_NAME)
+		$city 					= __('City', AEC_PLUGIN_NAME);
+		$state 					= __('State', AEC_PLUGIN_NAME);
+		$postal					= __('Postal Code', AEC_PLUGIN_NAME);
+		$format_options 		= array("{{$city}}, {{$state}} {{$postal}}", "{{$postal}} {{$city}}");
+		$field_options			= array( __('Hide', AEC_PLUGIN_NAME), __('Display', AEC_PLUGIN_NAME), __('Require', AEC_PLUGIN_NAME));
+		$fields 				= array(
+			'title'				=> array('hidden', 2),	// preserves event title as a required field.
+			'filter_label'		=> array('textfield', __('Category filter label', AEC_PLUGIN_NAME)),
+			'limit'				=> array('checkbox', __('Prevent users from adding or editing expired events.', AEC_PLUGIN_NAME)),
+			'show_weekends'		=> array('checkbox', __('Display calendar weekends.', AEC_PLUGIN_NAME)),
+			'show_map_link' 	=> array('checkbox', __('Display {View Map} link on event details (uses populated address fields).', AEC_PLUGIN_NAME)),
+			'menu' 				=> array('checkbox', __('Display {Add Events} link on the front-end calendar.', AEC_PLUGIN_NAME)),
+			'popup_links'		=> array('checkbox', __('{Event Detail} links open in a new window (when unchecked, links open in the same window).', AEC_PLUGIN_NAME)),
+			'make_links'		=> array('checkbox', __('URLs entered in the description field are converted into clickable links.', AEC_PLUGIN_NAME)),
+			'addy_format'		=> array('select', __('Address format', AEC_PLUGIN_NAME), $format_options),
+			'fields'			=> array('heading', __('Form Options', AEC_PLUGIN_NAME), __('Hide, display or require form fields.  Hidden fields do not appear in the event form.', AEC_PLUGIN_NAME)),
+			'venue' 			=> array('select', __('Venue', AEC_PLUGIN_NAME), $field_options),
+			'address' 			=> array('select', __('Neighborhood or Street Address', AEC_PLUGIN_NAME), $field_options),
+			'city' 				=> array('select', __('City', AEC_PLUGIN_NAME), $field_options),
+			'state' 			=> array('select', __('State', AEC_PLUGIN_NAME), $field_options),
+			'zip' 				=> array('select', __('Postal Code', AEC_PLUGIN_NAME), $field_options),
+			'link' 				=> array('select', __('Event Link', AEC_PLUGIN_NAME), $field_options),
+			'description' 		=> array('select', __('Description', AEC_PLUGIN_NAME), $field_options),
+			'contact' 			=> array('select', __('Contact Name', AEC_PLUGIN_NAME), $field_options),
+			'contact_info'		=> array('select', __('Contact Information', AEC_PLUGIN_NAME), $field_options),
+			'accessible'		=> array('checkbox', __('This event is accessible to people with disabilities.', AEC_PLUGIN_NAME)),
+			'rsvp' 				=> array('checkbox', __('Please register with the contact person for this event.', AEC_PLUGIN_NAME)),
+			'reset'				=> array('checkbox', __('Resets plugin settings on Save.', AEC_PLUGIN_NAME))
 		);
 	?>
 	<form method="post" action="options.php">
 		<?php settings_fields('aec_plugin_options'); ?>
 		<?php $options = get_option('aec_options'); ?>
-		<input type="hidden" name="aec_options[title]" value="2" />
 		<table class="form-table">
-			<tr>
-				<th><label for="filter_label"><?php _e('Category filter label', AEC_PLUGIN_NAME); ?></label></th>
-				<td><input type='text' name='aec_options[filter_label]' id='filter_label' value="<?php esc_attr_e($options['filter_label']); ?>" /></td>
-			</tr>
-			<tr>
-				<th><?php _e('General Options', AEC_PLUGIN_NAME); ?></th>
-				<td>
-					<?php
-					foreach ($general as $field => $value) {
-						$checked = ($options[$field]) ? ' checked="checked" ' : ' ';
-						echo '<p><input type="hidden" name="aec_options[' . $field . ']" value="0" />';
-						echo '<input' . $checked . 'id="' . $field . '" value="1" name="aec_options[' . $field . ']" type="checkbox" class="box" /> ';
-						echo '<label for="' . $field . '">' . $value . '</label></p>';
-					}
-					?>
-				</td>
-			</tr>
-			<tr>
-				<th colspan="2"><?php _e('Hide, display or require form fields.  Hidden fields will not appear in the event form.', AEC_PLUGIN_NAME); ?></th>
-			</tr>
 			<?php
-				foreach ($fields as $field => $value) {
-					$desc = (is_array($value)) ? $value[1] : false; 
-					$value = (is_array($value)) ? $value[0] : $value; 
-					$out = '<tr>';
-					$out .= "<th>{$value}</th>\n";
-					$out .= '<td><select name="aec_options[' . $field . ']" >';
-					$out .= "<option value=0 name=aec_options[{$field}] " . selected($options[$field], 0, false) . ">" . __('Hide', AEC_PLUGIN_NAME) . '</option>';
-					$out .= "<option value=1 name=aec_options[{$field}] " . selected($options[$field], 1, false) . ">" . __('Display', AEC_PLUGIN_NAME) . '</option>';
-					$out .= "<option value=2 name=aec_options[{$field}] " . selected($options[$field], 2, false) . ">" . __('Require', AEC_PLUGIN_NAME) . '</option>';
-					$out .= "</select>\n";
-					if ($desc) $out .= '<span class="description">' . $desc . '</span>';
-					$out .= '</td></tr>';
-					echo $out;
+				foreach ($fields as $field => $values) {
+					$type = $values[0];
+					$value = $values[1];
+					$description = isset($values[2]) ? $values[2] : false;
+					switch ($type) {
+						case "hidden":
+							echo "<input type='hidden' name='aec_options[{$field}]' value='{$value}' />\n";
+						break;
+						case "heading":
+							echo "<tr>\n";
+							echo "<th>{$value}</th>\n";
+							if ($description) echo "<td><span class='description'>{$description}</span></td>\n";
+							echo "</tr>\n";
+						break;
+						case "textfield":
+							echo "<tr>\n";
+							echo "<th><label for='{$field}'>{$value}</label></th>\n";
+							echo "<td><input type='text' name='aec_options[{$field}]' id='{$field} value='" . esc_attr_e($options[$field]) . "' />\n";
+							if ($description) echo "<span class='description'>{$description}</span>\n";
+							echo "</td></tr>\n";
+						break;
+						case "checkbox":
+							$checked = ($options[$field]) ? ' checked="checked" ' : ' ';					
+							echo "<td><input type='hidden' name='aec_options[{$field}]' value='0' /></td>\n";
+							echo "<td><input type='checkbox' name='aec_options[{$field}]' id='{$field}' value='1' class='box' {$checked} />\n";
+							echo "<label for='{$field}'>{$value}</label>\n";
+							if ($description) echo "<span class='description'>{$description}</span>\n";
+							echo "</td></tr>\n";
+						break;
+						case "select":
+							$select_opts = $values[2];
+							$description = isset($values[3]) ? $values[3] : false;
+							echo "<th>{$value}</th>\n";
+							echo "<td><select name='aec_options[{$field}]' >\n";
+							foreach ($select_opts as $option => $value) {
+								echo "<option value='{$option}' name='aec_options[{$field}]' " . selected($options[$field], $option, false) . ">{$value}</option>\n";								
+							}
+							echo "</select>\n";
+							if ($description) echo "<span class='description'>{$description}</span>\n";
+							echo "</td></tr>\n";
+						break;
+					}
 				}
 			?>
-			<tr>
-				<th><?php _e('Checked fields are displayed', AEC_PLUGIN_NAME); ?></th>
-				<td>
-					<?php
-					foreach ($optional as $field => $value) {
-						$checked = ($options[$field]) ? ' checked="checked" ' : ' ';
-						echo '<p><input type="hidden" name="aec_options[' . $field . ']" value="0" />';
-						echo '<label>';
-						echo '<input' . $checked . 'id="' . $field . '" value="1" name="aec_options[' . $field . ']" type="checkbox" /> ';
-						echo $value . '</label></p>';
-					}
-					?>
-				</td>
-			</tr>
-			<tr>
-				<th><?php _e('Restore Original Settings', AEC_PLUGIN_NAME); ?></th>
-				<td>
-					<label>
-					<input type="hidden" name="aec_options[reset]" value="0" />
-					<input name="aec_options[reset]" type="checkbox" value="1" <?php if (isset($options['reset'])) { checked('1', $options['reset']); } ?> /> <?php _e('Resets plugin settings on Save', AEC_PLUGIN_NAME); ?></label>
-				</td>
-			</tr>
 		</table>
 		<p class="submit">
 			<input name="Submit" type="submit" class="button-primary" value="<?php _e('Save Changes', AEC_PLUGIN_NAME); ?>" />

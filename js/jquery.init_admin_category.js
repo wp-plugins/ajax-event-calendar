@@ -1,13 +1,13 @@
 /**
  * Handle: init_admin_category
- * Version: 0.9.8.6
+ * Version: 0.9.9.1
  * Deps: jQuery
  * Enqueue: true
  */
 
 jQuery(document).ready(function($) {
 	$.jGrowl.defaults.closerTemplate = '<div>' + custom.hide_all_notifications + '</div>';
-	$.jGrowl.defaults.position = 'bottom-right';
+	$.jGrowl.defaults.position = (custom.is_rtl == '1') ? 'bottom-left' : 'bottom-right';
 
 	$('.colors').miniColors({
 		change: function(hex, rgb) {

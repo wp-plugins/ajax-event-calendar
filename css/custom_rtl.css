@@ -1,14 +1,15 @@
+#aec-calendar table{float:right}
 #aec-menu{float:right;padding:10px 0}
 ul#aec-filter{float:left}
 #aec-filter li{float:right;padding:0 4px 0 0}
 #aec-filter li:first-child{padding:3px 0 3px 4px}
-#aec-loading{float:right}
 #aec-modal-container{text-align:right}
 #aec-modal-container .aec-title{direction:ltr}
 #aec-modal-container h3{direction:ltr}
 #aec-modal-container .close{left:0;top:0}
 #aec-modal-container .close a{float:left;padding:6px 12px 0}
 #aec-modal-container span.duration-message{padding-right:5px}
+#aec-modal a.maplink{float:left}
 #aec-modal span.duration{float:left}
 #aec-modal a.link{right:auto;left:10px}
 .ltr{direction:ltr;text-align:left}

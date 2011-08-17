@@ -1,6 +1,6 @@
 /**
  * Handle: init_show_calendar
- * Version: 0.9.9
+ * Version: 0.9.9.1
  * Deps: jQuery
  * Enqueue: true
  */
@@ -75,7 +75,7 @@ jQuery(document).ready(function($) {
 			selectHelper: custom.editable,
 			loading: function(b){
 				if (b) $.jGrowl(custom.loading, {sticky:true});
-				else $('.jGrowl-close').trigger('click');
+				else $('#jGrowl').jGrowl('close');
 			},
 			eventClick: function(e){
 				eventDialog(e);
@@ -85,8 +85,7 @@ jQuery(document).ready(function($) {
 		// mousewheel navigation
 		if (shortcode.scroll) {
 			$('#aec-calendar').mousewheel(function(e, delta) {
-				var dir = (delta > 0) ? 'prev' : 'next';
-				calendar.fullCalendar(dir);
+				calendar.fullCalendar('incrementDate',0 ,delta, 0);
 				return false;
 			});
 		}
@@ -164,14 +163,14 @@ jQuery(document).ready(function($) {
 	function calcDuration(from, to, allDay){
 		var mills = new Date(to).getTime() - new Date(from).getTime();
 		var diff = new Object();
-		diff.weeks = Math.floor(mills/1000/60/60/24/7);
-		mills -= diff.weeks*1000*60*60*24*7;
-		diff.days = Math.floor(mills/1000/60/60/24);
-		mills -= diff.days*1000*60*60*24;
-		diff.hours = Math.floor(mills/1000/60/60);
-		mills -= diff.hours*1000*60*60;
-		diff.minutes = Math.floor(mills/1000/60);
-		mills -= diff.minutes*1000*60;
+		diff.weeks = Math.floor(mills/604800000);
+		mills -= diff.weeks*604800000;
+		diff.days = Math.floor(mills/86400000);
+		mills -= diff.days*86400000;
+		diff.hours = Math.floor(mills/3600000);
+		mills -= diff.hours*3600000;
+		diff.minutes = Math.floor(mills/60000);
+		mills -= diff.minutes*60000;
 
 		// format output
 		var out = new Array();

@@ -3,7 +3,7 @@
 Plugin Name: Ajax Event Calendar
 Plugin URI: http://wordpress.org/extend/plugins/ajax-event-calendar/
 Description: A fully localized community calendar that allows authorized users to manage events in custom categories.
-Version: 0.9.9
+Version: 0.9.9.1
 Author: Eran Miller
 Author URI: http://eranmiller.com
 License: GPL2
@@ -34,7 +34,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)){
 	die('Sorry, but you cannot access this page directly.');
 }
 
-define('AEC_PLUGIN_VERSION', '0.9.9');
+define('AEC_PLUGIN_VERSION', '0.9.9.1');
 define('AEC_PLUGIN_FILE', basename(__FILE__));
 define('AEC_PLUGIN_NAME', str_replace('.php', '', AEC_PLUGIN_FILE));
 define('AEC_PLUGIN_PATH', plugin_dir_path(__FILE__));
@@ -56,25 +56,27 @@ if (!class_exists('ajax_event_calendar')){
 		private $required_fields  = array();
 		private $shortcode_params = array();
 		private $plugin_defaults  = array(
-										'filter_label'		=> '',
-										'show_weekends'		=> '1',
-										'show_map_link'		=> '1',
-										'menu' 				=> '1',
-										'limit' 			=> '0',
-										'title' 			=> '2',
-										'venue' 			=> '1',
-										'address'			=> '2',
-										'city' 				=> '2',
-										'state' 			=> '2',
-										'zip'				=> '2',
-										'link' 				=> '1',
-										'description' 		=> '2',
-										'contact' 			=> '2',
-										'contact_info' 		=> '2',
-										'accessible' 		=> '1',
-										'rsvp' 				=> '1',
-										'reset' 			=> '0'
-									);
+									'filter_label'		=> '',
+									'limit' 			=> '0',
+									'show_weekends'		=> '1',
+									'show_map_link'		=> '1',
+									'menu' 				=> '1',
+									'make_links'		=> '0',
+									'popup_links'		=> '1',
+									'title' 			=> '2',
+									'venue' 			=> '1',
+									'address'			=> '2',
+									'city' 				=> '2',
+									'state' 			=> '2',
+									'zip'				=> '2',
+									'link' 				=> '1',
+									'description' 		=> '2',
+									'contact' 			=> '2',
+									'contact_info' 		=> '2',
+									'accessible' 		=> '1',
+									'rsvp' 				=> '1',
+									'reset' 			=> '0'
+								);
 
 		function __construct(){
 			add_action('plugins_loaded', array($this, 'version_patches'));
@@ -98,7 +100,7 @@ if (!class_exists('ajax_event_calendar')){
 			add_action('wp_ajax_move_event', array($this, 'move_event'));
 			add_action('wp_ajax_add_category', array($this, 'add_category'));
 			add_action('wp_ajax_update_category', array($this, 'update_category'));
-			add_action('wp_ajax_delete_category', array($this, 'delete_category'));
+			add_action('wp_ajax_delete_category', array($this, 'confirm_delete_category'));
 			add_action('wp_ajax_reassign_category', array($this, 'reassign_category'));
 
 			// wordpress overrides
@@ -128,10 +130,6 @@ if (!class_exists('ajax_event_calendar')){
 			wp_register_style('custom_rtl', AEC_PLUGIN_URL . 'css/custom_rtl.css', null, AEC_PLUGIN_VERSION);
 			wp_register_style('categories', AEC_PLUGIN_URL . 'css/cat_colors.css', null, AEC_PLUGIN_VERSION);
 			wp_register_style('jq_ui_css', AEC_PLUGIN_URL . 'css/jquery-ui-1.8.13.custom.css', null, '1.8.13');
-			
-			// custom user css
-			//if (file_exists(STYLESHEETPATH . '/user.css'))
-			//	wp_register_style('user_css', STYLESHEETPATH . '/user.css', null, AEC_PLUGIN_VERSION);
 		}
 
 		function install(){
@@ -151,7 +149,7 @@ if (!class_exists('ajax_event_calendar')){
 						venue VARCHAR(100),
 						address VARCHAR(100),
 						city VARCHAR(50),
-						state CHAR(2),
+						state CHAR(3),
 						zip VARCHAR(10),
 						contact VARCHAR(50),
 						contact_info VARCHAR(50),
@@ -266,15 +264,23 @@ if (!class_exists('ajax_event_calendar')){
 				// remove outdated widget option
 				delete_option('widget_upcoming_events');
 				delete_option('widget_contributor_list');
-
 				$plugin_updated = true;
 			}
 
-			// < 0.9.9
-			if (version_compare(get_option('aec_version'), '0.9.9', '<')) {
+			// < 0.9.9.1
+			if (version_compare(get_option('aec_version'), '0.9.9.1', '<')) {
+				// update table to support Aussi state length
+				require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+				global $wpdb;
+				$sql = 'ALTER TABLE ' . $wpdb->prefix . AEC_EVENT_TABLE
+					 . ' MODIFY state CHAR(3);';
+				$wpdb->query($sql);
 
 				// add new options
-				$options 		= $this->insert_option('filter_label', __('Show Types', AEC_PLUGIN_NAME));
+				$options 		= $this->insert_option('filter_label', '');
+				$options		= $this->insert_option('make_links', '0');
+				$options		= $this->insert_option('popup_links', '1');
+				$options		= $this->insert_option('addy_format', '0');
 				$plugin_updated = true;
 			}
 
@@ -288,23 +294,35 @@ if (!class_exists('ajax_event_calendar')){
 				// add sample event once plugin has gone through all update routines
 				$_POST['event']['user_id'] = 0;	// system id
 				$_POST['event']['title'] = 'Ajax Event Calendar [v' . AEC_PLUGIN_VERSION . '] Installed!';
-				$_POST['event']['start_date'] = date(AEC_DB_DATE_FORMAT);
+				$_POST['event']['start_date'] = date('Y-m-d');
 				$_POST['event']['start_time'] = '00:00:00';
-				$_POST['event']['end_date'] = date(AEC_DB_DATE_FORMAT);
+				$_POST['event']['end_date'] = date('Y-m-d');
 				$_POST['event']['end_time'] = '00:00:00';
 				$_POST['event']['allDay'] = 1;
 				$_POST['event']['category_id'] = 1;
-				$_POST['event']['description'] = "Now that the calendar is installed...these are a few next steps:\nAdd the front-end calendar page (illustrated in the Screenshots section via the Event Link)\nChange the event categories\nAdd the calendar widgets to your sidebar\nModify the calendar options (via the WP Settings: General and Ajax Event Calendar menus)\nAuthorize calendar contributors (via the WP Users menu)\n\nCan't find what you're looking for in the FAQ? <a href='http://wordpress.org/tags/ajax-event-calendar?forum_id=10' target='_blank'>Check out the forum</a> and post your questions there.\n\nIf you use and enjoy this plugin, please remember to vote via the Event Link.\nThanks!\nEran";
+				$_POST['event']['description'] = "Now that the calendar is installed, here are some optional next steps:
+- Create one (or more) calendar views with the [calendar] shortcode (for options see plugin homepage)
+- Add, delete or modify event category labels and colors
+- Specify which event form fields to hide, display and require
+- Assign the Calendar Contributor role to users and allow them to add events
+- Display AEC widgets (Upcoming Events and Calendar Contributors) in the sidebar
+
+Experiencing problems? Read the FAQ (http://wordpress.org/extend/plugins/ajax-event-calendar/faq).
+Can't find the solution? Try the forum (http://wordpress.org/tags/ajax-event-calendar?forum_id=10) and post your questions there.";
 				$_POST['event']['link'] = AEC_PLUGIN_HOMEPAGE;
-				$_POST['event']['venue'] = 'Cloud Gate';
+				$_POST['event']['venue'] = 'Fake Address';
 				$_POST['event']['address'] = '201 East Randolph Street';
 				$_POST['event']['city'] = 'Chicago';
 				$_POST['event']['state'] = 'IL';
 				$_POST['event']['zip'] = '60601-6530';
 				$_POST['event']['contact'] = 'Eran Miller';
-				$_POST['event']['contact_info'] = 'plugins@eranmiller.com';
+				$_POST['event']['contact_info'] = 'plugins at eranmiller dot com';
 				$_POST['event']['access'] = 1;
 				$_POST['event']['rsvp'] = 0;
+
+				// removes previously created release events and creates a new one
+				$_POST['user_id'] = $_POST['event']['user_id'];
+				$this->delete_events_by_user();
 				$this->add_event();
 			}
 		}
@@ -312,7 +330,12 @@ if (!class_exists('ajax_event_calendar')){
 	    function localize_plugin($page){
 			load_plugin_textdomain( AEC_PLUGIN_NAME, false, AEC_PLUGIN_NAME . '/locale/' );
 			$timezone = get_option('timezone_string');
-			date_default_timezone_set($timezone);
+			if ($timezone) {
+				date_default_timezone_set($timezone);
+			} else {
+				// TODO: look into converting gmt_offset into timezone_string
+				date_default_timezone_set('UTC');
+			}
 		}
 
 		// localized javascript variables
@@ -331,7 +354,7 @@ if (!class_exists('ajax_event_calendar')){
 				'is_rtl'					=> is_rtl(),
 				'locale'					=> AEC_LOCALE,
 				'start_of_week' 			=> get_option('start_of_week'),
-				'datepicker_format' 		=> ($isEuroDate) ? 'dd-mm-yy' : 'mm/dd/yy',	// jquery datepicker format
+				'datepicker_format' 		=> ($isEuroDate) ? 'dd-mm-yy' : 'mm/dd/yy',		// jquery datepicker format
 				'is24HrTime'				=> $is24HrTime,
 				'show_weekends'				=> $options['show_weekends'],
 				'agenda_time_format' 		=> ($is24HrTime) ? 'H:mm{ - H:mm}' : 'h:mmt{ - h:mmt}',
@@ -410,13 +433,27 @@ if (!class_exists('ajax_event_calendar')){
 			if (function_exists('add_options_page')) {
 
 				// define help text
-				$help = '<h3>' . sprintf(__('Ajax Event Calendar <small>[v%s]</small></h3>', AEC_PLUGIN_NAME), AEC_PLUGIN_VERSION);
-				$help .= sprintf(__('Have questions about this plugin? <a href="%s" target="_blank">Check out the FAQ</a>.', AEC_PLUGIN_NAME), AEC_PLUGIN_HOMEPAGE . 'faq/');
-				$help .= '<br>' . sprintf(__('Submit your questions and comments about this plugin <a href="%s" target="_blank">in the support forum</a>.', AEC_PLUGIN_NAME), 'http://wordpress.org/tags/ajax-event-calendar?forum_id=10');
+				$help = '<h3>' . __('Ajax Event Calendar', AEC_PLUGIN_NAME);
+				$help .= ' <small>[v' . AEC_PLUGIN_VERSION . ']</small></h3>';
+				$help .= __('Have questions about this plugin?', AEC_PLUGIN_NAME);
+				$help .= " <a href='" . AEC_PLUGIN_HOMEPAGE . "faq/' target='_blank'>";
+				$help .= __('Check out the FAQ', AEC_PLUGIN_NAME);
+				$help .= "</a>";
+				$help .= '<br>' . __('Submit your questions and comments about this plugin', AEC_PLUGIN_NAME);
+				$help .= " <a href='http://wordpress.org/tags/ajax-event-calendar?forum_id=10' target='_blank'>";
+				$help .= __('in the forum', AEC_PLUGIN_NAME);
+				$help .= "</a>";
 				$help .= '<br>' . __('You are welcome to request help from others in your native language, but I am only able to assist in English.', AEC_PLUGIN_NAME);
-				$help .= '<br><br>' . sprintf(__('If you use this plugin, please <a href="%s" target="_blank">rate and vote on compatibility</a>.', AEC_PLUGIN_NAME), AEC_PLUGIN_HOMEPAGE);
+				$help .= '<br><br>' . __('If you use this plugin', AEC_PLUGIN_NAME);
+				$help .= " <a href='" . AEC_PLUGIN_HOMEPAGE . "' target='_blank'>";
+				$help .= __('please rate and vote on compatibility', AEC_PLUGIN_NAME);
+				$help .= "</a>.";
 				$help .= '<br>' . __('Consider making a donation to support continued development of this plugin.', AEC_PLUGIN_NAME);
-				$help .= '<br>' . sprintf(__('Thank you, <a href="%s" target="_blank">Eran Miller</a>.', AEC_PLUGIN_NAME), 'http://eranmiller.com');
+				$help .= '<span class="round5 fr">' . ' <a href="http://eranmiller.com/plugins/donate/" target="_blank">';
+				$help .= __('DONATE', AEC_PLUGIN_NAME);
+				$help .= "</a></span>";
+				$help .= '<br><br>' . __('Thank you,', AEC_PLUGIN_NAME);
+				$help .= ' <a href="http://eranmiller.com" target="_blank">Eran Miller</a>';
 
 				// main menu page: calendar
 				$page = add_menu_page('Ajax Event Calendar',  __('Calendar', AEC_PLUGIN_NAME), 'aec_add_events', AEC_PLUGIN_FILE, array($this, 'render_admin_calendar'), AEC_PLUGIN_URL . 'css/images/calendar.png', 30);
@@ -494,7 +531,7 @@ if (!class_exists('ajax_event_calendar')){
 				$out .= '<a href="' . admin_url() . 'admin.php?page=ajax-event-calendar.php">' . __('Add Events', AEC_PLUGIN_NAME) . '</a>';
 				$out .= '</div>';
 			}
-			
+
 			$out .= $this->render_category_filter($options, $categories, $excluded);
 			$out .= '</div>';
 			$out .= '<div id="aec-calendar"></div>' . "\n";
@@ -546,31 +583,31 @@ if (!class_exists('ajax_event_calendar')){
 				wp_die(__('You do not have sufficient permissions to access this page.', AEC_PLUGIN_NAME));
 
 			$categories = $this->query_categories();
-			$out  = '<div class="wrap">' . "\n";
-			$out .= '<h2>' . __('Categories', AEC_PLUGIN_NAME) . '</h2>' . "\n";
-			$out .= '<h5>' . __('Add a new, or edit/delete an existing calendar category.  To change the category tile color, click the color swatch or edit the field containing the hex value, then click Update.  The foreground color (black or white) is automatically assigned for optimal readbility based on the selected background color.', AEC_PLUGIN_NAME) . '</h5>' . "\n";
-			$out .= '<form id="aec-category-form">' . "\n";
-			$out .= '<p><input type="hidden" id="fgcolor" name="fgcolor" class="fg ltr" value="#FFFFFF" />';
-			$out .= '<input type="text" id="category" name="category" value="" /> ';
-			$out .= '<input class="bg colors ltr" type="text" id="bgcolor" name="bgcolor" value="#005294" size="7" maxlength="7" autocomplete="off"> ';
-			$out .= '<button class="add button-primary">' . __('Add', AEC_PLUGIN_NAME) . '</button></p>';
-			$out .= '</form>' . "\n";
-			$out .= '<form id="aec-category-list">' . "\n";
+			$out  = "<div class='wrap'>\n";
+			$out .= '<h2>' . __('Categories', AEC_PLUGIN_NAME) . "</h2>\n";
+			$out .= '<h5>' . __('Add a new, or edit/delete an existing calendar category.  To change the category tile color, click the color swatch or edit the field containing the hex value, then click Update.  The foreground color (black or white) is automatically assigned for optimal readbility based on the selected background color.', AEC_PLUGIN_NAME) . "</h5>\n";
+			$out .= "<form id='aec-category-form'>\n";
+			$out .= "<input type='hidden' id='fgcolor' name='fgcolor' class='fg ltr' value='#FFFFFF' />";
+			$out .= "<p><input type='text' id='category' name='category' value='' /> ";
+			$out .= "<input class='bg colors ltr' type='text' id='bgcolor' name='bgcolor' value='#005294' size='7' maxlength='7' autocomplete='off'> ";
+			$out .= "<button class='add button-primary'>" . __('Add', AEC_PLUGIN_NAME) . "</button></p>\n";
+			$out .= "</form>\n";
+			$out .= "<form id='aec-category-list'>\n";
 			foreach ($categories as $category) {
 				$delete = ($category->id > 1) ?
-					'<button class="button-secondary delete">' . __('Delete', AEC_PLUGIN_NAME) . '</button>' . "\n" :
-					' <em>' . __('This category is required and can only be edited.', AEC_PLUGIN_NAME) . '</em>';
-				$out .= '<p id="id_' . $category->id . '">' . "\n";
-				$out .= '<input type="hidden" name="fgcolor" value="#' . $category->fgcolor . '" class="fg ltr" />' . "\n";
-				$out .= '<input type="text" name="id" value="' . $category->id . '" size="2" readonly="readonly" />' . "\n";
-				$out .= '<input type="text" name="category" value="' . $this->render_i18n_data($category->category) . '" class="edit" />' . "\n";
-				$out .= '<input type="text" name="bgcolor" size="7" maxlength="7" autocomplete="off" value="#' . $category->bgcolor . '" class="bg colors ltr" />' . "\n";
-				$out .= '<button id="category_update" class="update button-secondary">' . __('Update', AEC_PLUGIN_NAME) . '</button>' . "\n";
+					"<button class='button-secondary delete'>" . __('Delete', AEC_PLUGIN_NAME) . "</button>\n" :
+					" <em>" . __('This category is required and can only be edited.', AEC_PLUGIN_NAME) . "</em>\n";
+				$out .= "<p id='id_{$category->id}'>\n";
+				$out .= "<input type='hidden' name='fgcolor' value='#{$category->fgcolor}' class='fg ltr' />\n";
+				$out .= "<input type='text' name='id' value='{$category->id}' size='2' readonly='readonly' />\n";
+				$out .= "<input type='text' name='category' value='" . $this->render_i18n_data($category->category) . "' class='edit' />\n";
+				$out .= "<input type='text' name='bgcolor' size='7' maxlength='7' autocomplete='off' value='#{$category->bgcolor}' class='bg colors ltr' />\n";
+				$out .= "<button id='category_update' class='update button-secondary'>" . __('Update', AEC_PLUGIN_NAME) . "</button>\n";
 				$out .= $delete;
-				$out .= '</p>' . "\n";
+				$out .= "</p>\n";
 			}
-			$out .= '</form>' . "\n";
-			$out .= '</div>' . "\n";
+			$out .= "</form>\n";
+			$out .= "</div>\n";
 			echo $out;
 		}
 
@@ -578,21 +615,21 @@ if (!class_exists('ajax_event_calendar')){
 			if (!current_user_can('aec_manage_calendar'))
 				wp_die(__('You do not have sufficient permissions to access this page.', AEC_PLUGIN_NAME));
 
-			$out  = '<div class="wrap">' . "\n";
-			$out .= '<h2>' . __('Activity Report', AEC_PLUGIN_NAME) . '</h2>' . "\n";
-			$out .= '<h5>' . __('Number of events scheduled for the current month, by type:', AEC_PLUGIN_NAME) . '</h5>' . "\n";
+			$out  = "<div class='wrap'>\n";
+			$out .= "<h2>" . __('Activity Report', AEC_PLUGIN_NAME) . "</h2>\n";
+			$out .= "<h5>" . __('Number of events scheduled for the current month, by type:', AEC_PLUGIN_NAME) . "</h5>\n";
 			$rows = $this->query_monthly_activity();
 			if ( count( $rows ) ) {
 				foreach ( $rows as $row ) {
-					$out .= '<p><strong>' . $row->cnt . '</strong> <em>' . $this->render_i18n_data($row->category) . '</em> ';
+					$out .= "<p><strong>{$row->cnt}</strong> <em>" . $this->render_i18n_data($row->category) . "</em> ";
 					$out .= _n('Event', 'Events', $row->cnt, AEC_PLUGIN_NAME);
-					$out .= '</p>' . "\n";
+					$out .= "</p>\n";
 				}
 			} else {
-				$out .= '<p><em>' . __('No events this month.', AEC_PLUGIN_NAME) . '</em></p>' . "\n";
+				$out .= "<p><em>" . __('No events this month.', AEC_PLUGIN_NAME) . "</em></p>\n";
 			}
-			$out .= '</div>' . "\n";
-			print $out;
+			$out .= "</div>\n";
+			echo $out;
 		}
 
 		function render_calendar_options(){
@@ -609,7 +646,7 @@ if (!class_exists('ajax_event_calendar')){
 			} else {
 				// users with aec_manage_events capability can edit all events
 				// users with aec_add_events capability can edit events only they create
-				if ($input['user_id'] == $user_id || $user_id == false) {
+				if ($input->user_id == $user_id || $user_id == false) {
 					$editable = true;
 					$disabled = '';
 				} else {
@@ -617,43 +654,43 @@ if (!class_exists('ajax_event_calendar')){
 					$disabled = ' fc-event-disabled';
 				}
 			}
-			$input['allDay'] = ($input['allDay']) ? true : false;
 			$output = array(
-				'id'	 	=> $input['id'],
-				'title'  	=> $input['title'],
-				'start'		=> $input['start'],
-				'end'		=> $input['end'],
-				'allDay' 	=> $input['allDay'],
-				'className'	=> 'cat' . $input['category_id'] . $disabled,
+				'id'	 	=> $input->id,
+				'title'  	=> $input->title,
+				'start'		=> $input->start,
+				'end'		=> $input->end,
+				'allDay' 	=> ($input->allDay) ? true : false,
+				'className'	=> "cat{$input->category_id}{$disabled}",
 				'editable'	=> $editable
 			);
 			//$output = $this->cleanse_output($output);
-			if ($render) return $output;
-			$this->render_json($output);
+			if ($render) $this->render_json($output);
+			return $output;
 		}
 
 		// renders events as json, employing shortcode options
 		function render_events(){
 			$categories	 	= (isset($_POST['categories'])) ? $this->cleanse_shortcode_input($_POST['categories']) : false;
 			$excluded		= ($categories && isset($_POST['excluded'])) ? $_POST['excluded'] : false;
-			$events			= $this->query_events($_POST['start'], $_POST['end'], $categories, $excluded);
+			$start			= date('Y-m-d', $_POST['start']);
+			$end			= date('Y-m-d', $_POST['end']);
+			$readonly		= (isset($_POST['readonly'])) ? true : false;
+			$events			= $this->query_events($start, $end, $categories, $excluded);
 			if ($events) {
-				$readonly	= (isset($_POST['readonly'])) ? true : false;
 				$output 	= array();
 				foreach($events as $event){
-					array_push($output, $this->render_event($this->convert_object_to_array($event), $this->return_user_id($readonly), true));
+					array_push($output, $this->render_event($event, $this->return_user_id($readonly), false));
 				}
 				$this->render_json($output);
 			}
 		}
-		
 		// outputs added/updated category as json
 		function render_category($input){
 			$output = array(
-				'id'	 	=> $input['id'],
-				'category'  => $input['category'],
-				'bgcolor'	=> $input['bgcolor'],
-				'fgcolor'	=> $input['fgcolor']
+				'id'	 	=> $input->id,
+				'category'  => $input->category,
+				'bgcolor'	=> $input->bgcolor,
+				'fgcolor'	=> $input->fgcolor
 			);
 			$this->render_json($output);
 		}
@@ -695,18 +732,6 @@ CONTENT;
 			return htmlentities(stripslashes($data), ENT_COMPAT, 'UTF-8');
 		}
 
-		// removes slashes from strings and arrays
-		function cleanse_output($output){
-			if (is_array($output)) {
-				array_walk_recursive($output, create_function('&$val', '$val = stripslashes($val);'));
-			} else {
-				$output = stripslashes($output);
-			}
-			// $this->log('cleansed');
-			// $this->log($output);
-			return $output;
-		}
-
 		// database queries
 		function frontend_calendar_variables(){
 			return array_merge($this->localized_variables(),
@@ -736,7 +761,6 @@ CONTENT;
 			if (is_rtl()) {
 				wp_enqueue_style('custom_rtl');
 			}
-			//wp_enqueue_style('user_css');
 		}
 
 		function admin_calendar_variables(){
@@ -744,8 +768,6 @@ CONTENT;
 			return array_merge($this->localized_variables(),
 				array(
 					'admin' 					=> $is_admin,
-					// if moving editing to front-end add ajaxurl
-					//'ajaxurl'  				=> admin_url('admin-ajax.php'),		// required for non-admin ajax pages
 					'required_fields'			=> join(",", $this->get_required_fields()),
 					'editable'					=> true,
 					'error_no_rights'			=> __('You cannot edit events created by other users.', AEC_PLUGIN_NAME),
@@ -814,6 +836,14 @@ CONTENT;
 			return $input;
 		}
 
+		function confirm_delete_category(){
+			if (!isset($_POST['id'])) return;
+			if ($this->query_events_by_category($_POST['id'])){
+				$this->render_json('false');
+			}
+			$this->delete_category($_POST['id']);
+		}
+
 		function query_monthly_activity(){
 			global $wpdb;
 			$result = $wpdb->get_results('SELECT COUNT(a.category_id) AS cnt, b.category FROM ' .
@@ -829,10 +859,10 @@ CONTENT;
 
 		function query_event($id){
 			global $wpdb;
-			$event = $wpdb->get_row($wpdb->prepare('SELECT * FROM ' . $wpdb->prefix . AEC_EVENT_TABLE . ' WHERE id = %d ORDER BY start;', $id));
-			if ($this->return_result($event)) {
-				return $event;
-			}
+			$result = $wpdb->get_row($wpdb->prepare('SELECT *
+									FROM ' . $wpdb->prefix . AEC_EVENT_TABLE . '
+									WHERE id = %d ORDER BY start;', $id));
+			return $this->return_result($result);
 		}
 
 		// output for fullcalendar array
@@ -840,8 +870,6 @@ CONTENT;
 			global $wpdb;
 			$excluded = ($excluded) ? 'NOT IN' : 'IN';
 			$andcategory = ($category_id) ? " AND category_id {$excluded}({$category_id})" : '';
-			$start = date('Y-m-d', $start);
-			$end = date('Y-m-d', $end);
 			$result = $wpdb->get_results('SELECT
 										id,
 										user_id,
@@ -863,12 +891,20 @@ CONTENT;
 			return $this->return_result($result);
 		}
 
-		function query_event_count_by_user($user_id){
+		function query_events_by_user($user_id){
 			global $wpdb;
-			$result = $wpdb->get_var('SELECT count(id)
+			$result = $wpdb->get_var($wpdb->prepare('SELECT count(id)
 									 FROM ' . $wpdb->prefix . AEC_EVENT_TABLE . '
-									 WHERE user_id = ' . $user_id . ';'
-									);
+									 WHERE user_id = %d;', $user_id));
+			return $this->return_result($result);
+		}
+
+		function query_events_by_category(){
+			if (!isset($_POST['id'])) return;
+			global $wpdb;
+			$result = $wpdb->get_var($wpdb->prepare('SELECT COUNT(*) as count
+									FROM ' . $wpdb->prefix . AEC_EVENT_TABLE . '
+									WHERE category_id = %d;', $_POST['id']));
 			return $this->return_result($result);
 		}
 
@@ -883,23 +919,23 @@ CONTENT;
 		function insert_event($input){
 			global $wpdb;
 			$result = $wpdb->insert($wpdb->prefix . AEC_EVENT_TABLE,
-									array('user_id' 		=> $input['user_id'],
-										  'title'	 		=> $input['title'],
-										  'start'			=> $input['start'],
-										  'end'				=> $input['end'],
-										  'allDay'			=> $input['allDay'],
-										  'category_id'		=> $input['category_id'],
-										  'description'		=> $input['description'],
-										  'link'			=> $input['link'],
-										  'venue'			=> $input['venue'],
-										  'address'			=> $input['address'],
-										  'city'			=> $input['city'],
-										  'state'			=> $input['state'],
-										  'zip'				=> $input['zip'],
-										  'contact'			=> $input['contact'],
-										  'contact_info'	=> $input['contact_info'],
-										  'access'			=> $input['access'],
-										  'rsvp'			=> $input['rsvp']
+									array('user_id' 		=> $input->user_id,
+										  'title'	 		=> $input->title,
+										  'start'			=> $input->start,
+										  'end'				=> $input->end,
+										  'allDay'			=> $input->allDay,
+										  'category_id'		=> $input->category_id,
+										  'description'		=> $input->description,
+										  'link'			=> $input->link,
+										  'venue'			=> $input->venue,
+										  'address'			=> $input->address,
+										  'city'			=> $input->city,
+										  'state'			=> $input->state,
+										  'zip'				=> $input->zip,
+										  'contact'			=> $input->contact,
+										  'contact_info'	=> $input->contact_info,
+										  'access'			=> $input->access,
+										  'rsvp'			=> $input->rsvp
 										),
 									array('%d',				// user_id
 										  '%s',				// title
@@ -921,9 +957,9 @@ CONTENT;
 										)
 								);
 			if ($this->return_result($result)){
-				if ($input['user_id']) {					// only render events not generated by the system (user id: 0)
-					$input['id'] = $wpdb->insert_id;		// id of newly created row
-					$this->render_event($input, $this->return_user_id());
+				if ($input->user_id){					// only render events not generated by the system (user id: 0)
+					$input->id = $wpdb->insert_id;		// id of newly created row
+					$this->render_event($input, $this->return_user_id(), true);
 				}
 			}
 		}
@@ -950,16 +986,16 @@ CONTENT;
 			$input = $this->cleanse_category_input($_POST['category_data']);
 			global $wpdb;
 			$result = $wpdb->insert($wpdb->prefix . AEC_CATEGORY_TABLE,
-									array('category'	=> $input['category'],
-										  'bgcolor'		=> $input['bgcolor'],
-										  'fgcolor' 	=> $input['fgcolor']
+									array('category'	=> $input->category,
+										  'bgcolor'		=> $input->bgcolor,
+										  'fgcolor' 	=> $input->fgcolor
 										),
 									array('%s',
 										  '%s',
 										  '%s'
 										));
 			if ($this->return_result($result)) {
-				$input['id'] = $wpdb->insert_id;	// id of newly created row
+				$input->id = $wpdb->insert_id;	// id of newly created row
 				$this->generate_css();
 				$this->render_category($input);
 			}
@@ -967,48 +1003,48 @@ CONTENT;
 
 		function move_event(){
 			if (!isset($_POST)) return;
-			$input = $_POST;
+			$input = $this->convert_array_to_object($this->parse_input($_POST));
 			global $wpdb;
 			$result = $wpdb->update($wpdb->prefix . AEC_EVENT_TABLE,
-									array('start'	=> $input['start'],
-										  'end'	 	=> $input['end'],
-										  'allDay'	=> $input['allDay']
+									array('start'		=> $input->start,
+										  'end'	 		=> $input->end,
+										  'allDay'		=> $input->allDay
 										),
-									array('id' 		=> $input['id']),
+									array('id' 		=> $input->id),
 									array('%s',		// start
 										  '%s',		// end
 										  '%d'		// allDay
 										),
 									array ('%d')	// id
 								);
-			$this->render_json($this->return_result($result));
+			//$this->render_event($result, $this->return_user_id(), true);
+			$this->return_result($result);
 		}
 
 		function update_event(){
 			if (!isset($_POST['event'])) return;
 			$input = $this->cleanse_event_input($_POST['event']);
-
 			global $wpdb;
 			$result = $wpdb->update($wpdb->prefix . AEC_EVENT_TABLE,
-									array('user_id' 		=> $input['user_id'],
-										  'title'	 		=> $input['title'],
-										  'start'			=> $input['start'],
-										  'end'				=> $input['end'],
-										  'allDay'			=> $input['allDay'],
-										  'category_id'		=> $input['category_id'],
-										  'description'		=> $input['description'],
-										  'link'			=> $input['link'],
-										  'venue'			=> $input['venue'],
-										  'address'			=> $input['address'],
-										  'city'			=> $input['city'],
-										  'state'			=> $input['state'],
-										  'zip'				=> $input['zip'],
-										  'contact'			=> $input['contact'],
-										  'contact_info'	=> $input['contact_info'],
-										  'access'			=> $input['access'],
-										  'rsvp'			=> $input['rsvp']
+									array('user_id' 		=> $input->user_id,
+										  'title'	 		=> $input->title,
+										  'start'			=> $input->start,
+										  'end'				=> $input->end,
+										  'allDay'			=> $input->allDay,
+										  'category_id'		=> $input->category_id,
+										  'description'		=> $input->description,
+										  'link'			=> $input->link,
+										  'venue'			=> $input->venue,
+										  'address'			=> $input->address,
+										  'city'			=> $input->city,
+										  'state'			=> $input->state,
+										  'zip'				=> $input->zip,
+										  'contact'			=> $input->contact,
+										  'contact_info'	=> $input->contact_info,
+										  'access'			=> $input->access,
+										  'rsvp'			=> $input->rsvp
 										),
-									array('id' 				=> $input['id']),
+									array('id' 				=> $input->id),
 									array('%d',				// user_id
 										  '%s',				// title
 										  '%s',				// start
@@ -1031,7 +1067,7 @@ CONTENT;
 								);
 
 			if ($this->return_result($result)) {
-				$this->render_event($input, $this->return_user_id());
+				$this->render_event($input, $this->return_user_id(), true);
 			}
 		}
 
@@ -1040,11 +1076,11 @@ CONTENT;
 			$input = $this->cleanse_category_input($_POST['category_data']);
 			global $wpdb;
 			$result = $wpdb->update($wpdb->prefix . AEC_CATEGORY_TABLE,
-									array('category'	=> $input['category'],
-										  'bgcolor'		=> $input['bgcolor'],
-										  'fgcolor'		=> $input['fgcolor']
+									array('category'	=> $input->category,
+										  'bgcolor'		=> $input->bgcolor,
+										  'fgcolor'		=> $input->fgcolor
 									),
-									array('id' => $input['id']),
+									array('id' => $input->id),
 									array('%s',
 										  '%s',
 										  '%s'
@@ -1057,6 +1093,18 @@ CONTENT;
 			}
 		}
 
+		function reassign_category(){
+			if (!isset($_POST['id'])) return;
+			global $wpdb;
+			$result = $wpdb->update($wpdb->prefix . AEC_EVENT_TABLE,
+						array('category_id' => 1),
+						array('category_id' => $_POST['id']),
+						array('%d'),
+						array('%d'));
+			if ($this->return_result($result))
+				$this->delete_category($_POST['id']);
+		}
+
 		function delete_event(){
 			if (!isset($_POST['id'])) return;
 			global $wpdb;
@@ -1065,6 +1113,7 @@ CONTENT;
 		}
 
 		function delete_events_by_user(){
+			if (!isset($_POST['user_id'])) return;
 			global $wpdb;
 			$result = $wpdb->query($wpdb->prepare('DELETE FROM ' . $wpdb->prefix . AEC_EVENT_TABLE . ' WHERE user_id = %d;', $_POST['user_id']));
 			return $this->return_result($result);
@@ -1072,35 +1121,25 @@ CONTENT;
 
 		// TODO: waiting for improved delete_user hook
 		/*
-		function reassign_events(){
+		function reassign_events_to_user(){
 			if (!isset($_POST['user_id']) || !isset($_POST['reassigned'])) return;
 			global $wpdb;
-			$result = $wpdb->get_results($wpdb->prepare('UPDATE '. $wpdb->prefix . AEC_EVENT_TABLE . ' SET user_id=%d WHERE user_id= %d;', $_POST['user_id'], $_POST['reassigned']));
+			$result = $wpdb->update($wpdb->prefix . AEC_EVENT_TABLE,
+						array('user_id' => $_POST['reassigned']),
+						array('user_id' => $_POST['user_id']),
+						array('%d'),
+						array('%d'));
 			return $this->return_result($result);
 		}
 		*/
 
-		function delete_category(){
-			if (!isset($_POST['id'])) return;
+		function delete_category($id){
 			global $wpdb;
-			$used = $wpdb->get_var($wpdb->prepare('SELECT COUNT(*) as count FROM ' . $wpdb->prefix . AEC_EVENT_TABLE . ' WHERE category_id = %d;', $_POST['id']));
-			if ($used){
-				$this->render_json('false');
-			} else{
-				$result = $wpdb->query($wpdb->prepare('DELETE FROM ' . $wpdb->prefix . AEC_CATEGORY_TABLE . ' WHERE id = %d;', $_POST['id']));
-				if ($this->return_result($result)) {
-					$this->generate_css();
-					$this->render_json($result);
-				}
+			$result = $wpdb->query($wpdb->prepare('DELETE FROM ' . $wpdb->prefix . AEC_CATEGORY_TABLE . ' WHERE id = %d;', $id));
+			if ($this->return_result($result)) {
+				$this->generate_css();
+				$this->render_json($result);
 			}
-		}
-
-		function reassign_category(){
-			if (!isset($_POST['id'])) return;
-			global $wpdb;
-			$result = $wpdb->get_results($wpdb->prepare('UPDATE '. $wpdb->prefix . AEC_EVENT_TABLE . ' SET category_id=1 WHERE category_id= %d;', $_POST['id']));
-			if ($this->return_result($result))
-				return $this->delete_category($id);
 		}
 
 		// parse form input
@@ -1111,7 +1150,8 @@ CONTENT;
 				$input = $array;
 			}
 			// trim whitespace from input
-			return array_map(array($this, 'return_trimmed'), $input);
+			array_walk($input, create_function('&$val', '$val = trim($val);'));
+			return $input;
 		}
 
 		function parse_date_format($format){
@@ -1152,32 +1192,43 @@ CONTENT;
 			return $this->date_convert($datetime, $format, AEC_DB_DATETIME_FORMAT);
 		}
 
-		function cleanse_event_input($input){
-			$clean = $this->parse_input($input);
-			
-			if ($clean['allDay']) {
-				$clean['start_time']	= '00:00:00';
-				$clean['end_time']		= '00:00:00';
+		// removes slashes from strings and arrays
+		function cleanse_output($output){
+			if (is_array($output)) {
+				array_walk_recursive($output, create_function('&$val', '$val = stripslashes($val);'));
+			} else {
+				$output = stripslashes($output);
 			}
-			$clean['start'] = $this->merge_date_time($clean['start_date'], $clean['start_time']);
-			$clean['end']	= $this->merge_date_time($clean['end_date'], $clean['end_time']);
+			// $this->log('cleansed');
+			// $this->log($output);
+			return $output;
+		}
+		function cleanse_event_input($input){
+			$clean = $this->convert_array_to_object($this->parse_input($input));
+
+			if ($clean->allDay) {
+				$clean->start_time	= '00:00:00';
+				$clean->end_time	= '00:00:00';
+			}
+			$clean->start		= $this->merge_date_time($clean->start_date, $clean->start_time);
+			$clean->end			= $this->merge_date_time($clean->end_date, $clean->end_time);
 			return $clean;
 		}
-		
+
 		function cleanse_category_input($input){
-			$clean = $this->parse_input($input);
-			$clean['bgcolor'] = str_replace('#', '', $clean['bgcolor']);	// strip '#' for storage
-			$clean['fgcolor'] = str_replace('#', '', $clean['fgcolor']);
+			$clean = $this->convert_array_to_object($this->parse_input($input));
+			$clean->bgcolor = str_replace('#', '', $clean->bgcolor);	// strip '#' for storage
+			$clean->fgcolor = str_replace('#', '', $clean->fgcolor);
 			return $clean;
 		}
 
 		// convert category string input into array, force integer values, return as string output
 		function cleanse_shortcode_input($input){
-			$array 	= explode(',', $input);
-			$output	= array_map(array($this, 'return_integer'), $array);
-			return join(',', $output);
+			$input = explode(',', $input);
+			array_walk($input, create_function('&$val', '$val = intval($val);'));
+			return join(',', $input);
 		}
-		
+
 		// set required fields on admin event detail form
 		function add_required_field($field){
 			array_push($this->required_fields, $field);
@@ -1198,6 +1249,16 @@ CONTENT;
 			return $array;
 		}
 
+		function convert_array_to_object($array = array()) {
+			if (!empty($array)) {
+				$data = false;
+				foreach ($array as $key => $val) {
+					$data->{$key} = $val;
+				}
+				return $data;
+			}
+			return false;
+		}
 		function date_convert($date, $from, $to=false){
 			// if date format is d/m/Y, modify token to 'd-m-Y' so strtotime parses date correctly
 			if (strpos($from, 'd') == 0) $date = str_replace("/", "-", $date);
@@ -1220,29 +1281,20 @@ CONTENT;
 			return (current_user_can('aec_manage_events')) ? false : $current_user->ID;
 		}
 
-		function return_integer($input){
-			return intval($input);
-		}
-
-		function return_trimmed($input){
-			return trim($input);
-		}
-
 		// dynamically creates cat_colors.css file
 		function generate_css(){
 			$categories = $this->query_categories();
 			$out = '';
 			foreach ($categories as $category){
-				$out .= '.cat' . $category->id;
-				$out .= ',.cat' . $category->id . ' .fc-event-skin';
-				$out .= ',.fc-agenda .cat' . $category->id;
-				$out .= ',a.cat' . $category->id;
-				$out .= ',a.cat' . $category->id . ':hover';
-				$out .= ',a.cat' . $category->id . ':active';
-				$out .= ',a.cat' . $category->id . ':visited';
-				$out .= '{color:#' . $category->fgcolor . ' !important;background-color:#';
-				$out .= $category->bgcolor . ' !important;border-color:#' . $category->bgcolor . ' !important}';
-				$out .= "\n";
+				$out .= ".cat{$category->id}";
+				$out .= ",.cat{$category->id} .fc-event-skin";
+				$out .= ",.fc-agenda .cat{$category->id}";
+				$out .= ",a.cat{$category->id}";
+				$out .= ",a.cat{$category->id}:hover";
+				$out .= ",a.cat{$category->id}:active";
+				$out .= ",a.cat{$category->id}:visited";
+				$out .= "{color:#{$category->fgcolor} !important;background-color:#";
+				$out .= "{$category->bgcolor} !important;border-color:#{$category->bgcolor} !important}\n";
 			}
 
 			$cssFile = AEC_PLUGIN_PATH . "css/cat_colors.css";
@@ -1287,7 +1339,7 @@ EVENT;
 		// adds column field value to WordPress users page
 		function manage_events_column($empty='', $column_name, $user_id){
 			if ($column_name == 'calendar_events')
-				return $this->query_event_count_by_user($user_id);
+				return $this->query_events_by_user($user_id);
 		}
 
 		// displays the "settings" link beside the plugin on the WordPress plugins page
