@@ -54,7 +54,7 @@
 						case "textfield":
 							echo "<tr>\n";
 							echo "<th><label for='{$field}'>{$value}</label></th>\n";
-							echo "<td><input type='text' name='aec_options[{$field}]' id='{$field} value='" . esc_attr_e($options[$field]) . "' />\n";
+							echo "<td><input type='text' name='aec_options[{$field}]' id='{$field}' value='" . esc_attr($options[$field]) . "' />\n";
 							if ($description) echo "<span class='description'>{$description}</span>\n";
 							echo "</td></tr>\n";
 						break;
