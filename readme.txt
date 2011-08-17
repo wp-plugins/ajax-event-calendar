@@ -4,7 +4,7 @@ Donate link: http://eranmiller.com/plugins/donate/
 Tags: multi-user, calendar, category, event, ajax, filter, upcoming, widget, google, localized, rtl-support
 Requires at least: 3.1
 Tested up to: 3.2.1
-Stable tag: 0.9.8.6
+Stable tag: 0.9.9.1
 
 A fully localized community calendar that allows authorized users to manage events in custom categories.
 
