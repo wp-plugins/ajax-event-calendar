@@ -36,10 +36,6 @@
 	if ($options['make_links'])
 		$description = make_clickable($description);
 	
-	// make links open in a new window
-	if ($options['popup_links'])
-		$description = popuplinks($description);
-	
 	$out .= "<p>{$description}</p>\n";
 
 	if (!empty($event->venue) || !empty($event->address) || !empty($event->city) || !empty($event->state) || !empty($event->zip) ) {
@@ -53,7 +49,7 @@
 
 		// google map link
 		 if ($options['show_map_link'] && (!empty($event->address) || !empty($csz))) {
-			$out .= "<a href='http://maps.google.com/?q=" . urlencode($event->address . " " . $csz) . "' class='round5 maplink cat{$event->category_id}' target='_blank'>" . __('View Map', AEC_PLUGIN_NAME) . "</a>\n";
+			$out .= "<a href='http://maps.google.com/?q=" . urlencode($event->address . " " . $csz) . "' class='round5 maplink cat{$event->category_id}'>" . __('View Map', AEC_PLUGIN_NAME) . "</a>\n";
 		}
 		if (!empty($event->venue)) $out .= "<p>{$event->venue}\n";
 		$out .= (!empty($event->address)) ? "<br>{$event->address}<br>{$csz}</p>" : "<br>{$csz}</p>";	
@@ -87,10 +83,6 @@
 		$link  = "<a href='{$event->link}' class='link round5 cat{$event->category_id}'>";
 		$link .= __('Event Link', AEC_PLUGIN_NAME);
 		$link .= "</a>\n";
-		// make links open in a new window
-		if ($options['popup_links']) 
-			popuplinks($link);
-		
 		$out .= $link;
 	}
 
@@ -106,6 +98,10 @@
 		$event->start = $event->start_date;
 		$event->end = $event->end_date;
 	}
+	
+	// make links open in a new window
+	if ($options['popup_links']) 
+		$out = popuplinks($out);
 	
 	$output = array(
 		'title'		=> "{$event->title} ({$cat})",

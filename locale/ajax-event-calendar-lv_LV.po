@@ -1,0 +1,804 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ajax Event Calendar v0.9.9.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-17 10:21-0600\n"
+"PO-Revision-Date: 2011-08-17 10:21-0600\n"
+"Last-Translator: Eran Miller <plugins@eranmiller.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__;_n:1,2\n"
+"X-Poedit-Basepath: C:\\wamp\\www\\wordpress\\wp-content\\plugins\\ajax-event-calendar\\locale\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: Latvian\n"
+"X-Poedit-Country: LATVIA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\wordpress\\wp-content\\plugins\\ajax-event-calendar\n"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:30
+msgid "Sorry, "
+msgstr "Atvainojiet, "
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:364
+msgid "Today"
+msgstr "Šodien"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:365
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:102
+msgid "All Day"
+msgstr "Visa diena"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:366
+msgid "Months"
+msgstr "Mēneši"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:367
+msgid "Month"
+msgstr "Mēnesis"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:368
+msgid "Weeks"
+msgstr "Nedēļas"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:369
+msgid "Week"
+msgstr "Nedēļa"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:370
+msgid "Days"
+msgstr "Dienas"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:371
+msgid "Day"
+msgstr "Diena"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:372
+msgid "Hours"
+msgstr "%d stundas"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:373
+msgid "Hour"
+msgstr "%d stunda"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:374
+msgid "Minutes"
+msgstr "%d minūtes"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:375
+msgid "Minute"
+msgstr "%d minūte"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:376
+msgid "January"
+msgstr "Janvāris"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:377
+msgid "February"
+msgstr "Februāris"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:378
+msgid "March"
+msgstr "Marts"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:379
+msgid "April"
+msgstr "Aprīlis"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:380
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:392
+msgid "May"
+msgstr "Maijs"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:381
+msgid "June"
+msgstr "Jūnijs"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:382
+msgid "July"
+msgstr "Jūlijs"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:383
+msgid "August"
+msgstr "Augusts"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:384
+msgid "September"
+msgstr "Septembris"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:385
+msgid "October"
+msgstr "Oktobris"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:386
+msgid "November"
+msgstr "Novembris"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:387
+msgid "December"
+msgstr "Decembris"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:388
+msgid "Jan"
+msgstr "Jan"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:389
+msgid "Feb"
+msgstr "Feb"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:390
+msgid "Mar"
+msgstr "Mar"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:391
+msgid "Apr"
+msgstr "Apr"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:393
+msgid "Jun"
+msgstr "Jūn"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:394
+msgid "Jul"
+msgstr "Jūl"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:395
+msgid "Aug"
+msgstr "Aug"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:396
+msgid "Sep"
+msgstr "Sep"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:397
+msgid "Oct"
+msgstr "Okt"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:398
+msgid "Nov"
+msgstr "Nov"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:399
+msgid "Dec"
+msgstr "Dec"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:400
+msgid "Sunday"
+msgstr "Svētdiena"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:401
+msgid "Monday"
+msgstr "Pirmdiena"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:402
+msgid "Tuesday"
+msgstr "Otrdiena"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:403
+msgid "Wednesday"
+msgstr "Trešdiena"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:404
+msgid "Thursday"
+msgstr "Ceturtdiena"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:405
+msgid "Friday"
+msgstr "Piektdiena"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:406
+msgid "Saturday"
+msgstr "Sestdiena"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:407
+msgid "Sun"
+msgstr "Sv"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:408
+msgid "Mon"
+msgstr "P"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:409
+msgid "Tue"
+msgstr "O"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:410
+msgid "Wed"
+msgstr "T"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:411
+msgid "Thu"
+msgstr "C"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:412
+msgid "Fri"
+msgstr "Pi"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:413
+msgid "Sat"
+msgstr "S"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:414
+msgid "Close Event Form"
+msgstr "Slēgta pasākumu forma"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:415
+msgid "Loading Event Form..."
+msgstr "Tiek ielādēta pasākumu forma..."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:416
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:605
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:229
+msgid "Update"
+msgstr "Atjaunot"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:417
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:598
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:228
+msgid "Delete"
+msgstr "Dzēst"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:418
+msgid "Category type"
+msgstr "Kategorija"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:419
+msgid "hide all notifications"
+msgstr "Slēpt visus ziņojumus"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:420
+msgid "has been created."
+msgstr "izveidots."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:421
+msgid "has been modified."
+msgstr "izlabots."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:422
+msgid "has been deleted."
+msgstr "dzēsts."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:423
+msgid "Add Event"
+msgstr "Pievienot pasākumu"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:424
+msgid "Edit Event"
+msgstr "Labot pasākumu"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:425
+msgid "Delete this event?"
+msgstr "Dzēst pasākumu?"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:426
+msgid "Loading Events..."
+msgstr "Tiek ielādēti pasākumi..."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:427
+msgid "Success!"
+msgstr "Izdevās!"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:428
+msgid "Whoops!"
+msgstr "Opā!"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:436
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:480
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:242
+msgid "Ajax Event Calendar"
+msgstr "Ajax pasākumu kalendārs"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:438
+msgid "Have questions about this plugin?"
+msgstr "Vai tev ir jautājumi par šo papildinājumu?"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:440
+msgid "Check out the FAQ"
+msgstr "Pārbaudi to BUJ"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:442
+msgid "Submit your questions and comments about this plugin"
+msgstr "Pievieno savus jautājumus un komentārus par šo papildinājumu"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:444
+msgid "in the forum"
+msgstr "forumā"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:446
+msgid "You are welcome to request help from others in your native language, but I am only able to assist in English."
+msgstr "Esi laipni aicināts lūgt padomu citiem, kuri runā tavā dzimtajā valodā, taču es varu palīdzēt tikai angļu valodā."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:447
+msgid "If you use this plugin"
+msgstr "Ja tu lieto šo papildinājumu"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:449
+msgid "please rate and vote on compatibility"
+msgstr "lūdzu novērtē un nobalso pie savietojamības"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:451
+msgid "Consider making a donation to support continued development of this plugin."
+msgstr "Apsver ziedojuma iespēju, lai turpinātu attīstīt šo papildinājumu"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:453
+msgid "DONATE"
+msgstr "ZIEDOT"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:455
+msgid "Thank you,"
+msgstr "Paldies,"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:459
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:550
+msgid "Calendar"
+msgstr "Kalendārs"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:468
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:587
+msgid "Categories"
+msgstr "Kategorijas"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:476
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:619
+msgid "Activity Report"
+msgstr "Aktivitātes atskaite"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:531
+msgid "Add Events"
+msgstr "Pievienot pasākumus"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:538
+msgid "Created By"
+msgstr "Izveidotājs:"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:545
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:576
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:583
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:616
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:637
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Jums nav atbilstošas atļaujas, lai piekļūtu šai lapai."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:561
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:111
+msgid "All"
+msgstr "Visi"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:588
+msgid "Add a new, or edit/delete an existing calendar category.  To change the category tile color, click the color swatch or edit the field containing the hex value, then click Update.  The foreground color (black or white) is automatically assigned for optimal readbility based on the selected background color."
+msgstr "Pievieno jaunu vai labo/dzēs jau esošu kalendāra kategoriju. Lai mainītu kategorijas krāsu, uzspied uz krāsu loga vai ieraksti to laukumā ar HEX vērtību, tad spied Atjaunot. Krāsa (melns vai balrs) tiek automātiski izvēlēts optimālai lasīšanai pamatojoties uz izvēlētās pamatkrāsas."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:593
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:231
+msgid "Add"
+msgstr "Pievienot"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:599
+msgid "This category is required and can only be edited."
+msgstr "Šī kategorija ir nepieciešama un tā var tikt tikai labota."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:620
+msgid "Number of events scheduled for the current month, by type:"
+msgstr "Šajā mēnesī plānoto pasākumu skaits vadoties pēc tipa:"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:625
+msgid "Event"
+msgid_plural "Events"
+msgstr[0] "Pasākums"
+msgstr[1] "Pasākumi"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:629
+msgid "No events this month."
+msgstr "Šajā mēnesī nav pasākumu."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:773
+msgid "You cannot edit events created by other users."
+msgstr "Tu nevari labot citu lietotāju izveidotos pasākumus."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:774
+msgid "You cannot create events in the past."
+msgstr "Tu nevari izveidot pasākumu pagātnē."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:775
+msgid "You cannot create events more than a year in advance."
+msgstr "Tu nevari izveidot pasākumu tālāk par vienu gadu."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:776
+msgid "You cannot resize expired events."
+msgstr "Tu nevari pārmainīt notikušus pasākumus."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:777
+msgid "You cannot move events into the past."
+msgstr "Tu nevari pārvietot pasākumu pagātnē."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:778
+msgid "You cannot edit expired events."
+msgstr "Tu nevari labot notikušus pasākumus."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:779
+msgid "Invalid duration, please adjust your time inputs."
+msgstr "Nepareizs ilgums, lūdzu izlabo ievadīto laika vienību."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:805
+msgid "Category type cannot be a blank value."
+msgstr "Kategorijas tips nevar palikt tukšs."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:806
+msgid "Are you sure you want to delete this category type?"
+msgstr "Vai tu esi pārliecināts, ka vēlies dzēst šo kategorijas tipu?"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:807
+msgid "Several events are associated with this category. Click OK to reassign these events to the default category."
+msgstr "Daži pasākumi ir saistīti ar šo kategoriju. Spied OK lai pārvietotu šos pasākumus pamatkategorijai."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:808
+msgid "Events have been reassigned to the default category."
+msgstr "Pasākumi ir pārvietoti uz pamatkategoriju."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1335
+msgid "Events"
+msgstr "Pasākumi"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1348
+msgid "Settings"
+msgstr "Uzstādījumi"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:81
+msgid "Duration"
+msgstr "Ilgums"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:84
+msgid "From"
+msgstr "No"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:92
+msgid "To"
+msgstr "Līdz"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:108
+msgid "Title"
+msgstr "Nosaukums"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:112
+msgid "Type"
+msgstr "Kategorija"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:125
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:21
+msgid "Venue"
+msgstr "Vieta"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:133
+msgid "Address"
+msgstr "Adrese"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:137
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:22
+msgid "Neighborhood or Street Address"
+msgstr "Iela"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:145
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:5
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:23
+msgid "City"
+msgstr "Pilsēta"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:153
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:6
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:24
+msgid "State"
+msgstr "Reģions"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:161
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:7
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:25
+msgid "Postal Code"
+msgstr "Pasta kods"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:172
+msgid "Website Link"
+msgstr "Interneta adrese"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:180
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:27
+msgid "Description"
+msgstr "Apraksts"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:188
+msgid "Contact Person"
+msgstr "Kontaktpersona"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:192
+msgid "Name"
+msgstr "Vārds"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:200
+msgid "Phone or Email Address"
+msgstr "Telefons vai e-pasts"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:213
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:30
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:66
+msgid "This event is accessible to people with disabilities."
+msgstr "Šis pasākums ier pieejams cilvēkiem ar kustību traucējumiem."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:222
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:31
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:67
+msgid "Please register with the contact person for this event."
+msgstr "Lūdzu reģistrējies pie šī pasākuma kontaktpersonas."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:226
+msgid "Cancel"
+msgstr "Atcelt"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:241
+msgid "Created by"
+msgstr "Izveidotājs -"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:3
+msgid "Ajax Event Calendar Options"
+msgstr "Ajax Pasākumu kalendāra uzstādījumi"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:9
+msgid "Hide"
+msgstr "Slēpt"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:9
+msgid "Display"
+msgstr "Parādīt"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:9
+msgid "Require"
+msgstr "Obligāti"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:12
+msgid "Category filter label"
+msgstr "Kategorijas filtrs"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:13
+msgid "Prevent users from adding or editing expired events."
+msgstr "Neatļaut lietotājiem pievienot vai labot notikušus pasākumus"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:14
+msgid "Display calendar weekends."
+msgstr "Attainot kalendāra nedēļas nogales."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:15
+msgid "Display {View Map} link on event details (uses populated address fields)."
+msgstr "Attainot (Skatīt karti) saiti pasākuma detaļās (Lieto adreses laukus)."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:16
+msgid "Display {Add Events} link on the front-end calendar."
+msgstr "Attainot (Pievienot pasākumus) saiti sākuma-beigu kalendārā."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:17
+msgid "{Event Detail} links open in a new window (when unchecked, links open in the same window)."
+msgstr "(Pasākuma detaļas) saite atveras jaunā logā (Ja nav atzīmēts, saite atvērsies tai pašā logā)."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:18
+msgid "URLs entered in the description field are converted into clickable links."
+msgstr "Aprakstā pievienotā interneta adrese tiks izveidota par klikšķināmu saiti."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:19
+msgid "Address format"
+msgstr "Adreses formāts"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:20
+msgid "Form Options"
+msgstr "Formas uzstādījumi"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:20
+msgid "Hide, display or require form fields.  Hidden fields do not appear in the event form."
+msgstr "Paslēpt, attainot vai obligāti pieprasīt formas laukumos. Slēptie laukumi neparādīsies pasākuma formā."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:26
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:84
+msgid "Event Link"
+msgstr "Pasākuma saite"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:28
+msgid "Contact Name"
+msgstr "Kontakta vārds"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:29
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:59
+msgid "Contact Information"
+msgstr "Kontaktinformācija"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:32
+msgid "Resets plugin settings on Save."
+msgstr "Atceļ papildinājuma uzstādījumus uzspiežot SAGLABĀT."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:86
+msgid "Save Changes"
+msgstr "Saglabāt labojumus"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:48
+msgid "Location"
+msgstr "Vieta"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:52
+msgid "View Map"
+msgstr "Skatīt karti"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:73
+msgid "Presented by"
+msgstr "Piedāvā"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:9
+msgid "A list of calendar contributors linked to their organization websites"
+msgstr "Kalendāra ziedotāju saraksts ar saitēm uz viņu organizācijām"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:10
+msgid "AEC Contributors"
+msgstr "AEC ziedotāji"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:18
+#, php-format
+msgid "(%d) Contributor"
+msgid_plural "(%d) Contributors"
+msgstr[0] "(%d) Ziedotājs"
+msgstr[1] "(%d) Ziedotāji"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:26
+msgid "No contributors as of yet."
+msgstr "Līdz šim nav ziedotāju."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:59
+msgid "No options available."
+msgstr "Uzstādījumi nav pieejami."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:9
+msgid "Displays upcoming events with optional filters."
+msgstr "Attaino tuvojošos pasākumus ar optimālu filtru."
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:10
+msgid "AEC Upcoming Events"
+msgstr "AEC tuvojošies pasākumi"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:48
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:96
+msgid "Upcoming Events"
+msgstr "Tuvojošies pasākumi"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:75
+msgid "No upcoming events"
+msgstr "Nav tuvojošos pasākumu"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:78
+msgid "Link to Calendar"
+msgstr "Saite uz kalendāru"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:104
+msgid "Widget Title"
+msgstr "Papildrīka nosaukums"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:108
+msgid "Event category displayed"
+msgstr "Attainota pasākumu kategorija"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:121
+msgid "Maximum events displayed"
+msgstr "Maksimums pasākumu attainoti"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:133
+msgid "Link to calendar"
+msgstr "Saite uz kalendāru"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:138
+msgid "Hide category colors"
+msgstr "Slēpt kategorijas krāsas"
+
+#~ msgid "Show Types"
+#~ msgstr "Parādīt veidus"
+
+#~ msgid "Restore Original Settings"
+#~ msgstr "Atjaunot pamatuzstādījumus"
+
+#~ msgid "Plugin help available"
+#~ msgstr "Pieejama papildinājuma palīdzība"
+
+#~ msgid "here"
+#~ msgstr "te"
+
+#~ msgid "Loading..."
+#~ msgstr "Lādējas..."
+
+#, fuzzy
+#~ msgid "%d Week"
+
+#~ msgid_plural "%d Weeks"
+#~ msgstr[0] "Nedēļa"
+#~ msgstr[1] "Nedēļas"
+
+#~ msgid "%d Day"
+
+#~ msgid_plural "%d Days"
+#~ msgstr[0] "%d Diena"
+#~ msgstr[1] "%d Dienas"
+
+#~ msgid "%d Hour"
+
+#~ msgid_plural "%d Hours"
+#~ msgstr[0] "%d Stunda"
+#~ msgstr[1] "%d Stundas"
+
+#~ msgid "%d Minute"
+
+#~ msgid_plural "%d Minutes"
+#~ msgstr[0] "%d Minūte"
+#~ msgstr[1] "%d Minūtes"
+
+#~ msgid "No events listed in the next week"
+
+#~ msgid_plural "No events listed in the next %d weeks"
+#~ msgstr[0] "Nav pasākumu nākošajā nedēļā"
+#~ msgstr[1] "Nav pasākumu nākošajās (%d) nedēļās"
+
+#~ msgid "Display this Category"
+#~ msgstr "Attainot šo kategoriju"
+
+#~ msgid "Number of Weeks from Today"
+#~ msgstr "Nedēļu skaits no šīs dienas"
+
+#, fuzzy
+#~ msgid "%d Year"
+
+#~ msgid_plural "%d Years"
+#~ msgstr[0] "%d Gads"
+#~ msgstr[1] "%d Gadi"
+
+#, fuzzy
+#~ msgid "%d Month"
+
+#~ msgid_plural "%d Months"
+#~ msgstr[0] "Mēnesis"
+#~ msgstr[1] "Mēneši"
+
+#, fuzzy
+#~ msgid " - Events"
+#~ msgstr "Pasākumi"
+
+#~ msgid ""
+#~ "Add new, or edit existing category type (and associated calendar tile "
+#~ "color)."
+#~ msgstr ""
+#~ "Pievienot jaunu vai labot esošas kategorijas tipu (un saistīt ar "
+#~ "kalendāra daļas krāsu)."
+
+#, fuzzy
+#~ msgid "Weekly"
+#~ msgstr "Iknedēļas"
+
+#~ msgid ""
+#~ "Enforce event creation between 30 minutes and one year from the current "
+#~ "time."
+#~ msgstr ""
+#~ "Atļauj kalendāra izveidi posmā no 30 minūtēm līdz vienam gadam no šī "
+#~ "laika."
+
+#~ msgid "Check Required Form Fields"
+#~ msgstr "Pārbaudi obligātos laukus"
+
+#~ msgid "Optional Checkboxes"
+#~ msgstr "Izvēlas lauciņš"
+
+#~ msgid "(%d) Upcoming Event"
+
+#~ msgid_plural "(%d) Upcoming Events"
+#~ msgstr[0] "(%d) tuvojošais pasākums"
+#~ msgstr[1] "(%d) tuvojošies pasākumi"
+
+#~ msgid "has been added."
+#~ msgstr "pievienots."
+
+#~ msgid "has been updated."
+#~ msgstr "atjaunots."
+
+#~ msgid "Close Event Details"
+#~ msgstr "Aizvērt pasākuma aprakstu"
+
+#~ msgid "Loading Event Details..."
+#~ msgstr "Lādējas pasākuma apraksts..."
