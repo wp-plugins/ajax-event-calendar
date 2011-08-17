@@ -162,6 +162,7 @@ Hat Tip to these fine plugins which were instrumental in the creation of this pl
 <br>4. Category color selection (miniColors)
 
 == Changelog ==
+
 = 0.9.9.2 =
 * added latvian localization
 * updated arabic localization
@@ -369,6 +370,7 @@ Hat Tip to these fine plugins which were instrumental in the creation of this pl
 * getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
+
 = 0.9.9.2 = 
 * critical IE bug fixed 
 
