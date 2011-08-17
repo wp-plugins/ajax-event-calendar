@@ -1,0 +1,67 @@
+#aec-calendar table{float:right}
+#aec-menu{float:right;padding:10px 0}
+ul#aec-filter{float:left}
+#aec-filter li{float:right;padding:0 4px 0 0}
+#aec-filter li:first-child{padding:3px 0 3px 4px}
+#aec-modal-container{text-align:right}
+#aec-modal-container .aec-title{direction:ltr}
+#aec-modal-container h3{direction:ltr}
+#aec-modal-container .close{left:0;top:0}
+#aec-modal-container .close a{float:left;padding:6px 12px 0}
+#aec-modal-container span.duration-message{padding-right:5px}
+#aec-modal a.maplink{float:left}
+#aec-modal span.duration{float:left}
+#aec-modal a.link{right:auto;left:10px}
+.ltr{direction:ltr;text-align:left}
+.aec_form li{float:right}
+.aec_form ul{padding:5px 0 0 5px}
+.aec_form label{float:right;padding:5px 0 3px 5px}
+.aec_form label.box{padding:0 5px 0 0}
+.aec_form select{float:right}
+.aec_form textarea{float:right}
+.aec_form input[type=radio]{float:right}
+.aec_form input[type=checkbox]{float:right}
+.aec_form li.buttons{text-align:left}
+.vvv input{float:right}
+.vvv select{float:right}
+.vvv textarea{float:right}
+.hvv li{float:right;margin-left:10px}
+.hvv label{float:none;padding:1px 3px 0 0}
+.hvv label.box{float:right}
+.hvv input{float:right}
+.hii li{float:right;margin-left:10px}
+.hii label{margin-left:0;text-align:right}
+.hhh li{float:right;margin-left:10px}
+.hhh label{float:right}
+.hhh input{float:right}
+.hhh select{float:right}
+.hhh textarea{float:right}
+.vii{float:right}
+.vii li{float:right}
+.vhh{float:right}
+.vhh li{float:right}
+.vhh label{float:right}
+.vhh input{float:right}
+.vhh select{float:right}
+.vhh textarea{float:right}
+label.v{text-align:right}
+label.h{float:right}
+.multiselect{float:right}
+.multiselect .vhh input{float:right}
+.multiselect .vhh label{margin-right:20px}
+.leftnote{float:right;padding:3px 5px 0}
+.tar label{text-align:left}
+.fl{float:right}
+.fr{float:left}
+.mr20{margin-left:20px}
+.ml20{margin-right:20px}
+.offset1{margin-right:130px}
+.offset2{margin-right:105px}
+.fc-header{clear:both}
+
+div.jGrowl div.jGrowl-notification,div.jGrowl div.jGrowl-closer{text-align:right}
+div.jGrowl div.jGrowl-notification div.jGrowl-close{float:left}
+
+.miniColors-colors{left:5px}
+.miniColors-hues{left:160px;}
+.miniColors-huePicker{left:-3px}
