@@ -10,7 +10,7 @@ A fully localized community calendar that allows authorized users to manage even
 
 == Description ==
 
-This plugin allows authorized users to add, edit (via drag n' drop and resize) and delete events in a community calendar viewable by all blog visitors.  The calendar can be added to a page or a post using the "[calendar]" shortcode with several filtering parameters.  All shortcode parameters can be applied together with exception of category and filter, which are mutually exclusive functionality.
+This plugin allows authorized users to add, edit (via drag n' drop and resize) and delete events in a community calendar viewable by all blog visitors.  The calendar can be added to a page or a post using the "[calendar]" shortcode with several filtering parameters.  All shortcode parameters can be applied together, for example [calendar categories"1,2,3" filter=2 month=8 views=false scroll=true].
 
 **[calendar categories="1,2,3"]** display events from one or more (comma separated) category id(s)* - default:(all)
 <br>**[calendar filter=3]** display events filtered by selected id* - default:(all)
