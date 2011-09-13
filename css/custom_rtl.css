@@ -59,7 +59,7 @@ label.h{float:right}
 .offset2{margin-right:105px}
 .fc-header{clear:both}
 
-div.jGrowl div.jGrowl-notification,div.jGrowl div.jGrowl-closer{text-align:right}
+div.jGrowl div.jGrowl-notification,div.jGrowl{text-align:right}
 div.jGrowl div.jGrowl-notification div.jGrowl-close{float:left}
 
 .miniColors-colors{left:5px}

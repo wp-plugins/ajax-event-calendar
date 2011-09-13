@@ -1,89 +1,61 @@
-<div class="wrap">
-	<div class="icon32" id="icon-options-general"><br></div>
-	<h2><?php _e('Ajax Event Calendar Options', AEC_PLUGIN_NAME); ?></h2>
-	<?php
-		$city 					= __('City', AEC_PLUGIN_NAME);
-		$state 					= __('State', AEC_PLUGIN_NAME);
-		$postal					= __('Postal Code', AEC_PLUGIN_NAME);
-		$format_options 		= array("{{$city}}, {{$state}} {{$postal}}", "{{$postal}} {{$city}}");
-		$field_options			= array( __('Hide', AEC_PLUGIN_NAME), __('Display', AEC_PLUGIN_NAME), __('Require', AEC_PLUGIN_NAME));
-		$fields 				= array(
-			'title'				=> array('hidden', 2),	// preserves event title as a required field.
-			'filter_label'		=> array('textfield', __('Category filter label', AEC_PLUGIN_NAME)),
-			'limit'				=> array('checkbox', __('Prevent users from adding or editing expired events.', AEC_PLUGIN_NAME)),
-			'show_weekends'		=> array('checkbox', __('Display calendar weekends.', AEC_PLUGIN_NAME)),
-			'show_map_link' 	=> array('checkbox', __('Display {View Map} link on event details (uses populated address fields).', AEC_PLUGIN_NAME)),
-			'menu' 				=> array('checkbox', __('Display {Add Events} link on the front-end calendar.', AEC_PLUGIN_NAME)),
-			'popup_links'		=> array('checkbox', __('{Event Detail} links open in a new window (when unchecked, links open in the same window).', AEC_PLUGIN_NAME)),
-			'make_links'		=> array('checkbox', __('URLs entered in the description field are converted into clickable links.', AEC_PLUGIN_NAME)),
-			'addy_format'		=> array('select', __('Address format', AEC_PLUGIN_NAME), $format_options),
-			'fields'			=> array('heading', __('Form Options', AEC_PLUGIN_NAME), __('Hide, display or require form fields.  Hidden fields do not appear in the event form.', AEC_PLUGIN_NAME)),
-			'venue' 			=> array('select', __('Venue', AEC_PLUGIN_NAME), $field_options),
-			'address' 			=> array('select', __('Neighborhood or Street Address', AEC_PLUGIN_NAME), $field_options),
-			'city' 				=> array('select', __('City', AEC_PLUGIN_NAME), $field_options),
-			'state' 			=> array('select', __('State', AEC_PLUGIN_NAME), $field_options),
-			'zip' 				=> array('select', __('Postal Code', AEC_PLUGIN_NAME), $field_options),
-			'link' 				=> array('select', __('Event Link', AEC_PLUGIN_NAME), $field_options),
-			'description' 		=> array('select', __('Description', AEC_PLUGIN_NAME), $field_options),
-			'contact' 			=> array('select', __('Contact Name', AEC_PLUGIN_NAME), $field_options),
-			'contact_info'		=> array('select', __('Contact Information', AEC_PLUGIN_NAME), $field_options),
-			'accessible'		=> array('checkbox', __('This event is accessible to people with disabilities.', AEC_PLUGIN_NAME)),
-			'rsvp' 				=> array('checkbox', __('Please register with the contact person for this event.', AEC_PLUGIN_NAME)),
-			'reset'				=> array('checkbox', __('Resets plugin settings on Save.', AEC_PLUGIN_NAME))
-		);
-	?>
-	<form method="post" action="options.php">
-		<?php settings_fields('aec_plugin_options'); ?>
-		<?php $options = get_option('aec_options'); ?>
-		<table class="form-table">
-			<?php
-				foreach ($fields as $field => $values) {
-					$type = $values[0];
-					$value = $values[1];
-					$description = isset($values[2]) ? $values[2] : false;
-					switch ($type) {
-						case "hidden":
-							echo "<input type='hidden' name='aec_options[{$field}]' value='{$value}' />\n";
-						break;
-						case "heading":
-							echo "<tr>\n";
-							echo "<th>{$value}</th>\n";
-							if ($description) echo "<td><span class='description'>{$description}</span></td>\n";
-							echo "</tr>\n";
-						break;
-						case "textfield":
-							echo "<tr>\n";
-							echo "<th><label for='{$field}'>{$value}</label></th>\n";
-							echo "<td><input type='text' name='aec_options[{$field}]' id='{$field}' value='" . esc_attr($options[$field]) . "' />\n";
-							if ($description) echo "<span class='description'>{$description}</span>\n";
-							echo "</td></tr>\n";
-						break;
-						case "checkbox":
-							$checked = ($options[$field]) ? ' checked="checked" ' : ' ';					
-							echo "<td><input type='hidden' name='aec_options[{$field}]' value='0' /></td>\n";
-							echo "<td><input type='checkbox' name='aec_options[{$field}]' id='{$field}' value='1' class='box' {$checked} />\n";
-							echo "<label for='{$field}'>{$value}</label>\n";
-							if ($description) echo "<span class='description'>{$description}</span>\n";
-							echo "</td></tr>\n";
-						break;
-						case "select":
-							$select_opts = $values[2];
-							$description = isset($values[3]) ? $values[3] : false;
-							echo "<th>{$value}</th>\n";
-							echo "<td><select name='aec_options[{$field}]' >\n";
-							foreach ($select_opts as $option => $value) {
-								echo "<option value='{$option}' name='aec_options[{$field}]' " . selected($options[$field], $option, false) . ">{$value}</option>\n";								
-							}
-							echo "</select>\n";
-							if ($description) echo "<span class='description'>{$description}</span>\n";
-							echo "</td></tr>\n";
-						break;
-					}
-				}
-			?>
-		</table>
-		<p class="submit">
-			<input name="Submit" type="submit" class="button-primary" value="<?php _e('Save Changes', AEC_PLUGIN_NAME); ?>" />
-		</p>
-	</form>
-</div>
+<?php
+	$city 				= __('City', AEC_NAME);
+	$state 				= __('State', AEC_NAME);
+	$postal				= __('Postal Code', AEC_NAME);
+	$timeslot_opts		= array(5, 10, 15, 30, 60);
+	$format_opts 		= array("{{$city}}, {{$state}} {{$postal}}", "{{$postal}} {{$city}}");
+	$field_opts2		= array( __('Hide', AEC_NAME), __('Display', AEC_NAME));
+	$field_opts3		= array( __('Hide', AEC_NAME), __('Display', AEC_NAME), __('Require', AEC_NAME));
+
+	echo "<div class='wrap'>\n";
+	echo "<a href='http://eranmiller.com' target='_blank'><div id='em-icon' style='background:url(". AEC_URL ."css/images/em-icon-32.png) no-repeat' class='icon32'></div></a>\n";
+	echo $this->add_wrap(__('Ajax Event Calendar Options', AEC_NAME), "<h2>", "</h2>");
+
+	if((isset($_GET['updated']) && $_GET['updated'] == 'true') ||
+	   (isset($_GET['settings-updated']) && $_GET['settings-updated'] == 'true')){
+		echo $this->add_wrap(__('Settings updated'), '<div id="message" style="width:94%" class="message updated"><p><strong>', '.</strong></p></div>');
+	}
+
+	echo "<div class='postbox-container' style='width:70%'>\n";
+	echo "<form method='post' action='options.php' class='aec_form'>\n";
+	settings_fields('aec_plugin_options');
+	$aec_options = get_option('aec_options');
+
+	$form = $this->add_hidden_field('title', 2);	// preserves event title as a required field.
+	$form .= $this->add_wrap(__("Date Format, Time Format, and Week Starts On settings are located", AEC_NAME), "<span class='fr helptip round5'>", " ");
+	$form .= $this->add_wrap(__("here", AEC_NAME), "<a href='" . ADMIN_URL(). "options-general.php'>", "</a>.</span>");
+	$form .= $this->add_checkbox_field('show_weekends', __('Display calendar weekends.', AEC_NAME));
+	$form .= $this->add_checkbox_field('show_map_link', __('Display <code>View Map</code> link on event details (uses populated address fields).', AEC_NAME));
+	$form .= $this->add_checkbox_field('menu', __('Display <code>Add Events</code> link on the front-end calendar.', AEC_NAME));
+	$form .= $this->add_checkbox_field('make_links', __('Make URLs entered in the description field into clickable links.', AEC_NAME));
+	$form .= $this->add_checkbox_field('popup_links', __('Make links on the <code>Event Detail</code> page open in a new window.', AEC_NAME));
+	$form .= $this->add_checkbox_field('limit', __('Prevent users from adding or editing expired events.', AEC_NAME));
+	$form .= $this->add_checkbox_field('scroll', __('Activate mouse wheel navigation for the administrative calendar view.', AEC_NAME));
+	$form .= $this->add_text_field('filter_label', __('Category filter label', AEC_NAME));
+	$form .= $this->add_select_field('addy_format', __('Address format', AEC_NAME), $format_opts);
+	$form .= $this->add_select_field('step_interval', __('Timepicker interval', AEC_NAME), $timeslot_opts);
+	
+	$form .= $this->add_wrap(__('Hide, display or require form fields.  Hidden fields do not appear in the event form.', AEC_NAME), '<p>', '</p>');
+	$form .= $this->add_select_field('venue', __('Venue', AEC_NAME), $field_opts3);
+	$form .= $this->add_select_field('address', __('Neighborhood or Street Address', AEC_NAME), $field_opts3);
+	$form .= $this->add_select_field('city', __('City', AEC_NAME), $field_opts3);
+	$form .= $this->add_select_field('state', __('State', AEC_NAME), $field_opts3);
+	$form .= $this->add_select_field('zip', __('Postal Code', AEC_NAME), $field_opts3);
+	$form .= $this->add_select_field('country', __('Country', AEC_NAME), $field_opts3);
+	$form .= $this->add_select_field('link', __('Event Link', AEC_NAME), $field_opts3);
+	$form .= $this->add_select_field('description', __('Description', AEC_NAME), $field_opts3);
+	$form .= $this->add_select_field('contact', __('Contact Name', AEC_NAME), $field_opts3);
+	$form .= $this->add_select_field('contact_info', __('Contact Information', AEC_NAME), $field_opts3);
+	$form .= $this->add_select_field('accessible', __('This event is accessible to people with disabilities.', AEC_NAME), $field_opts2);
+	$form .= $this->add_select_field('rsvp', __('Please register with the contact person for this event.', AEC_NAME), $field_opts2);
+	
+	$out  = $this->add_panel(__('Modify calendar and form options then click <code>Save Changes</code> below.', AEC_NAME), $form);
+	$out .= $this->add_checkbox_field('reset', __('Reset all settings on Save.', AEC_NAME));
+	$out .= $this->add_wrap("<input name='Submit' type='submit' class='button-primary auto' value='" . esc_attr__('Save Changes', AEC_NAME) . "' />", "<p class='submit'>", "</p>");
+	$out .= "</form>\n";
+	$out .= "</div>\n";
+	
+	echo $out;
+	echo $this->add_sidebar();
+	echo "</div>\n";
+?>

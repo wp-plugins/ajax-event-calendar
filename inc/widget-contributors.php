@@ -6,16 +6,16 @@
 class aec_contributor_list extends WP_Widget{
 
 	function aec_contributor_list(){
-		$widget_ops = array('description' => __('A list of calendar contributors linked to their organization websites', AEC_PLUGIN_NAME));
-		parent::WP_Widget(false, __('AEC Contributors', AEC_PLUGIN_NAME), $widget_ops);
+		$widget_ops = array('description' => __('A list of calendar contributors linked to their organization websites', AEC_NAME));
+		parent::WP_Widget(false, __('AEC Contributors', AEC_NAME), $widget_ops);
 	}
 	
 	function widget($args, $instance){
 		extract($args);
-		$contributors = $this->get_users_by_role('calendar_contributor');
+		$contributors = $this->db_query_users_by_role('calendar_contributor');
 		echo $before_widget;
 		$conts = sizeof($contributors);
-		echo $before_title . sprintf(_n('(%d) Contributor','(%d) Contributors', $conts, AEC_PLUGIN_NAME), $conts) . $after_title;
+		echo $before_title . sprintf(_n('(%d) Contributor','(%d) Contributors', $conts, AEC_NAME), $conts) . $after_title;
 		if ($contributors){
 			echo '<ul>';
 			foreach ($contributors as $contributor){
@@ -23,15 +23,15 @@ class aec_contributor_list extends WP_Widget{
 				echo '<li><a href="' . $user->user_url . '" target="_blank">' .  $user->organization . '</a></li>';
 			}
 		}else{
-			_e('No contributors as of yet.', AEC_PLUGIN_NAME);
+			_e('No contributors as of yet.', AEC_NAME);
 		}
 		echo '</ul>';
 		echo $after_widget;
 	}
 
-	function get_users_by_role($roles){
+	function db_query_users_by_role($roles){
 		global $wpdb;
-		if (! is_array($roles)){
+		if(!is_array($roles)){
 			$roles = explode(",", $roles);
 			array_walk($roles, 'trim');
 		}
@@ -43,9 +43,11 @@ class aec_contributor_list extends WP_Widget{
 			AND		(
 		';
 		$i = 1;
-		foreach ($roles as $role){
+		foreach($roles as $role){
 			$sql .= ' ' . $wpdb->usermeta . '.meta_value	LIKE	\'%"' . $role . '"%\' ';
-			if ($i < count($roles)) $sql .= ' OR ';
+			if($i < count($roles)){
+				$sql .= ' OR ';
+			}
 			$i++;
 		}
 		$sql .= ') ';
@@ -53,10 +55,11 @@ class aec_contributor_list extends WP_Widget{
 		$userIDs = $wpdb->get_col($sql);
 		return $userIDs;
 	}
+
 	
 	/** @see WP_Widget::form */
 	function form(){				
-		_e('No options available.', AEC_PLUGIN_NAME);
+		_e('No options available.', AEC_NAME);
 	}
 }
 
