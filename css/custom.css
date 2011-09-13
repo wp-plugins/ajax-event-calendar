@@ -8,8 +8,8 @@
 #aec-credit{visibility:hidden;position:absolute;height:1px;width:1px;overflow:hidden;top:-999px}
 
 #aec-filter{float:right;font-size:12px;padding:10px 0;margin:0 !important}
-#aec-filter li{background:none;list-style:none!important;float:left;padding:0 0 0 4px !important;margin:0}
-#aec-filter li:first-child{font-size:14px;padding:3px 4px 3px 0;font-weight:bold}
+#aec-filter li{background:none;list-style:none !important;float:left;padding:0 0 0 4px !important;margin:0}
+#aec-filter li:first-child{font-size:14px;padding:3px 4px 3px 0 !important;font-weight:bold}
 #aec-filter a{padding:3px 8px;line-height:20px;cursor:pointer;display:block;text-decoration:none;border:1px solid transparent}
 #aec-filter a.all,#aec-filter a.all:visited,#aec-filter a.all:active{background:#000;color:#ddd}
 #aec-filter a.all:hover{border-color:#fff;-moz-box-shadow:0 0 2px #000;-webkit-box-shadow:0 0 2px #000;box-shadow:0 0 2px #000}

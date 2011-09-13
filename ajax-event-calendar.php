@@ -30,6 +30,13 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)){
 	die('Sorry, but you cannot access this page directly.');
 }
 
+if (version_compare(PHP_VERSION, '5', '<')){
+	$out = "<div id='message' style='width:94%' class='message error'>";
+	$out .= sprintf("<p><strong>Your PHP version is '%s'.<br>The Ajax Event Calendar WordPress plugin requires PHP 5 or higher.</strong></p><p>Ask your web host how to enable PHP 5 on your site.</p>", PHP_VERSION);
+	$out .= "</div>";
+	print $out;
+}
+
 define('AEC_MENU_POSITION', null);  //previously 30
 define('AEC_VERSION', '1.0');
 define('AEC_FILE', basename(__FILE__));
@@ -87,7 +94,7 @@ if(!class_exists('ajax_event_calendar')){
 			add_action('wp_print_scripts', array($this, 'frontend_calendar_scripts'));
 			add_action('wp_print_styles', array($this, 'calendar_styles'));
 			add_action('delete_user', array($this, 'delete_events_by_user'));
-			
+
 			// ajax hooks
 			add_action('wp_ajax_nopriv_get_events', array($this, 'render_calendar_events'));
 			add_action('wp_ajax_get_events', array($this, 'render_calendar_events'));
@@ -100,10 +107,11 @@ if(!class_exists('ajax_event_calendar')){
 			add_action('wp_ajax_delete_event', array($this, 'delete_event'));
 			add_action('wp_ajax_move_event', array($this, 'move_event'));
 			add_action('wp_ajax_add_category', array($this, 'add_category'));
+			add_action('wp_ajax_update_filter_label', array($this, 'update_filter_label'));
 			add_action('wp_ajax_update_category', array($this, 'update_category'));
 			add_action('wp_ajax_delete_category', array($this, 'confirm_delete_category'));
 			add_action('wp_ajax_reassign_category', array($this, 'reassign_category'));
-			
+
 			// wordpress overrides
 			add_filter('manage_users_columns', array($this, 'add_events_column'));
 			add_filter('manage_users_custom_column', array($this, 'add_events_column_data'), 10, 3);
@@ -384,7 +392,7 @@ if(!class_exists('ajax_event_calendar')){
 
 				if(current_user_can('aec_manage_calendar')){
 					// sub menu page: category management
-					$sub_category = add_submenu_page(AEC_FILE, 'Categories', __('Categories', AEC_NAME), 'aec_manage_calendar', 'event_categories', array($this, 'render_admin_category'));
+					$sub_category = add_submenu_page(AEC_FILE, 'Categories', __('Categories', AEC_NAME), 'aec_manage_calendar', 'aec_manage_categories', array($this, 'render_admin_category'));
 
 					// category admin specific scripts and styles
 					add_action("admin_print_scripts-$sub_category", array($this, 'admin_category_scripts'));
@@ -392,11 +400,11 @@ if(!class_exists('ajax_event_calendar')){
 					add_action("admin_print_styles-$sub_category", array($this, 'admin_category_styles'));
 
 					// sub menu page: activity report
-					$sub_report = add_submenu_page(AEC_FILE, 'Activity Report', __('Activity Report', AEC_NAME), 'aec_manage_calendar', 'activity_report', array($this, 'render_activity_report'));
+					$sub_report = add_submenu_page(AEC_FILE, 'Activity Report', __('Activity Report', AEC_NAME), 'aec_manage_calendar', 'aec_activity_report', array($this, 'render_activity_report'));
 					add_action("admin_print_scripts-$sub_report", array($this, 'admin_social_scripts'));
 
 					// sub menu page: calendar options
-					$sub_options = add_submenu_page(AEC_FILE, 'Options', __('Options', AEC_NAME), 'aec_manage_calendar', 'options', array($this, 'render_calendar_options'));
+					$sub_options = add_submenu_page(AEC_FILE, 'Options', __('Options', AEC_NAME), 'aec_manage_calendar', 'aec_calendar_options', array($this, 'render_calendar_options'));
 					add_action("admin_print_scripts-$sub_options", array($this, 'admin_social_scripts'));
 					add_action("admin_print_styles-$sub_options", array($this, 'calendar_styles'));
 				}
@@ -493,6 +501,7 @@ if(!class_exists('ajax_event_calendar')){
 				'edit_event'				=> __('Edit Event', AEC_NAME),
 				'delete_event'				=> __('Delete this event?', AEC_NAME),
 				'loading'					=> __('Loading Events...', AEC_NAME),
+				'category_filter_label'		=> __('Category filter label', AEC_NAME),
 				'repeats_every'				=> __('Repeats Every', AEC_NAME),
 				'until'						=> __('Until', AEC_NAME),
 				'success'					=> __('Success!', AEC_NAME),
@@ -718,7 +727,7 @@ if(!class_exists('ajax_event_calendar')){
 
 			$out = "<ul class='aec-eventlist'>";
 			$events = $this->process_events($events, $start, $end, $readonly);
-			if($events){				
+			if($events){
 				$out .= $this->render_eventlist_events($events, $whitelabel, $limit);
 			} else {
 				$out .= "<li>{$noresults}</li>";
@@ -772,7 +781,7 @@ if(!class_exists('ajax_event_calendar')){
 			$categories = $this->db_query_categories($categories, $excluded);
 			if(sizeof($categories) > 1){
 				if(!empty($options['filter_label'])){
-					$out .= "<li>{$options['filter_label']}</li>\n";
+					$out .= "<li>" . $this->render_i18n_data($options['filter_label']) . "</li>\n";
 				}
 				$out .= '<li class="active"><a class="round5 all">' . __('All', AEC_NAME) . '</a></li>' . "\n";
 				foreach($categories as $category){
@@ -808,8 +817,13 @@ if(!class_exists('ajax_event_calendar')){
 			$add .= $this->add_wrap(__('Add', AEC_NAME), "<button class='add button-primary'>", "</button></p>");
 			$add .= "</form>\n";
 
+			$aec_options = get_option('aec_options');
+			$add .= $this->add_wrap(__('Category filter label', AEC_NAME), "<p>", "</p>");
+			$add .= $this->add_wrap("<input type='text' name='filter_label' id='filter_label' value='" . esc_attr($this->render_i18n_data($aec_options['filter_label'])) . "' />", "<p>", "");
+			$add .= $this->add_wrap(__('Update', AEC_NAME), "<button id='filter_update' class='filter-update button-secondary'>", "</button></p>");
+
 			$add .= $this->add_wrap(__('Category IDs are displayed in color bubbles at the beginning of each row.' , AEC_NAME), "<p>", "<br/>");
-			$add  .= $this->add_wrap(__('To change category color, click the color swatch or edit the hex color value and click <code>Update</code>.', AEC_NAME), "", "</p>");
+			$add  .= $this->add_wrap(__('To change category color, click the color swatch or edit the hex color value and click Update.', AEC_NAME), "", "</p>");
 			$add .= "<form id='aec-category-list'>\n";
 			$categories = $this->db_query_categories();
 			foreach($categories as $category){
@@ -831,7 +845,6 @@ if(!class_exists('ajax_event_calendar')){
 
 			$out = $this->add_wrap($out, "<div class='postbox-container' style='width:70%'>", "</div>");
 			$out .= $this->add_sidebar();
-
 			echo $this->add_wrap($out, "<div class='wrap'>{$top}", "</div>");
 		}
 
@@ -913,7 +926,7 @@ if(!class_exists('ajax_event_calendar')){
 				$view_start		= strtotime($event->view_start);
 				$view_end		= strtotime($event->view_end);
 				$repeats		= array();
-				
+
 				while($event_start <= $repeat_end){
 					if($event_start >= $view_start && $event_start <= $view_end){
 						$event 		 	= clone $event;	// clone event details and override dates
@@ -939,7 +952,7 @@ if(!class_exists('ajax_event_calendar')){
 		}
 
 		//TODO: optimize process
-		
+
 		// adjustment for events that repeat on the 29th, 30th and 31st of a month
 		function get_next_month($date, $n = 1){
 			$newDate = strtotime("+{$n} months", $date);
@@ -1005,7 +1018,11 @@ if(!class_exists('ajax_event_calendar')){
 			return $this->add_wrap($content, $before, $after);
 		}
 
-		function add_hidden_field($field, $value){
+		function add_hidden_field($field, $value=false){
+			if(!$value){
+				$aec_options 	= get_option('aec_options');
+				$value 			= $aec_options[$field];
+			}
 			return "<input type='hidden' name='aec_options[{$field}]' value='{$value}' />\n";
 		}
 
@@ -1051,30 +1068,25 @@ if(!class_exists('ajax_event_calendar')){
 		}
 
 		function add_sidebar(){
-			if (version_compare(PHP_VERSION, '5', '<')){
-				wp_die(printf(__('Sorry, the Ajax Event Calendar plugin for WordPress requires PHP 5 or higher. Your PHP version is "%s". Ask your web host how to enable PHP 5 on your site.', ajax-event-calendar), PHP_VERSION));
-			}
 			$help = $this->add_wrap(__('Review the FAQ', AEC_NAME), "<p><a href='" . AEC_HOMEPAGE . "faq/' target='_blank'>", "</a>.</p>");
-
 			$help .= $this->add_wrap(__('Ask for help in the WordPress forum', AEC_NAME), "<p><a href='http://wordpress.org/tags/ajax-event-calendar' target='_blank'>", "</a>.</p>");
-
 			$help .= $this->add_wrap(__('Use the issue tracker', AEC_NAME), "<p><a href='http://code.google.com/p/wp-aec/issues/list' target='_blank'>", "</a> ");
 			$help .= $this->add_wrap(__('to track and report bugs, feature requests, and to submit', AEC_NAME), "", "");
 			$help .= $this->add_wrap(__('poEdit', AEC_NAME), " (<a href='http://weblogtoolscollection.com/archives/2007/08/27/localizing-a-wordpress-plugin-using-poedit/' target='_blank'>", "</a>)");
-
 			$help .= $this->add_wrap(__('translation files', AEC_NAME), "", ".</p>");
 
-			$like  = $this->add_wrap(__('Give the plugin a 5-Star rating on WordPress.org', AEC_NAME), "<p><a href='" . AEC_HOMEPAGE . "' target='_blank'>", "</a>.</p>");
-			$like .= $this->add_wrap(__('Create a blog review or an instructional video about the Calendar and share it', AEC_NAME), "<p>", ".</p>");
-			$like .= $this->add_wrap("<g:plusone></g:plusone>", "<p>", "</p>");
-			$like .= $this->add_wrap("<a href='http://twitter.com/share' class='twitter-share-button' data-url='" . AEC_HOMEPAGE . "' data-count='horizontal' data-via='Ajax Event Calendar WordPress Plugin'>Tweet</a>", "<p>", "</p>");
-			$like .= $this->add_wrap("<fb:like href='" . AEC_HOMEPAGE . "'; layout='standard' show_faces='true' width='150' font='arial'></fb:like>", "<p>", "</p>");
-
-			$like .= $this->add_wrap(__('Make a donation in recognition of countless hours spent making this plugin.', AEC_NAME), "<p>", "</p>");
+			$like  = $this->add_wrap(__('Give the plugin a good rating', AEC_NAME), "<p><a href='" . AEC_HOMEPAGE . "' target='_blank'>", "</a>.</p>");
+			$like .= $this->add_wrap(__('Make a donation in recognition of countless hours spent making this plugin', AEC_NAME), "<p>", "</p>");
 			$like .= $this->add_wrap("<form style='text-align:center' action='https://www.paypal.com/cgi-bin/webscr' method='post'><input type='hidden' name='cmd' value='_s-xclick'><input type='hidden' name='hosted_button_id' value='NCDKRE46K2NBA'><input type='image' src='https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'><img alt='' border='0' src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1'></form>", "<p>", "</p>");
 
-			$sidebar  = $this->add_panel(__('Need Plugin Support?', AEC_NAME), $help);
-			$sidebar .= $this->add_panel(__('Spread the Love', AEC_NAME), $like);
+			$social = $this->add_wrap(__('Create a blog review or an instructional video about the Calendar and share it', AEC_NAME), "<p>", ".</p>");
+			$social .= $this->add_wrap("<g:plusone></g:plusone>", "<p>", "</p>");
+			$social .= $this->add_wrap("<a href='http://twitter.com/share' class='twitter-share-button' data-url='" . AEC_HOMEPAGE . "' data-count='horizontal' data-via='Ajax Event Calendar WordPress Plugin'>Tweet</a>", "<p>", "</p>");
+			$social .= $this->add_wrap("<fb:like href='" . AEC_HOMEPAGE . "'; layout='standard' show_faces='true' width='150' font='arial'></fb:like>", "<p>", "</p>");
+
+			$sidebar  = $this->add_panel(__('Support', AEC_NAME), $help);
+			$sidebar .= $this->add_panel(__('Share the Love', AEC_NAME), $like);
+			$sidebar .= $this->add_panel(__('Spread the Word', AEC_NAME), $social);
 			return $this->add_wrap($sidebar, "<div class='postbox-container' style='width:25%'>", "</div>");
 		}
 
@@ -1138,6 +1150,14 @@ if(!class_exists('ajax_event_calendar')){
 				return;
 			}
 			$this->db_delete_events_by_user($_POST['user_id']);
+		}
+
+
+		function update_filter_label(){
+			if(!isset($_POST['label'])){
+				return;
+			}
+			$this->overwrite_option('filter_label', $this->cleanse_data_input($_POST['label']));
 		}
 
 		// outputs added/updated category as json
@@ -1229,7 +1249,7 @@ if(!class_exists('ajax_event_calendar')){
 										OR (start < '{$start}' AND end > '{$end}')
 										OR (start < '{$end}' AND (repeat_freq > 0 AND repeat_end >= '{$start}'))
 										)
-										{$andcategory} ORDER BY start{$limit};");			
+										{$andcategory} ORDER BY start{$limit};");
 			return $this->return_result($result);
 		}
 
@@ -1380,7 +1400,7 @@ if(!class_exists('ajax_event_calendar')){
 			return $this->return_result($result);
 		*/
 
-		function db_delete_events_by_user(){
+		function db_delete_events_by_user($id){
 			global $wpdb;
 			$result = $wpdb->query($wpdb->prepare('DELETE FROM ' . $wpdb->prefix . AEC_EVENT_TABLE . ' WHERE user_id = %d;', $id));
 			return $this->return_result($result);
@@ -1475,6 +1495,10 @@ if(!class_exists('ajax_event_calendar')){
 			return $output;
 		}
 
+		function cleanse_data_input($input){
+			return trim($input);
+		}
+
 		function cleanse_event_input($input){
 			$clean 				= $this->convert_array_to_object($this->parse_input($input));
 			if($clean->allDay){
@@ -1557,8 +1581,6 @@ if(!class_exists('ajax_event_calendar')){
 
 		function render_json($output){
 			header("Content-Type: application/json");
-			// $this->log('raw data');
-			// $this->log($output);
 			echo json_encode($this->cleanse_output($output));
 			exit;
 		}
@@ -1586,6 +1608,13 @@ if(!class_exists('ajax_event_calendar')){
 			$fh 	  = fopen($cssFile, 'w+') or die('cannot open file');
 			fwrite($fh, $out);
 			fclose($fh);
+		}
+
+		// overwrite option, preserving other serialized options
+		function overwrite_option($key, $value){
+			$options = get_option('aec_options');
+			$options[$key] = $value;
+			update_option('aec_options', $options);
 		}
 
 		// if not present, add options
@@ -1686,7 +1715,7 @@ if(!class_exists('ajax_event_calendar')){
 		// displays the "settings" link beside the plugin on the WordPress plugins page
 		function settings_link($links, $file){
 			if($file == plugin_basename(__FILE__)){
-				$settings = '<a href="' . get_admin_url() . 'options-general.php?page=' . AEC_NAME . '/' . AEC_FILE . '">' . __('Settings', AEC_NAME) . '</a>';
+				$settings = '<a href="' . get_admin_url() . 'admin.php?page=aec_calendar_options">' . __('Settings', AEC_NAME) . '</a>';
 				array_unshift($links, $settings);	// make the 'Settings' link appear first
 			}
 			return $links;

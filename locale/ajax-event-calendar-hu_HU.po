@@ -1,301 +1,299 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Ajax Event Calendar v0.9.8.5\n"
+"Project-Id-Version: Ajax Event Calendar v0.9.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-13 13:26-0600\n"
-"PO-Revision-Date: 2011-09-13 13:26-0600\n"
+"PO-Revision-Date: 2011-09-13 16:10-0600\n"
 "Last-Translator: Eran Miller <plugins@eranmiller.com>\n"
-"Language-Team: reddylab.eu <reddylabeu@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _e;__;_n:1,2\n"
-"X-Poedit-Basepath: C:\\wamp\\www\\wordpress\\wp-content\\plugins\\ajax-event-calendar\n"
+"X-Poedit-Basepath: C:\\wamp\\www\\wordpress\\wp-content\\plugins\\ajax-event-calendar\\locale\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-Language: Russian\n"
-"X-Poedit-Country: ESTONIA\n"
+"X-Poedit-Language: Hungarian\n"
+"X-Poedit-Country: HUNGARY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: C:\\wamp\\www\\wordpress\\wp-content\\plugins\\ajax-event-calendar\n"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:387
 msgid "Calendar"
-msgstr "Календарь"
+msgstr "Naptár"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:395
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:844
 msgid "Categories"
-msgstr "Категории"
+msgstr "Kategóriák"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:403
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:872
 msgid "Activity Report"
-msgstr "Отчёт об активности"
+msgstr "Aktivitási jelentés"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:407
 #, fuzzy
 msgid "Options"
-msgstr "Основные настройки"
+msgstr "Mezők beállítása"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:441
 msgid "Today"
-msgstr "Сегодня"
+msgstr "Ma"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:442
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:111
 msgid "All Day"
-msgstr "Весь день"
+msgstr "Egész nap"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:443
 msgid "Months"
-msgstr "Месяцев"
+msgstr "hónap"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:444
 msgid "Month"
-msgstr "Месяц"
+msgstr "hónap"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:445
 msgid "Weeks"
-msgstr "Недель"
+msgstr "hét"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:446
 msgid "Week"
-msgstr "Неделя"
+msgstr "hét"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:447
 msgid "Days"
-msgstr "Дни"
+msgstr "nap"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:448
 msgid "Day"
-msgstr "День"
+msgstr "nap"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:449
 msgid "Hours"
-msgstr "Часы"
+msgstr "óra"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:450
 msgid "Hour"
-msgstr "Часов"
+msgstr "óra"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:451
 msgid "Minutes"
-msgstr "Минуты"
+msgstr "perc"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:452
 msgid "Minute"
-msgstr "Минут"
+msgstr "perc"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:453
 msgid "January"
-msgstr "Январь"
+msgstr "Január"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:454
 msgid "February"
-msgstr "Февраль"
+msgstr "Február"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:455
 msgid "March"
-msgstr "Март"
+msgstr "Március"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:456
 msgid "April"
-msgstr "Апрель"
+msgstr "Április"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:457
 msgid "May"
-msgstr "Май"
+msgstr "Május"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:458
 msgid "June"
-msgstr "Июнь"
+msgstr "Június"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:459
 msgid "July"
-msgstr "Июль"
+msgstr "Július"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:460
 msgid "August"
-msgstr "Август"
+msgstr "Augusztus"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:461
 msgid "September"
-msgstr "Сентябрь"
+msgstr "Szeptember"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:462
 msgid "October"
-msgstr "Октябрь"
+msgstr "Október"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:463
 msgid "November"
-msgstr "Ноябрь"
+msgstr "November"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:464
 msgid "December"
-msgstr "Декабрь"
+msgstr "December"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:465
 msgid "Jan"
-msgstr "Янв"
+msgstr "Jan"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:466
 msgid "Feb"
-msgstr "Фев"
+msgstr "Feb"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:467
 msgid "Mar"
-msgstr "Мар"
+msgstr "Már"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:468
 msgid "Apr"
-msgstr "Апр"
+msgstr "Ápr"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:470
 msgid "Jun"
-msgstr "Июн"
+msgstr "Jún"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:471
 msgid "Jul"
-msgstr "Июл"
+msgstr "Júl"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:472
 msgid "Aug"
-msgstr "Авг"
+msgstr "Aug"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:473
 msgid "Sep"
-msgstr "Сен"
+msgstr "Szept"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:474
 msgid "Oct"
-msgstr "Окт"
+msgstr "Okt"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:475
 msgid "Nov"
-msgstr "Ноя"
+msgstr "Nov"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:476
 msgid "Dec"
-msgstr "Дек"
+msgstr "Dec"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:477
 msgid "Sunday"
-msgstr "Воскресенье"
+msgstr "Vasárnap"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:478
 msgid "Monday"
-msgstr "Понедельник"
+msgstr "Hétfő"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:479
 msgid "Tuesday"
-msgstr "Вторник"
+msgstr "Kedd"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:480
 msgid "Wednesday"
-msgstr "Среда"
+msgstr "Szerda"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:481
 msgid "Thursday"
-msgstr "Четверг"
+msgstr "Csütörtök"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:482
 msgid "Friday"
-msgstr "Пятница"
+msgstr "Péntek"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:483
 msgid "Saturday"
-msgstr "Суббота"
+msgstr "Szombat"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:484
 msgid "Sun"
-msgstr "Вс"
+msgstr "Vas"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:485
 msgid "Mon"
-msgstr "Пн"
+msgstr "Hét"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:486
 msgid "Tue"
-msgstr "Вт"
+msgstr "Ke"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:487
 msgid "Wed"
-msgstr "Ср"
+msgstr "Sze"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:488
 msgid "Thu"
-msgstr "Чт"
+msgstr "Csüt"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:489
 msgid "Fri"
-msgstr "Пт"
+msgstr "Pén"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:490
 msgid "Sat"
-msgstr "Сб"
+msgstr "Szo"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:491
 msgid "Close Event Form"
-msgstr "Закрыть панель событий"
+msgstr "Bezárás"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:492
 msgid "Loading Event Form..."
-msgstr "Загружается панель событий"
+msgstr "Betöltés..."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:493
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:823
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:835
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:284
 msgid "Update"
-msgstr "Обновить"
+msgstr "Frissítés"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:494
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:837
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:283
 msgid "Delete"
-msgstr "Удалить"
+msgstr "Törlés"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:495
 msgid "Category type"
-msgstr "Тип категории"
+msgstr "Kategória tipusa"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:496
 msgid "hide all notifications"
-msgstr "спрятать все предупреждения"
+msgstr "Minden jelzés elrejtése"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:497
 msgid "has been created."
-msgstr "был создан."
+msgstr "létrehozva."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:498
 msgid "has been modified."
-msgstr "был изменён."
+msgstr "módosítva."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:499
 msgid "has been deleted."
-msgstr "был удалён."
+msgstr "törölve."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:500
 msgid "Add Event"
-msgstr "Добавить событие"
+msgstr "Esemény hozzáadása"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:501
 msgid "Edit Event"
-msgstr "Редактировать событие"
+msgstr "Esemény szerkesztése"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:502
 msgid "Delete this event?"
-msgstr "Удалить событие?"
+msgstr "Töröljük az eseményt?"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:503
-#, fuzzy
 msgid "Loading Events..."
-msgstr "Загружается панель событий"
+msgstr "Esemény betöltése..."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:504
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:821
-#, fuzzy
 msgid "Category filter label"
-msgstr "Тип категории"
+msgstr "Kategória szűrése"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:505
 msgid "Repeats Every"
@@ -307,36 +305,35 @@ msgstr ""
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:507
 msgid "Success!"
-msgstr "Превосходно!"
+msgstr "Sikeresen megtörtént!"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:508
 msgid "Whoops!"
-msgstr "Ой!"
+msgstr "Hoppá!"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:521
-#, fuzzy
 msgid "You cannot edit events created by other users."
-msgstr "Вы не можете добавлять события прошлым временем."
+msgstr "Nem tudsz olyan eseményt szerkeszteni, amit más készített."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:522
 msgid "You cannot create events in the past."
-msgstr "Вы не можете добавлять события прошлым временем."
+msgstr "Esemény a múltban nem hozható létre."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:523
 msgid "You cannot create events more than a year in advance."
-msgstr "Вы не можете создавать события на срок более года."
+msgstr "Egy évnél távolabbi időben nem hozhatsz létre eseményt."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:524
 msgid "You cannot resize expired events."
-msgstr "Вы не можете менять прошедшие события."
+msgstr "Lejárt eseményt nem lehet változtatni."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:525
 msgid "You cannot move events into the past."
-msgstr "Вы не можете перемещать события в прошлое."
+msgstr "Nem lehet eseményt a múltba mozgatni."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:526
 msgid "You cannot edit expired events."
-msgstr "Вы не можете редактировать истёкшие события."
+msgstr "Lejárt eseményt nem szerkeszthetsz."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:527
 msgid "Invalid duration."
@@ -344,19 +341,19 @@ msgstr ""
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:544
 msgid "Category type cannot be a blank value."
-msgstr "Укажите тип категории."
+msgstr "Add meg az esemény kategóriáját."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:545
 msgid "Are you sure you want to delete this category type?"
-msgstr "Вы уверены, что хотите удалить этот тип категории?"
+msgstr "Tényleg törölni akarod a kategóriát?"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:546
 msgid "Several events are associated with this category. Click OK to reassign these events to the default category."
-msgstr "Некоторые события связаны с этой категорией. Нажмите ОК для переноса событий в основную категорию."
+msgstr "Van esemény a kategóriához adva. Az OK gombra kattintva ezeket az alap kategóriába másolom."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:547
 msgid "Events have been reassigned to the default category."
-msgstr "События были перенесены в основную категорию."
+msgstr "Az esemény(ek) az alap kategóriába másolva."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:623
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:797
@@ -364,32 +361,31 @@ msgstr "События были перенесены в основную кат�
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:853
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:881
 msgid "You do not have sufficient permissions to access this page."
-msgstr "У вас не хватает прав для доступа на эту страницу."
+msgstr "Nincs kellő jogosultságod az oldal megtekintéséhez."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:629
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:297
 msgid "Ajax Event Calendar"
-msgstr "Ajax Event Calendar"
+msgstr "Ajax Eseménynaptár"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:692
 msgid "Add Events"
-msgstr "Добавить события"
+msgstr "Események hozzáadása"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:700
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:736
 msgid "Created By"
-msgstr "Создатель"
+msgstr "Készítette:"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:714
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:75
-#, fuzzy
 msgid "No upcoming events"
-msgstr "Приближающиеся события"
+msgstr "Nincs a közeljövőben esemény"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:786
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:111
 msgid "All"
-msgstr "Всё"
+msgstr "Mind"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:812
 msgid "To add a new category, enter a category label and select a background color."
@@ -398,7 +394,7 @@ msgstr ""
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:817
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:286
 msgid "Add"
-msgstr "Добавить"
+msgstr "Hozzáadás"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:825
 msgid "Category IDs are displayed in color bubbles at the beginning of each row."
@@ -411,13 +407,13 @@ msgstr ""
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:842
 #, fuzzy
 msgid "Manage Categories"
-msgstr "Категории"
+msgstr "Kategóriák"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:861
 msgid "Event"
 msgid_plural "Events"
-msgstr[0] "Событие"
-msgstr[1] "События"
+msgstr[0] "esemény"
+msgstr[1] "esemény"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:864
 msgid "NOTE: Each repeating event is counted as a single event."
@@ -425,11 +421,11 @@ msgstr ""
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:866
 msgid "No events this month."
-msgstr "В этом месяце событий нет."
+msgstr "Nincs esemény a hónapban"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:869
 msgid "Number of events scheduled for the current month, by type:"
-msgstr "Количество мероприятий, запланированных на текущий месяц, по типу:"
+msgstr "Az aktuális hónapban megjelenő események száma a típusonként:"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1071
 msgid "Review the FAQ"
@@ -481,23 +477,23 @@ msgstr ""
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1704
 msgid "Events"
-msgstr "События"
+msgstr "Események"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1718
 msgid "Settings"
-msgstr "Настройки"
+msgstr "Beállítások"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:88
 msgid "Duration"
-msgstr "Длительность"
+msgstr "Időtartam"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:93
 msgid "From"
-msgstr "От"
+msgstr "Kezdet"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:101
 msgid "To"
-msgstr "До"
+msgstr "Vége"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:115
 msgid "Repeats"
@@ -506,27 +502,27 @@ msgstr ""
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:120
 #, fuzzy
 msgid "Every"
-msgstr "Событие"
+msgstr "esemény"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:121
 #, fuzzy
 msgid "Never"
-msgstr "Ноябрь"
+msgstr "November"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:138
 #, fuzzy
 msgid "Day(s)"
-msgstr "Дни"
+msgstr "nap"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:139
 #, fuzzy
 msgid "Week(s)"
-msgstr "Недель"
+msgstr "hét"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:140
 #, fuzzy
 msgid "Month(s)"
-msgstr "Месяцев"
+msgstr "hónap"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:141
 msgid "Year(s)"
@@ -535,36 +531,36 @@ msgstr ""
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:149
 #, fuzzy
 msgid "Until this date"
-msgstr "Отобразить эту категорию"
+msgstr "Vis denne kategorien"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:155
 msgid "Title"
-msgstr "Заголовок"
+msgstr "Cím"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:159
 #, fuzzy
 msgid "Category"
-msgstr "Категории"
+msgstr "Kategóriák"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:172
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:39
 msgid "Venue"
-msgstr "Место встречи"
+msgstr "Találkozó"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:180
 msgid "Address"
-msgstr "Адрес"
+msgstr "Helyszín"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:184
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:40
 msgid "Neighborhood or Street Address"
-msgstr "Местность или улица"
+msgstr "Pontos cím"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:192
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:2
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:41
 msgid "City"
-msgstr "Город"
+msgstr "Város"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:200
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:42
@@ -575,7 +571,7 @@ msgstr ""
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:4
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:43
 msgid "Postal Code"
-msgstr "Почтовый код"
+msgstr "Irányítószám"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:216
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:44
@@ -584,72 +580,71 @@ msgstr ""
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:227
 msgid "Website Link"
-msgstr "Ссылка на сайт."
+msgstr "Weboldal"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:235
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:46
 msgid "Description"
-msgstr "Описание"
+msgstr "Leírás"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:243
 msgid "Contact Person"
-msgstr "Контактное лицо"
+msgstr "Kapcsolattartó"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:247
 msgid "Name"
-msgstr "Имя"
+msgstr "Név"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:255
 msgid "Phone or Email Address"
-msgstr "Телефон или эл. почта"
+msgstr "Telefon vagy email"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:268
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:49
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:97
 msgid "This event is accessible to people with disabilities."
-msgstr "Это событие доступно для людей с ограниченными возможностями."
+msgstr "Az esemény rokkantaknak is látogatható."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:277
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:50
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:104
 msgid "Please register with the contact person for this event."
-msgstr "Для участия требуется связаться с контактным лицом."
+msgstr "Az eseményre a kapcsolattartónál lehet jelentkezni."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:281
 msgid "Cancel"
-msgstr "Отмена"
+msgstr "Mégse"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:296
 msgid "Created by"
-msgstr "Создано"
+msgstr "Készítette: "
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:3
 msgid "State"
-msgstr "Уезд"
+msgstr "Állam"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:7
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:8
 msgid "Hide"
-msgstr ""
+msgstr "Rejtés"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:7
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:8
-#, fuzzy
 msgid "Display"
-msgstr "День"
+msgstr "Megjelenés"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:8
 msgid "Require"
-msgstr ""
+msgstr "Kötelező"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:12
 msgid "Ajax Event Calendar Options"
-msgstr "Ajax Event Calendar настройки"
+msgstr "Ajax Event Calendar beállítások"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:16
 #, fuzzy
 msgid "Settings updated"
-msgstr "Настройки"
+msgstr "Beállítások"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:26
 msgid "Date Format, Time Format, and Week Start"
@@ -661,26 +656,27 @@ msgstr ""
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:28
 msgid "Display calendar weekends."
-msgstr "Отображать календарные выходные."
+msgstr "Mutassa a hétvégéket."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:29
 #, fuzzy
 msgid "Allow adding or editing of expired events."
-msgstr "Запрещать добавление прошедших событий."
+msgstr "Megakadályozza, hogy a felhasználók hozzáadjanak vagy szerkesszenek lejárt eseményeket."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:30
 #, fuzzy
 msgid "Display the Add Events link on the front-end calendar."
-msgstr "Показывать меню администратора над календарём."
+msgstr "Eseményt lehet hozzáadni a naptár felhasználói oldalán."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:31
 #, fuzzy
 msgid "Display the View Map link on event details."
-msgstr "Показывать ссылку на карту, если указан адрес."
+msgstr "Megjelenteti a megadott cím alapján a térkép linkjét."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:32
+#, fuzzy
 msgid "Convert description field URLs into  clickable links."
-msgstr ""
+msgstr "Az beírt URL címek a leírásban kattintható linkekké alakulnak."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:33
 msgid "Open Event Detail links in a new browser window."
@@ -691,9 +687,8 @@ msgid "Navigate administrative calendar with mousewheel."
 msgstr ""
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:35
-#, fuzzy
 msgid "Address format"
-msgstr "Адрес"
+msgstr "Cím formátuma"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:36
 msgid "Event timepicker interval"
@@ -701,20 +696,20 @@ msgstr ""
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:38
 msgid "Hide, display or require form fields.  Hidden fields do not appear in the event form."
-msgstr ""
+msgstr "Rejtett, látható és kötelező mezők. A rejtett mezők nem látszanak az esemény adatlapjain."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:45
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:127
 msgid "Event Link"
-msgstr "WWW Ссылка "
+msgstr "Esemény linkje"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:47
 msgid "Contact Name"
-msgstr "Контактное имя"
+msgstr "Kapcsolattartó neve"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:48
 msgid "Contact Information"
-msgstr "Контактная информация"
+msgstr "Kapcsolat információ"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:52
 msgid "Modify calendar and form options then click Save Changes below."
@@ -723,85 +718,117 @@ msgstr ""
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:53
 #, fuzzy
 msgid "Reset all settings on Save."
-msgstr "Отметить для сброса настроек (после сохранения)"
+msgstr "Plugin beállításainak törlése mentéskor."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:77
 msgid "View Map"
-msgstr "Посмотреть на карте"
+msgstr "Térkép"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/show-event.php:116
 msgid "Presented by"
-msgstr "Представлено"
+msgstr "Szervező: "
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:9
 msgid "A list of calendar contributors linked to their organization websites"
-msgstr "Список участников связан с сайтом их организации"
+msgstr "A naptár készítők internetes elérhetőségei"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:10
-#, fuzzy
 msgid "AEC Contributors"
-msgstr "Авторы (Редакторы) календаря."
+msgstr "AEC segítők"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:18
 #, php-format
 msgid "(%d) Contributor"
 msgid_plural "(%d) Contributors"
-msgstr[0] "(%d) Автор"
-msgstr[1] "(%d) Авторы"
+msgstr[0] "(%d) készítő"
+msgstr[1] "(%d) készítő"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:26
 msgid "No contributors as of yet."
-msgstr "Авторов ещё нет."
+msgstr "Nincs készítő megadva"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:62
 msgid "No options available."
-msgstr "Вариантов (выбора) нет."
+msgstr "Nincs beállítási lehetőség."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:9
-#, fuzzy
 msgid "Displays upcoming events with optional filters."
-msgstr "Отображает события на ближайших неделях."
+msgstr "A megjelenő jövőbeni események szűrése."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:10
-#, fuzzy
 msgid "AEC Upcoming Events"
-msgstr "Приближающиеся события"
+msgstr "AEC közelgő események"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:48
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:96
 msgid "Upcoming Events"
-msgstr "Приближающиеся события"
+msgstr "Közelgő események"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:78
-#, fuzzy
 msgid "Link to Calendar"
-msgstr "Календарь"
+msgstr "Naptárhoz"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:104
 msgid "Widget Title"
-msgstr "Заголовок виджета"
+msgstr "Widget címe"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:108
 msgid "Event category displayed"
-msgstr ""
+msgstr "Esemény kategória megjelenése"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:121
 msgid "Maximum events displayed"
-msgstr ""
+msgstr "Maximálisan látható esemény száma"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:133
 msgid "Link to calendar"
-msgstr ""
+msgstr "Link a naptárhoz"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:138
 msgid "Hide category colors"
-msgstr ""
+msgstr "Ne mutassa a kategóriák színeit."
 
 #~ msgid "here"
-#~ msgstr "здесь"
+#~ msgstr "her"
 
 #~ msgid "Sorry, "
-#~ msgstr "Извините,"
+#~ msgstr "Bocsánat, "
+
+#~ msgid "Have questions about this plugin?"
+#~ msgstr "Kérdésed van a pluginnal kapcsolatban?"
+
+#~ msgid "Check out the FAQ"
+#~ msgstr "Nézd meg a GYIK-ot!"
+
+#~ msgid "Submit your questions and comments about this plugin"
+#~ msgstr "Tedd fel a kérdésed és véleményed a pluginről"
+
+#~ msgid "in the forum"
+#~ msgstr "a fórumban"
+
+#~ msgid ""
+#~ "You are welcome to request help from others in your native language, but "
+#~ "I am only able to assist in English."
+#~ msgstr ""
+#~ "Köszönöm, hogy segítessz a fordításban a saját nyelveden, én csak angolul "
+#~ "tudok segíteni."
+
+#~ msgid "If you use this plugin"
+#~ msgstr "Ha használod a plugint"
+
+#~ msgid "please rate and vote on compatibility"
+#~ msgstr "kérlek értékeld és szavazz a használatáról"
+
+#~ msgid ""
+#~ "Consider making a donation to support continued development of this "
+#~ "plugin."
+#~ msgstr "A pénzbeli támogatással a fejlesztést segíted."
+
+#~ msgid "DONATE"
+#~ msgstr "TÁMOGATÁS"
+
+#~ msgid "Thank you,"
+#~ msgstr "Köszönöm,"
 
 #~ msgid ""
 #~ "Add a new, or edit/delete an existing calendar category.  To change the "
@@ -809,117 +836,132 @@ msgstr ""
 #~ "the hex value, then click Update.  The foreground color (black or white) "
 #~ "is automatically assigned for optimal readbility based on the selected "
 #~ "background color."
-#~ msgstr "Добавить новую или редактировать существующую категорию."
+#~ msgstr ""
+#~ "Hozzáadhatsz új kategóriát, szerkeszthetsz vagy törölhetsz meglévőket. A "
+#~ "színek megváltoztatásához kattints a szines mezőre, válaszd ki a "
+#~ "megfelelő színt vagy írd be a kódszámát, aztán kattints a Frissítés "
+#~ "gombra. A szöveg színe automatikusan lesz fehér vagy fekete a beállított "
+#~ "háttérszínhez igazodva."
 
 #~ msgid "This category is required and can only be edited."
-#~ msgstr "Эта категория обязательна и может быть только отредактирована."
+#~ msgstr "Ez a kategória kötelező, csak szerkeszteni tudod."
 
 #~ msgid "Invalid duration, please adjust your time inputs."
-#~ msgstr "Некорректная длительность, проверьте введённое время."
+#~ msgstr "Kérlek add meg a valós időtartamot."
 
 #~ msgid "Type"
-#~ msgstr "Тип"
+#~ msgstr "Kategória"
+
+#~ msgid ""
+#~ "{Event Detail} links open in a new window (when unchecked, links open in "
+#~ "the same window)."
+#~ msgstr ""
+#~ "{Event Detail} linkek új ablakban nyílnak meg (ha kikapcsolod a jelölést, "
+#~ "a linkek ugyanabban az ablakban jelennek meg)."
 
 #~ msgid "Save Changes"
-#~ msgstr "Сохранить изменения"
+#~ msgstr "Változások mentése"
 
 #~ msgid "Location"
-#~ msgstr "Местоположение"
+#~ msgstr "Helyszín adatok"
 
 #~ msgid "Show Types"
-#~ msgstr "Показать типы"
+#~ msgstr "Vis type arrangement"
 
 #~ msgid "Interval"
-#~ msgstr "Интервал"
+#~ msgstr "Intervall"
 
 #~ msgid "Checked fields are displayed"
-#~ msgstr "Отображаются отмеченные поля"
+#~ msgstr "Kryss av felter som skal vises"
 
 #~ msgid "Restore Original Settings"
-#~ msgstr "Восстановить настройки по умолчанию"
+#~ msgstr "Gjenopprett standardinnstillinger"
 
 #~ msgid "Calculating..."
-#~ msgstr "Подсчёт..."
+#~ msgstr "Kalkulerer..."
 
 #~ msgid "Plugin help available"
-#~ msgstr "Доступна помощь по плагину"
+#~ msgstr "Finn hjelp til dette innstikket"
 
 #~ msgid "Loading..."
-#~ msgstr "Загрузка..."
+#~ msgstr "Laster..."
 
 #~ msgid "%d Week"
 
 #~ msgid_plural "%d Weeks"
-#~ msgstr[0] "%d Неделя"
-#~ msgstr[1] "%d Недель"
+#~ msgstr[0] "%d uke"
+#~ msgstr[1] "%d uker"
 
 #~ msgid "%d Day"
 
 #~ msgid_plural "%d Days"
-#~ msgstr[0] "%d День"
-#~ msgstr[1] "%d Дней"
+#~ msgstr[0] "%d dag"
+#~ msgstr[1] "%d dager"
 
 #~ msgid "%d Hour"
 
 #~ msgid_plural "%d Hours"
-#~ msgstr[0] "%d Час"
-#~ msgstr[1] "%d Часов"
+#~ msgstr[0] "%d time"
+#~ msgstr[1] "%d timer"
 
 #~ msgid "%d Minute"
 
 #~ msgid_plural "%d Minutes"
-#~ msgstr[0] "%d Минута"
-#~ msgstr[1] "%d Минут"
+#~ msgstr[0] "%d minutt"
+#~ msgstr[1] "%d minutter"
 
 #~ msgid "Checked fields are required"
-#~ msgstr "Отмеченые поля обязательны для заполнения"
+#~ msgstr "Kryss av felter som skal være påkrevd"
 
 #~ msgid "Three Week Agenda"
-#~ msgstr "Повестки дня"
+#~ msgstr "Program de neste tre uker"
 
 #~ msgid "No events listed in the next week"
 
 #~ msgid_plural "No events listed in the next %d weeks"
-#~ msgstr[0] "На следующей неделе событий нет"
-#~ msgstr[1] "Следующие (%d) недели не содержат события "
+#~ msgstr[0] "Ingen arrangement neste uke"
+#~ msgstr[1] "Ingen arrangement de neste %d ukene"
 
 #~ msgid "Number of Weeks from Today"
-#~ msgstr "Кол-во недель с сегодняшнего дня"
+#~ msgstr "Antall uker fra i dag"
 
 #~ msgid "%d Year"
 
 #~ msgid_plural "%d Years"
-#~ msgstr[0] "%d Год"
-#~ msgstr[1] "%d Лет"
+#~ msgstr[0] "%d år"
+#~ msgstr[1] "%d år"
 
 #~ msgid "%d Month"
 
 #~ msgid_plural "%d Months"
-#~ msgstr[0] "%d Месяц"
-#~ msgstr[1] "Месяцев %d"
+#~ msgstr[0] "%d måned"
+#~ msgstr[1] "%d måneder"
 
 #~ msgid ""
 #~ "Add new, or edit existing category type (and associated calendar tile "
 #~ "color)."
-#~ msgstr "Добавить новый или редактировать существующий тип и цвет категории."
+#~ msgstr ""
+#~ "Legg til ny kategori eller endre navn og farge på en eksisterende "
+#~ "kategori."
 
 #~ msgid "Show weekends in the calendar."
-#~ msgstr "Показывать выходные дни в календаре."
+#~ msgstr "Vis helger i kalenderen."
 
 #~ msgid ""
 #~ "Enforce event creation between 30 minutes and one year from the current "
 #~ "time."
 #~ msgstr ""
-#~ "Новое событие может быть от 30 минут до 1 года начиная с текущего времени."
+#~ "Begrens opprettelse av hendelser til mellom 30 minutter og ett år frem i "
+#~ "tid."
 
 #~ msgid "Check Required Form Fields"
-#~ msgstr "Обязательные для заполнения поля"
+#~ msgstr "Kryss av for påkrevde felter"
 
 #~ msgid "Optional Checkboxes"
-#~ msgstr "Выборочные переключатели"
+#~ msgstr "Valgfrie avkryssingsbokser"
 
 #~ msgid "(%d) Upcoming Event"
 
 #~ msgid_plural "(%d) Upcoming Events"
-#~ msgstr[0] "(%d) Будущее событие"
-#~ msgstr[1] "Будущие события (%d)"
+#~ msgstr[0] "(%d) kommende hendelse"
+#~ msgstr[1] "(%d) kommende hendelser"
