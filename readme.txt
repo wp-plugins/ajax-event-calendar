@@ -258,6 +258,7 @@ Custom Field Template Plugin(http://wordpress.org/support/topic/ajax-event-calen
 
 
 == Changelog ==
+
 = 1.0 =
 * added repeating events options
 * added option to toggle mousescroll on administrative calendar
@@ -286,12 +287,13 @@ Custom Field Template Plugin(http://wordpress.org/support/topic/ajax-event-calen
 * moved help text into options page sidebar
 * removed menu position to avoid plugin collisions, the Calendar menu is now located below Settings
 * added em icon to ajax event calendar plugin menu and pages
+* added Hungarian
 
 = 0.9.9.2 =
-* added latvian localization
-* updated arabic localization
-* updated swedish localization
-* updated spanish localization
+* added latvian
+* updated arabic
+* updated swedish
+* updated spanish
 * fixed option to toggle link target in new window
 * fixed critical IE bug
 
@@ -300,7 +302,7 @@ Custom Field Template Plugin(http://wordpress.org/support/topic/ajax-event-calen
 * optimized loading events notification
 * fixed category reassign/delete process, now completes deletion of emptied category
 * optimized performance
-* added swedish localization
+* added swedish
 
 = 0.9.9 =
 * added options to hide any non-essential input field in the event form
@@ -311,7 +313,7 @@ Custom Field Template Plugin(http://wordpress.org/support/topic/ajax-event-calen
 * added default cat_colors.css file to distribution, to address reported file authorization failures
 * added filter label customization option
 * added filter to admin calendar view
-* added support for right-to-left language localization
+* added support for right-to-left language
 * added display of uneditable events in administrative mode (nod to Treyer Lukas)
 * added option to navigation between calendar months by scrolling the mouse wheel
 * added optional parameter [calendar] shortcode can be added to text widget or page content, create multiple views using [optional parameters] (default):
@@ -334,28 +336,28 @@ Custom Field Template Plugin(http://wordpress.org/support/topic/ajax-event-calen
 * added id field (to support new shortcode options) and modified layout of category management for improved readability
 * added donate link
 * updated help text
-* added arabic localization
-* added romanian localization
-* updated norwegian localization
-* updated italian localization
-* updated french localization
+* added arabic
+* added romanian
+* updated norwegian
+* updated italian
+* updated french
 
 = 0.9.8.6 =
 * added line break detection so the description field displays as it is entered
 * limit creation of expired events fix
-* added norwegian localization
-* added indonesian localization
-* added italian localization
-* updated tamil localization
+* added norwegian
+* added indonesian
+* added italian
+* updated tamil
 
 = 0.9.8.51 beta =
 * beta release
 * fixed date/time field processing via event add/update form
 * fixed duration style
-* added tamil localization
+* added tamil
 
 = 0.9.8.5 =
-* calendar weekday (tue) short name localization fix
+* calendar weekday (tue) short name fix
 * plugin options page save settings for manage_calendar capability fix
 * automatically adjusts modal top when WordPress admin bar is visible (contributed by Carl W.)
 * event duration display fix
@@ -369,14 +371,14 @@ Custom Field Template Plugin(http://wordpress.org/support/topic/ajax-event-calen
 * shortcode respectful of position within post text fix
 * updated uninstall script with new capabilities and roles
 * event detail form description validation fix
-* added russian localization
-* added danish localization
-* added polish localization
+* added russian
+* added danish
+* added polish
 
 = 0.9.8.1 =
 * replaced php 5.3.x dependent DateTime class with a modified strtotime to accommodate d/m/Y format
 * revised admin menu wording
-* added german localization
+* added german
 
 = 0.9.8 =
 * comprehensive refactoring of ajax elements
@@ -386,15 +388,15 @@ Custom Field Template Plugin(http://wordpress.org/support/topic/ajax-event-calen
 * hooked calendar start of week into wordpress blog setting
 * hooked calendar date format into wordpress blog setting
 * hooked calendar time format into wordpress blog setting
-* added spanish localization
-* added turkish localization
-* added lithuanian localization
-* updated portuguese localization
-* added dutch localization
+* added spanish
+* added turkish
+* added lithuanian
+* updated portuguese
+* added dutch
 
 = 0.9.7.1 =
 * event display fix
-* updated french localization
+* updated french
 
 = 0.9.7 =
 * fixed localization bugs
@@ -409,10 +411,10 @@ Custom Field Template Plugin(http://wordpress.org/support/topic/ajax-event-calen
 * added redirect to event administration page from front-end calendar page login link
 * changed front-end calendar implementation from custom template to shortcode, to accommodate wider range of themes
 * auto-generated google maps link, based on event address fields
-* added french localization
+* added french
 
 = 0.9.1 =
-* added portuguese localization
+* added portuguese
 * added more localization
 * fixed default option initialization
 * further improved event detail page ui
@@ -496,5 +498,5 @@ Custom Field Template Plugin(http://wordpress.org/support/topic/ajax-event-calen
 * getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
-= 0.9.9.2 =
-* critical IE bug fixed
+= 1.0 =
+* support for recurring events, eventlist shortcode, minicalendar option, bug fixes
