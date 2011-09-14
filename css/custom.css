@@ -14,6 +14,7 @@
 #aec-filter a.all,#aec-filter a.all:visited,#aec-filter a.all:active{background:#000;color:#ddd}
 #aec-filter a.all:hover{border-color:#fff;-moz-box-shadow:0 0 2px #000;-webkit-box-shadow:0 0 2px #000;box-shadow:0 0 2px #000}
 
+#start_time,#end_time,#repeat_int,#repeat_label,#repeat_end{display:none}
 #aec-modal-overlay{background-color:#000}
 
 #aec-modal-container{text-align:left;-moz-border-radius-bottomleft:6px;-moz-border-radius-bottomright:6px;-moz-box-shadow:0 0 64px #000;-webkit-border-bottom-left-radius:6px;-webkit-border-bottom-right-radius:6px;-webkit-box-shadow:0 0 64px #000;background-color:#eee;border-radius:0 0 6px 6px;box-shadow:0 0 64px #000;color:#333;font:16px/24px "Lucida Grande",Arial,sans-serif;padding-bottom:4px;width:600px}

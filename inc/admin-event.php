@@ -132,7 +132,7 @@
 					?>
 					</select>
 				</li>
-				<li class="repeat">
+				<li>
 					<select class="select auto" name="repeat_int" id="repeat_int">
 					<?php
 						$repeat_options = array(__('Day(s)', AEC_NAME),
@@ -146,7 +146,7 @@
 					?>
 					</select>
 				</li>
-				<li class="repeat"><label class="auto"><?php _e('Until this date', AEC_NAME); ?></label>
+				<li><label for="repeat_end" id="repeat_label" class="auto"><?php _e('Until this date', AEC_NAME); ?></label>
 					<input class="auto picker" type="text" name="repeat_end" id="repeat_end" size="11" readonly="readonly" value="<?php echo $event->repeat_end; ?>">
 				</li>
 			</ul>

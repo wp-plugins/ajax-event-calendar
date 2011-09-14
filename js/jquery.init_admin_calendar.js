@@ -62,49 +62,42 @@ jQuery(document).ready(function($){
 		}
 	},
 	renderEvent = function(data){
-		if(data.length > 0){
-			var events 		= data;
-			$.each(events, function(index, event){
+		if(data.length > 1){
+			$.each(data, function(index, d){
 				$('#aec-calendar').fullCalendar('renderEvent', {
-					id: 		event.id,
-					title: 		event.title,
-					allDay: 	event.allDay,
-					start: 		event.start,
-					end:		event.end,
-					className:	event.className
+					id: 		d.id,
+					title: 		d.title,
+					allDay: 	d.allDay,
+					start: 		d.start,
+					end:		d.end,
+					className:	d.className
 				}, false);
-				// calendar.fullCalendar('unselect');
 			});
-			return events[0].title;
+			return data[0].title;
 		}else{
-			var event = data;
 			$('#aec-calendar').fullCalendar('renderEvent', {
-				id: 		event.id,
-				title: 		event.title,
-				allDay: 	event.allDay,
-				start: 		event.start,
-				end:		event.end,
-				className:	event.className
+				id: 		data.id,
+				title: 		data.title,
+				allDay: 	data.allDay,
+				start: 		data.start,
+				end:		data.end,
+				className:	data.className
 			}, false);
-			return event.title;
+			return data.title;
 		}
 	},		
 	updateEvent = function(e, data){
-		if(data.length > 0){
-			var events		= data,
-				id 			= events[0].id,
-				title		= events[0].title;
-			calendar.fullCalendar("removeEvents", id);
-			renderEvent(data);
-			return title;
+		if(data.length > 1){
+			calendar.fullCalendar("removeEvents", data[0].id);
+			return renderEvent(data);
 		} else {
-			var event	= data;
-			var e 		= calendar.fullCalendar('clientEvents', event.id)[0];
-			e.title 	= event.title;
-			e.allDay	= event.allDay;
-			e.start 	= event.start;
-			e.end 		= event.end;
-			e.className = event.className;
+			var e 		= calendar.fullCalendar('clientEvents', data.id)[0],
+				data 	= data[0];
+			e.title 	= data.title;
+			e.allDay	= data.allDay;
+			e.start 	= data.start;
+			e.end 		= data.end;
+			e.className = data.className;
 			e.view_start = toUnixDate(e.viewStart);
 			e.view_end	= toUnixDate(e.viewEnd);
 			calendar.fullCalendar('updateEvent', e);
@@ -124,9 +117,9 @@ jQuery(document).ready(function($){
 	checkRepeat = function(){
 		var repeat 	= $('#repeat_freq').val();
 		if(repeat > 0){
-			$('#repeat_int, #repeat_end').parent().fadeIn(250);
+			$('#repeat_int, #repeat_label, #repeat_end').fadeIn(250);
 		}else{
-			$('#repeat_int, #repeat_end').parent().fadeOut(250);
+			$('#repeat_int, #repeat_label, #repeat_end').fadeOut(250);
 		}
 	},
 	checkDuration = function(){
@@ -137,9 +130,9 @@ jQuery(document).ready(function($){
 			end		= $('#end_time').val(),
 			until	= $('#repeat_end').val();
 		if(allDay){
-			$('#start_time, #end_time').fadeTo(150,0.3).attr("disabled","disabled");
+			$('#start_time, #end_time').fadeOut(250).attr("disabled","disabled");
 		}else{
-			$('#start_time, #end_time').fadeTo(150,1).removeAttr("disabled");
+			$('#start_time, #end_time').fadeIn(250).removeAttr("disabled");
 			from = Date.parse(from);
 			to = Date.parse(to);
 			if(from > to){
@@ -331,7 +324,7 @@ jQuery(document).ready(function($){
 				type: 'POST'
 			},
 			header:{
-				left: 'prev,next today',
+				left: 'prev,next,today',
 				center: 'title',
 				right: 'month,agendaWeek'
 			},
@@ -515,8 +508,8 @@ jQuery(document).ready(function($){
 										step: parseInt(custom.step_interval, 10),
 										show24Hours: custom.is24HrTime,
 										separator: ':'
-									}).fadeTo(0,0.2).attr("disabled","disabled");
-									
+									});
+
 									// toggle limit
 									if (custom.limit == true) $.datepicker.setDefaults({'minDate':'0'});
 									
@@ -530,6 +523,8 @@ jQuery(document).ready(function($){
 										dateFormat: custom.datepicker_format,
 										firstDay: custom.start_of_week,
 										showButtonPanel: true,
+										showOtherMonths: true,
+										selectOtherMonths: true,
 										onSelect: function(selectedDate) {
 											var option 		= (this.id == 'start_date') ? 'minDate' : 'maxDate',
 												instance 	= $(this).data('datepicker'),
@@ -540,6 +535,8 @@ jQuery(document).ready(function($){
 											dates.not(this).datepicker('option', option, date);
 											if(repeat < end_date){
 												repeat_end.datepicker('setDate', end_date);
+												$('#repeat_freq').val(0);
+												checkRepeat();
 											}
 											checkDuration();
 										}
@@ -551,15 +548,17 @@ jQuery(document).ready(function($){
 										dateFormat: custom.datepicker_format,
 										firstDay: custom.start_of_week,
 										showButtonPanel: false,
-										beforeShow: function(dateStr) {
+										showOtherMonths: true,
+										selectOtherMonths: true,
+										beforeShow: function(selectedDate) {
 											var min = $('#end_date').datepicker('getDate');
 											repeat_end.datepicker('option', {minDate: min});
 										}
 									});
 									
 									validateForm();
-									checkDuration();
 									checkRepeat();
+									checkDuration();
 									
 									$('#allDay').change(function(){
 										checkAllDay();

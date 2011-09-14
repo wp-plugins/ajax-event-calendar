@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ajax Event Calendar v0.9.9.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-13 13:27-0600\n"
-"PO-Revision-Date: 2011-09-13 13:27-0600\n"
+"POT-Creation-Date: 2011-09-14 16:08-0600\n"
+"PO-Revision-Date: 2011-09-14 16:08-0600\n"
 "Last-Translator: Eran Miller <plugins@eranmiller.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -469,7 +469,7 @@ msgstr "Inga kommande händelser"
 
 # @ ajax-event-calendar
 #: ajax-event-calendar.php:786
-#: inc/widget-upcoming.php:111
+#: inc/widget-upcoming.php:115
 msgid "All"
 msgstr "Alla"
 
@@ -909,23 +909,23 @@ msgstr "Kommande händelser"
 msgid "Link to Calendar"
 msgstr "Länk till kalender"
 
-#: inc/widget-upcoming.php:104
+#: inc/widget-upcoming.php:108
 msgid "Widget Title"
 msgstr "Widgetnamn"
 
-#: inc/widget-upcoming.php:108
+#: inc/widget-upcoming.php:112
 msgid "Event category displayed"
 msgstr "Händelsekategori visad"
 
-#: inc/widget-upcoming.php:121
+#: inc/widget-upcoming.php:125
 msgid "Maximum events displayed"
 msgstr "Maximalt antal visade händelser"
 
-#: inc/widget-upcoming.php:133
+#: inc/widget-upcoming.php:137
 msgid "Link to calendar"
 msgstr "Länk till kalender"
 
-#: inc/widget-upcoming.php:138
+#: inc/widget-upcoming.php:142
 msgid "Hide category colors"
 msgstr "Dölj kategorifärger"
 

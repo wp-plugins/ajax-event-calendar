@@ -377,7 +377,7 @@ if(!class_exists('ajax_event_calendar')){
 			wp_register_style('custom', AEC_URL . 'css/custom.css', null, AEC_VERSION);
 			wp_register_style('custom_rtl', AEC_URL . 'css/custom_rtl.css', null, AEC_VERSION);
 			wp_register_style('categories', AEC_URL . 'css/cat_colors.css', null, AEC_VERSION);
-			wp_register_style('jq_ui_css', AEC_URL . 'css/jquery-ui-1.8.13.custom.css', null, '1.8.13');
+			wp_register_style('jq_ui_css', AEC_URL . 'css/jquery-ui-1.8.16.custom.css', null, '1.8.16');
 		}
 
 		function render_admin_menu(){
@@ -1741,6 +1741,7 @@ register_activation_hook(__FILE__, array('ajax_event_calendar', 'install'));
 
 if(class_exists('ajax_event_calendar')){
 	require_once AEC_PATH . 'inc/widget-contributors.php';
+	require_once AEC_PATH . 'inc/widget-upcoming.php';
 	$aec = new ajax_event_calendar();
 }
 ?>

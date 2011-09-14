@@ -1,7 +1,7 @@
 === Ajax Event Calendar ===
 Contributors: eranmiller
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NCDKRE46K2NBA
-Tags: authorize, calendar, category, event, event list, ajax, filter, widget, google maps, localized, rtl languages, shortcode, move, resize
+Tags: user authorize, calendar, category, event, event list, ajax, filter, widget, map, rtl, shortcode, move, resize, repeat, recurr, translated, shortcode
 Requires at least: 3.1
 Tested up to: 3.2.1
 Stable tag: 0.9.9.2
@@ -10,7 +10,7 @@ A fully localized community calendar that allows authorized users to manage even
 
 == Description ==
 
-Ajax Event Calendar WordPress Plugin is a fully localized (including RTL language support) community calendar that allows authorized users to add, edit, move, resize and delete events into custom categories.  Highly customized calendars can be added to pages, posts or text widgets using the "[calendar]" shortcode.  Similarly, an equally customizable event list can be added using the "[eventlist]" shortcode.  Shortcode options described below in detail.
+Ajax Event Calendar WordPress Plugin is a fully localized (including RTL language support) community calendar that allows authorized users to add, edit, move, resize and delete events into custom categories.  Highly customized calendars can be added to pages, posts or text widgets using the "[calendar]" shortcode.  Similarly, an equally customizable event list can be added using the "[eventlist]" shortcode.  For details on the available shortcode options click the **Installation** tab.
 
 This plugin does not support WordPress MU.
 
@@ -39,34 +39,7 @@ This plugin does not support WordPress MU.
 * Assign users the ability to add and modify their own events (**aec_add_events**)
 * Assign users the ability to modify all events (**aec_manage_events**)
 * Assign users the ability to change all calendar options (**aec_manage_calendar**)
-* Available in 21 languages with support for right-to-left languages (not all translations are current)
-
-= Shortcode Options =
-
-* [calendar] shortcode can be added to text widget or page content, create multiple views using [optional parameters] (default):
-* [calendar categories=1,2,3] (all) display events from specified category(ies)
-* [calendar excluded=true] (false) exclude categories listed in the categories parameter
-* [calendar filter=3] (all) highlight specified category id in filter
-* [calendar view=basicDay|agendaDay|basicWeek|agendaWeek|month] (month) display specified calendar view
-* [calendar month=10] (current month) display specified calendar month on load
-* [calendar year=2012] (current year) display specified calendar year on load
-* [calendar views=basicDay|agendaDay|basicWeek|agendaWeek|month] ("month,agendaWeek") display specified calendar view options
-* [calendar nav=false] (true) toggle calendar navigation buttons
-* [calendar scroll=true] (false) toggle calendar mouse wheel navigation
-* [calendar height=200] (null) assigns a minimum pixel height to the calendar
-* [calendar mini=true] (false) renders events without text, hides view options, hides category filter, and sets calendar height to 200px
-* ***
-* [eventlist] shortcode can be added to a text widget or page content with these [optional parameters] (default):
-* [eventlist categories=1,2,3] (all) display events from specified category(ies)
-* [eventlist excluded=true] (false) exclude categories listed in the categories parameter
-* [eventlist start="yyyy-mm-dd"] (today) display events starting on or after the specified date
-* [eventlist end="yyyy-mm-dd"] (1 year from today) display events ending on or before the specified date
-* [eventlist limit=15] (4) limit events displayed to the specified quantity
-* [eventlist whitelabel=true] (false) renders events without category colors
-* [eventlist noresults="No Results"] ("No Upcoming Events") message displayed when no events are returned
-* ***
-* [eventlist] replaces Upcoming Events widget
-* Category id reference is available on the **Categories** page
+* Available in 21 languages with support for right-to-left languages (NOTE: not all translations are current)
 
 = Need Support? =
 * [Find answers to Frequently Asked Questions](http://wordpress.org/extend/plugins/ajax-event-calendar/faq)
@@ -103,7 +76,75 @@ This plugin does not support WordPress MU.
 1. Add [calendar] shortcode to the body of the page (works with native WordPress page publishing and template options)
 1. Save the page or post
 1. Blog time zone option must be a city value (plugin cannot handle dates properly if set to gmt_offset)
-1. It is always good practice to backup any critical data before upgrading.  To backup the calendar data you'll need to download and install a WordPress backup plugin.  Select a plugin that can backup and restore custom (non-wordpress) tables.
+1. When upgrading, it is always good practice to backup any critical data.  To backup the calendar data you'll need to download and install a WordPress backup plugin.  Select a plugin that can backup and restore custom (non-wordpress) tables.
+
+= Shortcode Options =
+[Learn the shortcode basics and how to use them](http://codex.wordpress.org/Shortcode_API).
+<br>These shortcodes can be applied to a text widget, a page or a post.
+<br>However, the [calendar] shortcode works best in the sidebar with the mini=true option.
+<br>As of Version 1.0 the [eventlist] shortcode replaces the Upcoming Events widget.
+
+Most shortcode parameters can be applied together, for example:
+`[calendar categories="1,2,3" filter=2 month=8 views=false scroll=true]`
+`[eventlist categories="1,2,3" excluded=true start="2011-09-01' end="+3 Weeks" limit=5 noresults="No Events Available"]`
+
+All optional parameters are listed below followed by = [some sample input] and their (default settings).
+
+<br>These options may be used with both the **[calendar]** and the **[eventlist]** shortcodes:
+
+Display events from the specified category id(s) - ids are listed on the plugin's **Categories** page
+`categories=[1,2,3] (all)`
+
+Exclude categories listed in the categories parameter
+`excluded=[true] (false)`
+
+<br>These options may be used exclusively with the **[calendar]** shortcode:
+
+Highlight the specified category id in filter
+`filter=[3] (all)`
+
+Display the specified calendar view
+`view=[basicDay|agendaDay|basicWeek|agendaWeek|month] (month)`
+
+Display the specified calendar month on load
+`month=[10] (current month)`
+
+Display the specified calendar year on load
+`year=[2012] (current year)`
+
+Display the specified calendar view options in the calendar header - views show as Day, Week and Month<br>
+NOTE: specifying more than one day or week option is not supported
+`views=[basicDay|agendaDay|basicWeek|agendaWeek|month] ("month,agendaWeek")`
+
+Display calendar navigation buttons
+`nav=false (true)`
+
+Activate calendar mousewheel navigation
+`scroll=true (false)`
+
+Assign a minimum pixel height to the calendar
+`height=200 (null)`
+
+Display the calendar as a minicalendar (textless events, views=false, filter=false, height=200px), looks best when applied to a text widget.
+`mini=true (false)`
+
+<br>These options may be used exclusively with the **[eventlist]** shortcode:
+
+Display events starting on or after the specified date (the format and the quotes are required)
+`start=["yyyy-mm-dd"] (today)`
+
+Display events ending on or before the specified date/interval
+`end=["yyyy-mm-dd"|"+1 Day"|"+2 Weeks"|"+3 Months"|"+4 Years"] (+1 Year)`
+
+Limit events displayed to the specified quantity
+`limit=[15] (4)`
+
+Render events without category colors
+`whitelabel=[true] (false)`
+
+Display this message when no events are returned
+`noresults=["No Results"] ("No Upcoming Events")`
+
 
 == Frequently Asked Questions ==
 
@@ -118,22 +159,22 @@ Check for errors in your browser javascript console.  Other plugins or your them
 Make sure your theme templates contain `<?php wp_head(); ?>` just before the closing `</head>` tag and `<?php wp_footer(); ?>` just before the closing `</body>` tag.
 
 = I added the [calendar] shortcode to a page, but I can't see the calendar - all I see is a link for "Add Events" and the filter. =
-Troubleshoot by viewing your site using the Firefox browser with Firebug plugin activated.  When you load the page in question, any errors in the javascript will display in the console. The error text should provide information as to line and the file causing the issue.  Next, disable all plugins other than the calendar, the javascript errors should stop.  Activate the plugins back one at a time until the calandar stops working (and you'll have found your conflict).  Themes with javascript can also be the cause of such errors.
+Troubleshoot by viewing your site using the Firefox browser with [Firebug plugin](http://getfirebug.com/) activated.  When you load the page in question, any errors in the javascript will display in the console. The error text should provide information as to line and the file causing the issue.  Next, disable all plugins other than the calendar, the javascript errors should stop.  Activate the plugins back one at a time until the calandar stops working (and you'll have found your conflict).  Themes with javascript can also be the cause of such errors.
 
 = Calendar categories are not displaying in the calendar and only the "all" link in the event filter has a background color =
-On modify the name of of any existing category and press update. Return to the front-end calendar and press Shift+F5 to reload the css file. If the category colors still do not appear, the problem is likely caused by insufficient file permissions.  Internet hosts setup security differently, and your host is denying the plugin rights to create the cat_colors.css file.  BEFORE activating your plugin, change to CHMOD777 for the plugin **css** folder.  Permissions can be modified via FTP client or your host's administrative panel; ask your host provider for assistance.
+On modify the name of of any existing category and press update. Return to the front-end calendar and press Shift+F5 to reload the css file. If the category colors still do not appear, the problem is likely caused by insufficient file permissions.  Internet hosts setup security differently, and your host is denying the plugin rights to create the cat_colors.css file.  BEFORE activating your plugin, change to CHMOD777 for the plugin's **css** folder.  Permissions can be modified via FTP client or your host's administrative panel - ask your host provider for assistance.
 
 = All apostrophes in the event detail form, returns \' when I save the event.  And returns \\' on subsequent saves =
 This will occur when your PHP server is configured to use magic quotes gpc.  The developers of PHP [strongly recommend against using magic quotes](http://php.net/manual/en/security.magicquotes.php), in fact the functionality has been removed from newer versions of PHP.  To correct this behavior, edit your php.ini file and disable that setting (or ask your host provider to do so).  If you are unable (or don't have access) to edit your php.ini file, [try this solution](http://wordpress.org/support/topic/plugin-ajax-event-calendar-ajax-event-calendar-dont-like-the-apostrophes?replies=11#post-2260027).
 
 = How do I manage events? =
-As with Google Calendar: to add an event, in the administrative calendar page click on a date (or range of dates) in the month view, or click on a half-hour (or range of hours) timeslot in the week view.  Only users assigned the aec_add_events capability can edit and delete events they create by clicking on events in the administrative calendar page.  Users assigned the aec_manage_events capability can edit and delete all events.
+As with Google Calendar: to add an event, in the administrative calendar page click on a date (or range of dates) in the month view, or click on a half-hour (or range of hours) timeslot in the week view.  Only users assigned the **aec_add_events** capability can edit and delete events they create by clicking on events in the administrative calendar page.  Users assigned the **aec_manage_events** capability can edit and delete all events.
 
 = How do I manage event categories? =
 To add a category simply enter the desired category name in the input field, select a background color via the colorpicker or enter the hex value in the field provided.  Only users assigned the aec_manage_calendar capability can manage categories.
 
-= How do I change the calendar date and times format? =
-The date and time formats for the calendar are controlled by Date Format / Time Format settings located in the Settings > General page
+= I want to grant calendar rights to a user without giving them access to all blog administrative menus =
+Install a Capabilities/Roles management plugin, such as [Members](http://wordpress.org/extend/plugins/members/), and assign the capabilities listed in the plugin description, to existing or newly created roles.
 
 = What happens when the plugin is deleted? =
 The event and category databases, custom roles, plugin capabilities, plugin options and widget settings are **permanently removed**.
@@ -144,9 +185,6 @@ All events associated with a deleted user are **permanently deleted**.
 = What happens to events associated with a deleted category? =
 All events associated with a deleted category are re-assigned to the primary category.
 
-= I am an administrator and want to grant calendar rights to a user without giving them access to all blog administrative menus =
-Install a Capabilities/Roles management plugin, such as [Members](http://wordpress.org/extend/plugins/members/), and assign the capabilities listed in the plugin description, to existing or newly created roles.
-
 = I want to include the calendar to my theme.  Is there a way to call and display the calendar without short codes? =
 Yes, place this code in your template at the desired location `<?php echo do_shortcode('[calendar]') ?>`.
 
@@ -154,10 +192,10 @@ Yes, place this code in your template at the desired location `<?php echo do_sho
 The plugin does not specifically support multisite setups.  However, one user claims the plugin works if "activated on a site-by-site basis."
 
 = How can I add "print calendar" functionality on the calendar page? =
-To add print functionality, open a post or page, select the HTML tab in Wordpress Post editor, and enter this code snippet above or below the calendar shortcode: `<a href="javascript:window.print();">Print Page</a>`.  If you want to hide certain page elements, such as sidebars you'll need to add print specific rules to your theme stylesheet.  For helpful resources to start you off, run a Google search for "Print Style Sheets."
+To add print functionality, open a post or page, select the HTML tab in Wordpress Post editor, and enter this code snippet above or below the calendar shortcode: `<a href="javascript:window.print();">Print Page</a>`.  If you want to hide certain page elements, such as sidebars you'll need to add print specific rules to your theme stylesheet.  For helpful resources to start you off, search for "Print Style Sheets" in your favorite search engine.
 
 = How can I add images to the event detail? =
-Insert the following html into the description field of the desired event, be sure to add a height parameter, for example: `<img src="path_to_image" height="image_height" />`
+Insert the following html into the description field of the desired event, don't forget to include a height parameter or your event detail box will not size to the content correctly.
 
 = How can I hide the Duration box and text? =
 Add `display:none` to `#aec-modal .duration` to your theme css file
@@ -166,45 +204,29 @@ Add `display:none` to `#aec-modal .duration` to your theme css file
 Add `.fc-state-highlight` class to your theme stylesheet and apply the desired color rules
 
 = How can I put the calendar on home page? =
-Create the front-end calendar in a page or post as described on the plugin installation page.
+Create a front-end calendar as described in the plugin installation page.
 Then follow the instructions described [in this link](http://codex.wordpress.org/Creating_a_Static_Front_Page).
 
 = Is there a way to link directly to a post/page/anything from the calendar (i.e. clicking on the event in the calendar would not bring up anything on the current page, but just link to another)? =
 This plugin was created to be completely independent of posts and is driven by a different database table.  While there are several calendar plugins that specifically link to posts, this is not one of them. 
 
 = Can I import/link Google calendars to the Ajax Event Calendar? =
-No, this calendar emulates the look and feel of Google Calendar but also extends the field options beyond what Google offers, making it impossible to link the two together.
+No, this calendar emulates the look and feel of Google Calendar but also extends the field options beyond what is offered by Google, thus a link between the two is unusable.
 
-= Is there a way to make the calendar so that users that come to the site can register and create theor own events? So that not every event has to be created by the admin? =
+= Is there a way to configure the WordPress to allow users that come to the site to can register and create their own events (so not every event would need to be created by the administrator)? =
 Absolutely!  If you allow users to self-register and you'll need to change WordPress settings so that the default role assigned to new users is Calendar Contributor.
 
-= When I try to activate ajax event calendar I get the following error:
-Parse error: syntax error, unexpected T_STRING, expecting T_OLD_FUNCTION or T_FUNCTION or T_VAR or '}'
-AND
-Fatal error: Call to undefined function: str_split() =
-This plugin only works with version 5 and newer of PHP.
-This error is indicative of a pre-PHP5 server. To confirm the version of PHP running on your server:
-1. Add the following code `phpinfo();` at the top of the admin_category.php page
-2. Save the file.
-3. Go to this URL: yourdomain.com/wp-admin/admin.php?page=event_categories
-4. Read the information on the the screen pertaining to the PHP version
+= When I try to activate the plugin I get an error about an inadequate PHP version, how can I fix this? =
+It is not uncommon for hosts to offer multiple versions of PHP, but to default to the oldest version. Some hosts require adding `AddType x-mapp-php5 .php` to the .htaccess file.  Search your ISP host's FAQ for "How can I enable PHP5?"
 
-It is not uncommon for hosts to offer multiple versions of PHP, but default to the oldest version. For example, to run PHP5, my host requires the following line be added to the root .htaccess file:
-AddType x-mapp-php5 .php
-
-Try searching your ISP host's FAQ for: "How can I enable PHP5?"
-
-= The category colors no longer appear, the filter, calendar and eventlinks are missing colors, how can I fix this? =
+= The category colors no longer appear in the filter, the calendar or the event list. =
 Try:
-1. add a new category (temporarily)
-2. wait for the save confirmation notification to appear
-3. delete the temporary category
-4. navigate to the frontend calendar
-5. press shift+F5
-
-Do your category colors appear?
-If not, check your php sever logs for errors.
-
+<br>1. add a new category (temporarily)
+<br>2. wait for the save confirmation notification to appear
+<br>3. delete the temporary category
+<br>4. navigate to the frontend calendar
+<br>5. press shift+F5
+<br>Do your category colors appear?  If not, check your php sever logs for errors.
 
 == Screenshots ==
 

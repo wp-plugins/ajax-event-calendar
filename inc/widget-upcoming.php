@@ -62,7 +62,7 @@ class aec_upcoming_events extends WP_Widget{
 				
 				// link to event			
 				$class = ($whitelabel) ? '' : ' cat' . $event->category_id;
-				$out .= '<li class="fc-event round5' . $class . '" onClick="jQuery.eventDialog({\'id\':' . $event->id . '});">';
+				$out .= '<li class="fc-event round5' . $class . '" onClick="jQuery.aecDialog({\'id\':' . $event->id . '});">';
 				$out .= '<strong>' . ajax_event_calendar::render_i18n_data($event->title) . '</strong><br>';
 				$out .= $event->start_date;
 				// multiple day event, not spanning all day
@@ -100,6 +100,10 @@ class aec_upcoming_events extends WP_Widget{
 		$category = $instance['category'];
 		$callink = $instance['callink'];
 ?>
+	<p><strong>IMPORTANT:</strong><br>This widget has been depricated and will be removed in the following release. Use the [eventlist] shortcode, which offers greater customization options, instead.</p>
+	<p><a href="http://wordpress.org/extend/plugins/ajax-event-calendar/installation/" target="_blank">Learn about the <strong>[eventlist]</strong> shortcode</a></p>
+	<p><strong>NOTE:</strong> This widget does not properly render repeat events.</p>
+	<hr/>
 	<p>
 		<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title', AEC_NAME); ?></label>
 		<input id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" class="widefat" value="<?php echo $title; ?>">
