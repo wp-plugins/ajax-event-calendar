@@ -274,9 +274,9 @@ if(!class_exists('ajax_event_calendar')){
 
 				// add filter label, description link options and address format options
 				$options 		= $this->insert_option('filter_label', 'Show Type');
-				$options		= $this->insert_option('make_links', '0');
-				$options		= $this->insert_option('popup_links', '1');
-				$options		= $this->insert_option('addy_format', '0');
+				$options		= $this->insert_option('make_links', 0);
+				$options		= $this->insert_option('popup_links', 1);
+				$options		= $this->insert_option('addy_format', 0);
 				$plugin_updated = true;
 			}
 
@@ -295,9 +295,9 @@ if(!class_exists('ajax_event_calendar')){
 				$wpdb->query($sql);
 
 				// add mousescroll control, country field, and step d options
-				$options		= $this->insert_option('scroll', '1');
-				$options		= $this->insert_option('country', '0');
-				$options		= $this->insert_option('step_interval', '30');
+				$options		= $this->insert_option('scroll', 1);
+				$options		= $this->insert_option('country', 0);
+				$options		= $this->insert_option('step_interval', 30);
 				$plugin_updated = true;
 			}
 
@@ -866,7 +866,7 @@ if(!class_exists('ajax_event_calendar')){
 				$out .= $this->add_wrap(__('No events this month.', AEC_NAME), "<p><em>", "</em></p>");
 			}
 
-			$out = $this->add_panel(__('Number of events scheduled for the current month, by type:', AEC_NAME), $out);
+			$out = $this->add_panel(__('Number of events scheduled for the current month, by category:', AEC_NAME), $out);
 
 			$top = "<a href='http://eranmiller.com' target='_blank'><div id='em-icon' style='background:url(". AEC_URL ."css/images/em-icon-32.png) no-repeat' class='icon32'></div></a>\n";
 			$top .= $this->add_wrap(__('Activity Report', AEC_NAME), "<h2>", "</h2>");
@@ -919,7 +919,7 @@ if(!class_exists('ajax_event_calendar')){
 		}
 
 		function generate_repeating_event($event){
-			if($event->repeat_freq){
+			if($event->repeat_freq){		
 				$event_start	= strtotime($event->start);
 				$event_end		= strtotime($event->end);
 				$repeat_end		= strtotime($event->repeat_end);
@@ -934,11 +934,9 @@ if(!class_exists('ajax_event_calendar')){
 						$event->end 	= date(AEC_DB_DATETIME_FORMAT, $event_end);
 						array_push($repeats, $event);
 					}
-
 					$event_start 	= $this->get_next_date($event_start, $event->repeat_freq, $event->repeat_int);
 					$event_end 		= $this->get_next_date($event_end, $event->repeat_freq, $event->repeat_int);
 				}
-
 				return $repeats;
 			}
 			return false;
@@ -1068,7 +1066,8 @@ if(!class_exists('ajax_event_calendar')){
 		}
 
 		function add_sidebar(){
-			$help = $this->add_wrap(__('Review the FAQ', AEC_NAME), "<p><a href='" . AEC_HOMEPAGE . "faq/' target='_blank'>", "</a>.</p>");
+			$help = $this->add_wrap(__('Read about installation and options', AEC_NAME), "<p><a href='" . AEC_HOMEPAGE . "installation/' target='_blank'>", "</a>.</p>");
+			$help .= $this->add_wrap(__('Review the FAQ', AEC_NAME), "<p><a href='" . AEC_HOMEPAGE . "faq/' target='_blank'>", "</a>.</p>");
 			$help .= $this->add_wrap(__('Ask for help in the WordPress forum', AEC_NAME), "<p><a href='http://wordpress.org/tags/ajax-event-calendar' target='_blank'>", "</a>.</p>");
 			$help .= $this->add_wrap(__('Use the issue tracker', AEC_NAME), "<p><a href='http://code.google.com/p/wp-aec/issues/list' target='_blank'>", "</a> ");
 			$help .= $this->add_wrap(__('to track and report bugs, feature requests, and to submit', AEC_NAME), "", "");

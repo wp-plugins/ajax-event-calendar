@@ -1,6 +1,6 @@
 /**
  * Handle: init_admin_calendar
- * Version: 1.0
+ * Version: 1.0b1
  * Deps: jQuery
  * Enqueue: true
  */
@@ -56,43 +56,33 @@ jQuery(document).ready(function($){
 					calendar.fullCalendar('incrementDate', 0, 0, scroll);
 				}
 				var date = calendar.fullCalendar('getDate');
+				$.datepicker.setDefaults($.datepicker.regional[custom.locale]);
 				quickSelect.datepicker("setDate", date);
 				return false;
 			});
 		}
 	},
 	renderEvent = function(data){
-		if(data.length > 1){
-			$.each(data, function(index, d){
-				$('#aec-calendar').fullCalendar('renderEvent', {
-					id: 		d.id,
-					title: 		d.title,
-					allDay: 	d.allDay,
-					start: 		d.start,
-					end:		d.end,
-					className:	d.className
-				}, false);
-			});
-			return data[0].title;
-		}else{
+		$.each(data, function(index, d){
 			$('#aec-calendar').fullCalendar('renderEvent', {
-				id: 		data.id,
-				title: 		data.title,
-				allDay: 	data.allDay,
-				start: 		data.start,
-				end:		data.end,
-				className:	data.className
+				id: 		d.id,
+				title: 		d.title,
+				allDay: 	d.allDay,
+				start: 		d.start,
+				end:		d.end,
+				className:	d.className
 			}, false);
-			return data.title;
-		}
+		});
+		return data[0].title;
 	},		
 	updateEvent = function(e, data){
 		if(data.length > 1){
 			calendar.fullCalendar("removeEvents", data[0].id);
 			return renderEvent(data);
 		} else {
-			var e 		= calendar.fullCalendar('clientEvents', data.id)[0],
-				data 	= data[0];
+			var data 	= data[0],
+				e 		= calendar.fullCalendar('clientEvents', data.id)[0];
+				
 			e.title 	= data.title;
 			e.allDay	= data.allDay;
 			e.start 	= data.start;
@@ -136,7 +126,6 @@ jQuery(document).ready(function($){
 			from = Date.parse(from);
 			to = Date.parse(to);
 			if(from > to){
-				console.log(from>to);
 				$('#start_date, #end_date').addClass('aec-error');
 				$('.duration').html(custom.error_invalid_duration);
 					validateForm(true);
@@ -370,7 +359,9 @@ jQuery(document).ready(function($){
 				start 	= toUnixDate(start);
 				end 	= toUnixDate(end);
 				allDay 	= (allDay) ? 1:0;
-				e 		= {'start': start, 'end': end, 'allDay': allDay, 'view_end': view.visEnd, 'view_start': view.visStart };  // object for fullcalendar/php processing
+				vStart	= toUnixDate(view.visStart);
+				vEnd 	= toUnixDate(view.visEnd);
+				e 		= {'start': start, 'end': end, 'allDay': allDay, 'view_end': vEnd, 'view_start': vStart };  // object for fullcalendar/php processing
 				eventDialog(e, custom.add_event);
 			},
 			eventResize: function(e, dayDelta, minuteDelta, revertFunc, js, ui, view){
@@ -585,7 +576,11 @@ jQuery(document).ready(function($){
 									$('#add_event').click(function(e){
 										e.preventDefault();
 										if (!validateForm()) return;
-										var formfields = $('#event_form').serialize() + '&view_start=' + toUnixDate(ev.viewStart) + '&view_end=' + toUnixDate(ev.viewEnd);
+										
+										var viewparams = '&view_start=' + encodeURIComponent(ev.view_start) + '&view_end=' + encodeURIComponent(ev.view_end);
+										
+										var formfields = $('#event_form').serialize() + viewparams;
+																				
 										$.post(ajaxurl, { action: 'add_event', 'event': formfields }, function(data){
 											if (data) {
 												title = renderEvent(data);
@@ -599,7 +594,9 @@ jQuery(document).ready(function($){
 									$('#update_event').click(function(e) {										
 										e.preventDefault();
 										if (!validateForm()) return;
-										var formfields = $('#event_form').serialize() + '&view_start=' + toUnixDate(ev.viewStart) + '&view_end=' + toUnixDate(ev.viewEnd);
+										var viewparams = '&view_start=' + encodeURIComponent(toUnixDate(ev.viewStart)) + '&view_end=' + encodeURIComponent(toUnixDate(ev.viewEnd));
+										var formfields = $('#event_form').serialize() + viewparams;
+
 										$.post(ajaxurl, { action: 'update_event', 'event': formfields }, function(data){
 											if (data) {
 												var e 		= $('#aec-calendar').fullCalendar('clientEvents', data.id)[0];

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ajax Event Calendar v0.9.8.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-14 16:08-0600\n"
-"PO-Revision-Date: 2011-09-14 16:08-0600\n"
+"POT-Creation-Date: 2011-09-19 12:33-0600\n"
+"PO-Revision-Date: 2011-09-19 12:34-0600\n"
 "Last-Translator: Eran Miller <plugins@eranmiller.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -522,64 +522,69 @@ msgstr "لا يوجد أحداث هذا الشهر"
 
 # @ ajax-event-calendar
 #: ajax-event-calendar.php:869
-msgid "Number of events scheduled for the current month, by type:"
+#, fuzzy
+msgid "Number of events scheduled for the current month, by category:"
 msgstr "عدد الاحداث المجدول للشهر الحالي , بنوع:"
 
-#: ajax-event-calendar.php:1071
+#: ajax-event-calendar.php:1069
+msgid "Read about installation and options"
+msgstr ""
+
+#: ajax-event-calendar.php:1070
 msgid "Review the FAQ"
 msgstr ""
 
-#: ajax-event-calendar.php:1072
+#: ajax-event-calendar.php:1071
 msgid "Ask for help in the WordPress forum"
 msgstr ""
 
-#: ajax-event-calendar.php:1073
+#: ajax-event-calendar.php:1072
 msgid "Use the issue tracker"
 msgstr ""
 
-#: ajax-event-calendar.php:1074
+#: ajax-event-calendar.php:1073
 msgid "to track and report bugs, feature requests, and to submit"
 msgstr ""
 
-#: ajax-event-calendar.php:1075
+#: ajax-event-calendar.php:1074
 msgid "poEdit"
 msgstr ""
 
-#: ajax-event-calendar.php:1076
+#: ajax-event-calendar.php:1075
 msgid "translation files"
 msgstr ""
 
-#: ajax-event-calendar.php:1078
+#: ajax-event-calendar.php:1077
 msgid "Give the plugin a good rating"
 msgstr ""
 
-#: ajax-event-calendar.php:1079
+#: ajax-event-calendar.php:1078
 msgid "Make a donation in recognition of countless hours spent making this plugin"
 msgstr ""
 
-#: ajax-event-calendar.php:1082
+#: ajax-event-calendar.php:1081
 msgid "Create a blog review or an instructional video about the Calendar and share it"
 msgstr ""
 
-#: ajax-event-calendar.php:1087
+#: ajax-event-calendar.php:1086
 msgid "Support"
 msgstr ""
 
-#: ajax-event-calendar.php:1088
+#: ajax-event-calendar.php:1087
 msgid "Share the Love"
 msgstr ""
 
-#: ajax-event-calendar.php:1089
+#: ajax-event-calendar.php:1088
 msgid "Spread the Word"
 msgstr ""
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:1704
+#: ajax-event-calendar.php:1703
 msgid "Events"
 msgstr "مناسبات"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:1718
+#: ajax-event-calendar.php:1717
 msgid "Settings"
 msgstr "اعدادات"
 
@@ -858,6 +863,11 @@ msgid "Reset all settings on Save."
 msgstr "أعد الخيارات الافتراضية."
 
 # @ ajax-event-calendar
+#: inc/admin-options.php:54
+msgid "Save Changes"
+msgstr "حفظ التغييرات"
+
+# @ ajax-event-calendar
 #: inc/show-event.php:77
 msgid "View Map"
 msgstr "اعرض الخريطة"
@@ -992,9 +1002,6 @@ msgstr "إخفاء لون التصنيف"
 #~ msgstr ""
 #~ "\"{تفاصيل الحدث} الرابط يظهر في صفحة جديدة (اذا لم يحدد, الرابط يظهر في "
 #~ "الصفحة الحالية).\""
-# @ ajax-event-calendar
-#~ msgid "Save Changes"
-#~ msgstr "حفظ التغييرات"
 # @ ajax-event-calendar
 #~ msgid "Location"
 #~ msgstr "الموقع"

@@ -51,7 +51,7 @@
 	
 	$out  = $this->add_panel(__('Modify calendar and form options then click Save Changes below.', AEC_NAME), $form);
 	$out .= $this->add_checkbox_field('reset', __('Reset all settings on Save.', AEC_NAME));
-	$out .= $this->add_wrap("<input name='Submit' type='submit' class='button-primary auto' value='" . esc_attr__('Save Changes', AEC_NAME) . "' />", "<p class='submit'>", "</p>");
+	$out .= $this->add_wrap("<input name='Submit' type='submit' class='button-primary auto' value='" . esc_attr(__('Save Changes', AEC_NAME)) . "' />", "<p class='submit'>", "</p>");
 	$out .= "</form>\n";
 	$out .= "</div>\n";
 	

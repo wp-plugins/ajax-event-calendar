@@ -29,8 +29,8 @@
 			$event->end 			= $_POST['event']['end'];
 			$event->allDay 			= $_POST['event']['allDay'];			
 			$event->repeat_freq		= 0;
-			$event->repeat_int		= 1;
-			$event->repeat_end		= '';
+			$event->repeat_int		= 0;
+			$event->repeat_end		= $_POST['event']['end'];
 			$event->category_id 	= 1;
 			$event->description 	= '';
 			$event->link 			= '';
@@ -79,7 +79,7 @@
 	<input type="hidden" name="contact" value="">
 	<input type="hidden" name="contact_info" value="">
 	<input type="hidden" name="repeat_freq" value="0">
-	<input type="hidden" name="repeat_int" value="1">
+	<input type="hidden" name="repeat_int" value="0">
 	<input type="hidden" name="repeat_end" value="">
 	<input type="hidden" name="access" value="0">
 	<input type="hidden" name="rsvp" value="0">
