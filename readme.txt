@@ -1,7 +1,7 @@
 === Ajax Event Calendar ===
 Contributors: eranmiller
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NCDKRE46K2NBA
-Tags: user authorize, calendar, category, event, event list, ajax, filter, widget, map, rtl, shortcode, move, resize, repeat, recurr, translated, shortcode
+Tags: user authorize, calendar, category, event, event list, ajax, filter, widget, map, rtl, shortcode, move, resize, repeat, copy, recurr, translated, customize
 Requires at least: 3.1
 Tested up to: 3.2.1
 Stable tag: 0.9.9.2
@@ -10,20 +10,21 @@ A fully localized community calendar that allows authorized users to manage even
 
 == Description ==
 
-Ajax Event Calendar WordPress Plugin is a fully localized (including RTL language support) community calendar that allows authorized users to add, edit, move, resize and delete events into custom categories.  Highly customized calendars can be added to pages, posts or text widgets using the "[calendar]" shortcode.  Similarly, an equally customizable event list can be added using the "[eventlist]" shortcode.  For details on the available shortcode options click the **Installation** tab.
+Ajax Event Calendar WordPress Plugin is a fully localized (including RTL language support) community calendar that allows authorized users to add, edit, move, copy, resize and delete events into custom categories.  Highly customized calendars can be added to pages, posts or text widgets using the "[calendar]" shortcode.  Similarly, an equally customizable event list can be added using the "[eventlist]" shortcode.  The **Installation** tab contains details on plugin installation and shortcode options.
 
 This plugin does not support WordPress MU.
 
 =  Features =
 
 * Filter events by category
-* Add, delete or modify event category labels and colors
 * Display events in Day, Week, and Month views
+* Add, delete or modify event category labels and colors
+* Copy events
 * Supports daily, weekly, biweekly, monthly, and yearly repeating events
 * Month and Year dropdown selectors for fast navigation
-* Mini-calendar display option
 * Navigate between months/weeks with the calendar navigation buttons and the mouse wheel
-* Specify calendar date and time formats via **Settings > General** menu
+* Mini-calendar setting
+* Specify calendar date and time formats and start of week via **Settings > General** menu
 * Specify calendar time slot intervals: 5, 10, 15, 30 and 60 minute options (default 30)
 * Specify which event form fields to hide, display and require
 * Option to specify a category filter label
@@ -40,9 +41,11 @@ This plugin does not support WordPress MU.
 * Assign users the ability to add and modify their own events (**aec_add_events**)
 * Assign users the ability to modify all events (**aec_manage_events**)
 * Assign users the ability to change all calendar options (**aec_manage_calendar**)
+* Unobstrusive design loads code and data only when necessary
 * Available in 21 languages with support for right-to-left languages (NOTE: not all translations are current)
 
 = Need Support? =
+* [Read about installation and options](http://wordpress.org/extend/plugins/ajax-event-calendar/installation)
 * [Find answers to Frequently Asked Questions](http://wordpress.org/extend/plugins/ajax-event-calendar/faq)
 * [Ask for help in the WordPress forums](http://wordpress.org/tags/ajax-event-calendar?forum_id=10)
 * [Submit issues and feature requests](http://code.google.com/p/wp-aec/issues/list)
@@ -90,7 +93,7 @@ This plugin does not support WordPress MU.
 First, scan this FAQ for answers.
 Next, search the [forum](http://wordpress.org/tags/ajax-event-calendar) - use the name of the plugin in quotes and your keyword(s) to effectively narrow the search, for example: `"ajax event calendar" css`.  Finally, if you can't find the answer in the forum, search the [issue tracker](http://code.google.com/p/wp-aec/issues/list) for known issues and requests - if you still don't find an answer, submit your bug report or feature request there.
 
-= The front-end calendar is stuck on "Loading..." in my custom theme, yet the administrative calendar works =
+= The front-end calendar does not work in my custom theme =
 Make sure your theme templates contain `<?php wp_head(); ?>` just before the closing `</head>` tag and `<?php wp_footer(); ?>` just before the closing `</body>` tag.
 
 = The administrative calendar displays, but the front-end calendar does not display =
@@ -98,6 +101,9 @@ Did you add the [calendar] shortcode to a page, post or text widget?  If not, re
 
 = I added the [calendar] shortcode to a page, but I can't see the calendar.  I only a link for "Add Events" and the filter. =
 Troubleshoot by viewing your site using the Firefox browser with the [Firebug plugin](http://getfirebug.com/) activated.  When you load the page in question, any errors in the javascript will display in the console. The error text should provide information as to line and the file causing the issue.  Next, disable all plugins other than the calendar, the javascript errors should cease to appear.  Activate the plugins one at a time until the calandar stops working (and you'll have found the conflict).  Themes with javascript can also be the cause of such errors.
+
+= I want to modify some of the styles in the calendar =
+View your site using Firefox browser with [Firebug plugin](http://getfirebug.com/) activated.  Read about using Firebug and learn how to "inspect" specific page elements for styling.  Once you have settled on the look you want, apply it to your theme's css.  Confirm your changes with Firebug, it's an invaluable tool you can use many times over.
 
 = Calendar categories are not displaying in the calendar and only the "all" link in the event filter has a background color OR The category colors no longer appear in the filter, the calendar or the event list. =
 Try:
@@ -110,7 +116,8 @@ Try:
 <br>If the category colors still do not appear check your php sever logs for errors.
 
 = All apostrophes in the event detail form, returns \' when I save the event.  And returns \\' on subsequent saves =
-This will occur when your PHP server is configured to use magic quotes gpc.  The developers of PHP [strongly recommend against using magic quotes](http://php.net/manual/en/security.magicquotes.php), in fact the functionality has been removed from newer versions of PHP.  To correct this behavior, edit your php.ini file and disable that setting (or ask your host provider to do so).  If you are unable (or don't have access) to edit your php.ini file, [try this solution](http://wordpress.org/support/topic/plugin-ajax-event-calendar-ajax-event-calendar-dont-like-the-apostrophes?replies=11#post-2260027).
+This will occur when your PHP server is configured to use magic quotes gpc.  The developers of PHP [strongly recommend against using magic quotes](http://php.net/manual/en/security.magicquotes.php), in fact, the functionality has been removed from the latest versions of PHP.
+<br>To correct this behavior: edit your php.ini file, or ask your host provider to do so, [as described here](http://php.net/manual/en/security.magicquotes.disabling.php).
 
 = How do I manage events? =
 As with Google Calendar: to add an event, in the administrative calendar page click on a date (or range of dates) in the month view, or click on a half-hour (or range of hours) timeslot in the week view.  Only users assigned the **aec_add_events** capability can edit and delete events they create by clicking on events in the administrative calendar page.  Users assigned the **aec_manage_events** capability can edit and delete all events.
@@ -179,8 +186,7 @@ Search your ISP host's FAQ for "How can I enable PHP5?"
 8. Activity Report - tracks the number of events by category
 9. Event Detail - event detail form modal window
 10. Notifications - growl-styled unobtrusive status updates
-11. Front-end Calendar View - with Upcoming Events and Calendar Contributors Widgets
-12. Front-end Events Detail View
+11. Front-end Events Detail View
 
 == Other Notes ==
 
@@ -199,6 +205,7 @@ Mime Type Link Images(http://wordpress.org/support/topic/calendar-disappeared?re
 
 = 1.0 =
 * added support repeating events
+* added copy event functionality
 * added option to toggle mousescroll
 * added month and year dropdown selectors
 * added option to modify calendar time slot intervals
@@ -212,12 +219,14 @@ Mime Type Link Images(http://wordpress.org/support/topic/calendar-disappeared?re
 * added eventlist parameter to display a customized message when no events are returned
 * added calendar parameter to render the calendar with a minimum pixel height
 * added calendar parameter to render a minicalendar
+* added repeating event indicator on in-calendar events
 * fixed compatability conflict with easy fancybox plugin (Hat Tip: Raven)
 * fixed month calendar shortcode option when set to current month
 * fixed rtl localization admin menu position bug
 * fixed mousescroll for week and day view
 * fixed show event detail address layout
 * fixed critical IE bug
+* optimized loading of javascript and css files
 * updated plugin options page layout and text
 * updated filter css hover state
 * moved options page position into calendar menu
@@ -226,6 +235,9 @@ Mime Type Link Images(http://wordpress.org/support/topic/calendar-disappeared?re
 * added branding
 * added hungarian
 * added czech
+* updated german
+* updated swedish
+* updated italian
 
 = 0.9.9.2 =
 * added latvian

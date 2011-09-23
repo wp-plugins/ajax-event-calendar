@@ -1,5 +1,9 @@
+/* DO NOT EDIT - CHANGES MADE TO THIS FILE WILL BE LOST ON PLUGIN UPDATE */
+/* ADD STYLE OVERRIDES TO YOUR THEME'S STYLE.CSS */
+
 #aec-menu{float:right;padding:10px 0}
-#aec-calendar table{float:right}
+.aec-repeating span.fc-event-title{padding-right:18px;padding-left:0;background-position:96% 50%}
+#aec-calendar table{float:none}
 
 #aec-filter{float:left}
 #aec-filter li{float:right;padding:0 4px 0 0 !important}

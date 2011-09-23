@@ -118,8 +118,7 @@
 					<select class="select auto" name="repeat_freq" id="repeat_freq">
 					<?php
 						$every = __('Every', AEC_NAME);
-						$repeat_options = array(__('Never', AEC_NAME),
-												$every);
+						$repeat_options = array(__('Never', AEC_NAME), $every);
 						$frequency = 2;
 						while($frequency < 31){
 							array_push($repeat_options, "{$every} $frequency");
@@ -153,11 +152,11 @@
 		</li>
         <li>
             <label for="title"><?php _e('Title', AEC_NAME); ?></label>
-            <input type="text" name="title" id="title" value="<?php echo $event->title; ?>">
+            <input type="text" name="title" id="title" class="wide" value="<?php echo $event->title; ?>">
 		</li>
 		<li>
             <label for="category_id"><?php _e('Category', AEC_NAME); ?></label>
-			<select class="large" name="category_id" id="category_id" >
+			<select class="wide" name="category_id" id="category_id" >
 		<?php
 			$categories = $this->db_query_categories();
 			foreach($categories as $category){
@@ -170,7 +169,7 @@
 		<?php if($aec_options['venue'] > 0){ ?>
 		<li>
 			<label for="venue"><?php _e('Venue', AEC_NAME); ?></label>
-			<input class="" type="text" name="venue" id="venue" value="<?php echo $event->venue; ?>">
+			<input class="wide" type="text" name="venue" id="venue" value="<?php echo $event->venue; ?>">
 		</li>
 		<?php 
 			} 
@@ -182,13 +181,13 @@
 				<?php if($aec_options['address'] > 0){ ?>
 				<li>
 					<label for="address"><?php _e('Neighborhood or Street Address', AEC_NAME); ?></label>
-					<input class="" type="text" name="address" id="address" value="<?php echo $event->address; ?>">
+					<input class="wide" type="text" name="address" id="address" value="<?php echo $event->address; ?>">
 				</li>
 				<?php 
 					}
 					if($aec_options['city'] > 0){ 
 				?>
-				<li class="cb">
+				<li>
 					<label for="city"><?php _e('City', AEC_NAME); ?></label>
 					<input class="auto" type="text" name="city" id="city" size="20" value="<?php echo $event->city; ?>">
 				</li>
@@ -281,6 +280,7 @@
 			<input type="button" name="cancel_event" value="<?php _e('Cancel', AEC_NAME); ?>" class="button-secondary" id="cancel_event">
 			<?php if($event->id){ ?>
 			<span class="fl"><input type="button" name="delete_event" value="<?php _e('Delete', AEC_NAME); ?>" class="button" id="delete_event"></span>
+			<input type="button" name="copy_event" value="<?php _e('Copy', AEC_NAME); ?>" class="button" id="copy_event">
 			<input type="button" name="update_event" value="<?php _e('Update', AEC_NAME); ?>" class="button-primary" id="update_event">
 			<?php } else { ?>
 			<input type="button" name="add_event" value="<?php _e('Add', AEC_NAME); ?>" class="button-primary" id="add_event">

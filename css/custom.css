@@ -1,7 +1,10 @@
+/* DO NOT EDIT - CHANGES MADE TO THIS FILE WILL BE LOST ON PLUGIN UPDATE */
+/* ADD STYLE OVERRIDES TO YOUR THEME'S STYLE.CSS */
+
 #aec-container{position:relative;float:none}
 #aec-header{width:100%;clear:both;padding:0;margin-bottom:0}
 #aec-menu{float:left;padding:10px 0}
-
+.aec-repeating span.fc-event-title{padding-left:18px;background-image:url(images/repeating.gif);background-repeat:no-repeat;background-position:2px 50%}
 #aec-calendar{font-size:12px;line-height:16px}
 #aec-calendar table{float:left;border:0 !important;margin:0 !important}
 #aec-calendar td{padding:0 !important}
@@ -11,8 +14,9 @@
 #aec-filter li{background:none;list-style:none !important;float:left;padding:0 0 0 4px !important;margin:0}
 #aec-filter li:first-child{font-size:14px;padding:3px 4px 3px 0 !important;font-weight:bold}
 #aec-filter a{padding:3px 8px;line-height:20px;cursor:pointer;display:block;text-decoration:none;border:1px solid transparent}
+#aec-filter a.all:hover,
+#aec-filter li.active a{border-color:#fff !important;-moz-box-shadow:0 0 2px #000;-webkit-box-shadow:0 0 2px #000;box-shadow:0 0 2px #000}
 #aec-filter a.all,#aec-filter a.all:visited,#aec-filter a.all:active{background:#000;color:#ddd}
-#aec-filter a.all:hover{border-color:#fff;-moz-box-shadow:0 0 2px #000;-webkit-box-shadow:0 0 2px #000;box-shadow:0 0 2px #000}
 
 #start_time,#end_time,#repeat_int,#repeat_label,#repeat_end{display:none}
 #aec-modal-overlay{background-color:#000}
@@ -26,9 +30,7 @@
 
 #aec-modal{display:none;overflow:hidden}
 #aec-modal p{margin-bottom:5px}
-
 #aec-modal a{text-decoration:none;font-weight:bold}
-
 #aec-modal .times{font-weight:bold}
 #aec-modal .location{background:#ddd}
 #aec-modal .location span{display:block}
@@ -181,6 +183,7 @@ html .fc,.fc table{font-size:1em}
 .fc-state-active,.fc-state-active .fc-button-inner{background:#777;border-color:#555;color:#fff}
 .fc-state-disabled,.fc-state-disabled .fc-button-inner{border-color:#ddd;color:#999}
 .fc-state-disabled .fc-button-effect{display:none}
+
 .fc-event{border-style:solid;border-width:0;cursor:pointer;font-size:.9em}
 a.fc-event,.fc-event-draggable{cursor:pointer}
 a.fc-event{text-decoration:none}

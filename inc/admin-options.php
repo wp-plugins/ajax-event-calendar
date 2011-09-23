@@ -13,7 +13,7 @@
 
 	if((isset($_GET['updated']) && $_GET['updated'] == 'true') ||
 	   (isset($_GET['settings-updated']) && $_GET['settings-updated'] == 'true')){
-		echo $this->add_wrap(__('Settings updated'), '<div id="message" style="width:94%" class="message updated"><p><strong>', '.</strong></p></div>');
+		echo $this->add_wrap(__('Settings Updated', AEC_NAME), '<div id="message" style="width:94%" class="message updated"><p><strong>', '.</strong></p></div>');
 	}
 
 	echo "<div class='postbox-container' style='width:70%'>\n";

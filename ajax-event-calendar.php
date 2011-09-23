@@ -76,7 +76,7 @@ if(!class_exists('ajax_event_calendar')){
 									'city' 				=> '2',
 									'state' 			=> '2',
 									'zip'				=> '2',
-									'country'			=> '0',
+									'country'			=> '1',
 									'link' 				=> '1',
 									'description' 		=> '2',
 									'contact' 			=> '2',
@@ -102,8 +102,8 @@ if(!class_exists('ajax_event_calendar')){
 			add_action('wp_ajax_get_event', array($this, 'render_frontend_modal'));
 			add_action('wp_ajax_admin_event', array($this, 'render_admin_modal'));
 			add_action('wp_ajax_add_event', array($this, 'add_event'));
-			add_action('wp_ajax_update_event', array($this, 'update_event'));
 			add_action('wp_ajax_copy_event', array($this, 'copy_event'));
+			add_action('wp_ajax_update_event', array($this, 'update_event'));
 			add_action('wp_ajax_delete_event', array($this, 'delete_event'));
 			add_action('wp_ajax_move_event', array($this, 'move_event'));
 			add_action('wp_ajax_add_category', array($this, 'add_category'));
@@ -322,10 +322,7 @@ if(!class_exists('ajax_event_calendar')){
 				$_POST['event']['repeat_int'] = 0;
 				$_POST['event']['repeat_end'] = null;
 				$_POST['event']['category_id'] = 1;
-				$_POST['event']['description'] = "Next Steps...
-<ul><li>Create a calendar view using the [calendar] shortcode*</li><li>Create an eventlist view using the [eventlist] shortcode*
-<strong>NOTICE:</strong> If upgrading from a previous plugin version, the Upcoming Events widget is no longer available, and has been replaced by this shortcode.
-*Click on the event link for more plugin options</li><li>Modify the calendar settings</li><li>Customize the calendar appearance, override custom.css classes in your theme stylesheet</li><li>Add, delete or modify event category labels and colors via Calendar>Categories</li><li>Specify event form fields to hide, display and require via Calendar>Options</li><li>Allow users to add events, by assigning them to the Calendar Contributor role</li><li>Display the list of Calendar Contributors in the sidebar widget via Appearance>Widgets</li></ul>";
+				$_POST['event']['description'] = "Ajax Event Calendar WordPress Plugin is a fully localized (including RTL language support) community calendar that allows authorized users to add, edit, copy, move, resize and delete events into custom categories.  Highly customized calendars can be added to pages, posts or text widgets using the <strong>[calendar]</strong> shortcode.  Similarly, an equally customizable event list can be added using the <strong>[eventlist]</strong> shortcode.  Click on the event link for details on plugin customization and usage of shortcode option.";
 				$_POST['event']['link'] = AEC_HOMEPAGE;
 				$_POST['event']['venue'] = 'Cloud Gate (The Bean)';
 				$_POST['event']['address'] = '201 East Randolph Street';
@@ -337,11 +334,11 @@ if(!class_exists('ajax_event_calendar')){
 				$_POST['event']['contact_info'] = 'plugins at eranmiller dot com';
 				$_POST['event']['access'] = 1;
 				$_POST['event']['rsvp'] = 0;
-
+				
 				// removes previously created release events and creates a new one
 				$_POST['user_id'] = $_POST['event']['user_id'];
 				$this->delete_events_by_user();
-				$this->add_event();
+				$this->db_insert_event($this->cleanse_event_input($_POST['event']), false);
 			}
 		}
 
@@ -550,11 +547,13 @@ if(!class_exists('ajax_event_calendar')){
 		}
 
 		function calendar_styles(){
-			wp_enqueue_style('jq_ui_css');
-			wp_enqueue_style('categories');
-			wp_enqueue_style('custom');
-			if(is_rtl()){
-				wp_enqueue_style('custom_rtl');
+			if(is_admin() || $this->has_shortcode('calendar') || $this->has_shortcode('eventlist')){
+				wp_enqueue_style('jq_ui_css');
+				wp_enqueue_style('categories');
+				wp_enqueue_style('custom');
+				if(is_rtl()){
+					wp_enqueue_style('custom_rtl');
+				}
 			}
 		}
 
@@ -590,17 +589,19 @@ if(!class_exists('ajax_event_calendar')){
 			if(is_admin()){
 				return;
 			}
-			wp_enqueue_script('jquery');
-			wp_enqueue_script('fullcalendar');
-			wp_enqueue_script('simplemodal');
-			wp_enqueue_script('mousewheel');
-			wp_enqueue_script('growl');
-			wp_enqueue_script('jquery-ui-datepicker');
-			if(AEC_LOCALE != 'en'){
-				wp_enqueue_script('datepicker-locale');	// if not in English, load localization
+			if($this->has_shortcode('calendar') || $this->has_shortcode('eventlist')){
+				wp_enqueue_script('jquery');
+				wp_enqueue_script('fullcalendar');
+				wp_enqueue_script('simplemodal');
+				wp_enqueue_script('mousewheel');
+				wp_enqueue_script('growl');
+				wp_enqueue_script('jquery-ui-datepicker');
+				if(AEC_LOCALE != 'en'){
+					wp_enqueue_script('datepicker-locale');	// if not in English, load localization
+				}
+				wp_enqueue_script('init_show_calendar');
+				wp_localize_script('init_show_calendar', 'custom', $this->frontend_calendar_variables());
 			}
-			wp_enqueue_script('init_show_calendar');
-			wp_localize_script('init_show_calendar', 'custom', $this->frontend_calendar_variables());
 		}
 
 		function admin_social_scripts(){
@@ -628,6 +629,7 @@ if(!class_exists('ajax_event_calendar')){
 			$out .= $this->render_category_filter($options);
 			$out .= "<h2>" . __('Ajax Event Calendar', AEC_NAME) . "</h2>\n";
 			$out .= "<div id='aec-calendar'></div>\n";
+			$out .= "<small>v1.0beta5</small>\n";
 			$out .= "</div>\n";
 			echo $out;
 		}
@@ -648,11 +650,15 @@ if(!class_exists('ajax_event_calendar')){
 			), $atts));
 
 			// shortcode input validation
-			$excluded = ($excluded == "true") ? true : false;
-			$scroll = ($scroll == "true") ? true : false;
-
-			if($filter != 'all'){
-				$filter = 'cat' . intval($filter);
+			
+			$categories	 	= (isset($categories)) ? $this->cleanse_shortcode_input($categories) : false;
+			$excluded		= ($categories && isset($excluded)) ? $excluded : false;
+			$scroll			= ($scroll == "true") ? true : false;
+			$filter			= ($filter != "false" && $filter != 'all') ? 'cat' . intval($filter) : $filter;
+			
+			$viewopts = array("month", "agendaWeek", "agendaDay", "basicWeek", "basicDay");
+			if(!in_array($view, $viewopts)) {
+				$view = "month";
 			}
 			$month = intval($month)-1;
 			if($year != date('Y')){
@@ -684,21 +690,21 @@ if(!class_exists('ajax_event_calendar')){
 			$out .= "};\n";
 			$out .= "</script>\n";
 
-			$out .= '<div id="aec-container">';
-			$out .= '<div id="aec-header">';
+			$out .= "<div id='aec-container'>\n";
+			$out .= "<div id='aec-header'>\n";
 			$options = get_option('aec_options');
 			if($options['menu']){
-				$out .= '<div id="aec-menu">';
-				$out .= '<a href="' . admin_url() . 'admin.php?page=ajax-event-calendar.php">' . __('Add Events', AEC_NAME) . '</a>';
-				$out .= '</div>';
+				$out .= "<div id='aec-menu'>\n";
+				$out .= "<a href='" . admin_url() . "admin.php?page=ajax-event-calendar.php'>" . __('Add Events', AEC_NAME) . "</a>";
+				$out .= "</div>\n";
 			}
-			if($filter){
+			if($filter != "false"){
 				$out .= $this->render_category_filter($options, $categories, $excluded);
 			}
-			$out .= '</div>';
-			$out .= '<div id="aec-calendar"></div>' . "\n";
-			$out .= '<a href="http://eranmiller.com/" id="aec-credit">AECv' . AEC_VERSION . ' ' . __('Created By', AEC_NAME) . ' Eran Miller</a>';
-			$out .= '</div>' . "\n";
+			$out .= "</div>\n";
+			$out .= "<div id='aec-calendar'></div>\n";
+			$out .= "<a href='http://eranmiller.com/' id='aec-credit'>AECv" . AEC_VERSION . " " . __('Created By', AEC_NAME) . " Eran Miller</a>\n";
+			$out .= "</div>\n";
 			return $out;
 		}
 
@@ -764,12 +770,14 @@ if(!class_exists('ajax_event_calendar')){
 					// link to event
 					$class = ($whitelabel) ? '' : ' ' . $row->className;
 					$out .= '<li class="fc-event round5' . $class . '" onClick="jQuery.aecDialog({\'id\':' . $row->id . ',\'start\':\'' . $row->start . '\',\'end\':\'' . $row->end . '\'});">';
-					$out .= '<strong>' . $this->render_i18n_data($row->title) . '</strong><br>';
+					$out .= '<span class="fc-event-time">';
 					$out .= $row->start_date;
-					// multiple day event, not spanning all day
+					
 					if(!$row->allDay){
 						$out .= ' ' . $row->start_time;
 					}
+					$out .= '</span>';
+					$out .= '<span class="fc-event-title">' . $this->render_i18n_data($row->title) . '</span>';
 					$out .= '</li>';
 				}
 			}
@@ -777,19 +785,17 @@ if(!class_exists('ajax_event_calendar')){
 		}
 
 		function render_category_filter($options, $categories=false, $excluded=false){
-			$out = '<ul id="aec-filter">';
 			$categories = $this->db_query_categories($categories, $excluded);
 			if(sizeof($categories) > 1){
-				if(!empty($options['filter_label'])){
-					$out .= "<li>" . $this->render_i18n_data($options['filter_label']) . "</li>\n";
-				}
+				$out = "<ul id='aec-filter'>\n";
+				$out .= "<li>" . $this->render_i18n_data($options['filter_label']) . "</li>\n";
 				$out .= '<li class="active"><a class="round5 all">' . __('All', AEC_NAME) . '</a></li>' . "\n";
 				foreach($categories as $category){
 					$out .= '<li><a class="round5 cat' . $category->id . '">' . $this->render_i18n_data($category->category) . '</a></li>' . "\n";
 				}
+				$out .= "</ul>\n";
+				return $out;
 			}
-			$out .= '</ul>';
-			return $out;
 		}
 
 		function render_admin_modal(){
@@ -906,10 +912,10 @@ if(!class_exists('ajax_event_calendar')){
 			$output = array();
 			if($repeats = $this->generate_repeating_event($input)){
 				foreach($repeats as $repeat){
-					array_push($output, $this->generate_event($repeat, $this->return_user_id($readonly), $queue));
+					array_push($output, $this->generate_event($repeat, $this->return_auth($readonly), $queue));
 				}
 			}else{
-				array_push($output, $this->generate_event($input, $this->return_user_id($readonly), $queue));
+				array_push($output, $this->generate_event($input, $this->return_auth($readonly), $queue));
 			}
 
 			if($queue){
@@ -919,15 +925,15 @@ if(!class_exists('ajax_event_calendar')){
 		}
 
 		function generate_repeating_event($event){
-			if($event->repeat_freq){		
+			if($event->repeat_freq){
 				$event_start	= strtotime($event->start);
 				$event_end		= strtotime($event->end);
-				$repeat_end		= strtotime($event->repeat_end);
+				$repeat_end		= strtotime($event->repeat_end) + 86400;
 				$view_start		= strtotime($event->view_start);
 				$view_end		= strtotime($event->view_end);
 				$repeats		= array();
 
-				while($event_start <= $repeat_end){
+				while($event_start < $repeat_end){
 					if($event_start >= $view_start && $event_start <= $view_end){
 						$event 		 	= clone $event;	// clone event details and override dates
 						$event->start 	= date(AEC_DB_DATETIME_FORMAT, $event_start);
@@ -949,20 +955,18 @@ if(!class_exists('ajax_event_calendar')){
 			if($int == 3) return $this->get_next_year($date, $freq);
 		}
 
-		//TODO: optimize process
-
-		// adjustment for events that repeat on the 29th, 30th and 31st of a month
 		function get_next_month($date, $n = 1){
 			$newDate = strtotime("+{$n} months", $date);
+			// adjustment for events that repeat on the 29th, 30th and 31st of a month
 			if(date('j', $date) !== (date('j', $newDate))){
 				$newDate = strtotime("+" . $n+1 . " months", $date);
 			}
 			return $newDate;
 		}
 
-		// adjustment for events that repeat on february 29th
 		function get_next_year($date, $n = 1){
 			$newDate = strtotime("+{$n} years", $date);
+			// adjustment for events that repeat on february 29th
 			if (date('j', $date) !== (date('j', $newDate))) {
 				$newDate = strtotime("+" . $n+3 . " years", $date);
 			}
@@ -971,13 +975,14 @@ if(!class_exists('ajax_event_calendar')){
 
 		function generate_event($input, $user_id){
 			$permissions 	= $this->get_event_permissions($input, $user_id);
+			$repeats		= ($input->repeat_freq) ? ' aec-repeating' : '';
 			$output 		= array(
 				'id'	 	=> $input->id,
 				'title'  	=> $input->title,
 				'start'		=> $input->start,
 				'end'		=> $input->end,
 				'allDay' 	=> ($input->allDay) ? true : false,
-				'className'	=> "cat{$input->category_id}{$permissions->cssclass}",
+				'className'	=> "cat{$input->category_id}{$permissions->cssclass}{$repeats}",
 				'editable'	=> $permissions->editable,
 				'repeat_i'	=> $input->repeat_int,
 				'repeat_f'	=> $input->repeat_freq,
@@ -1017,7 +1022,7 @@ if(!class_exists('ajax_event_calendar')){
 		}
 
 		function add_hidden_field($field, $value=false){
-			if(!$value){
+			if($value === false){
 				$aec_options 	= get_option('aec_options');
 				$value 			= $aec_options[$field];
 			}
@@ -1043,6 +1048,7 @@ if(!class_exists('ajax_event_calendar')){
 			if($tip){
 				$out .= "<span class='description'>{$tip}</span>\n";
 			}
+			
 			return $this->add_wrap($out, '<p class="hhh">', '</p>');
 		}
 
@@ -1094,37 +1100,29 @@ if(!class_exists('ajax_event_calendar')){
 			if(!isset($_POST['event'])){
 				return;
 			}
-			$this->db_insert_event($this->cleanse_event_input($_POST['event']));
+			$this->db_insert_event($this->cleanse_event_input($_POST['event']), true);
 		}
 
-		/* TODO: waiting for answer regarding draggable object handling
 		function copy_event(){
-			$clone = $_POST['clone'];
-			$input = $this->convert_object_to_array($this->db_query_event($clone['id']));
-			$input['start'] = $clone['start'];
-			$input['end'] = $clone['end'];
-			$this->db_insert_event($input);
-			return;
+			if(!isset($_POST['event'])){
+				return;
+			}
+			$input = $this->cleanse_event_input($_POST['event']);
+			$input->user_id = $this->return_current_user_id();
+			$this->db_insert_event($input, true);
 		}
-		*/
-
+		
 		function move_event(){
 			if(!isset($_POST['event']))
 				return;
 			$input 				= $this->convert_array_to_object($_POST['event']);
-			$resize				= $input->resize;
 			$offset				= $input->dayDelta*86400 + $input->minuteDelta*60;
 			$event 				= $this->db_query_event($input->id);
-			$event->allday		= ($input->allDay) ? true : false;
+			$event->allDay		= $input->allDay;
 			$event->end			= date(AEC_DB_DATETIME_FORMAT, strtotime($event->end) + $offset);
-			if($resize == 'true') $offset = 0;
+			$event->repeat_end	= date(AEC_DB_DATETIME_FORMAT, strtotime($event->repeat_end) + $offset);
+			if($input->resize){ $offset = 0; }
 			$event->start 		= date(AEC_DB_DATETIME_FORMAT, strtotime($event->start) + $offset);
-			// when an event is moved beyond repeat end date, the repeat is removed
-			if($event->repeat_end <= $input->end){
-				$event->repeat_end = $input->end;
-				$event->repeat_freq = 0;
-				$event->repeat_int = 0;
-			}
 			$event->view_start	= $input->view_start;
 			$event->view_end 	= $input->view_end;
 			$this->db_update_event($event);
@@ -1268,7 +1266,7 @@ if(!class_exists('ajax_event_calendar')){
 			return $this->return_result($result);
 		}
 
-		function db_insert_event($input){
+		function db_insert_event($input, $render){
 			global $wpdb;
 			$result = $wpdb->insert($wpdb->prefix . AEC_EVENT_TABLE,
 									array('user_id' 		=> $input->user_id,
@@ -1317,7 +1315,7 @@ if(!class_exists('ajax_event_calendar')){
 										)
 								);
 			if($this->return_result($result)){
-				if($input->user_id){					// only render events not generated by the system (user id: 0)
+				if($render){
 					$input->id = $wpdb->insert_id;		// id of newly created row
 					$this->process_event($input);
 				}
@@ -1565,13 +1563,17 @@ if(!class_exists('ajax_event_calendar')){
 			return $result;
 		}
 
-		function return_user_id($readonly = false){
+		function return_current_user_id(){
+			global $current_user;
+			get_currentuserinfo();
+			return $current_user->ID;
+		}
+		
+		function return_auth($readonly = false){
 			if($readonly){
 				return "-1";
 			}
-			global $current_user;
-			get_currentuserinfo();
-			return (current_user_can('aec_manage_events')) ? false : $current_user->ID;
+			return (current_user_can('aec_manage_events')) ? false : $this->return_current_user_id();
 		}
 
 		function render_i18n_data($data){
@@ -1697,6 +1699,18 @@ if(!class_exists('ajax_event_calendar')){
 			return strtotime($a['start']) - strtotime($b['start']);
 		}
 
+		function has_shortcode($shortcode = '') {
+			$post_to_check = get_post(get_the_ID());
+			$found = false;
+			if(!$shortcode){
+				return $found;
+			}
+			if(stripos($post_to_check->post_content, '[' . $shortcode) !== false){
+				$found = true;
+			}
+			return $found;
+		}
+		
 		// CUSTOMIZE WORDPRESS
 		// adds column field label to WordPress users page
 		function add_events_column($columns){

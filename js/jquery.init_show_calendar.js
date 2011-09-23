@@ -23,12 +23,12 @@ jQuery(document).ready(function($){
 	},
 	eventHandlers = function(){
 		if(isFilter){
+			// category filter
 			filter($('#aec-filter .' + shortcode.filter));
 			$('#aec-filter li a').click(function(){
 				filter(this);
 			});
 		};
-		
 		if(shortcode.nav){
 			// quick navigation
 			if ($('#aec-quickselect').length == 0) {
@@ -46,9 +46,8 @@ jQuery(document).ready(function($){
 				quickSelect.datepicker("setDate", date);
 			});
 		}
-		
-		// mousewheel navigation
 		if(shortcode.scroll){
+			// mousewheel navigation
 			$('#aec-calendar').mousewheel(function(e, delta){
 				var scroll = (delta > 0) ? -1 : 1;
 				// TODO: add month selector
@@ -123,6 +122,8 @@ jQuery(document).ready(function($){
 				if (b) $.jGrowl(custom.loading, {sticky:true});
 				else $('#jGrowl').jGrowl('close');
 			},
+			//eventMouseover: function(e, js, view){
+			//},
 			eventClick: function(e){
 				eventDialog(e);
 			},
@@ -175,7 +176,6 @@ jQuery(document).ready(function($){
 							d.container.animate({ height: h }, 150, function(){
 								closebtn.show();
 								content.show();
-								console.log(data);
 								$('.duration').html(calcDuration(data.start, data.end, data.allDay, data.repeat_f, data.repeat_i, data.repeat_e));
 							});
 						}, 'json');

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ajax Event Calendar v0.9.9.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-19 12:34-0600\n"
-"PO-Revision-Date: 2011-09-19 12:34-0600\n"
+"POT-Creation-Date: 2011-09-23 14:57-0600\n"
+"PO-Revision-Date: 2011-09-23 14:57-0600\n"
 "Last-Translator: Eran Miller <plugins@eranmiller.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,565 +19,562 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:387
+#: ajax-event-calendar.php:384
 msgid "Calendar"
 msgstr "Kalender"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:395
-#: ajax-event-calendar.php:844
+#: ajax-event-calendar.php:392
+#: ajax-event-calendar.php:850
 msgid "Categories"
 msgstr "Kategorier"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:403
-#: ajax-event-calendar.php:872
+#: ajax-event-calendar.php:400
+#: ajax-event-calendar.php:878
 msgid "Activity Report"
 msgstr "Aktivitetsrapport"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:407
-#, fuzzy
+#: ajax-event-calendar.php:404
 msgid "Options"
-msgstr "Formulär-inställningar"
+msgstr "Alternativ"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:441
+#: ajax-event-calendar.php:438
 msgid "Today"
 msgstr "I dag"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:442
+#: ajax-event-calendar.php:439
 #: inc/admin-event.php:111
 msgid "All Day"
 msgstr "Hela dagen"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:443
+#: ajax-event-calendar.php:440
 msgid "Months"
 msgstr "Månader"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:444
+#: ajax-event-calendar.php:441
 msgid "Month"
 msgstr "Månad"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:445
+#: ajax-event-calendar.php:442
 msgid "Weeks"
 msgstr "Veckor"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:446
+#: ajax-event-calendar.php:443
 msgid "Week"
 msgstr "Vecka"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:447
+#: ajax-event-calendar.php:444
 msgid "Days"
 msgstr "Dagar"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:448
+#: ajax-event-calendar.php:445
 msgid "Day"
 msgstr "Dag"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:449
+#: ajax-event-calendar.php:446
 msgid "Hours"
 msgstr "Timmar"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:450
+#: ajax-event-calendar.php:447
 msgid "Hour"
 msgstr "Timme"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:451
+#: ajax-event-calendar.php:448
 msgid "Minutes"
 msgstr "Minuter"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:452
+#: ajax-event-calendar.php:449
 msgid "Minute"
 msgstr "Minut"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:453
+#: ajax-event-calendar.php:450
 msgid "January"
 msgstr "Januari"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:454
+#: ajax-event-calendar.php:451
 msgid "February"
 msgstr "Februari"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:455
+#: ajax-event-calendar.php:452
 msgid "March"
 msgstr "Mars"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:456
+#: ajax-event-calendar.php:453
 msgid "April"
 msgstr "April"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:457
+#: ajax-event-calendar.php:454
 msgid "May"
 msgstr "Maj"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:458
+#: ajax-event-calendar.php:455
 msgid "June"
 msgstr "Juni"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:459
+#: ajax-event-calendar.php:456
 msgid "July"
 msgstr "Juli"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:460
+#: ajax-event-calendar.php:457
 msgid "August"
 msgstr "Augusti"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:461
+#: ajax-event-calendar.php:458
 msgid "September"
 msgstr "September"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:462
+#: ajax-event-calendar.php:459
 msgid "October"
 msgstr "Oktober"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:463
+#: ajax-event-calendar.php:460
 msgid "November"
 msgstr "November"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:464
+#: ajax-event-calendar.php:461
 msgid "December"
 msgstr "December"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:465
+#: ajax-event-calendar.php:462
 msgid "Jan"
 msgstr "Jan"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:466
+#: ajax-event-calendar.php:463
 msgid "Feb"
 msgstr "Feb"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:467
+#: ajax-event-calendar.php:464
 msgid "Mar"
 msgstr "Mar"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:468
+#: ajax-event-calendar.php:465
 msgid "Apr"
 msgstr "Apr"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:470
+#: ajax-event-calendar.php:467
 msgid "Jun"
 msgstr "Jun"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:471
+#: ajax-event-calendar.php:468
 msgid "Jul"
 msgstr "Jul"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:472
+#: ajax-event-calendar.php:469
 msgid "Aug"
 msgstr "Aug"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:473
+#: ajax-event-calendar.php:470
 msgid "Sep"
 msgstr "Sep"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:474
+#: ajax-event-calendar.php:471
 msgid "Oct"
 msgstr "Okt"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:475
+#: ajax-event-calendar.php:472
 msgid "Nov"
 msgstr "Nov"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:476
+#: ajax-event-calendar.php:473
 msgid "Dec"
 msgstr "Dec"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:477
+#: ajax-event-calendar.php:474
 msgid "Sunday"
 msgstr "Söndag"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:478
+#: ajax-event-calendar.php:475
 msgid "Monday"
 msgstr "Måndag"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:479
+#: ajax-event-calendar.php:476
 msgid "Tuesday"
 msgstr "Tisdag"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:480
+#: ajax-event-calendar.php:477
 msgid "Wednesday"
 msgstr "Onsdag"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:481
+#: ajax-event-calendar.php:478
 msgid "Thursday"
 msgstr "Torsdag"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:482
+#: ajax-event-calendar.php:479
 msgid "Friday"
 msgstr "Fredag"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:483
+#: ajax-event-calendar.php:480
 msgid "Saturday"
 msgstr "Lördag"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:484
+#: ajax-event-calendar.php:481
 msgid "Sun"
 msgstr "Sön"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:485
+#: ajax-event-calendar.php:482
 msgid "Mon"
 msgstr "Mån"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:486
+#: ajax-event-calendar.php:483
 msgid "Tue"
 msgstr "Tis"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:487
+#: ajax-event-calendar.php:484
 msgid "Wed"
 msgstr "Ons"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:488
+#: ajax-event-calendar.php:485
 msgid "Thu"
 msgstr "Tor"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:489
+#: ajax-event-calendar.php:486
 msgid "Fri"
 msgstr "Fre"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:490
+#: ajax-event-calendar.php:487
 msgid "Sat"
 msgstr "Lör"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:491
+#: ajax-event-calendar.php:488
 msgid "Close Event Form"
 msgstr "Stäng händelse"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:492
+#: ajax-event-calendar.php:489
 msgid "Loading Event Form..."
 msgstr "Laddar händelse..."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:493
-#: ajax-event-calendar.php:823
-#: ajax-event-calendar.php:835
+#: ajax-event-calendar.php:490
+#: ajax-event-calendar.php:829
+#: ajax-event-calendar.php:841
 #: inc/admin-event.php:284
 msgid "Update"
 msgstr "Uppdatera"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:494
-#: ajax-event-calendar.php:837
-#: inc/admin-event.php:283
+#: ajax-event-calendar.php:491
+#: ajax-event-calendar.php:843
+#: inc/admin-event.php:282
 msgid "Delete"
 msgstr "Radera"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:495
+#: ajax-event-calendar.php:492
 msgid "Category type"
 msgstr "Kategorityp"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:496
+#: ajax-event-calendar.php:493
 msgid "hide all notifications"
 msgstr "Dölj alla meddelanden"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:497
+#: ajax-event-calendar.php:494
 msgid "has been created."
 msgstr "har skapats."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:498
+#: ajax-event-calendar.php:495
 msgid "has been modified."
 msgstr "har ändrats."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:499
+#: ajax-event-calendar.php:496
 msgid "has been deleted."
 msgstr "har raderats."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:500
+#: ajax-event-calendar.php:497
 msgid "Add Event"
 msgstr "Lägg till händelse"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:501
+#: ajax-event-calendar.php:498
 msgid "Edit Event"
 msgstr "Redigera händelse"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:502
+#: ajax-event-calendar.php:499
 msgid "Delete this event?"
 msgstr "Radera denna händelse?"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:503
+#: ajax-event-calendar.php:500
 msgid "Loading Events..."
 msgstr "Laddar händelse ..."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:504
-#: ajax-event-calendar.php:821
+#: ajax-event-calendar.php:501
+#: ajax-event-calendar.php:827
 msgid "Category filter label"
 msgstr "Kategorifilter etikett"
 
-#: ajax-event-calendar.php:505
+#: ajax-event-calendar.php:502
 msgid "Repeats Every"
 msgstr ""
 
-#: ajax-event-calendar.php:506
+#: ajax-event-calendar.php:503
 msgid "Until"
-msgstr ""
+msgstr "Tills"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:507
+#: ajax-event-calendar.php:504
 msgid "Success!"
 msgstr "Det funkade!!!"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:508
+#: ajax-event-calendar.php:505
 msgid "Whoops!"
 msgstr "Hoppsan!!!"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:521
+#: ajax-event-calendar.php:518
 msgid "You cannot edit events created by other users."
 msgstr "Du kan inte redigera händelser som skapats av någon annan."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:522
+#: ajax-event-calendar.php:519
 msgid "You cannot create events in the past."
 msgstr "Du kan inte skapa händelser i det förflutna."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:523
+#: ajax-event-calendar.php:520
 msgid "You cannot create events more than a year in advance."
 msgstr "Du kan inte skapa händelser längre fram än ett år i förväg."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:524
+#: ajax-event-calendar.php:521
 msgid "You cannot resize expired events."
 msgstr "Du kan inte förlänga utgångna händelser."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:525
+#: ajax-event-calendar.php:522
 msgid "You cannot move events into the past."
 msgstr "Du kan inte flytta händelser till det förflutna."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:526
+#: ajax-event-calendar.php:523
 msgid "You cannot edit expired events."
 msgstr "Du kan inte redigera utgångna händelser."
 
-#: ajax-event-calendar.php:527
+#: ajax-event-calendar.php:524
 msgid "Invalid duration."
-msgstr ""
+msgstr "ogiltig tid"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:544
+#: ajax-event-calendar.php:541
 msgid "Category type cannot be a blank value."
 msgstr "Kategoritypen måste ha ett värde."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:545
+#: ajax-event-calendar.php:542
 msgid "Are you sure you want to delete this category type?"
 msgstr "Är du säker på att du vill radera denna kategorityp?"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:546
+#: ajax-event-calendar.php:543
 msgid "Several events are associated with this category. Click OK to reassign these events to the default category."
 msgstr "Flera händelser är förknippade med denna kategori. Klicka på OK för att tilldela dessa händelser till standardkategorin."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:547
+#: ajax-event-calendar.php:544
 msgid "Events have been reassigned to the default category."
 msgstr "Händelserna har flyttats till standardkategorin."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:623
-#: ajax-event-calendar.php:797
-#: ajax-event-calendar.php:809
-#: ajax-event-calendar.php:853
-#: ajax-event-calendar.php:881
+#: ajax-event-calendar.php:624
+#: ajax-event-calendar.php:803
+#: ajax-event-calendar.php:815
+#: ajax-event-calendar.php:859
+#: ajax-event-calendar.php:887
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Du har inte tillräcklig behörighet för att komma åt denna sida."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:629
+#: ajax-event-calendar.php:630
 #: inc/admin-event.php:297
 msgid "Ajax Event Calendar"
 msgstr "Ajax Event Calender"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:692
+#: ajax-event-calendar.php:698
 msgid "Add Events"
 msgstr "Lägg till händelser"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:700
-#: ajax-event-calendar.php:736
+#: ajax-event-calendar.php:706
+#: ajax-event-calendar.php:742
 msgid "Created By"
 msgstr "Skapad av"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:714
+#: ajax-event-calendar.php:720
 #: inc/widget-upcoming.php:75
 msgid "No upcoming events"
 msgstr "Inga kommande händelser"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:786
+#: ajax-event-calendar.php:792
 #: inc/widget-upcoming.php:115
 msgid "All"
 msgstr "Alla"
 
-#: ajax-event-calendar.php:812
+#: ajax-event-calendar.php:818
 msgid "To add a new category, enter a category label and select a background color."
-msgstr ""
+msgstr "För att lägga till en ny kategori. skriv en kategorietikett och välj bakgrundsfärg."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:817
+#: ajax-event-calendar.php:823
 #: inc/admin-event.php:286
 msgid "Add"
 msgstr "Lägg till"
 
-#: ajax-event-calendar.php:825
+#: ajax-event-calendar.php:831
 msgid "Category IDs are displayed in color bubbles at the beginning of each row."
-msgstr ""
+msgstr "Kategori-ID visas i färgbubblor i början på varje rad."
 
-#: ajax-event-calendar.php:826
+#: ajax-event-calendar.php:832
 msgid "To change category color, click the color swatch or edit the hex color value and click Update."
-msgstr ""
+msgstr "För att ändra kategorins färg klickar du på färgrutan eller redigerar hex-värdet avsluta med att klicka Uppdatera."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:842
-#, fuzzy
+#: ajax-event-calendar.php:848
 msgid "Manage Categories"
-msgstr "Kategorier"
+msgstr "Hantera kategorier"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:861
+#: ajax-event-calendar.php:867
 msgid "Event"
 msgid_plural "Events"
 msgstr[0] "Händelse"
 msgstr[1] "Händelser"
 
-#: ajax-event-calendar.php:864
+#: ajax-event-calendar.php:870
 msgid "NOTE: Each repeating event is counted as a single event."
-msgstr ""
+msgstr "OBS: varje repeterad händelse räknas som en enskild händelse."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:866
+#: ajax-event-calendar.php:872
 msgid "No events this month."
 msgstr "Inga händelser denna månad."
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:869
-#, fuzzy
+#: ajax-event-calendar.php:875
 msgid "Number of events scheduled for the current month, by category:"
-msgstr "Antal planerade händelser för aktuell månad, sorterad i typordning:"
-
-#: ajax-event-calendar.php:1069
-msgid "Read about installation and options"
-msgstr ""
-
-#: ajax-event-calendar.php:1070
-msgid "Review the FAQ"
-msgstr ""
-
-#: ajax-event-calendar.php:1071
-msgid "Ask for help in the WordPress forum"
-msgstr ""
-
-#: ajax-event-calendar.php:1072
-msgid "Use the issue tracker"
-msgstr ""
-
-#: ajax-event-calendar.php:1073
-msgid "to track and report bugs, feature requests, and to submit"
-msgstr ""
-
-#: ajax-event-calendar.php:1074
-msgid "poEdit"
-msgstr ""
+msgstr "Antal planerade händelser för aktuell månad, sorterad i kategoriordning:"
 
 #: ajax-event-calendar.php:1075
-msgid "translation files"
-msgstr ""
+msgid "Read about installation and options"
+msgstr "Läs om installation och alternativ"
+
+#: ajax-event-calendar.php:1076
+msgid "Review the FAQ"
+msgstr "Granska FAQ"
 
 #: ajax-event-calendar.php:1077
-msgid "Give the plugin a good rating"
-msgstr ""
+msgid "Ask for help in the WordPress forum"
+msgstr "Fråga efter hjälp i WordPress forum"
 
 #: ajax-event-calendar.php:1078
-msgid "Make a donation in recognition of countless hours spent making this plugin"
-msgstr ""
+msgid "Use the issue tracker"
+msgstr "Använd problemsökaren"
+
+#: ajax-event-calendar.php:1079
+msgid "to track and report bugs, feature requests, and to submit"
+msgstr "att spåra och rapportera buggar, önskemål om funktioner och för att bifoga"
+
+#: ajax-event-calendar.php:1080
+msgid "poEdit"
+msgstr "poEdit"
 
 #: ajax-event-calendar.php:1081
-msgid "Create a blog review or an instructional video about the Calendar and share it"
-msgstr ""
+msgid "translation files"
+msgstr "översättningsfiler"
 
-#: ajax-event-calendar.php:1086
-msgid "Support"
-msgstr ""
+#: ajax-event-calendar.php:1083
+msgid "Give the plugin a good rating"
+msgstr "Ge pluginet ett bra betyg"
+
+#: ajax-event-calendar.php:1084
+msgid "Make a donation in recognition of countless hours spent making this plugin"
+msgstr "Donera gärna en slant som ersättning för otaliga timmars arbete med detta plugin"
 
 #: ajax-event-calendar.php:1087
-msgid "Share the Love"
-msgstr ""
+msgid "Create a blog review or an instructional video about the Calendar and share it"
+msgstr "Skapa en blogg eller en instruktionsvideo om \"Calendar\" och dela den"
 
-#: ajax-event-calendar.php:1088
+#: ajax-event-calendar.php:1092
+msgid "Support"
+msgstr "Support"
+
+#: ajax-event-calendar.php:1093
+msgid "Share the Love"
+msgstr "Dela kärleken"
+
+#: ajax-event-calendar.php:1094
 msgid "Spread the Word"
-msgstr ""
+msgstr "Sprid ordet"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:1703
+#: ajax-event-calendar.php:1717
 msgid "Events"
 msgstr "Händelser"
 
 # @ ajax-event-calendar
-#: ajax-event-calendar.php:1717
+#: ajax-event-calendar.php:1731
 msgid "Settings"
 msgstr "Inställningar"
 
@@ -598,144 +595,141 @@ msgstr "Till"
 
 #: inc/admin-event.php:115
 msgid "Repeats"
-msgstr ""
+msgstr "Upprepningar"
 
 # @ ajax-event-calendar
 #: inc/admin-event.php:120
-#, fuzzy
 msgid "Every"
-msgstr "Händelse"
+msgstr "Varje"
 
 # @ ajax-event-calendar
 #: inc/admin-event.php:121
-#, fuzzy
 msgid "Never"
-msgstr "November"
+msgstr "Aldrig"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:137
+msgid "Day(s)"
+msgstr "Dag(ar)"
 
 # @ ajax-event-calendar
 #: inc/admin-event.php:138
-#, fuzzy
-msgid "Day(s)"
-msgstr "Dagar"
+msgid "Week(s)"
+msgstr "Vecka(or)"
 
 # @ ajax-event-calendar
 #: inc/admin-event.php:139
-#, fuzzy
-msgid "Week(s)"
-msgstr "Veckor"
-
-# @ ajax-event-calendar
-#: inc/admin-event.php:140
-#, fuzzy
 msgid "Month(s)"
-msgstr "Månader"
+msgstr "Månad(er)"
 
-#: inc/admin-event.php:141
+#: inc/admin-event.php:140
 msgid "Year(s)"
-msgstr ""
+msgstr "År"
 
 # @ ajax-event-calendar
-#: inc/admin-event.php:149
-#, fuzzy
+#: inc/admin-event.php:148
 msgid "Until this date"
-msgstr "Vis denne Kategori"
+msgstr "Fram till detta datum"
 
 # @ ajax-event-calendar
-#: inc/admin-event.php:155
+#: inc/admin-event.php:154
 msgid "Title"
 msgstr "Titel"
 
 # @ ajax-event-calendar
-#: inc/admin-event.php:159
-#, fuzzy
+#: inc/admin-event.php:158
 msgid "Category"
-msgstr "Kategorier"
+msgstr "Kategori"
 
 # @ ajax-event-calendar
-#: inc/admin-event.php:172
+#: inc/admin-event.php:171
 #: inc/admin-options.php:39
 msgid "Venue"
 msgstr "Plats"
 
 # @ ajax-event-calendar
-#: inc/admin-event.php:180
+#: inc/admin-event.php:179
 msgid "Address"
 msgstr "Adress"
 
 # @ ajax-event-calendar
-#: inc/admin-event.php:184
+#: inc/admin-event.php:183
 #: inc/admin-options.php:40
 msgid "Neighborhood or Street Address"
 msgstr "Gata"
 
 # @ ajax-event-calendar
-#: inc/admin-event.php:192
+#: inc/admin-event.php:191
 #: inc/admin-options.php:2
 #: inc/admin-options.php:41
 msgid "City"
 msgstr "Stad"
 
-#: inc/admin-event.php:200
+#: inc/admin-event.php:199
 #: inc/admin-options.php:42
 msgid "State/Province"
-msgstr ""
+msgstr "Stat / Provins"
 
 # @ ajax-event-calendar
-#: inc/admin-event.php:208
+#: inc/admin-event.php:207
 #: inc/admin-options.php:4
 #: inc/admin-options.php:43
 msgid "Postal Code"
 msgstr "Postnummer"
 
-#: inc/admin-event.php:216
+#: inc/admin-event.php:215
 #: inc/admin-options.php:44
 msgid "Country"
-msgstr ""
+msgstr "Land"
 
 # @ ajax-event-calendar
-#: inc/admin-event.php:227
+#: inc/admin-event.php:226
 msgid "Website Link"
 msgstr "Websidelänk"
 
 # @ ajax-event-calendar
-#: inc/admin-event.php:235
+#: inc/admin-event.php:234
 #: inc/admin-options.php:46
 msgid "Description"
 msgstr "Beskrivning"
 
 # @ ajax-event-calendar
-#: inc/admin-event.php:243
+#: inc/admin-event.php:242
 msgid "Contact Person"
 msgstr "Kontaktperson"
 
 # @ ajax-event-calendar
-#: inc/admin-event.php:247
+#: inc/admin-event.php:246
 msgid "Name"
 msgstr "Namn"
 
 # @ ajax-event-calendar
-#: inc/admin-event.php:255
+#: inc/admin-event.php:254
 msgid "Phone or Email Address"
 msgstr "Telefon eller e-mailadress"
 
 # @ ajax-event-calendar
-#: inc/admin-event.php:268
+#: inc/admin-event.php:267
 #: inc/admin-options.php:49
 #: inc/show-event.php:97
 msgid "This event is accessible to people with disabilities."
 msgstr "Denna händelse är tillgänglig för personer med funktionshinder."
 
 # @ ajax-event-calendar
-#: inc/admin-event.php:277
+#: inc/admin-event.php:276
 #: inc/admin-options.php:50
 #: inc/show-event.php:104
 msgid "Please register with the contact person for this event."
 msgstr "Anmäl dig till kontaktpersonen för denna händelse."
 
 # @ ajax-event-calendar
-#: inc/admin-event.php:281
+#: inc/admin-event.php:280
 msgid "Cancel"
 msgstr "Avbryt"
+
+#: inc/admin-event.php:283
+msgid "Copy"
+msgstr ""
 
 # @ ajax-event-calendar
 #: inc/admin-event.php:296
@@ -769,17 +763,16 @@ msgstr "Ajax Calendar inställningar"
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:16
-#, fuzzy
-msgid "Settings updated"
-msgstr "Inställningar"
+msgid "Settings Updated"
+msgstr "Inställningar uppdaterade"
 
 #: inc/admin-options.php:26
 msgid "Date Format, Time Format, and Week Start"
-msgstr ""
+msgstr "Datumformat, tidsformat och veckostart"
 
 #: inc/admin-options.php:27
 msgid "settings are located here"
-msgstr ""
+msgstr "inställningar finns här"
 
 #: inc/admin-options.php:28
 msgid "Display calendar weekends."
@@ -787,34 +780,30 @@ msgstr "Visa helger i kalendern"
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:29
-#, fuzzy
 msgid "Allow adding or editing of expired events."
-msgstr "Hindra användare från att lägga till eller redigera utgångna händelser."
+msgstr "Tillåt användare att lägga till eller redigera utgångna händelser."
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:30
-#, fuzzy
 msgid "Display the Add Events link on the front-end calendar."
-msgstr "Visa {Lägg till händelser} -länken ovanför frontend-kalendern."
+msgstr "Visa Lägg till händelser -länken ovanför frontend-kalendern."
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:31
-#, fuzzy
 msgid "Display the View Map link on event details."
-msgstr "Visa länken {Visa karta} i händelsedetaljer."
+msgstr "Visa länken Visa karta i händelsedetaljer."
 
 #: inc/admin-options.php:32
-#, fuzzy
 msgid "Convert description field URLs into  clickable links."
-msgstr "Webbadresser som anges i Beskrivningsfältet omvandlas till klickbara länkar."
+msgstr "Omvandla webbadresser som anges i beskrivningsfältet till klickbara länkar."
 
 #: inc/admin-options.php:33
 msgid "Open Event Detail links in a new browser window."
-msgstr ""
+msgstr "Öppna händelsens länkar i ett nytt fönster."
 
 #: inc/admin-options.php:34
 msgid "Navigate administrative calendar with mousewheel."
-msgstr ""
+msgstr "Navigera den administrativa kalendern med scrollhjulet."
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:35
@@ -823,7 +812,7 @@ msgstr "Adressformat"
 
 #: inc/admin-options.php:36
 msgid "Event timepicker interval"
-msgstr ""
+msgstr "Tidsinterval för händelse"
 
 #: inc/admin-options.php:38
 msgid "Hide, display or require form fields.  Hidden fields do not appear in the event form."
@@ -847,13 +836,12 @@ msgstr "Kontakt information"
 
 #: inc/admin-options.php:52
 msgid "Modify calendar and form options then click Save Changes below."
-msgstr ""
+msgstr "Ändra kalender och inställningar, klicka sen på Spara ändringar nedan."
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:53
-#, fuzzy
 msgid "Reset all settings on Save."
-msgstr "Återställ plugin-inställningar när du klickar Spara"
+msgstr "Återställ alla inställningar när du klickar Spara"
 
 # @ ajax-event-calendar
 #: inc/admin-options.php:54

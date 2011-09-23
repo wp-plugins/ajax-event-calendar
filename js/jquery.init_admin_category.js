@@ -58,7 +58,7 @@ jQuery(document).ready(function($) {
 			var label = $.trim($('#filter_label').val());
 			 $.post(ajaxurl, { action: 'update_filter_label', 'label': label }, function(data){
 				if (data) {
-					$.jGrowl(custom.category_filter_label + ' ' + label + ' ' + custom.has_been_modified, { header: custom.success });
+					$.jGrowl(custom.category_filter_label + ' <strong>' + label + '</strong> ' + custom.has_been_modified, { header: custom.success });
 				}
 			});
 			return false;

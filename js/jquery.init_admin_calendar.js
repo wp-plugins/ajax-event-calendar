@@ -1,16 +1,16 @@
 /**
  * Handle: init_admin_calendar
- * Version: 1.0b1
+ * Version: 1.0
  * Deps: jQuery
  * Enqueue: true
  */
 
 jQuery(document).ready(function($){
-	
+	/* beta 1.0 patch 5 */
 	var aec_init = function(){
 		$.jGrowl.defaults.closerTemplate = '<div>' + custom.hide_all_notifications + '</div>';
 		$.jGrowl.defaults.position = (custom.is_rtl=='1') ? 'bottom-left' : 'bottom-right';
-		
+
 		isFilter = ($('#aec-filter li a').length > 0);
 		calendarInit();
 		eventHandlers();
@@ -29,16 +29,18 @@ jQuery(document).ready(function($){
 
 		// quick navigation
 		if ($('#aec-quickselect').length == 0) {
-			$('.fc-button-prev', '.fc-header').after('<div id="aec-quickselect"></div>');			
+			$('.fc-button-prev', '.fc-header').after('<div id="aec-quickselect"></div>');
 		}
 		var quickSelect = $('#aec-quickselect').datepicker({
 			changeMonth: true,
 			changeYear: true,
 			onChangeMonthYear: function(year, month, inst){
-				calendar.fullCalendar('gotoDate', year, month-1);
+				if(inst.selectedMonth != inst.currentMonth || inst.selectedYear != inst.currentYear){
+					calendar.fullCalendar('gotoDate', year, month-1);
+				}
 			}
 		});
-		$('.fc-button-prev, .fc-button-next, .fc-button-today', '.fc-header').click(function(){
+		$('.fc-button-prev, .fc-button-next, .fc-button-today', '.fc-header').click(function(e){
 			var date = calendar.fullCalendar('getDate');
 			quickSelect.datepicker("setDate", date);
 		});
@@ -74,25 +76,21 @@ jQuery(document).ready(function($){
 			}, false);
 		});
 		return data[0].title;
-	},		
+	},
 	updateEvent = function(e, data){
-		if(data.length > 1){
-			calendar.fullCalendar("removeEvents", data[0].id);
-			return renderEvent(data);
-		} else {
-			var data 	= data[0],
-				e 		= calendar.fullCalendar('clientEvents', data.id)[0];
-				
-			e.title 	= data.title;
-			e.allDay	= data.allDay;
-			e.start 	= data.start;
-			e.end 		= data.end;
-			e.className = data.className;
-			e.view_start = toUnixDate(e.viewStart);
-			e.view_end	= toUnixDate(e.viewEnd);
-			calendar.fullCalendar('updateEvent', e);
-			return e.title;
-		}
+		calendar.fullCalendar("removeEvents", data[0].id);
+		return renderEvent(data);
+	},
+	// dragged/resized events
+	moveEvent = function(e, theaction){
+		$.post(ajaxurl,{ action: 'move_event', 'event': e }, function(data){
+			if (data){
+				data.start = toUnixDate(e.start);
+				data.end = toUnixDate(e.end);
+				updateEvent(e, data);
+				$.jGrowl('<strong>' + e.title + '</strong> ' + custom.has_been_modified,{ header: custom.success });
+			}
+		});
 	},
 	checkAllDay = function(){
 		var	allDay 	= ($('#allDay').attr('checked')) ? 1:0;
@@ -154,14 +152,14 @@ jQuery(document).ready(function($){
 	},
 	validateForm = function(err){
 		var err = false;
-		 
+
 		// convert required fields string into array
 		var required = custom.required_fields.split(",");
-		
+
 		// no required fields
 		if(!required.length)
 			return;
-		
+
 		// process required fields
 		$.each(required, function(index, value){
 			$('#' + value).parent().find('label').addClass('required');
@@ -172,7 +170,7 @@ jQuery(document).ready(function($){
 				$('#' + this).removeClass('aec-error');
 			}
 		});
-		
+
 		if(err){
 			$('.button-primary').attr('disabled', 'disabled');
 			return false;
@@ -180,7 +178,7 @@ jQuery(document).ready(function($){
 		$('.button-primary').removeAttr('disabled');
 		return true;
 	},
-	// Convert dates for duration processing
+	// convert dates for duration processing
 	convertDate = function(datetime){
 		var dt 		= datetime.split(' ');
 			date 	= dt[0];
@@ -188,14 +186,14 @@ jQuery(document).ready(function($){
 		if(!custom.is24HrTime)
 			ampm	= dt[2];
 
-		// US Date Format
+		// US date format
 		if(date.indexOf('/') >= 0){
 			var dateparts	= date.split('/');
 			var month 		= dateparts[0];
 			var day 		= dateparts[1];
 		}
-		
-		// European Date Format
+
+		// European date format
 		if(date.indexOf('-') >= 0){
 			var dateparts	= date.split('-');
 			var day 		= dateparts[0];
@@ -207,12 +205,12 @@ jQuery(document).ready(function($){
 			hours		= time.substr(0,2);
 			minutes		= time.substr(3,2);
 			if(!custom.is24HrTime){
-				if(hours == 12) 
+				if(hours == 12)
 					hours = 0;
-				if(ampm == 'PM') 
+				if(ampm == 'PM')
 					hours = 12 + parseInt(hours, 10);
 			}
-			if(hours == 24) 
+			if(hours == 24)
 				hours = 0;
 			return month + '/' + day + '/' + year + ' ' + hours + ':' + minutes + ':' + '00';
 		}
@@ -231,11 +229,10 @@ jQuery(document).ready(function($){
 		diff.hours = Math.floor(mills/3600000);
 		mills -= diff.hours*3600000;
 		diff.minutes = Math.floor(mills/60000);
-		//mills -= diff.minutes*60000;
 
 		// format output
 		var out = new Array();
-		if(allDay) 
+		if(allDay)
 			diff.days += 1;
 		_jn(out, diff.weeks, custom.week, custom.weeks);
 		_jn(out, diff.days, custom.day, custom.days);
@@ -246,8 +243,7 @@ jQuery(document).ready(function($){
 		if(custom.is_rtl)
 			out.reverse();
 		return out.join(', ');
-	},
-	// javascript _n method
+	},// javascript _n method
 	_jn = function(arr, quantity, singular, plural){
 		if(quantity > 0){
 			var out = new Array();
@@ -260,6 +256,13 @@ jQuery(document).ready(function($){
 		}
 		return;
 	},
+	roundUp = function(date){
+		var inc = 1800000; // 30 minutes
+		return new Date(inc * Math.ceil(date / inc));
+	},
+	toUnixDate = function(date){
+		return $.fullCalendar.formatDate(date, 'yyyy-MM-dd HH:mm:ss'); // unix datetime
+	},
 	calendarInit = function(){
 		var d 			= new Date(),
 			now 		= d.getTime(),
@@ -268,7 +271,7 @@ jQuery(document).ready(function($){
 		calendar 	= $('#aec-calendar').fullCalendar({
 			isRTL: (custom.is_rtl=='1') ? true : false,
 			monthNames: [custom.january, custom.february, custom.march, custom.april, custom.may, custom.june, custom.july,
-						 custom.august, custom.september, custom.october, custom.november, custom.december], 
+						 custom.august, custom.september, custom.october, custom.november, custom.december],
 			monthNamesShort: [custom.jan, custom.feb, custom.mar, custom.apr, custom.may_short, custom.jun, custom.jul, custom.aug,
 							custom.sep, custom.oct, custom.nov, custom.dec],
 			dayNames: [custom.sunday, custom.monday, custom.tuesday, custom.wednesday, custom.thursday, custom.friday, custom.saturday],
@@ -321,15 +324,15 @@ jQuery(document).ready(function($){
 			selectable: custom.editable,
 			selectHelper: custom.editable,
 			dragOpacity: 0.3,
+			lazyFetching: false,
 			loading: function(b){
 				if (b) $.jGrowl(custom.loading, {sticky:true});
 				else $('#jGrowl').jGrowl('close');
-				//if (b) $.jGrowl(custom.loading, {life: 500});
-				//else $.jGrowl('loading complete!', {life: 500});
 			},
-			eventMouseover: function(e, js, view){
-
-			},
+			//eventMouseover: function(e, js, view){
+			//},
+			//viewDisplay: function(view){
+			//},
 			eventClick: function(e, js, view){
 				if ($(this).hasClass('fc-event-disabled')){
 					$.jGrowl(custom.error_no_rights, {header:custom.whoops});
@@ -340,134 +343,78 @@ jQuery(document).ready(function($){
 					$.jGrowl(custom.error_past_edit, {header:custom.whoops});
 					return;
 				}
-				e.viewStart = view.visStart;
-				e.viewEnd = view.visEnd;
+				e.viewStart = toUnixDate(view.visStart);
+				e.viewEnd 	= toUnixDate(view.visEnd);
 				eventDialog(e, custom.edit_event);
 			},
 			select: function(start, end, allDay, js, view){
-				if (custom.limit == true){					
-					if (start < today || (start < now && view.name == 'agendaWeek')){
+				if(custom.limit == true){
+					if(start < today || (start < now && view.name != 'month')){
 						$.jGrowl(custom.error_past_create, { header: custom.whoops });
 						return false;
-					// create an event today, starting up to 30 minutes into the future, and ending two hours later
+					// create event that starts as much as 30 minutes from now, and ends two hours later
 					} else if (start < now){
 						start 	= roundUp(now);
 						end 	= roundUp(now + twoHours);
 						allDay 	= false;
 					}
 				}
-				start 	= toUnixDate(start);
-				end 	= toUnixDate(end);
-				allDay 	= (allDay) ? 1:0;
-				vStart	= toUnixDate(view.visStart);
-				vEnd 	= toUnixDate(view.visEnd);
-				e 		= {'start': start, 'end': end, 'allDay': allDay, 'view_end': vEnd, 'view_start': vStart };  // object for fullcalendar/php processing
+				var e 		= new Object;
+				e.start 	= toUnixDate(start);
+				e.end 		= toUnixDate(end);
+				e.allDay 	= (allDay) ? 1:0;
+				e.viewStart = toUnixDate(view.visStart);
+				e.viewEnd	= toUnixDate(view.visEnd);
 				eventDialog(e, custom.add_event);
 			},
 			eventResize: function(e, dayDelta, minuteDelta, revertFunc, js, ui, view){
-				eventtime = (e.end == null) ? e.start : e.end;
-				if (custom.limit == true && eventtime < now){
+				eventtime 		= (e.end == null) ? e.start : e.end;
+				if(custom.limit == true && eventtime < now){
 					$.jGrowl(custom.error_past_resize, { header: custom.whoops });
 					revertFunc();
 					return false;
 				}
-				e.end = (e.end == null) ? e.start : e.end;
-				e.dayDelta = dayDelta;
-				e.minuteDelta = minuteDelta;
-				e.viewStart = view.visStart;
-				e.viewEnd = view.visEnd;
-				e.resize = true;
+				e.end			= (e.end == null) ? e.start : e.end;
+				e.resize 		= 1;
+				e.dayDelta 		= dayDelta;
+				e.minuteDelta	= minuteDelta;
+				e.view_start 	= toUnixDate(view.visStart);
+				e.view_end 		= toUnixDate(view.visEnd);
 				moveEvent(e);
 			},
-			/* TODO: copy event
-			eventDragStart: function(e, js, ui, view){
-				if (js.ctrlKey) {
-					$(this).draggable('option','helper','clone');
-					//$(this).clone(true).insertBefore($(this));
-				}
-			},
-			*/
 			eventDrop: function(e, dayDelta, minuteDelta, allDay, revertFunc, js, ui, view){
-				if (custom.limit == true && e.start < now){
+				if(custom.limit == true && e.start < now){
 					$.jGrowl(custom.error_past_move, { header: custom.whoops });
 					revertFunc();
 					return;
 				}
-				/* TODO: copy event
-				if (js.ctrlKey) {
-					copyEvent(e);
-				} else {
-				*/
-					e.end = (e.end == null) ? e.start : e.end;
-					e.dayDelta = dayDelta;
-					e.minuteDelta = minuteDelta;
-					e.viewStart = view.visStart;
-					e.viewEnd = view.visEnd;
-					e.resize = false;
-					moveEvent(e);
-				//}
+				e.allDay 		= (allDay) ? 1:0;
+				e.resize 		= '';
+				e.dayDelta 		= dayDelta;
+				e.minuteDelta 	= minuteDelta;
+				e.view_start 	= toUnixDate(view.visStart);
+				e.view_end 		= toUnixDate(view.visEnd);
+				moveEvent(e);
 			}
 		});
-		// filter: activate all
+		// initialize filter: activate all
 		if(isFilter){
 			filter($('#aec-filter .all'));
 		}
 	},
-	roundUp = function(date){
-		var inc = 1800000; // 30 minutes
-		return new Date(inc * Math.ceil(date / inc));
-	},
-	toUnixDate = function(date){
-		return $.fullCalendar.formatDate(date, 'yyyy-MM-dd HH:mm:ss'); // unix datetime
-	},
-	/* TODO: copy event
-	copyEvent function(e){
-		var selectedIndex = parseInt(e._id.replace(/_fc/,'')-1);
-		var clone = {'id': e.id, 'start': toUnixDate(e.start), 'end': toUnixDate(e.end)};
-		$.post(ajaxurl,{ action: 'copy_event', 'clone': clone }, function(data){
-			if (data){
-				$.jGrowl('<strong>' + e.title + '</strong> ' + custom.copy_has_been_created,{ header: custom.success });
-				var newEvent = $.extend({}, calendar.fullCalendar("clientEvents")[ selectedIndex ] );
-				newEvent.source = null;
-				newEvent._id = "_fc" + parseInt(calendar.fullCalendar("clientEvents").length+1);
-				newEvent.id = data.id;
-				newEvent.start = new Date(e.start);
-				newEvent.allDay = e.allDay;
-				newEvent.title = e.title;
-				newEvent.className = e.className;
-				//newEvent.editable = data.editable;
-				//calendar.fullCalendar("renderEvent", newEvent);
-			}
-		});
-	},
-	*/
-	// update dragged/resized event
-	moveEvent = function(e, theaction){
-		//if an event with a null end date/time is moved, dynamically create an end by adding two hours to the new start
-		e.start 	 = toUnixDate(e.start);
-		e.end		 = (e.end == null) ? new Date(Date.parse(e.start) + twoHours) : e.end,
-		e.end	 	 = toUnixDate(e.end),
-		e.view_start = toUnixDate(e.viewStart),
-		e.view_end	 = toUnixDate(e.viewEnd);
-		$.post(ajaxurl,{ action: 'move_event', 'event': e }, function(data){
-			if (data){
-				updateEvent(e, data);
-				$.jGrowl('<strong>' + e.title + '</strong> ' + custom.has_been_modified,{ header: custom.success });
-			}
-		});
-	},
 	eventDialog = function(e, actionTitle){
 		var ev = e;
-		// check for modal html structure, if not present add it to the DOM
+		// check for modal, if not present add it to the DOM
 		if ($('#aec-modal').length == 0) {
 			var modal = '<div id="aec-modal"><div class="aec-title"></div><div class="aec-content"></div></div>';
 			$('body').prepend(modal);
 		}
-			
+
 		// adjusts modal top for WordPress admin bar
 		var wpadminbar = $('#wpadminbar');
 		var wpadminbar_height = (wpadminbar.length > 0) ? wpadminbar.height() : '0';
-			
+
+		// modal window controls
 		$('#aec-modal').modal({
 			overlayId: 'aec-modal-overlay',
 			containerId: 'aec-modal-container',
@@ -493,9 +440,9 @@ jQuery(document).ready(function($){
 								closebtn.show();
 								content.show();
 
-								// execute modal window event handlers					
+								// execute modal window event handlers
 								if ($('#start_time').length > 0) {
-									var times = $('#start_time, #end_time').timePicker({ 
+									var times = $('#start_time, #end_time').timePicker({
 										step: parseInt(custom.step_interval, 10),
 										show24Hours: custom.is24HrTime,
 										separator: ':'
@@ -503,13 +450,13 @@ jQuery(document).ready(function($){
 
 									// toggle limit
 									if (custom.limit == true) $.datepicker.setDefaults({'minDate':'0'});
-									
+
 									// toggle weekends
 									if (custom.show_weekends == false) $.datepicker.setDefaults({'beforeShowDay':$.datepicker.noWeekends});
-									
+
 									// localize datepicker
 									$.datepicker.setDefaults($.datepicker.regional[custom.locale]);
-									
+
 									var dates = $('#start_date, #end_date').datepicker({
 										dateFormat: custom.datepicker_format,
 										firstDay: custom.start_of_week,
@@ -521,7 +468,7 @@ jQuery(document).ready(function($){
 												instance 	= $(this).data('datepicker'),
 												repeat		= repeat_end.datepicker('getDate'),
 												end_date	= $('#end_date').datepicker('getDate'),
-												date 		= $.datepicker.parseDate(instance.settings.dateFormat || 
+												date 		= $.datepicker.parseDate(instance.settings.dateFormat ||
 															  $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
 											dates.not(this).datepicker('option', option, date);
 											if(repeat < end_date){
@@ -546,27 +493,27 @@ jQuery(document).ready(function($){
 											repeat_end.datepicker('option', {minDate: min});
 										}
 									});
-									
+
 									validateForm();
 									checkRepeat();
 									checkDuration();
-									
+
 									$('#allDay').change(function(){
 										checkAllDay();
 									});
-									
+
 									$('#repeat_freq').change(function(){
 										checkRepeat();
 									});
-									
+
 									$('#start_date, #end_date, #start_time, #end_time, #allDay').change(function(){
 										checkDuration();
 									});
-									
+
 									$('.required').parent().find('input, textarea').keyup(function(){
 										validateForm();
 									});
-									
+
 									$('#cancel_event').click(function(e){
 										e.preventDefault();
 										$('.time-picker').remove();
@@ -576,11 +523,10 @@ jQuery(document).ready(function($){
 									$('#add_event').click(function(e){
 										e.preventDefault();
 										if (!validateForm()) return;
-										
-										var viewparams = '&view_start=' + encodeURIComponent(ev.view_start) + '&view_end=' + encodeURIComponent(ev.view_end);
-										
+
+										var viewparams = '&view_start=' + encodeURIComponent(ev.viewStart) +
+														 '&view_end=' + encodeURIComponent(ev.viewEnd);
 										var formfields = $('#event_form').serialize() + viewparams;
-																				
 										$.post(ajaxurl, { action: 'add_event', 'event': formfields }, function(data){
 											if (data) {
 												title = renderEvent(data);
@@ -590,11 +536,29 @@ jQuery(document).ready(function($){
 										$('.time-picker').remove();
 										$.modal.close();
 									});
-
-									$('#update_event').click(function(e) {										
+									
+									$('#copy_event').click(function(e){
 										e.preventDefault();
 										if (!validateForm()) return;
-										var viewparams = '&view_start=' + encodeURIComponent(toUnixDate(ev.viewStart)) + '&view_end=' + encodeURIComponent(toUnixDate(ev.viewEnd));
+
+										var viewparams = '&view_start=' + encodeURIComponent(ev.viewStart) +
+														 '&view_end=' + encodeURIComponent(ev.viewEnd);
+										var formfields = $('#event_form').serialize() + viewparams;
+										$.post(ajaxurl, { action: 'copy_event', 'event': formfields }, function(data){
+											if (data) {
+												title = renderEvent(data);
+												$.jGrowl('<strong>' + title + '</strong> ' + custom.has_been_created, { header: custom.success });
+											}
+										}, 'json');
+										$('.time-picker').remove();
+										$.modal.close();
+									});
+
+									$('#update_event').click(function(e) {
+										e.preventDefault();
+										if (!validateForm()) return;
+										var viewparams = '&view_start=' + encodeURIComponent(ev.viewStart) +
+														 '&view_end=' + encodeURIComponent(ev.viewEnd);
 										var formfields = $('#event_form').serialize() + viewparams;
 
 										$.post(ajaxurl, { action: 'update_event', 'event': formfields }, function(data){
@@ -638,6 +602,6 @@ jQuery(document).ready(function($){
 			}
 		});
 	};
-	
+
 	aec_init();
 });
