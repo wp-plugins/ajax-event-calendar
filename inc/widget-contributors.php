@@ -3,20 +3,20 @@
  * Contributor List Widget Class
  */
 
-class aec_contributor_list extends WP_Widget{
+class aec_contributor_list extends WP_Widget {
 
-	function aec_contributor_list(){
+	function aec_contributor_list () {
 		$widget_ops = array('description' => __('A list of calendar contributors linked to their organization websites', AEC_NAME));
 		parent::WP_Widget(false, __('AEC Contributors', AEC_NAME), $widget_ops);
 	}
 	
-	function widget($args, $instance){
+	function widget ($args, $instance) {
 		extract($args);
 		$contributors = $this->db_query_users_by_role('calendar_contributor');
 		echo $before_widget;
 		$conts = sizeof($contributors);
 		echo $before_title . sprintf(_n('(%d) Contributor','(%d) Contributors', $conts, AEC_NAME), $conts) . $after_title;
-		if ($contributors){
+		if ($contributors) {
 			echo '<ul>';
 			foreach ($contributors as $contributor){
 				$user = get_userdata($contributor);
@@ -29,9 +29,9 @@ class aec_contributor_list extends WP_Widget{
 		echo $after_widget;
 	}
 
-	function db_query_users_by_role($roles){
+	function db_query_users_by_role ($roles) {
 		global $wpdb;
-		if(!is_array($roles)){
+		if (!is_array($roles)) {
 			$roles = explode(",", $roles);
 			array_walk($roles, 'trim');
 		}
@@ -43,9 +43,9 @@ class aec_contributor_list extends WP_Widget{
 			AND		(
 		';
 		$i = 1;
-		foreach($roles as $role){
+		foreach ($roles as $role) {
 			$sql .= ' ' . $wpdb->usermeta . '.meta_value	LIKE	\'%"' . $role . '"%\' ';
-			if($i < count($roles)){
+			if ($i < count($roles)) {
 				$sql .= ' OR ';
 			}
 			$i++;
@@ -58,7 +58,7 @@ class aec_contributor_list extends WP_Widget{
 
 	
 	/** @see WP_Widget::form */
-	function form(){				
+	function form () {				
 		_e('No options available.', AEC_NAME);
 	}
 }

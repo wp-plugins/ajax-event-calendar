@@ -1,8 +1,8 @@
 <?php
 	$aec_options = get_option('aec_options');
-	if(isset($_POST['event'])){
+	if (isset($_POST['event'])) {
 		// edit existing event
-		if(isset($_POST['event']['id'])){
+		if (isset($_POST['event']['id'])) {
 			// populate form with content from database
 			$event 					= $this->db_query_event($_POST['event']['id']);
 			$event->title 			= $this->render_i18n_data($event->title);
@@ -27,7 +27,7 @@
 			$event->title 			= '';
 			$event->start 			= $_POST['event']['start'];
 			$event->end 			= $_POST['event']['end'];
-			$event->allDay 			= $_POST['event']['allDay'];			
+			$event->allDay 			= $_POST['event']['allDay'];
 			$event->repeat_freq		= 0;
 			$event->repeat_int		= 0;
 			$event->repeat_end		= $_POST['event']['end'];
@@ -45,7 +45,7 @@
 			$event->access			= 0;
 			$event->rsvp			= 0;
 		}
-		
+
 		// split database formatted datetime value into display formatted date and time values
 		list($event->start_date, $event->start_time) = $this->split_datetime($event->start);
 		list($event->end_date, $event->end_time) = $this->split_datetime($event->end);
@@ -120,14 +120,14 @@
 						$every = __('Every', AEC_NAME);
 						$repeat_options = array(__('Never', AEC_NAME), $every);
 						$frequency = 2;
-						while($frequency < 31){
+						while ($frequency < 31) {
 							array_push($repeat_options, "{$every} $frequency");
 							$frequency++;
 						}
-						foreach($repeat_options as $option => $value){
+						foreach ($repeat_options as $option => $value) {
 							$selected = ($event->repeat_freq == $option) ? ' selected="selected"' : '';
 							echo "<option value='{$option}'{$selected}>{$value}</option>\n";
-						}						
+						}
 					?>
 					</select>
 				</li>
@@ -138,10 +138,10 @@
 												__('Week(s)', AEC_NAME),
 												__('Month(s)', AEC_NAME),
 												__('Year(s)', AEC_NAME));
-						foreach($repeat_options as $option => $value){
+						foreach ($repeat_options as $option => $value) {
 							$selected = ($event->repeat_int == $option) ? ' selected="selected"' : '';
 							echo "<option value='{$option}'{$selected}>{$value}</option>\n";
-						}						
+						}
 					?>
 					</select>
 				</li>
@@ -159,57 +159,57 @@
 			<select class="wide" name="category_id" id="category_id" >
 		<?php
 			$categories = $this->db_query_categories();
-			foreach($categories as $category){
+			foreach ($categories as $category) {
 				$category_selected = ($category->id == $event->category_id) ? ' selected="selected"' : '';
 				echo '<option value="' . $category->id . '"'. $category_selected . '>' . $this->render_i18n_data($category->category) . '</option>';
 			}
             ?>
 			</select>
         </li>
-		<?php if($aec_options['venue'] > 0){ ?>
+		<?php if ($aec_options['venue'] > 0) { ?>
 		<li>
 			<label for="venue"><?php _e('Venue', AEC_NAME); ?></label>
 			<input class="wide" type="text" name="venue" id="venue" value="<?php echo $event->venue; ?>">
 		</li>
-		<?php 
-			} 
-			if($aec_options['address'] > 0 || $aec_options['city'] > 0 || $aec_options['state'] > 0 || $aec_options['zip'] > 0){ 
+		<?php
+			}
+			if ($aec_options['address'] > 0 || $aec_options['city'] > 0 || $aec_options['state'] > 0 || $aec_options['zip'] > 0) {
 		?>
 		<li>
 			<label><?php _e('Address', AEC_NAME); ?></label>
 			<ul class="hvv">
-				<?php if($aec_options['address'] > 0){ ?>
+				<?php if ($aec_options['address'] > 0) { ?>
 				<li>
 					<label for="address"><?php _e('Neighborhood or Street Address', AEC_NAME); ?></label>
 					<input class="wide" type="text" name="address" id="address" value="<?php echo $event->address; ?>">
 				</li>
-				<?php 
+				<?php
 					}
-					if($aec_options['city'] > 0){ 
+					if ($aec_options['city'] > 0) {
 				?>
 				<li>
 					<label for="city"><?php _e('City', AEC_NAME); ?></label>
 					<input class="auto" type="text" name="city" id="city" size="20" value="<?php echo $event->city; ?>">
 				</li>
-				<?php 
+				<?php
 					}
-					if($aec_options['state'] > 0){ 
+					if ($aec_options['state'] > 0) {
 				?>
 				<li>
 					<label for="state"><?php _e('State/Province', AEC_NAME); ?></label>
 					<input class="auto" type="text" name="state" id="state" size="10" maxlength="50" value="<?php echo $event->state; ?>">
 				</li>
-				<?php 
+				<?php
 					}
-					if($aec_options['zip'] > 0){ 
+					if ($aec_options['zip'] > 0) {
 				?>
 				<li>
 					<label for="zip"><?php _e('Postal Code', AEC_NAME); ?></label>
 					<input class="auto" type="text" name="zip" id="zip" size="10" maxlength="10" value="<?php echo $event->zip; ?>">
 				</li>
-				<?php 
-					} 
-					if($aec_options['country'] > 0){ 
+				<?php
+					}
+					if ($aec_options['country'] > 0) {
 				?>
 				<li>
 					<label for="country"><?php _e('Country', AEC_NAME); ?></label>
@@ -218,37 +218,37 @@
 				<?php } ?>
 			</ul>
         </li>
-		<?php 
+		<?php
 			}
-			if($aec_options['link'] > 0){ 
+			if ($aec_options['link'] > 0) {
 		?>
         <li>
 			<label for="link"><?php _e('Website Link', AEC_NAME); ?></label>
             <input type="text" name="link" id="link" class="wide" value="<?php echo $event->link; ?>">
 		</li>
-		<?php 
+		<?php
 			}
-			if($aec_options['description'] > 0){ 
+			if ($aec_options['description'] > 0) {
 		?>
 		<li>
             <label for="description"><?php _e('Description', AEC_NAME); ?></label>
             <textarea class="wide" name="description" id="description"><?php echo $event->description; ?></textarea>
         </li>
-        <?php 
+        <?php
 			}
-			if($aec_options['contact'] > 0 || $aec_options['contact_info']){ 
+			if ($aec_options['contact'] > 0 || $aec_options['contact_info']) {
 		?>
 		<li>
 			<label><?php _e('Contact Person', AEC_NAME); ?></label>
 			<ul class="hvv">
-				<?php if($aec_options['contact'] > 0){ ?>
+				<?php if ($aec_options['contact'] > 0) { ?>
 				<li>
 					<label for="contact"><?php _e('Name', AEC_NAME); ?></label>
 					<input class="semi" type="text" name="contact" id="contact" value="<?php echo $event->contact; ?>">
 				</li>
-				<?php 
+				<?php
 					}
-					if($aec_options['contact_info'] > 0){ 
+					if ($aec_options['contact_info'] > 0) {
 				?>
 				<li>
 					<label for="contact_info"><?php _e('Phone or Email Address', AEC_NAME); ?></label>
@@ -257,9 +257,9 @@
 				<?php } ?>
 			</ul>
 		</li>
-		<?php 
+		<?php
 			}
-			if($aec_options['accessible']){ 
+			if ($aec_options['accessible']) {
 		?>
 		<li>
 			<label></label>
@@ -268,7 +268,7 @@
 		</li>
 		<?php
 			}
-			if($aec_options['rsvp']){
+			if ($aec_options['rsvp']) {
 		?>
 		<li>
 			<label></label>
@@ -278,7 +278,7 @@
 		<?php } ?>
         <li class="buttons">
 			<input type="button" name="cancel_event" value="<?php _e('Cancel', AEC_NAME); ?>" class="button-secondary" id="cancel_event">
-			<?php if($event->id){ ?>
+			<?php if ($event->id) { ?>
 			<span class="fl"><input type="button" name="delete_event" value="<?php _e('Delete', AEC_NAME); ?>" class="button" id="delete_event"></span>
 			<input type="button" name="copy_event" value="<?php _e('Copy', AEC_NAME); ?>" class="button" id="copy_event">
 			<input type="button" name="update_event" value="<?php _e('Update', AEC_NAME); ?>" class="button-primary" id="update_event">
@@ -287,9 +287,9 @@
 			<?php } ?>
         </li>
 		<?php
-		if($event->id){
+		if ($event->id) {
 			$is_admin = (current_user_can('aec_manage_calendar') == true) ? 1 : 0;
-			if($is_admin){
+			if ($is_admin) {
 				$first_name 	= get_user_meta($event->user_id, 'first_name', true);
 				$last_name		= get_user_meta($event->user_id, 'last_name', true);
 				$organization 	= (isset($organization)) ? ' (' . get_user_meta($event->user_id, 'organization', true) . ')' : '';

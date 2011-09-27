@@ -1,14 +1,17 @@
 /* DO NOT EDIT - CHANGES MADE TO THIS FILE WILL BE LOST ON PLUGIN UPDATE */
 /* ADD STYLE OVERRIDES TO YOUR THEME'S STYLE.CSS */
 
+.em-icon{background:url(images/em-icon-32.png) no-repeat}
 #aec-container{position:relative;float:none}
 #aec-header{width:100%;clear:both;padding:0;margin-bottom:0}
 #aec-menu{float:left;padding:10px 0}
-.aec-repeating span.fc-event-title{padding-left:18px;background-image:url(images/repeating.gif);background-repeat:no-repeat;background-position:2px 50%}
 #aec-calendar{font-size:12px;line-height:16px}
 #aec-calendar table{float:left;border:0 !important;margin:0 !important}
 #aec-calendar td{padding:0 !important}
-#aec-credit{visibility:hidden;position:absolute;height:1px;width:1px;overflow:hidden;top:-999px}
+#aec-calendar .aec-repeating span.fc-event-title{padding-left:18px;background-image:url(images/repeating.gif);background-repeat:no-repeat;background-position:2px 50%}
+.aec-eventlist .aec-repeating span.fc-event-time{padding-left:16px;background-image:url(images/repeating.gif);background-repeat:no-repeat;background-position:0 4px}
+.aec-eventlist .fc-event-title{font-weight:bold}
+.aec-eventlist .fc-event-time{font-size:.85em}
 
 #aec-filter{float:right;font-size:12px;padding:10px 0;margin:0 !important}
 #aec-filter li{background:none;list-style:none !important;float:left;padding:0 0 0 4px !important;margin:0}
@@ -38,21 +41,25 @@
 #aec-modal .category{float:right;padding:5px;font-weight:bold}
 #aec-modal .description{}
 #aec-modal .contact{line-height:20px}
-#aec-modal .contact span{display:block}
+#aec-modal .contact label{display:block}
+#aec-modal .contact span{font-weight:bold;padding-right:5px}
 #aec-modal .presented{font-size:11px;padding-top:5px;margin-top:5px;border-top:1px solid #ddd}
 #aec-modal .link:hover,
-#aec-modal .maplink:hover{-moz-box-shadow:0 0 2px #000;-webkit-box-shadow:0 0 2px #000;box-shadow:0 0 2px #000}
+#aec-modal .maplink:hover{-moz-box-shadow:0 0 2px #000;-webkit-box-shadow:0 0 2px #000;box-shadow:0 0 2px #000;}
 #aec-modal .link{font-size:14px;position:absolute;padding:5px 10px;bottom:0;right:10px;-moz-border-radius-bottomleft:0;-moz-border-radius-bottomright:0;-webkit-border-bottom-left-radius:0;-webkit-border-bottom-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:0}
-#aec-modal .maplink{font-size:12px;float:right;padding:2px 10px}
+#aec-modal .maplink{font-size:12px;float:right;padding:2px 10px;-moz-border-radius-topleft:0;-moz-border-radius-bottomright:0;-webkit-border-top-left-radius:0;-webkit-border-bottom-right-radius:0;border-top-left-radius:0;border-bottom-right-radius:0}
 
 .round5{padding:5px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}
 .helptip{width:150px;font-size:11px;line-height:18px;background:#ddd}
 
-.aec-eventlist{list-style:none}
+.aec-version{font-size:10px;color:#666}
+.aec-credit{visibility:hidden;position:absolute;height:1px;width:1px;overflow:hidden;top:-999px}
+
+.aec-eventlist{list-style:none;margin: 0 !important}
 .aec-eventlist li:first-child{margin-top:3px}
-.aec-eventlist li {font-size:11px;margin-top:1px;cursor:pointer}
-.aec-eventlist li strong{font-size:14px}
+.aec-eventlist li{margin-top:1px;cursor:pointer}
 .aec-eventlist li:hover{-moz-box-shadow:0 0 2px #000;-webkit-box-shadow:0 0 2px #000;box-shadow:0 0 2px #000}
+.aec-eventlist .fc-event-time{display:block}
 
 .aec_form{font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif}
 .aec_form .edit{width:25em}
@@ -196,7 +203,7 @@ a.fc-event{text-decoration:none}
 .fc-event-hori{border-width:1px 0;margin-bottom:1px}
 .fc-event-hori .ui-resizable-e{cursor:e-resize;height:100%!important;right:-3px!important;top:0!important;width:7px!important}
 .fc-event-hori .ui-resizable-w{cursor:w-resize;height:100%!important;left:-3px!important;top:0!important;width:7px!important}
-.fc-event-hori .ui-resizable-handle{_padding-bottom:14px}
+.fc-event-hori .ui-resizable-handle{padding-bottom:14px}
 .fc-corner-left{margin-left:1px}
 .fc-corner-left .fc-button-inner,.fc-corner-left .fc-event-inner{margin-left:-1px}
 .fc-corner-right{margin-right:1px}
@@ -226,7 +233,7 @@ table.fc-border-separate{border-collapse:separate}
 .fc-agenda-days .fc-agenda-axis{border-right-width:1px}
 .fc-agenda-days .fc-col0{border-left-width:0}
 .fc-agenda-allday th{border-width:0 1px}
-.fc-agenda-allday .fc-day-content{_height:34px;min-height:34px}
+.fc-agenda-allday .fc-day-content{height:34px;min-height:34px}
 .fc-agenda-divider-inner{height:2px;overflow:hidden}
 .fc-widget-header .fc-agenda-divider-inner{background:#eee}
 .fc-agenda-slots th{border-width:1px 1px 0}
@@ -242,7 +249,7 @@ table.fc-border-separate{border-collapse:separate}
 .fc .ui-draggable-dragging .fc-event-bg,
 .fc-select-helper .fc-event-bg{display:none}
 .fc-event-vert .ui-resizable-s{bottom:0!important;cursor:s-resize;font-family:monospace;font-size:11px!important;height:8px!important;line-height:8px!important;overflow:hidden!important;text-align:center;width:100%!important}
-.fc-agenda .ui-resizable-resizing{_overflow:hidden}
+.fc-agenda .ui-resizable-resizing{overflow:hidden}
 
 div.time-picker{background:#fff;border:1px solid #aaa;height:191px;margin:0;overflow:auto;position:absolute;width:6em;z-index:1002}
 div.time-picker-12hours{width:7em}

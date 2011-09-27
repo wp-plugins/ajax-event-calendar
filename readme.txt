@@ -1,7 +1,7 @@
 === Ajax Event Calendar ===
 Contributors: eranmiller
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NCDKRE46K2NBA
-Tags: user authorize, calendar, category, event, event list, ajax, filter, widget, map, rtl, shortcode, move, resize, repeat, copy, recurr, translated, customize
+Tags: user authorize, event calendar, customize categories, event list, ajax, category filter, google map, rtl languages, shortcode, move events, resize events, copy events, recurring events, repeating events, translated
 Requires at least: 3.1
 Tested up to: 3.2.1
 Stable tag: 0.9.9.2
@@ -126,7 +126,7 @@ As with Google Calendar: to add an event, in the administrative calendar page cl
 To add a category simply enter the desired category name in the input field, select a background color via the colorpicker or enter the hex value in the field provided.  Only users assigned the aec_manage_calendar capability can manage categories.
 
 = I want to grant calendar rights to a user without giving them access to all blog administrative menus =
-Install a Capabilities/Roles management plugin, such as [Members](http://wordpress.org/extend/plugins/members/), and assign the capabilities listed in the plugin description, to existing or newly created roles.
+Install a [Capabilities/Roles management plugin](http://sct.temple.edu/blogs/it/2011/02/16/members-vs-capability-manager-plug-in/), and assign the capabilities listed in the plugin description, to existing or newly created roles.
 
 = Is there a way to configure the WordPress to allow users that come to the site to can register and create their own events (so not every event would need to be created by the administrator)? =
 Absolutely!  If you allow users to self-register and you'll need to change WordPress settings so that the default role assigned to new users is Calendar Contributor.
@@ -206,20 +206,20 @@ Mime Type Link Images(http://wordpress.org/support/topic/calendar-disappeared?re
 = 1.0 =
 * added support repeating events
 * added copy event functionality
-* added option to toggle mousescroll
-* added month and year dropdown selectors
+* added option to toggle mousescroll in administrative calendar
+* added month and year dropdown selectors for fast navigation
 * added option to modify calendar time slot intervals
-* added new [eventlist] shortcode to replace upcoming events widget
-* added eventlist parameter to display events from specified category(ies)
-* added eventlist parameter to exclude categories listed in the categories parameter
-* added eventlist parameter to display events starting on or after the specified date
-* added eventlist parameter to display events ending on or before the specified date
-* added eventlist parameter to limit events displayed to the specified quantity
-* added eventlist parameter to render events without category colors
-* added eventlist parameter to display a customized message when no events are returned
-* added calendar parameter to render the calendar with a minimum pixel height
-* added calendar parameter to render a minicalendar
-* added repeating event indicator on in-calendar events
+* added [eventlist] shortcode to replace upcoming events widget
+* added eventlist shortcode parameter to display events from specified category(ies)
+* added eventlist shortcode parameter to exclude categories listed in the categories parameter
+* added eventlist shortcode parameter to display events starting on or after the specified date
+* added eventlist shortcode parameter to display events ending on or before the specified date
+* added eventlist shortcode parameter to limit events displayed to the specified quantity
+* added eventlist shortcode parameter to render events without category colors
+* added eventlist shortcode parameter to display a customized message when no events are returned
+* added calendar shortcode parameter to render the calendar with a minimum pixel height
+* added calendar shortcode parameter to render a minicalendar
+* added repeating event icon indicator
 * fixed compatability conflict with easy fancybox plugin (Hat Tip: Raven)
 * fixed month calendar shortcode option when set to current month
 * fixed rtl localization admin menu position bug
@@ -232,12 +232,13 @@ Mime Type Link Images(http://wordpress.org/support/topic/calendar-disappeared?re
 * moved options page position into calendar menu
 * moved help text into options page sidebar
 * removed menu position to avoid plugin collisions
-* added branding
+* added calendar branding
 * added hungarian
 * added czech
 * updated german
 * updated swedish
 * updated italian
+* updated catalan
 
 = 0.9.9.2 =
 * added latvian

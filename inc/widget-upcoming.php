@@ -5,12 +5,12 @@
 
 class aec_upcoming_events extends WP_Widget{
 
-	function aec_upcoming_events(){
+	function aec_upcoming_events () {
 		$widget_ops = array('description' => __('Displays upcoming events with optional filters.', AEC_NAME));
 		parent::WP_Widget(false, __('AEC Upcoming Events', AEC_NAME), $widget_ops);
 	}
 	
-	function query_events_by_category($category_id, $eventlimit){
+	function query_events_by_category ($category_id, $eventlimit) {
 		global $wpdb;
 		$start = date('Y-m-d');
 		$andcategory = ($category_id) ? ' AND category_id = ' . $category_id : '';
@@ -31,16 +31,20 @@ class aec_upcoming_events extends WP_Widget{
 													$start,
 													$start,
 													$eventlimit));
-		if ($results !== false) return $results;
+		if ($results !== false) {
+			return $results;
+		}
 	}
 	
-	function query_categories(){
+	function query_categories() {
 		global $wpdb;
 		$results = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . AEC_CATEGORY_TABLE . ' ORDER BY id;');
-		if ($results !== false) return $results;
+		if ($results !== false) {
+			return $results;
+		}
 	}
 	
-	function widget($args, $instance){
+	function widget($args, $instance) {
 		extract($args, EXTR_SKIP);
 		$whitelabel	= ($instance['whitelabel']) ? apply_filters('widget_whitelabel', $instance['whitelabel']) : false;
 		$eventlimit	= ($instance['eventlimit']) ? apply_filters('widget_eventlimit', $instance['eventlimit']) : 4;
@@ -50,10 +54,10 @@ class aec_upcoming_events extends WP_Widget{
 		
 		echo $before_widget;
 		echo $before_title . $title . $after_title;
-		$out 		= '<ul class="upcoming_events">';
+		$out 		= '<ul class="aec-eventlist">';
 		$events 	= $this->query_events_by_category($category, $eventlimit);
-		if ($events){
-			foreach ($events as $event){
+		if ($events) {
+			foreach ($events as $event) {
 				// split database formatted datetime value into display formatted date and time values
 				$event->start_date	= ajax_event_calendar::convert_date($event->start, AEC_DB_DATETIME_FORMAT, AEC_WP_DATE_FORMAT);
 				$event->start_time 	= ajax_event_calendar::convert_date($event->start, AEC_DB_DATETIME_FORMAT, AEC_WP_TIME_FORMAT);
@@ -62,12 +66,19 @@ class aec_upcoming_events extends WP_Widget{
 				
 				// link to event			
 				$class = ($whitelabel) ? '' : ' cat' . $event->category_id;
-				$out .= '<li class="fc-event round5' . $class . '" onClick="jQuery.aecDialog({\'id\':' . $event->id . '});">';
-				$out .= '<strong>' . ajax_event_calendar::render_i18n_data($event->title) . '</strong><br>';
+				//$out .= '<li class="fc-event round5' . $class . '" onClick="jQuery.aecDialog({\'id\':' . $event->id . '});">';
+				$out .= '<li class="fc-event round5' . $class . '" onClick="jQuery.aecDialog({\'id\':' . $event->id . ',\'start\':\'' . $event->start . '\',\'end\':\'' . $event->end . '\'});">';
+				
+				$out .= '<span class="fc-event-time">';
 				$out .= $event->start_date;
 				// multiple day event, not spanning all day
-				if (!$event->allDay)
+				if (!$event->allDay) {
 					$out .= ' ' . $event->start_time;
+				}
+				$out .= '</span>';
+				
+				//$out .= '<strong>' . ajax_event_calendar::render_i18n_data($event->title) . '</strong><br>';
+				$out .= '<span class="fc-event-title">' . ajax_event_calendar::render_i18n_data($event->title) . '</span>';
 				$out .= '</li>';
 			}
 		} else {
@@ -75,13 +86,15 @@ class aec_upcoming_events extends WP_Widget{
 			$out .= __('No upcoming events', AEC_NAME);
 			$out .= '</li>';
 		}
-		if ($callink) $out .= "<h3 class='widget-title'><a href='{$callink}'>" . __('Link to Calendar', AEC_NAME) . '</a></h3>';
+		if ($callink) {
+			$out .= "<h3 class='widget-title'><a href='{$callink}'>" . __('Link to Calendar', AEC_NAME) . '</a></h3>';
+		}
 		$out .= '</ul>';
 		echo $out;
 		echo $after_widget;
 	}
 		
-	function update($new_instance, $old_instance){
+	function update ($new_instance, $old_instance) {
 		$instance = $old_instance;
 		$instance['whitelabel'] = (isset($new_instance['whitelabel']) ? 1 : 0);
 		$instance['callink'] = $new_instance['callink'];
@@ -92,7 +105,7 @@ class aec_upcoming_events extends WP_Widget{
 	}
 	
 	/** @see WP_Widget::form */
-	function form($instance){
+	function form ($instance) {
 		$instance = wp_parse_args((array) $instance, array('eventlimit' => 4, 'title' => __('Upcoming Events', AEC_NAME), 'category' => 0, 'whitelabel' => false, 'callink' => ''));
 		$whitelabel = $instance['whitelabel'];
 		$eventlimit = $instance['eventlimit'];
@@ -100,9 +113,8 @@ class aec_upcoming_events extends WP_Widget{
 		$category = $instance['category'];
 		$callink = $instance['callink'];
 ?>
-	<p><strong>IMPORTANT:</strong><br>This widget has been depricated and will be removed in the following release. Use the [eventlist] shortcode, which offers greater customization options, instead.</p>
-	<p><a href="http://wordpress.org/extend/plugins/ajax-event-calendar/installation/" target="_blank">Learn about the <strong>[eventlist]</strong> shortcode</a></p>
-	<p><strong>NOTE:</strong> This widget does not properly render repeat events.</p>
+	<p><strong>IMPORTANT:</strong><br>This widget will be removed from future versions of the Ajax Event Calendar plugin. Instead, use the [eventlist] shortcode, <a href="http://wordpress.org/extend/plugins/ajax-event-calendar/installation/" target="_blank">explained here</a>, which offers more customization and placement options than the widget.</p>
+	<p><strong>NOTE:</strong><br>This widget will not properly render repeat events.</p>
 	<hr/>
 	<p>
 		<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title', AEC_NAME); ?></label>

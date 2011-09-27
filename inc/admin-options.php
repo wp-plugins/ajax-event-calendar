@@ -2,17 +2,21 @@
 	$city 				= __('City', AEC_NAME);
 	$state 				= __('State', AEC_NAME);
 	$postal				= __('Postal Code', AEC_NAME);
-	$timeslot_opts		= array(5, 10, 15, 30, 60);
+	$timeslots			= array(5, 10, 15, 30, 60);
+	$timeslot_opts		= array();
+	foreach($timeslots as $timeslot){
+		array_push($timeslot_opts, $timeslot . ' ' . __('Minutes', AEC_NAME));
+	}
 	$format_opts 		= array("{{$city}}, {{$state}} {{$postal}}", "{{$postal}} {{$city}}");
 	$field_opts2		= array( __('Hide', AEC_NAME), __('Display', AEC_NAME));
 	$field_opts3		= array( __('Hide', AEC_NAME), __('Display', AEC_NAME), __('Require', AEC_NAME));
 
 	echo "<div class='wrap'>\n";
-	echo "<a href='http://eranmiller.com' target='_blank'><div id='em-icon' style='background:url(". AEC_URL ."css/images/em-icon-32.png) no-repeat' class='icon32'></div></a>\n";
+	echo "<a href='http://". AEC_HOMEPAGE . "' target='_blank'><span class='em-icon icon32'></span></a>\n";
 	echo $this->add_wrap(__('Ajax Event Calendar Options', AEC_NAME), "<h2>", "</h2>");
 
-	if((isset($_GET['updated']) && $_GET['updated'] == 'true') ||
-	   (isset($_GET['settings-updated']) && $_GET['settings-updated'] == 'true')){
+	if ((isset($_GET['updated']) && $_GET['updated'] == 'true') ||
+	   (isset($_GET['settings-updated']) && $_GET['settings-updated'] == 'true')) {
 		echo $this->add_wrap(__('Settings Updated', AEC_NAME), '<div id="message" style="width:94%" class="message updated"><p><strong>', '.</strong></p></div>');
 	}
 
@@ -26,14 +30,14 @@
 	$form .= $this->add_wrap(__("Date Format, Time Format, and Week Start", AEC_NAME), "<span class='fr helptip round5'>", " ");
 	$form .= $this->add_wrap(__("settings are located here", AEC_NAME), "<a href='" . ADMIN_URL(). "options-general.php'>", "</a>.</span>");
 	$form .= $this->add_checkbox_field('show_weekends', __('Display calendar weekends.', AEC_NAME));
-	$form .= $this->add_checkbox_field('limit', __('Allow adding or editing of expired events.', AEC_NAME));
+	$form .= $this->add_checkbox_field('limit', __('Prevent users from adding or editing expired events.', AEC_NAME));
 	$form .= $this->add_checkbox_field('menu', __('Display the Add Events link on the front-end calendar.', AEC_NAME));
 	$form .= $this->add_checkbox_field('show_map_link', __('Display the View Map link on event details.', AEC_NAME));
 	$form .= $this->add_checkbox_field('make_links', __('Convert description field URLs into  clickable links.', AEC_NAME));
 	$form .= $this->add_checkbox_field('popup_links', __('Open Event Detail links in a new browser window.', AEC_NAME));
 	$form .= $this->add_checkbox_field('scroll', __('Navigate administrative calendar with mousewheel.', AEC_NAME));
 	$form .= $this->add_select_field('addy_format', __('Address format', AEC_NAME), $format_opts);
-	$form .= $this->add_select_field('step_interval', __('Event timepicker interval', AEC_NAME), $timeslot_opts);
+	$form .= $this->add_select_field('step_interval', __('Event timepicker interval', AEC_NAME), $timeslot_opts, $timeslots);
 	
 	$form .= $this->add_wrap(__('Hide, display or require form fields.  Hidden fields do not appear in the event form.', AEC_NAME), '<p>', '</p>');
 	$form .= $this->add_select_field('venue', __('Venue', AEC_NAME), $field_opts3);
