@@ -6,7 +6,6 @@
  */
 
 jQuery(document).ready(function ($) {
-	/* v1.0 beta 6 */
 	var toUnixDate = function (date) {
 		return $.fullCalendar.formatDate(date, 'yyyy-MM-dd HH:mm:ss'); // unix datetime
 	},

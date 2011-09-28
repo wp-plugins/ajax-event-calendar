@@ -6,7 +6,6 @@
  */
 
 jQuery(document).ready(function ($) {
-	/* v1.0 beta 6 */
 	var filter = function (active) {
 			$('#aec-filter li').next().fadeTo(0, 0.5).removeClass('active');
 			$(active).parent().fadeTo(250, 1).addClass('active');
@@ -62,7 +61,7 @@ jQuery(document).ready(function ($) {
 					}
 					quickSelect.datepicker("setDate", calendar.fullCalendar('getDate'));
 					return false;
-				});
+				 m });
 			}
 		},
 		renderEvent = function (data) {

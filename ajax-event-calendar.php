@@ -42,6 +42,7 @@ define('AEC_VERSION', '1.0');
 define('AEC_FILE', basename(__FILE__));
 define('AEC_NAME', str_replace('.php', '', AEC_FILE));
 define('AEC_PATH', plugin_dir_path(__FILE__));
+define('AEC_COLORS_CSS', AEC_PATH . 'css/cat_colors.css');
 define('AEC_URL', plugin_dir_url(__FILE__));
 define('AEC_EVENT_TABLE', 'aec_event');
 define('AEC_CATEGORY_TABLE', 'aec_event_category');
@@ -196,6 +197,9 @@ if (!class_exists('ajax_event_calendar')) {
 			}
 
 			if (version_compare($current, AEC_VERSION, '==')) {
+				if (!file_exists(AEC_COLORS_CSS)) {
+					$this->generate_css();
+				}
 				return;
 			}
 
@@ -306,9 +310,6 @@ if (!class_exists('ajax_event_calendar')) {
 
 				// update plugin version
 				update_option('aec_version', AEC_VERSION);
-
-				// updates cat_colors.css file
-				$this->generate_css();
 
 				// add sample event
 				$_POST['event']['user_id'] = 0;	// system id
@@ -621,7 +622,7 @@ if (!class_exists('ajax_event_calendar')) {
 		}
 
 		function render_aec_version($credit = false) {
-			$out = "<span class='aec-version'>v1.0beta6</span>\n";
+			$out = "<span class='aec-version'>v1.0RC&ndash;1</span>\n";
 			if ($credit) {
 				$out .= "<a href='http://eranmiller.com/' class='aec-credit'>AECv" . AEC_VERSION . " " . __('Created By', AEC_NAME) . " Eran Miller</a>\n";
 			}
@@ -1143,11 +1144,18 @@ if (!class_exists('ajax_event_calendar')) {
 			$input 				= $this->convert_array_to_object($_POST['event']);
 			$offset				= $input->dayDelta*86400 + $input->minuteDelta*60;
 			$event 				= $this->db_query_event($input->id);
+			$twoHours			= 7200;
+
 			$event->allDay		= $input->allDay;
 			$event->end			= date(AEC_DB_DATETIME_FORMAT, strtotime($event->end) + $offset);
 			$event->repeat_end	= date(AEC_DB_DATETIME_FORMAT, strtotime($event->repeat_end) + $offset);
 			if ($input->resize) { $offset = 0; }
 			$event->start 		= date(AEC_DB_DATETIME_FORMAT, strtotime($event->start) + $offset);
+			// add an end date for events with a null end date
+			if (isset($input->end)) {
+				$event->end		= date(AEC_DB_DATETIME_FORMAT, strtotime($event->start) + $twoHours);
+			}
+			
 			$event->view_start	= $input->view_start;
 			$event->view_end 	= $input->view_end;
 			$this->db_update_event($event);
@@ -1629,8 +1637,7 @@ if (!class_exists('ajax_event_calendar')) {
 				$out .= "background-color:#{$category->bgcolor} !important;";
 				$out .= "border-color:#{$category->fgcolor} !important}\n";
 			}
-			$cssFile  = AEC_PATH . "css/cat_colors.css";
-			$fh 	  = fopen($cssFile, 'w+') or die('cannot open file');
+			$fh 	  = fopen(AEC_COLORS_CSS, 'w+') or die('cannot open file');
 			fwrite($fh, $out);
 			fclose($fh);
 		}

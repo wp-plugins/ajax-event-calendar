@@ -6,7 +6,6 @@
  */
 
 jQuery(document).ready(function ($) {
-	/* v1.0 beta 6 */
 	var validateForm = function (err) {
 		var	required	= ['category'];
 		err			= false;
