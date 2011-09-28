@@ -622,11 +622,11 @@ if (!class_exists('ajax_event_calendar')) {
 		}
 
 		function render_aec_version($credit = false) {
-			$out = "<span class='aec-version'>v1.0RC&ndash;1</span>\n";
+			//$out = "<span class='aec-version'>" . AEC_VERSION . "</span>\n";
 			if ($credit) {
-				$out .= "<a href='http://eranmiller.com/' class='aec-credit'>AECv" . AEC_VERSION . " " . __('Created By', AEC_NAME) . " Eran Miller</a>\n";
+				return "<a href='http://eranmiller.com/' class='aec-credit'>AECv" . AEC_VERSION . " " . __('Created By', AEC_NAME) . " Eran Miller</a>\n";
 			}
-			return $out;			
+			//return $out;
 		}
 		
 		function render_admin_calendar() {
