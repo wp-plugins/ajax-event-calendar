@@ -46,9 +46,9 @@ This plugin does not support WordPress MU.
 
 = Need Support? =
 * [Read about installation and options](http://wordpress.org/extend/plugins/ajax-event-calendar/installation)
-* [Find answers to Frequently Asked Questions](http://wordpress.org/extend/plugins/ajax-event-calendar/faq)
+* [Find answers to Frequently Asked Questions](http://code.google.com/p/wp-aec/wiki/FrequentlyAskedQuestions)
 * [Ask for help in the WordPress forums](http://wordpress.org/tags/ajax-event-calendar?forum_id=10)
-* [Submit issues and feature requests](http://code.google.com/p/wp-aec/issues/list)
+* [Submit issues and feature requests](http://code.google.com/p/wp-aec/issues/list?can=1)
 
 = A BIG Thank You to those who have provided translations =
 * Arabic (Sultan G) - Shukran
