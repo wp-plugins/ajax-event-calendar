@@ -2,7 +2,9 @@
 /* ADD STYLE OVERRIDES TO YOUR THEME'S STYLE.CSS */
 
 #aec-menu{float:right;padding:10px 0}
-.aec-repeating span.fc-event-title{padding-right:18px;padding-left:0;background-position:96% 50%}
+#aec-calendar .aec-repeating span.fc-event-title{padding-right:18px;padding-left:0;background-position:96% 50%}
+.aec-eventlist .aec-repeating span.fc-event-time{padding-right:16px;padding-left:0;background-position:0 4px}
+
 #aec-calendar table{float:none}
 
 #aec-filter{float:left}
@@ -15,43 +17,43 @@
 
 #aec-modal .link{left:10px;right:auto}
 #aec-modal .maplink{float:left}
-.aec_form li{float:right}
-.aec_form label{float:right;padding:5px 0 3px 5px}
-.aec_form label.box{padding:0 5px 0 0}
-.aec_form .select option{padding-left:10px}
-.aec_form select{float:right}
-.aec_form textarea{float:right}
-.aec_form input[type=radio]{float:right}
-.aec_form input[type=checkbox]{float:right}
-.aec_form li.buttons{text-align:left}
-.aec_form .vvv input{float:right}
-.aec_form .vvv select{float:right}
-.aec_form .vvv textarea{float:right}
-.aec_form .hvv li{float:right;margin-left:10px}
-.aec_form .hvv label{float:none;padding:1px 3px 0 0}
-.aec_form .hvv label.box{float:right;}
-.aec_form .hvv input{float:right}
-.aec_form .hii li{float:right;margin-left:10px}
-.aec_form .hii label{margin-left:0;text-align:right}
-.aec_form .hhh li{float:right;margin-left:10px}
-.aec_form .hhh label{float:right;padding-right:5px}
-.aec_form .hhh input{float:right}
-.aec_form .hhh select{float:right}
-.aec_form .hhh textarea{float:right}
-.aec_form .vii{float:right}
-.aec_form .vii li{float:right}
-.aec_form .vhh{float:right}
-.aec_form .vhh li{float:right}
-.aec_form .vhh label{float:right}
-.aec_form .vhh input{float:right}
-.aec_form .vhh select{float:right}
-.aec_form .vhh textarea{float:right}
-.aec_form label.v{text-align:right}
-.aec_form label.h{float:right}
-.aec_form .multiselect{float:right}
-.aec_form .multiselect .vhh input{float:right}
-.aec_form .multiselect .vhh label{margin-right:20px}
-.aec_form .leftnote{float:right;padding:3px 5px 0}
+.aec-form li{float:right}
+.aec-form label{float:right;padding:5px 0 3px 5px}
+.aec-form label.box{padding:0 5px 0 0}
+.aec-form .select option{padding-left:10px}
+.aec-form select{float:right}
+.aec-form textarea{float:right}
+.aec-form input[type=radio]{float:right}
+.aec-form input[type=checkbox]{float:right}
+.aec-form li.buttons{text-align:left}
+.aec-form .vvv input{float:right}
+.aec-form .vvv select{float:right}
+.aec-form .vvv textarea{float:right}
+.aec-form .hvv li{float:right;margin-left:10px}
+.aec-form .hvv label{float:none;padding:1px 3px 0 0}
+.aec-form .hvv label.box{float:right;}
+.aec-form .hvv input{float:right}
+.aec-form .hii li{float:right;margin-left:10px}
+.aec-form .hii label{margin-left:0;text-align:right}
+.aec-form .hhh li{float:right;margin-left:10px}
+.aec-form .hhh label{float:right;padding-right:5px}
+.aec-form .hhh input{float:right}
+.aec-form .hhh select{float:right}
+.aec-form .hhh textarea{float:right}
+.aec-form .vii{float:right}
+.aec-form .vii li{float:right}
+.aec-form .vhh{float:right}
+.aec-form .vhh li{float:right}
+.aec-form .vhh label{float:right}
+.aec-form .vhh input{float:right}
+.aec-form .vhh select{float:right}
+.aec-form .vhh textarea{float:right}
+.aec-form label.v{text-align:right}
+.aec-form label.h{float:right}
+.aec-form .multiselect{float:right}
+.aec-form .multiselect .vhh input{float:right}
+.aec-form .multiselect .vhh label{margin-right:20px}
+.aec-form .leftnote{float:right;padding:3px 5px 0}
 .tar label{text-align:left}
 .fl{float:right}
 .fr{float:left}

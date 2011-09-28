@@ -64,7 +64,8 @@
   <title>Event Form</title>
 </head>
 <body>
-	<form method="post" action="<?php echo __FILE__; ?>" id="event_form" class="aec_form">
+	
+	<form method="post" action="<?php echo __FILE__; ?>" id="event-form" class="aec-form">
 	<input type="hidden" name="id" id="id" value="<?php echo $event->id; ?>">
     <input type="hidden" name="user_id" id="user_id" value="<?php echo $event->user_id; ?>">
 	<input type="hidden" name="allDay" value="0">
@@ -83,10 +84,14 @@
 	<input type="hidden" name="repeat_end" value="">
 	<input type="hidden" name="access" value="0">
 	<input type="hidden" name="rsvp" value="0">
-    <ul>
+	<ul>
 		<li>
-			<label><?php _e('Duration', AEC_NAME); ?>
-			<span class="duration"></span>
+			<label for="allDay">
+				<?php _e('Duration', AEC_NAME); ?>
+				<span>
+					<input class="auto" type="checkbox" name="allDay" id="allDay" value="1" <?php echo $allday_checked ?>>
+					<label class="box"><?php _e('All Day', AEC_NAME); ?></label>
+				</span>
 			</label>
 			<ul class="hvv">
 				<li>
@@ -105,12 +110,11 @@
 					<label>&nbsp;</label>
 					<input class="auto picker cb" type="text" name="end_time" id="end_time" size="8" readonly="readonly" value="<?php echo strtoupper($event->end_time); ?>">
 				</li>
-				<li>
-					<label>&nbsp;</label>
-					<input class="auto" type="checkbox" name="allDay" id="allDay" value="1" <?php echo $allday_checked ?>>
-					<label class="box" for="allDay"><?php _e('All Day', AEC_NAME); ?></label>
-				</li>
 			</ul>
+		</li>
+		<li>
+			<label>&nbsp;</label>
+			<span class="duration"></span>
 		</li>
 		<li><label><?php _e('Repeats', AEC_NAME); ?></label>
 			<ul class="hhh">
@@ -173,8 +177,7 @@
 		</li>
 		<?php
 			}
-			if ($aec_options['address'] > 0 || $aec_options['city'] > 0 || $aec_options['state'] > 0 || $aec_options['zip'] > 0) {
-		?>
+			if ($aec_options['address'] > 0 || $aec_options['city'] > 0 || $aec_options['state'] > 0 || $aec_options['zip'] > 0) { ?>
 		<li>
 			<label><?php _e('Address', AEC_NAME); ?></label>
 			<ul class="hvv">
@@ -185,32 +188,28 @@
 				</li>
 				<?php
 					}
-					if ($aec_options['city'] > 0) {
-				?>
+					if ($aec_options['city'] > 0) { ?>
 				<li>
 					<label for="city"><?php _e('City', AEC_NAME); ?></label>
 					<input class="auto" type="text" name="city" id="city" size="20" value="<?php echo $event->city; ?>">
 				</li>
 				<?php
 					}
-					if ($aec_options['state'] > 0) {
-				?>
+					if ($aec_options['state'] > 0) { ?>
 				<li>
 					<label for="state"><?php _e('State/Province', AEC_NAME); ?></label>
 					<input class="auto" type="text" name="state" id="state" size="10" maxlength="50" value="<?php echo $event->state; ?>">
 				</li>
 				<?php
 					}
-					if ($aec_options['zip'] > 0) {
-				?>
+					if ($aec_options['zip'] > 0) { ?>
 				<li>
 					<label for="zip"><?php _e('Postal Code', AEC_NAME); ?></label>
 					<input class="auto" type="text" name="zip" id="zip" size="10" maxlength="10" value="<?php echo $event->zip; ?>">
 				</li>
 				<?php
 					}
-					if ($aec_options['country'] > 0) {
-				?>
+					if ($aec_options['country'] > 0) { ?>
 				<li>
 					<label for="country"><?php _e('Country', AEC_NAME); ?></label>
 					<input class="auto" type="text" name="country" id="country" size="10" maxlength="50" value="<?php echo $event->country; ?>">
@@ -220,24 +219,21 @@
         </li>
 		<?php
 			}
-			if ($aec_options['link'] > 0) {
-		?>
+			if ($aec_options['link'] > 0) { ?>
         <li>
 			<label for="link"><?php _e('Website Link', AEC_NAME); ?></label>
             <input type="text" name="link" id="link" class="wide" value="<?php echo $event->link; ?>">
 		</li>
 		<?php
 			}
-			if ($aec_options['description'] > 0) {
-		?>
+			if ($aec_options['description'] > 0) { ?>
 		<li>
             <label for="description"><?php _e('Description', AEC_NAME); ?></label>
             <textarea class="wide" name="description" id="description"><?php echo $event->description; ?></textarea>
         </li>
         <?php
 			}
-			if ($aec_options['contact'] > 0 || $aec_options['contact_info']) {
-		?>
+			if ($aec_options['contact'] > 0 || $aec_options['contact_info']) { ?>
 		<li>
 			<label><?php _e('Contact Person', AEC_NAME); ?></label>
 			<ul class="hvv">
@@ -248,8 +244,7 @@
 				</li>
 				<?php
 					}
-					if ($aec_options['contact_info'] > 0) {
-				?>
+					if ($aec_options['contact_info'] > 0) { ?>
 				<li>
 					<label for="contact_info"><?php _e('Phone or Email Address', AEC_NAME); ?></label>
 					<input class="semi" type="text" name="contact_info" id="contact_info" value="<?php echo $event->contact_info; ?>">
@@ -259,8 +254,7 @@
 		</li>
 		<?php
 			}
-			if ($aec_options['accessible']) {
-		?>
+			if ($aec_options['accessible']) { ?>
 		<li>
 			<label></label>
 			<input type="checkbox" value="1" name="access" id="access" <?php echo $accessible_checked; ?>/>
@@ -268,8 +262,7 @@
 		</li>
 		<?php
 			}
-			if ($aec_options['rsvp']) {
-		?>
+			if ($aec_options['rsvp']) { ?>
 		<li>
 			<label></label>
 			<input type="checkbox" value="1" name="rsvp" id="rsvp" <?php echo $rsvp_checked; ?>/>

@@ -218,7 +218,7 @@ jQuery(document).ready(function ($) {
 				js_n(out, diff.hours, custom.hour, custom.hours);
 				js_n(out, diff.minutes, custom.minute, custom.minutes);
 			}
-			return out.join(' ');
+			return out.join(', ');
 		},
 		checkDuration = function () {
 			var	allDay	= ($('#allDay').attr('checked')) ? 1 : 0,
@@ -390,10 +390,9 @@ jQuery(document).ready(function ($) {
 											if (!validateForm()) {
 												return;
 											}
-
 											var viewparams = '&view_start=' + encodeURIComponent(ev.viewStart) +
 															 '&view_end=' + encodeURIComponent(ev.viewEnd),
-												formfields = $('#event_form').serialize() + viewparams;
+												formfields = $('#event-form').serialize() + viewparams;
 											$.post(ajaxurl, { action: 'add_event', 'event': formfields }, function (data) {
 												if (data) {
 													title = renderEvent(data);
@@ -409,10 +408,9 @@ jQuery(document).ready(function ($) {
 											if (!validateForm()) {
 												return;
 											}
-
 											var viewparams = '&view_start=' + encodeURIComponent(ev.viewStart) +
 															 '&view_end=' + encodeURIComponent(ev.viewEnd),
-												formfields = $('#event_form').serialize() + viewparams;
+												formfields = $('#event-form').serialize() + viewparams;
 											$.post(ajaxurl, { action: 'copy_event', 'event': formfields }, function (data) {
 												if (data) {
 													title = renderEvent(data);
@@ -430,8 +428,7 @@ jQuery(document).ready(function ($) {
 											}
 											var viewparams = '&view_start=' + encodeURIComponent(ev.viewStart) +
 															 '&view_end=' + encodeURIComponent(ev.viewEnd),
-												formfields = $('#event_form').serialize() + viewparams;
-
+												formfields = $('#event-form').serialize() + viewparams;
 											$.post(ajaxurl, { action: 'update_event', 'event': formfields }, function (data) {
 												if (data) {
 													var e	= $('#aec-calendar').fullCalendar('clientEvents', data.id)[0];

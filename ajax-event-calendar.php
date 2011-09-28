@@ -348,7 +348,7 @@ if (!class_exists('ajax_event_calendar')) {
 			$timezone = get_option('timezone_string');
 			if ($timezone) {
 				date_default_timezone_set($timezone);
-			}else{
+			} else {
 				// TODO: look into converting gmt_offset into timezone_string
 				date_default_timezone_set('UTC');
 			}
@@ -668,9 +668,9 @@ if (!class_exists('ajax_event_calendar')) {
 
 			if (in_array($filter, $isFalse, true)) {
 				$filter = false;
-			}elseif (intval($filter)) {
+			} elseif (intval($filter)) {
 				$filter = 'cat' . intval($filter);
-			}else{
+			} else {
 				$filter = 'all';
 			}
 			
@@ -895,7 +895,7 @@ if (!class_exists('ajax_event_calendar')) {
 					$out .= "</p>\n";
 				}
 				$out .= $this->add_wrap(__('NOTE: Each repeating event is counted once.', AEC_NAME), "<p><em>", "</em></p>");
-			}else{
+			} else {
 				$out .= $this->add_wrap(__('No events this month.', AEC_NAME), "<p><em>", "</em></p>");
 			}
 
@@ -927,7 +927,7 @@ if (!class_exists('ajax_event_calendar')) {
 						foreach ($event as $repeat) {
 							array_push($output, $repeat);
 						}
-					}else{
+					} else {
 						array_push($output, $event);
 					}
 				}
@@ -941,7 +941,7 @@ if (!class_exists('ajax_event_calendar')) {
 				foreach ($repeats as $repeat) {
 					array_push($output, $this->generate_event($repeat, $this->return_auth($readonly), $queue));
 				}
-			}else{
+			} else {
 				array_push($output, $this->generate_event($input, $this->return_auth($readonly), $queue));
 			}
 
@@ -1023,13 +1023,13 @@ if (!class_exists('ajax_event_calendar')) {
 			if ($user_id == -1) {
 				$permissions->editable = false;
 				$permissions->cssclass = '';
-			}else{
+			} else {
 				// users with aec_manage_events capability can edit all events
 				// users with aec_add_events capability can edit events only they create
 				if ($input->user_id == $user_id || $user_id == false) {
 					$permissions->editable = true;
 					$permissions->cssclass = '';
-				}else{
+				} else {
 					$permissions->editable = false;
 					$permissions->cssclass = ' fc-event-disabled';
 				}
@@ -1518,7 +1518,7 @@ if (!class_exists('ajax_event_calendar')) {
 		function cleanse_output($output) {
 			if (is_array($output)) {
 				array_walk_recursive($output, create_function('&$val', '$val = stripslashes($val);'));
-			}else{
+			} else {
 				$output = stripslashes($output);
 			}
 			return $output;
@@ -1579,7 +1579,7 @@ if (!class_exists('ajax_event_calendar')) {
 			foreach ($array as $key => $val) {
 				if (is_array($val)) {
 					$return->$key = $this->convert_array_to_object($val);
-				}else{
+				} else {
 					$return->{$key} = $val;
 				}
 			}
@@ -1671,7 +1671,7 @@ if (!class_exists('ajax_event_calendar')) {
 		function log($message) {
 			if (is_array($message) || is_object($message)) {
 				error_log(print_r($message, true));
-			}else{
+			} else {
 				error_log($message);
 			}
 			return;

@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Ajax Event Calendar v1.0b\n"
+"Project-Id-Version: Ajax Event Calendar v1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-26 19:21-0600\n"
-"PO-Revision-Date: 2011-09-26 19:22-0600\n"
-"Last-Translator: Alex Po <reddylabeu@gmail.com>\n"
+"PO-Revision-Date: 2011-09-28 09:10-0600\n"
+"Last-Translator: Eran Miller <plugins@eranmiller.com>\n"
 "Language-Team: reddylab.eu <reddylabeu@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -292,9 +292,8 @@ msgstr "Загружается панель событий"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:500
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:852
-#, fuzzy
 msgid "Category filter label"
-msgstr "Тип категории"
+msgstr "Фильтр по категории"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:501
 msgid "Repeats Every"
@@ -415,7 +414,6 @@ msgstr[0] "Событие"
 msgstr[1] "События"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:895
-#, fuzzy
 msgid "NOTE: Each repeating event is counted once."
 msgstr "NB: Каждое повторяющееся событие считается за одно событие."
 
@@ -440,7 +438,6 @@ msgid "Ask for help in the WordPress forum"
 msgstr "Обратиться за помощью в форум Wordpress"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/ajax-event-calendar.php:1102
-#, fuzzy
 msgid "Use the issue tracker"
 msgstr "Использовать баг-трекер"
 
@@ -616,7 +613,7 @@ msgstr "Отмена"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:283
 msgid "Copy"
-msgstr ""
+msgstr "Копия"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-event.php:296
 msgid "Created by"
@@ -645,7 +642,6 @@ msgid "Ajax Event Calendar Options"
 msgstr "Ajax Event Calendar настройки"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:20
-#, fuzzy
 msgid "Settings Updated"
 msgstr "Настройки обновлены"
 
@@ -662,9 +658,8 @@ msgid "Display calendar weekends."
 msgstr "Отображать календарные выходные."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:33
-#, fuzzy
 msgid "Prevent users from adding or editing expired events."
-msgstr "Запрещать добавление или редактирование прошедших событий."
+msgstr "Предотвращать  добавление или редактирование прошедших событий."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:34
 msgid "Display the Add Events link on the front-end calendar."
@@ -691,7 +686,6 @@ msgid "Address format"
 msgstr "Формат адреса"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:40
-#, fuzzy
 msgid "Event timepicker interval"
 msgstr "Выбор интервала времени для события"
 
@@ -717,9 +711,8 @@ msgid "Modify calendar and form options then click Save Changes below."
 msgstr "После редактирования календаря и настроек нажмите \"Сохранить изменения\" ниже."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:57
-#, fuzzy
 msgid "Reset all settings on Save."
-msgstr "Отметить для сброса настроек (после сохранения)"
+msgstr "Сбросить настройки (после сохранения)"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/admin-options.php:58
 msgid "Save Changes"
@@ -738,7 +731,6 @@ msgid "A list of calendar contributors linked to their organization websites"
 msgstr "Список участников связан с сайтом их организации"
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-contributors.php:10
-#, fuzzy
 msgid "AEC Contributors"
 msgstr "Авторы (Редакторы) календаря."
 
@@ -762,7 +754,6 @@ msgid "Displays upcoming events with optional filters."
 msgstr "Отображать грядущие события отфильтровав их."
 
 #: C:\wamp\www\wordpress\wp-content\plugins\ajax-event-calendar/inc/widget-upcoming.php:10
-#, fuzzy
 msgid "AEC Upcoming Events"
 msgstr "Приближающиеся события календаря"
 

@@ -36,6 +36,7 @@
 #aec-modal .location{background:#ddd}
 #aec-modal .location span{display:block}
 #aec-modal .duration{background:#ddd;font-size:11px}
+#event-form .duration{background:none}
 #aec-modal .category{float:right;padding:5px;font-weight:bold}
 #aec-modal .description{}
 #aec-modal .contact{line-height:20px}
@@ -50,7 +51,7 @@
 #aec-calendar .aec-repeating span.fc-event-title{padding-left:18px;background-image:url(images/repeating.gif);background-repeat:no-repeat;background-position:2px 50%}
 
 .round5{padding:5px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px}
-.helptip{width:150px;font-size:11px;line-height:18px;background:#ddd}
+.helptip{width:150px;font-size:12px;line-height:18px;background:#ddd}
 
 .aec-version{font-size:10px;color:#666}
 .aec-credit{visibility:hidden;position:absolute;height:1px;width:1px;overflow:hidden;top:-999px}
@@ -64,87 +65,87 @@
 .aec-eventlist .fc-event-title{font-weight:bold}
 .aec-eventlist .fc-event-time{font-size:.85em}
 
-.aec_form{font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif}
-.aec_form .edit{width:25em}
-.aec_form table{border-spacing:0}
-.aec_form tr.header{background:#eee}
-.aec_form td{padding:5px;margin:0}
-.aec_form li{float:left;margin:2px 0 0!important;width:100%}
-.aec_form ul{height:1%;list-style:none;margin:0;overflow:hidden}
-.aec_form fieldset{display:block;margin-bottom:10px}
-.aec_form em{color:red}
-.aec_form .picker{cursor:pointer;background:#fff}
-.aec_form{list-style:none;margin:0}
-.aec_form label{font-size:12px;display:inline;float:left;padding:5px 5px 3px 0;width:100px}
-.aec_form label.box{padding:0 0 0 5px;width:auto}
-.aec_form li ul li{border-bottom:0 solid red}
-.aec_form input{display:inline;padding:0.4em;width:25em}
-.aec_form .select option{padding-right:10px}
-.aec_form .auto{width:auto !important}
-.aec_form .wide{width:32em}
-.aec_form .semi{width:15em}
-.aec_form .aec-error{background-color:#ff6}
-.aec_form select{color:#333;display:inline;float:left;width:25em}
-.aec_form textarea{color:#333;display:inline;float:left;height:6.5em;resize:none;width:25em}
-.aec_form input[type=radio]{border:0;width:auto;float:left}
-.aec_form input[type=checkbox]{border:0;width:auto;float:left}
-.aec_form li.buttons{text-align:right}
-.aec_form li.buttons input{float:none;width:auto}
-.aec_form .vvv li{clear:both;display:block;width:100%}
-.aec_form .vvv label{clear:both;display:block;float:none;width:100%}
-.aec_form .vvv input{display:block;float:left}
-.aec_form .vvv select{display:block;float:left}
-.aec_form .vvv textarea{display:block;float:left}
-.aec_form .hvv{height:1%;overflow:hidden;padding:0 !important}
-.aec_form .hvv li{clear:none;display:inline;float:left;margin-right:10px;width:auto}
-.aec_form .hvv li.cb{clear:both}
-.aec_form .hvv label{display:block;float:none;width:auto;padding:1px 0 0 3px}
-.aec_form .hvv label.box{float:left;display:inline;padding:5px 0;vertical-align:top;white-space:nowrap}
-.aec_form .hvv input[type=checkbox]{margin:5px}
-.aec_form .hvv input{display:block;float:left}
-.aec_form .hvv select{display:block}
-.aec_form .hvv textarea{display:block}
-.aec_form .hii{height:1%;overflow:hidden}
-.aec_form .hii li{border-bottom:0;display:inline;float:left;margin-right:10px;width:auto}
-.aec_form .hii label{display:inline;margin-right:0;text-align:left;vertical-align:middle;width:auto}
-.aec_form .hii input{display:inline;vertical-align:middle}
-.aec_form .hii select{display:inline;vertical-align:middle}
-.aec_form .hii textarea{display:inline;vertical-align:middle}
-.aec_form .hii li li{clear:both}
-.aec_form .hhh{height:1%;overflow:hidden}
-.aec_form .hhh li{border-bottom:0;display:inline;float:left;margin-right:10px;width:auto}
-.aec_form .hhh label{float:left;padding-left:5px;width:100px}
-.aec_form .hhh input{float:left}
-.aec_form .hhh input[type=checkbox]{margin:5px}
-.aec_form .hhh select{float:left}
-.aec_form .hhh textarea{float:left}
-.aec_form .hhh li li{clear:both}
-.aec_form .vii{display:inline;float:left;width:auto}
-.aec_form .vii li{clear:both;display:block;float:left;width:auto}
-.aec_form .vii label{display:inline;float:none;vertical-align:middle;width:auto}
-.aec_form .vii input{display:inline;float:none;vertical-align:middle}
-.aec_form .vii select{display:inline;float:none;vertical-align:middle}
-.aec_form .vii textarea{display:inline;float:none;vertical-align:middle}
-.aec_form .vhh{display:inline;float:left}
-.aec_form .vhh li{border-bottom:3px solid #efefef;clear:both;display:block;float:left;width:auto}
-.aec_form .vhh label{display:inline;float:left;width:100px}
-.aec_form .vhh input{display:inline;float:left}
-.aec_form .vhh select{display:inline;float:left}
-.aec_form .vhh textarea{display:inline;float:left}
-.aec_form label.v{display:block;float:none;padding:3px;text-align:left;width:auto}
-.aec_form label.h{display:inline;float:left;width:auto}
-.aec_form .multiselect{background-color:#FFF;border:0 inset #ccc;float:left;height:200px;overflow:auto;padding:0;width:200px}
-.aec_form .multiselect .aec_form{border:0;height:auto;margin:0;padding:0}
-.aec_form .multiselect .vhh{margin:0;padding:0}
-.aec_form .multiselect .vhh input{float:left}
-.aec_form .multiselect .vhh label{clear:none;display:block;float:none;margin-left:20px;width:auto}
-.aec_form .multiselect .vhh li{overflow:hidden;width:100%}
-.aec_form .multiselect .vii li{width:100%}
-.aec_form input.noborder{border:0}
-.aec_form .required{color:red}
-.aec_form .leftnote{color:#F93;float:left;padding:3px 5px 0}
-.aec_form .bottomnote{clear:both;color:#F93;display:block;padding:0}
-.aec_form label span {display:block}
+.aec-form{font-family:"Lucida Grande","Lucida Sans Unicode", Tahoma, sans-serif}
+.aec-form .edit{width:25em}
+.aec-form table{border-spacing:0}
+.aec-form tr.header{background:#eee}
+.aec-form td{padding:5px;margin:0}
+.aec-form li{float:left;margin:2px 0 0!important;width:100%}
+.aec-form ul{height:1%;list-style:none;margin:0;overflow:hidden}
+.aec-form fieldset{display:block;margin-bottom:10px}
+.aec-form em{color:red}
+.aec-form .picker{cursor:pointer;background:#fff}
+.aec-form{list-style:none;margin:0}
+.aec-form label{font-size:12px;display:inline;float:left;padding:5px 5px 3px 0;width:120px}
+.aec-form label.box{padding:0 0 0 5px;width:auto}
+.aec-form li ul li{border-bottom:0 solid red}
+.aec-form input{display:inline;padding:0.4em;width:25em}
+.aec-form .select option{padding-right:10px}
+.aec-form .auto{width:auto !important}
+.aec-form .wide{width:32em}
+.aec-form .semi{width:15em}
+.aec-form .aec-error{background-color:#ff6}
+.aec-form select{color:#333;display:inline;float:left;width:20em}
+.aec-form textarea{color:#333;display:inline;float:left;height:6.5em;resize:none;width:25em}
+.aec-form input[type=radio]{border:0;width:auto;float:left}
+.aec-form input[type=checkbox]{border:0;width:auto;float:left}
+.aec-form li.buttons{text-align:right;padding-top:10px}
+.aec-form li.buttons input{float:none;width:auto}
+.aec-form .vvv li{clear:both;display:block;width:100%}
+.aec-form .vvv label{clear:both;display:block;float:none;width:100%}
+.aec-form .vvv input{display:block;float:left}
+.aec-form .vvv select{display:block;float:left}
+.aec-form .vvv textarea{display:block;float:left}
+.aec-form .hvv{height:1%;overflow:hidden;padding:0 !important}
+.aec-form .hvv li{clear:none;display:inline;float:left;margin-right:10px;width:auto}
+.aec-form .hvv li.cb{clear:both}
+.aec-form .hvv label{display:block;float:none;width:auto;padding:1px 0 0 3px}
+.aec-form .hvv label.box{float:left;display:inline;padding:5px 0;vertical-align:top;white-space:nowrap}
+.aec-form .hvv input[type=checkbox]{margin:5px}
+.aec-form .hvv input{display:block;float:left}
+.aec-form .hvv select{display:block}
+.aec-form .hvv textarea{display:block}
+.aec-form .hii{height:1%;overflow:hidden}
+.aec-form .hii li{border-bottom:0;display:inline;float:left;margin-right:10px;width:auto}
+.aec-form .hii label{display:inline;margin-right:0;text-align:left;vertical-align:middle;width:auto}
+.aec-form .hii input{display:inline;vertical-align:middle}
+.aec-form .hii select{display:inline;vertical-align:middle}
+.aec-form .hii textarea{display:inline;vertical-align:middle}
+.aec-form .hii li li{clear:both}
+.aec-form .hhh{height:1%;overflow:hidden}
+.aec-form .hhh li{border-bottom:0;display:inline;float:left;margin-right:10px;width:auto}
+.aec-form .hhh label{float:left;padding-left:5px;width:100px}
+.aec-form .hhh input{float:left}
+.aec-form .hhh input[type=checkbox]{margin:5px}
+.aec-form .hhh select{float:left}
+.aec-form .hhh textarea{float:left}
+.aec-form .hhh li li{clear:both}
+.aec-form .vii{display:inline;float:left;width:auto}
+.aec-form .vii li{clear:both;display:block;float:left;width:auto}
+.aec-form .vii label{display:inline;float:none;vertical-align:middle;width:auto}
+.aec-form .vii input{display:inline;float:none;vertical-align:middle}
+.aec-form .vii select{display:inline;float:none;vertical-align:middle}
+.aec-form .vii textarea{display:inline;float:none;vertical-align:middle}
+.aec-form .vhh{display:inline;float:left}
+.aec-form .vhh li{border-bottom:3px solid #efefef;clear:both;display:block;float:left;width:auto}
+.aec-form .vhh label{display:inline;float:left;width:100px}
+.aec-form .vhh input{display:inline;float:left}
+.aec-form .vhh select{display:inline;float:left}
+.aec-form .vhh textarea{display:inline;float:left}
+.aec-form label.v{display:block;float:none;padding:3px;text-align:left;width:auto}
+.aec-form label.h{display:inline;float:left;width:auto}
+.aec-form .multiselect{background-color:#FFF;border:0 inset #ccc;float:left;height:200px;overflow:auto;padding:0;width:200px}
+.aec-form .multiselect .aec-form{border:0;height:auto;margin:0;padding:0}
+.aec-form .multiselect .vhh{margin:0;padding:0}
+.aec-form .multiselect .vhh input{float:left}
+.aec-form .multiselect .vhh label{clear:none;display:block;float:none;margin-left:20px;width:auto}
+.aec-form .multiselect .vhh li{overflow:hidden;width:100%}
+.aec-form .multiselect .vii li{width:100%}
+.aec-form input.noborder{border:0}
+.aec-form .required{color:red}
+.aec-form .leftnote{color:#F93;float:left;padding:3px 5px 0}
+.aec-form .bottomnote{clear:both;color:#F93;display:block;padding:0}
+.aec-form label span {display:block}
 .tar label{text-align:right}
 .fl{float:left}
 .fr{float:right}

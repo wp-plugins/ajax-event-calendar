@@ -21,14 +21,13 @@
 	}
 
 	echo "<div class='postbox-container' style='width:70%'>\n";
-	echo "<form method='post' action='options.php' class='aec_form'>\n";
+	echo "<form method='post' action='options.php' class='aec-form'>\n";
 	settings_fields('aec_plugin_options');
 	$aec_options = get_option('aec_options');
 
 	$form = $this->add_hidden_field('title', 2);		// preserves event title as a required field
 	$form .= $this->add_hidden_field('filter_label');	// preserves category filter label value
-	$form .= $this->add_wrap(__("Date Format, Time Format, and Week Start", AEC_NAME), "<span class='fr helptip round5'>", " ");
-	$form .= $this->add_wrap(__("settings are located here", AEC_NAME), "<a href='" . ADMIN_URL(). "options-general.php'>", "</a>.</span>");
+	
 	$form .= $this->add_checkbox_field('show_weekends', __('Display calendar weekends.', AEC_NAME));
 	$form .= $this->add_checkbox_field('limit', __('Prevent users from adding or editing expired events.', AEC_NAME));
 	$form .= $this->add_checkbox_field('menu', __('Display the Add Events link on the front-end calendar.', AEC_NAME));
@@ -36,6 +35,8 @@
 	$form .= $this->add_checkbox_field('make_links', __('Convert description field URLs into  clickable links.', AEC_NAME));
 	$form .= $this->add_checkbox_field('popup_links', __('Open Event Detail links in a new browser window.', AEC_NAME));
 	$form .= $this->add_checkbox_field('scroll', __('Navigate administrative calendar with mousewheel.', AEC_NAME));
+	$form .= $this->add_wrap(__("Date Format, Time Format, and Week Start", AEC_NAME), "<span class='fr helptip round5'>", " ");
+	$form .= $this->add_wrap(__("settings are located here", AEC_NAME), "<a href='" . ADMIN_URL(). "options-general.php'>", "</a>.</span>");
 	$form .= $this->add_select_field('addy_format', __('Address format', AEC_NAME), $format_opts);
 	$form .= $this->add_select_field('step_interval', __('Event timepicker interval', AEC_NAME), $timeslot_opts, $timeslots);
 	
