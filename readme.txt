@@ -114,8 +114,8 @@ Hat Tip to these fine plugins which were instrumental in the creation of this pl
 <br>4. Category color selection (miniColors)
 
 = Plugin Conflicts =
-Mime Type Link Images(http://wordpress.org/support/topic/calendar-disappeared?replies=5)
-<br>Custom Field Template Plugin(http://wordpress.org/support/topic/ajax-event-calendar-conflict-with-custom-field-template?replies=9)
+[Mime Type Link Images](http://wordpress.org/support/topic/calendar-disappeared?replies=5)
+<br>[Custom Field Template Plugin](http://wordpress.org/support/topic/ajax-event-calendar-conflict-with-custom-field-template?replies=9)
 
 
 == Changelog ==
