@@ -1275,7 +1275,7 @@ if (!class_exists('ajax_event_calendar')) {
 										WHERE (
 										(start >= '{$start}' AND start < '{$end}')
 										OR (end >= '{$start}' AND end < '{$end}')
-										OR (start < '{$start}' AND end > '{$end}')
+										OR (start <= '{$start}' AND end >= '{$end}')
 										OR (start < '{$end}' AND (repeat_freq > 0 AND repeat_end >= '{$start}'))
 										)
 										{$andcategory} ORDER BY start{$limit};");
