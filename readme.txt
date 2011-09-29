@@ -12,6 +12,8 @@ A fully localized community calendar that allows authorized users to manage even
 
 Ajax Event Calendar WordPress Plugin is a fully localized (including RTL language support) community calendar that allows authorized users to add, edit, move, copy, resize and delete events into custom categories.  Highly customized calendars can be added to pages, posts or text widgets using the "[calendar]" shortcode.  Similarly, an equally customizable event list can be added using the "[eventlist]" shortcode.  The **Installation** tab contains details on plugin installation and shortcode options.
 
+The plugin supports multiple eventlist instances per page, but you can only run one calendar instance per page (that includes widgets).
+
 This plugin does not support WordPress MU.
 
 =  Features =
