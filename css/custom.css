@@ -195,7 +195,7 @@ html .fc,.fc table{font-size:1em}
 .fc-state-disabled,.fc-state-disabled .fc-button-inner{border-color:#ddd;color:#999}
 .fc-state-disabled{cursor:default}
 .fc-state-disabled .fc-button-effect{display:none}
-.fc-event{border-style:solid;border-width:0;cursor:pointer;font-size:.85em;cursor:default}
+.fc-event{border-style:solid;border-width:0;cursor:pointer;font-size:.85em}
 a.fc-event,.fc-event-draggable{cursor:pointer}
 a.fc-event{text-decoration:none}
 .fc-rtl .fc-event{text-align:right}
