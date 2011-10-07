@@ -558,7 +558,7 @@ jQuery(document).ready(function ($) {
 					eventDialog(e, custom.edit_event);
 				},
 				select: function (start, end, allDay, js, view) {
-					if (custom.limit === '0') {
+					if (custom.limit === '1') {
 						if (start < today || (start < now && view.name !== 'month')) {
 							$.jGrowl(custom.error_past_create, { header: custom.whoops });
 							return false;
