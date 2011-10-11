@@ -14,7 +14,7 @@ Ajax Event Calendar WordPress Plugin is a fully localized (including RTL languag
 
 The plugin supports multiple eventlist instances per page, but you can only run one calendar instance per page (that includes widgets).
 
-This plugin does not support WordPress MU.
+*This plugin does not support WordPress MU.*
 
 [youtube http://www.youtube.com/watch?v=bEzomAUe4DE&rel=0]
 
