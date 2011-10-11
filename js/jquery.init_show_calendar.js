@@ -58,7 +58,7 @@ jQuery(document).ready(function ($) {
 				if (interval == 0) { js_n(reps, frequency, custom.day, custom.days, 1); }
 				if (interval == 1) { js_n(reps, frequency, custom.week, custom.weeks, 1); }
 				if (interval == 2) { js_n(reps, frequency, custom.month, custom.months, 1); }
-				if (interval == 3) { js_n(reps, frequency, custom.years, custom.years, 1); }
+				if (interval == 3) { js_n(reps, frequency, custom.year, custom.years, 1); }
 				reps.push(' ');
 				reps.push(custom.until);
 				reps.push(' ');
