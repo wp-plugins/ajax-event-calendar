@@ -16,6 +16,8 @@ The plugin supports multiple eventlist instances per page, but you can only run 
 
 This plugin does not support WordPress MU.
 
+[youtube http://www.youtube.com/watch?v=bEzomAUe4DE&rel=0]
+
 =  Features =
 
 * Filter events by category
