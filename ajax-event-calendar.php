@@ -437,6 +437,8 @@ if (!class_exists('ajax_event_calendar')) {
 				'limit' 					=> $options['limit'],
 				'today'						=> __('Today', AEC_NAME),
 				'all_day'					=> __('All Day', AEC_NAME),
+				'years'						=> __('Years', AEC_NAME),
+				'year'						=> __('Year', AEC_NAME),
 				'months'					=> __('Months', AEC_NAME),
 				'month'						=> __('Month', AEC_NAME),
 				'weeks'						=> __('Weeks', AEC_NAME),
