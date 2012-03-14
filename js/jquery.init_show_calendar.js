@@ -85,6 +85,7 @@ jQuery(document).ready(function ($) {
 				closeHTML: '<div class="close"><a href="#" class="simplemodal-close" title="' + custom.close_event_form + '">x</a></div>',
 				minHeight: 35,
 				opacity: 65,
+				zIndex: 10000,
 				position: [wpadminbar_height, ],
 				overlayClose: true,
 				onOpen: function (d) {

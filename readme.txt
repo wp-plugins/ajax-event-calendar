@@ -1,12 +1,12 @@
 === Ajax Event Calendar ===
 Contributors: eranmiller
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NCDKRE46K2NBA
-Tags: user authorize, event calendar, customize categories, event list, ajax, category filter, google map, rtl, translated, languages, shortcode, move events, resize events, copy events, recurring events, repeating events
+Tags: calendar, event calendar, event list, move events, resize events, copy events, recurring events, repeating events
 Requires at least: 3.1
-Tested up to: 3.2.1
-Stable tag: 1.0
+Tested up to: 3.3.1
+Stable tag: 1.0.1
 
-A fully localized community calendar that allows authorized users to manage events in custom categories.
+An easy-to-use community calendar and event list that allows authorized users to visual manage events into custom categories.
 
 == Description ==
 
@@ -14,8 +14,8 @@ An easy-to-use visual community calendar that allows authorized users to add, ed
 
 [youtube http://www.youtube.com/watch?v=bEzomAUe4DE&rel=0]
 
-NOTE: The plugin supports multiple eventlist instances per page, but only one calendar instance per page.
-This plugin does not support WordPress MU.
+NOTE: The plugin supports multiple eventlist instances per page, but only one calendar instance.
+<br>This plugin does not support WordPress MU.
 
 =  Features =
 * Display events in Day, Week, and Month views
@@ -76,23 +76,22 @@ This plugin does not support WordPress MU.
 
 == Installation ==
 
-1. Follow the typical [WordPress plugin installation steps](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins).
-1. If you are unfamiliar with shortcode usage, [learn about shortcodes](http://codex.wordpress.org/Shortcode_API).
-1. To create a new calendar, add the [calendar] shortcode to the body of a page, a post or a text widget.
-1. As of version 1.0 [eventlist] replaces the Upcoming Events widget. To create a new event list, simply add the [eventlist] shortcode to the body of a page, a post or a text widget, there is no visible change in front-end appearance.
-1. For more advanced display settings, these are the available [customization options](http://code.google.com/p/wp-aec/wiki/ShortcodeOptions).
-1. If you encounter issues, be sure to check out the [answers to frequently asked questions](https://code.google.com/p/wp-aec/wiki/FrequentlyAskedQuestions).
+1. Follow the typical [WordPress plugin installation steps](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins)
+2. If you are unfamiliar with shortcode usage, [learn about shortcodes](http://codex.wordpress.org/Shortcode_API)
+3. To create a new calendar, add the [calendar] shortcode to the body of a page, a post or a text widget
+4. To create a new event list, add the [eventlist] shortcode to the body of a page, a post or a text widget
+5. For more advanced customization, these are the [available options](http://code.google.com/p/wp-aec/wiki/ShortcodeOptions)
+6. If you encounter issues, check out the [answers to frequently asked questions](https://code.google.com/p/wp-aec/wiki/FrequentlyAskedQuestions)
 
 **IMPORTANT !**
 
 * When adding shortcodes to pages or posts be sure to USE THE WORDPRESS HTML EDITOR VIEW, not the Visual editor view.
 * Your blog time zone option MUST BE A CITY VALUE, the plugin may not handle dates correctly when set to a numeric gmt_offset.
-* PRIOR TO UPGRADING THE PLUGIN be sure to backup critical event data located in aec_event and aec_event_category tables. Select a plugin from the WordPress Plugins Repository that can backup and restore custom (non-WordPress) tables.
-
+* Prior to plugin updates its always a good idea to backup event data. Select a plugin from the WordPress Plugins Repository that can backup and restore custom (non-WordPress) tables.  Event data is located in aec_event and aec_event_category tables.
 
 == Frequently Asked Questions ==
 
-The [answers to frequently asked questions](https://code.google.com/p/wp-aec/wiki/FrequentlyAskedQuestions).
+The [answers to frequently asked questions](http://code.google.com/p/wp-aec/wiki/FrequentlyAskedQuestions).
 
 
 == Screenshots ==
@@ -112,20 +111,30 @@ The [answers to frequently asked questions](https://code.google.com/p/wp-aec/wik
 
 == Other Notes ==
 
-Hat Tip to these fine plugins which were instrumental in the creation of this plugin:
-<br>1. Google Calendar interface experience (FullCalendar)
-<br>2. Growl feedback (jGrowl)
-<br>3. OSX modal forms (simpleModal)
-<br>4. Category color selection (miniColors)
+These fine plugins were instrumental in the creation of this plugin:
+
+1. Google-like calendar interface (FullCalendar)
+2. Growl feedback (jGrowl)
+3. OSX modal forms (simpleModal)
+4. Category color selection (miniColors)
 
 
 = Plugin Conflicts =
 
-[Mime Type Link Images](http://wordpress.org/support/topic/calendar-disappeared?replies=5)
-<br>[Custom Field Template Plugin](http://wordpress.org/support/topic/ajax-event-calendar-conflict-with-custom-field-template?replies=9)
+* [Mime Type Link Images](http://wordpress.org/support/topic/calendar-disappeared?replies=5)
+* [Custom Field Template Plugin](http://wordpress.org/support/topic/ajax-event-calendar-conflict-with-custom-field-template?replies=9)
+* CloudFlare
 
 
 == Changelog ==
+
+= 1.0.1 =
+* fixed drag-n-drop functionality (updated fullcalendar.js)
+* fixed mousewheel scrolling (updated mousescroll.js) [246](http://code.google.com/p/wp-aec/issues/detail?can=2&q=246)
+* replaced dynamically generated cat-colors.css file with inline css to eliminate permission failures
+* updated simplemodal.js
+* fixed modal overlay caused by theme header images css
+
 
 = 1.0 =
 * added support repeating events
@@ -373,5 +382,5 @@ Hat Tip to these fine plugins which were instrumental in the creation of this pl
 * getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
-= 1.0 =
-* recurring events, copy events, eventlist shortcode, minicalendar option, and bug fixes
+= 1.0.1 =
+* mousewheel, drag-n-drop, and modal style bug fixes
