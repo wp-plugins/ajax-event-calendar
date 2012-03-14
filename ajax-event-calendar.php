@@ -3,7 +3,7 @@
 Plugin Name: Ajax Event Calendar
 Plugin URI: http://wordpress.org/extend/plugins/ajax-event-calendar/
 Description: A fully localized community calendar that allows authorized users to manage events in custom categories.
-Version: 1.0
+Version: 1.0.1
 Author: Eran Miller
 Author URI: http://eranmiller.com
 License: GPL2
@@ -38,11 +38,10 @@ if (version_compare(PHP_VERSION, '5', '<')) {
 }
 
 define('AEC_MENU_POSITION', null);  //previously 30
-define('AEC_VERSION', '1.0');
+define('AEC_VERSION', '1.0.1');
 define('AEC_FILE', basename(__FILE__));
 define('AEC_NAME', str_replace('.php', '', AEC_FILE));
 define('AEC_PATH', plugin_dir_path(__FILE__));
-define('AEC_COLORS_CSS', AEC_PATH . 'css/cat_colors.css');
 define('AEC_URL', plugin_dir_url(__FILE__));
 define('AEC_EVENT_TABLE', 'aec_event');
 define('AEC_CATEGORY_TABLE', 'aec_event_category');
@@ -89,11 +88,11 @@ if (!class_exists('ajax_event_calendar')) {
 
 		function __construct() {
 			add_action('plugins_loaded', array($this, 'version_patches'));
-		    add_action('init', array($this, 'localize_plugin'), 10, 1);
-			add_action('admin_init', array($this, 'admin_options_initialize'));
+		    add_action('init', array($this, 'localize_plugin'));
 			add_action('admin_menu', array($this, 'render_admin_menu'));
-			add_action('wp_print_scripts', array($this, 'frontend_calendar_scripts'));
+			add_action('admin_init', array($this, 'admin_options_initialize'));
 			add_action('wp_print_styles', array($this, 'calendar_styles'));
+			add_action('wp_print_scripts', array($this, 'frontend_calendar_scripts'));
 			add_action('delete_user', array($this, 'delete_events_by_user'));
 
 			// ajax hooks
@@ -143,7 +142,7 @@ if (!class_exists('ajax_event_calendar')) {
 						allDay TINYINT(1) UNSIGNED DEFAULT 0,
 						category_id TINYINT(4) UNSIGNED NOT NULL,
 						description VARCHAR(2500),
-						link VARCHAR(100),
+						link VARCHAR(2000),
 						venue VARCHAR(100),
 						address VARCHAR(100),
 						city VARCHAR(50),
@@ -197,9 +196,6 @@ if (!class_exists('ajax_event_calendar')) {
 			}
 
 			if (version_compare($current, AEC_VERSION, '==')) {
-				if (!file_exists(AEC_COLORS_CSS)) {
-					$this->generate_css();
-				}
 				return;
 			}
 
@@ -304,6 +300,17 @@ if (!class_exists('ajax_event_calendar')) {
 				$options		= $this->insert_option('step_interval', 30);
 				$plugin_updated = true;
 			}
+			
+		// < 1.0.1
+		if (version_compare($current, '1.0.1', '<')) {
+			// update to accomodate long urls
+			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+			global $wpdb;
+			$sql = 'ALTER TABLE ' . $wpdb->prefix . AEC_EVENT_TABLE
+				. ' MODIFY link VARCHAR(2000);';
+			$wpdb->query($sql);
+			$plugin_updated = true;
+		}
 
 			// update routines completed
 			if ($plugin_updated) {
@@ -323,16 +330,16 @@ if (!class_exists('ajax_event_calendar')) {
 				$_POST['event']['repeat_int'] = 0;
 				$_POST['event']['repeat_end'] = null;
 				$_POST['event']['category_id'] = 1;
-				$_POST['event']['description'] = "Ajax Event Calendar WordPress Plugin is a fully localized (including RTL language support) community calendar that allows authorized users to add, edit, copy, move, resize and delete events into custom categories.  Highly customized calendars can be added to pages, posts or text widgets using the <strong>[calendar]</strong> shortcode.  Similarly, an equally customizable event list can be added using the <strong>[eventlist]</strong> shortcode.  Click on the event link for details on plugin customization and usage of shortcode option.";
+				$_POST['event']['description'] = "Ajax Event Calendar WordPress Plugin is a fully localized (including RTL language support) community calendar that allows authorized users to add, edit, copy, move, resize and delete events into custom categories.  Highly customized calendars can be added to pages, posts or text widgets using the <strong>[calendar]</strong> shortcode.  Similarly, a list view of events can be added using the <strong>[eventlist]</strong> shortcode.  Click on the event link to learn about available the shortcode options.";
 				$_POST['event']['link'] = AEC_HOMEPAGE;
-				$_POST['event']['venue'] = 'Cloud Gate (The Bean)';
+				$_POST['event']['venue'] = 'Cloud Gate "The Bean"';
 				$_POST['event']['address'] = '201 East Randolph Street';
 				$_POST['event']['city'] = 'Chicago';
 				$_POST['event']['state'] = 'Illinois';
 				$_POST['event']['zip'] = '60601-6530';
 				$_POST['event']['country'] = 'United States';
 				$_POST['event']['contact'] = 'Eran Miller';
-				$_POST['event']['contact_info'] = 'plugins at eranmiller dot com';
+				$_POST['event']['contact_info'] = '123-123-1234';
 				$_POST['event']['access'] = 1;
 				$_POST['event']['rsvp'] = 0;
 
@@ -354,27 +361,24 @@ if (!class_exists('ajax_event_calendar')) {
 			}
 
 			// register scripts
-			wp_register_script('fullcalendar', AEC_URL . 'js/jquery.fullcalendar.min.js', array('jquery'), '1.5.1', true);
-			wp_register_script('simplemodal', AEC_URL . 'js/jquery.simplemodal.1.4.1.min.js', array('jquery'), '1.4.1', true);
+			wp_register_script('fullcalendar', AEC_URL . 'js/jquery.fullcalendar.min.js', array('jquery'), '1.5.3', true);
+			wp_register_script('simplemodal', AEC_URL . 'js/jquery.simplemodal.1.4.2.min.js', array('jquery'), '1.4.2', true);
 			wp_register_script('jquery-ui-datepicker', AEC_URL . 'js/jquery.ui.datepicker.min.js', array('jquery-ui-core'), '1.8.5', true);
 			wp_register_script('datepicker-locale', AEC_URL . 'js/i18n/jquery.ui.datepicker-' . substr(get_locale(), 0, 2) . '.js', array('jquery-ui-datepicker'), '1.8.5', true);
-			wp_register_script('timePicker', AEC_URL . 'js/jquery.timePicker.min.js', array('jquery'), '5195', true);
+			wp_register_script('timepicker', AEC_URL . 'js/jquery.timePicker.min.js', array('jquery'), '5195', true);
 			wp_register_script('growl', AEC_URL . 'js/jquery.jgrowl.min.js', array('jquery'), '1.2.5', true);
 			wp_register_script('miniColors', AEC_URL . 'js/jquery.miniColors.min.js', array('jquery'), '0.1', true);
 			wp_register_script('jeditable', AEC_URL . 'js/jquery.jeditable.min.js', array('jquery'), '1.7.1', true);
-			wp_register_script('mousewheel', AEC_URL . 'js/jquery.mousewheel.min.js', array('jquery'), '3.0.4', true);
+			wp_register_script('mousewheel', AEC_URL . 'js/jquery.mousewheel.min.js', array('jquery'), '3.0.6', true);
 			wp_register_script('init_admin_calendar', AEC_URL . 'js/jquery.init_admin_calendar.js', array('jquery'), AEC_VERSION, true);
 			wp_register_script('init_show_calendar', AEC_URL . 'js/jquery.init_show_calendar.js', array('jquery'), AEC_VERSION, true);
 			wp_register_script('init_show_category', AEC_URL . '/js/jquery.init_admin_category.js', array('jquery'), AEC_VERSION, true);
-
-			wp_register_script('googleplusone', 'https://apis.google.com/js/plusone.js', false, '1.0', true);
 			wp_register_script('tweet', 'http://platform.twitter.com/widgets.js', false, '1.0', true);
 			wp_register_script('facebook', 'http://connect.facebook.net/en_US/all.js#xfbml=1', false, '1.0', true);
 
 			// register styles
 			wp_register_style('custom', AEC_URL . 'css/custom.css', null, AEC_VERSION);
 			wp_register_style('custom_rtl', AEC_URL . 'css/custom_rtl.css', null, AEC_VERSION);
-			wp_register_style('categories', AEC_URL . 'css/cat_colors.css', null, AEC_VERSION);
 			wp_register_style('jq_ui_css', AEC_URL . 'css/jquery-ui-1.8.16.custom.css', null, '1.8.16');
 		}
 
@@ -437,6 +441,8 @@ if (!class_exists('ajax_event_calendar')) {
 				'limit' 					=> $options['limit'],
 				'today'						=> __('Today', AEC_NAME),
 				'all_day'					=> __('All Day', AEC_NAME),
+				'years'						=> __('Years', AEC_NAME),
+				'year'						=> __('Year', AEC_NAME),
 				'months'					=> __('Months', AEC_NAME),
 				'month'						=> __('Month', AEC_NAME),
 				'weeks'						=> __('Weeks', AEC_NAME),
@@ -570,8 +576,6 @@ if (!class_exists('ajax_event_calendar')) {
 			wp_enqueue_script('jquery');
 			wp_enqueue_script('jquery-ui-core');
 			wp_enqueue_script('jquery-ui-draggable');
-			wp_enqueue_script('jquery-ui-droppable');
-			wp_enqueue_script('jquery-ui-selectable');
 			wp_enqueue_script('jquery-ui-resizable');
 			wp_enqueue_script('jquery-ui-datepicker');
 			if (AEC_LOCALE != 'en') {
@@ -580,7 +584,7 @@ if (!class_exists('ajax_event_calendar')) {
 			wp_enqueue_script('fullcalendar');
 			wp_enqueue_script('simplemodal');
 			wp_enqueue_script('growl');
-			wp_enqueue_script('timePicker');
+			wp_enqueue_script('timepicker');
 			wp_enqueue_script('mousewheel');
 			wp_enqueue_script('init_admin_calendar');
 			wp_localize_script('init_admin_calendar', 'custom', $this->admin_calendar_variables());
@@ -607,7 +611,6 @@ if (!class_exists('ajax_event_calendar')) {
 		}
 
 		function admin_social_scripts() {
-			wp_enqueue_script('googleplusone');
 			wp_enqueue_script('tweet');
 			wp_enqueue_script('facebook');
 		}
@@ -621,12 +624,8 @@ if (!class_exists('ajax_event_calendar')) {
 			wp_localize_script('init_show_category', 'custom', $this->admin_category_variables());
 		}
 
-		function render_aec_version($credit = false) {
-			$out = "<span class='aec-version'>v1.0RC&ndash;1</span>\n";
-			if ($credit) {
-				$out .= "<a href='http://eranmiller.com/' class='aec-credit'>AECv" . AEC_VERSION . " " . __('Created By', AEC_NAME) . " Eran Miller</a>\n";
-			}
-			return $out;			
+		function render_aec_version() {
+			return "<span class='aec-credit'>AEC v" . AEC_VERSION . "</span>\n";
 		}
 		
 		function render_admin_calendar() {
@@ -634,7 +633,8 @@ if (!class_exists('ajax_event_calendar')) {
 				wp_die(__('You do not have sufficient permissions to access this page.', AEC_NAME));
 			}
 			$options = get_option('aec_options');
-			$out  = "<div class='wrap'>\n";
+			$out  = $this->generate_css();
+			$out .= "<div class='wrap'>\n";
 			$out .= "<a href='". AEC_HOMEPAGE . "' target='_blank'><span class='em-icon icon32'></span></a>\n";
 			$out .= $this->render_category_filter($options);
 			$out .= "<h2>" . __('Ajax Event Calendar', AEC_NAME) . "</h2>\n";
@@ -699,8 +699,10 @@ if (!class_exists('ajax_event_calendar')) {
 				$height = 200;
 			}
 
+			$out  = $this->generate_css();
+			
 			// pass shortcode parameters to javascript
-			$out  = "<script type='text/javascript'>\n";
+			$out .= "<script type='text/javascript'>\n";
 			$out .= "var shortcode = {\n";
 			$out .= "categories: '{$categories}',\n";
 			$out .= "excluded: {$excluded},\n";
@@ -729,7 +731,7 @@ if (!class_exists('ajax_event_calendar')) {
 			}
 			$out .= "</div>\n";
 			$out .= "<div id='aec-calendar'></div>\n";
-			$out .= $this->render_aec_version(true);
+			$out .= $this->render_aec_version();
 			$out .= "</div>\n";
 			return $out;
 		}
@@ -749,22 +751,23 @@ if (!class_exists('ajax_event_calendar')) {
 			// shortcode input validation
 			$categories	 	= (isset($categories)) ? $this->cleanse_shortcode_input($categories) : false;
 			$excluded		= ($categories && isset($excluded)) ? $excluded : false;
-			$limit 			= (!intval($limit)) ? 4 : intval($limit);
+			//$limit 			= (!intval($limit)) ? 4 : intval($limit);
+			$limit 			= ($limit == "none") ? false : intval($limit);
 			$whitelabel 	= ($whitelabel == "true") ? true : false;
 			$start			= date('Y-m-d', strtotime($start));
 			$end			= date('Y-m-d', strtotime($end));
 
 			$events			= $this->db_query_events($start, $end, $categories, $excluded, $limit);
-
-			$out = "<ul class='aec-eventlist'>";
-			$events = $this->process_events($events, $start, $end, true);
+			$events 		= $this->process_events($events, $start, $end, true);
+			$out = $this->generate_css();
+			$out .= "<ul class='aec-eventlist'>";
 			if ($events) {
 				$out .= $this->render_eventlist_events($events, $whitelabel, $limit);
 			} else {
 				$out .= "<li>{$noresults}</li>";
 			}
 			$out .= "</ul>\n";
-			$out .= $this->render_aec_version(true);
+			$out .= $this->render_aec_version();
 			return $out;
 		}
 
@@ -785,8 +788,9 @@ if (!class_exists('ajax_event_calendar')) {
 			$rows = $this->convert_array_to_object($events);
 			$out = '';
 			foreach ($rows as $count => $row) {
-				if ($count < $limit) {
-
+				//if ($count < $limit) {
+				if (!$limit || $count < $limit) {
+				
 					// split database formatted datetime value into display formatted date and time values
 					$row->start_date	= $this->convert_date($row->start, AEC_DB_DATETIME_FORMAT, AEC_WP_DATE_FORMAT);
 					$row->start_time 	= $this->convert_date($row->start, AEC_DB_DATETIME_FORMAT, AEC_WP_TIME_FORMAT);
@@ -840,8 +844,8 @@ if (!class_exists('ajax_event_calendar')) {
 			if (!current_user_can('aec_manage_calendar')) {
 				wp_die(__('You do not have sufficient permissions to access this page.', AEC_NAME));
 			}
-
-			$add  = $this->add_wrap(__('To add a new category, enter a category label and select a background color.', AEC_NAME), "<p>", "</p>");
+			$add  = $this->generate_css();
+			$add .= $this->add_wrap(__('To add a new category, enter a category label and select a background color.', AEC_NAME), "<p>", "</p>");
 			$add .= "<form id='aec-category-form'>\n";
 			$add .= "<input type='hidden' id='fgcolor' name='fgcolor' class='fg ltr' value='#FFFFFF' />";
 			$add .= "<p><input type='text' id='category' name='category' value='' /> ";
@@ -875,7 +879,7 @@ if (!class_exists('ajax_event_calendar')) {
 			$top = "<a href='http://". AEC_HOMEPAGE . "' target='_blank'><span class='em-icon icon32'></span></a>\n";
 			$top .= $this->add_wrap(__('Categories', AEC_NAME), "<h2>", "</h2>");
 
-			$out = $this->add_wrap($out, "<div class='postbox-container' style='width:70%'>", "</div>");
+			$out = $this->add_wrap($out, "<div class='postbox-container' style='width:65%'>", "</div>");
 			$out .= $this->add_sidebar();
 			echo $this->add_wrap($out, "<div class='wrap'>{$top}", "</div>");
 		}
@@ -886,7 +890,7 @@ if (!class_exists('ajax_event_calendar')) {
 			}
 
 			$rows = $this->db_query_monthly_activity();
-			$out = '';
+			$out  = $this->generate_css();
 			if (count($rows)) {
 				foreach ($rows as $row) {
 					$out .= "<p class='round5 cat{$row->category_id}'>{$row->cnt} ";
@@ -904,7 +908,7 @@ if (!class_exists('ajax_event_calendar')) {
 			$top = "<a href='http://". AEC_HOMEPAGE . "' target='_blank'><span class='em-icon icon32'></span></a>\n";
 			$top .= $this->add_wrap(__('Activity Report', AEC_NAME), "<h2>", "</h2>");
 
-			$out = $this->add_wrap($out, "<div class='postbox-container' style='width:70%'>", "</div>");
+			$out = $this->add_wrap($out, "<div class='postbox-container' style='width:65%'>", "</div>");
 			$out .= $this->add_sidebar();
 			echo $this->add_wrap($out, "<div class='wrap'>{$top}", "</div>");
 		}
@@ -1080,8 +1084,8 @@ if (!class_exists('ajax_event_calendar')) {
 
 		function add_select_field($field, $label, $options, $values=false) {
 			$aec_options = get_option('aec_options');
-			$out = "<label for='{$field}' class='semi'>{$label}</label>\n";
-			$out .= "<select id='{$field}' name='aec_options[{$field}]'>";
+			$out = "<label for='{$field}'>{$label}</label>\n";
+			$out .= "<select id='{$field}' class='semi' name='aec_options[{$field}]'>";
 			foreach ($options as $option => $value) {
 				if (is_numeric($value)) $option = $value;
 				if ($values) {
@@ -1111,14 +1115,13 @@ if (!class_exists('ajax_event_calendar')) {
 			$like .= $this->add_wrap("<form style='text-align:center' action='https://www.paypal.com/cgi-bin/webscr' method='post'><input type='hidden' name='cmd' value='_s-xclick' /><input type='hidden' name='hosted_button_id' value='NCDKRE46K2NBA' /><input type='image' src='https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif' name='submit' alt='PayPal - The safer, easier way to pay online!' /><img alt='' border='0' src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1' /></form>", "<p>", "</p>");
 
 			$social = $this->add_wrap(__('Create a blog review or an instructional video about the Calendar and share it', AEC_NAME), "<p>", ".</p>");
-			$social .= $this->add_wrap("<g:plusone></g:plusone>", "<p>", "</p>");
 			$social .= $this->add_wrap("<a href='http://twitter.com/share' class='twitter-share-button' data-url='" . AEC_HOMEPAGE . "' data-count='horizontal' data-via='Ajax Event Calendar WordPress Plugin'>Tweet</a>", "<p>", "</p>");
 			$social .= $this->add_wrap("<fb:like href='" . AEC_HOMEPAGE . "'; layout='standard' show_faces='true' width='150' font='arial'></fb:like>", "<p>", "</p>");
 
 			$sidebar  = $this->add_panel(__('Support', AEC_NAME), $help);
 			$sidebar .= $this->add_panel(__('Share the Love', AEC_NAME), $like);
 			$sidebar .= $this->add_panel(__('Spread the Word', AEC_NAME), $social);
-			return $this->add_wrap($sidebar, "<div class='postbox-container' style='width:25%'>", "</div>");
+			return $this->add_wrap($sidebar, "<div class='postbox-container' style='margin-left:10px; width:20%'>", "</div>");
 		}
 
 		// USER ACTIONS
@@ -1153,6 +1156,7 @@ if (!class_exists('ajax_event_calendar')) {
 			$event->start 		= date(AEC_DB_DATETIME_FORMAT, strtotime($event->start) + $offset);
 			// add an end date for events with a null end date
 			if (isset($input->end)) {
+			//if (!$input->allDay && !isset($input->end)) {
 				$event->end		= date(AEC_DB_DATETIME_FORMAT, strtotime($event->start) + $twoHours);
 			}
 			
@@ -1181,7 +1185,6 @@ if (!class_exists('ajax_event_calendar')) {
 			}
 			$this->db_delete_events_by_user($_POST['user_id']);
 		}
-
 
 		function update_filter_label() {
 			if (!isset($_POST['label'])) {
@@ -1275,7 +1278,7 @@ if (!class_exists('ajax_event_calendar')) {
 										WHERE (
 										(start >= '{$start}' AND start < '{$end}')
 										OR (end >= '{$start}' AND end < '{$end}')
-										OR (start < '{$start}' AND end > '{$end}')
+										OR (start <= '{$start}' AND end >= '{$end}')
 										OR (start < '{$end}' AND (repeat_freq > 0 AND repeat_end >= '{$start}'))
 										)
 										{$andcategory} ORDER BY start{$limit};");
@@ -1457,7 +1460,6 @@ if (!class_exists('ajax_event_calendar')) {
 								);
 			if ($this->return_result($result)) {
 				$input->id = $wpdb->insert_id;	// id of newly created row
-				$this->generate_css();
 				$this->render_category($input);
 			}
 		}
@@ -1477,7 +1479,6 @@ if (!class_exists('ajax_event_calendar')) {
 									array ('%d') //id
 								);
 			if ($this->return_result($result)) {
-				$this->generate_css();
 				$this->render_category($input);
 			}
 		}
@@ -1517,7 +1518,7 @@ if (!class_exists('ajax_event_calendar')) {
 		// removes slashes from strings and arrays
 		function cleanse_output($output) {
 			if (is_array($output)) {
-				array_walk_recursive($output, create_function('&$val', '$val = stripslashes($val);'));
+				array_walk_recursive($output, create_function('&$val', '$val = trim(stripslashes($val));'));
 			} else {
 				$output = stripslashes($output);
 			}
@@ -1547,7 +1548,7 @@ if (!class_exists('ajax_event_calendar')) {
 			return $clean;
 		}
 
-		// convert category string input into array, force integer values, return as string output
+		// convert category string input into array, force integer values, return serialized
 		function cleanse_shortcode_input($input) {
 			$input = explode(',', $input);
 			array_walk($input, create_function('&$val', '$val = intval($val);'));
@@ -1618,10 +1619,10 @@ if (!class_exists('ajax_event_calendar')) {
 			exit;
 		}
 
-		// dynamically creates cat_colors.css file
 		function generate_css() {
 			$categories = $this->db_query_categories();
-			$out 	  = "/* DO NOT EDIT - THIS FILE IS DYNAMICALLY GENERATED */\n";
+			
+			$out 	  = "<style>";
 			foreach ($categories as $category) {
 				$out .= ".cat{$category->id}";
 				$out .= ",.cat{$category->id} .fc-event-skin";
@@ -1637,9 +1638,8 @@ if (!class_exists('ajax_event_calendar')) {
 				$out .= "background-color:#{$category->bgcolor} !important;";
 				$out .= "border-color:#{$category->fgcolor} !important}\n";
 			}
-			$fh 	  = fopen(AEC_COLORS_CSS, 'w+') or die('cannot open file');
-			fwrite($fh, $out);
-			fclose($fh);
+			$out .= "</style>";
+			return $out;
 		}
 
 		// overwrite option, preserving other serialized options
@@ -1787,7 +1787,6 @@ register_activation_hook(__FILE__, array('ajax_event_calendar', 'install'));
 
 if (class_exists('ajax_event_calendar')) {
 	require_once AEC_PATH . 'inc/widget-contributors.php';
-	require_once AEC_PATH . 'inc/widget-upcoming.php';
 	$aec = new ajax_event_calendar();
 }
 ?>

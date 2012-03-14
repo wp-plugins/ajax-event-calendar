@@ -281,6 +281,7 @@ jQuery(document).ready(function ($) {
 				closeHTML: '<div class="close"><a href="#" class="simplemodal-close" title="' + custom.close_event_form + '">x</a></div>',
 				minHeight: 35,
 				opacity: 65,
+				zIndex: 10000,
 				position: [wpadminbar_height, ],
 				overlayClose: true,
 				onOpen: function (d) {
@@ -307,7 +308,7 @@ jQuery(document).ready(function ($) {
 											show24Hours: custom.is24HrTime,
 											separator: ':'
 										});
-
+console.log(times);
 										// toggle weekends
 										if (custom.show_weekends === '0') {
 											$.datepicker.setDefaults({'beforeShowDay': $.datepicker.noWeekends});
@@ -534,7 +535,7 @@ jQuery(document).ready(function ($) {
 				lazyFetching: false,
 				loading: function (b) {
 					if (b) { 
-						$.jGrowl(custom.loading, {sticky: true}); 
+						$.jGrowl(custom.loading, {sticky: true});
 					} else {
 						$('#jGrowl').jGrowl('close');
 					}
@@ -558,7 +559,7 @@ jQuery(document).ready(function ($) {
 					eventDialog(e, custom.edit_event);
 				},
 				select: function (start, end, allDay, js, view) {
-					if (custom.limit === '0') {
+					if (custom.limit === '1') {
 						if (start < today || (start < now && view.name !== 'month')) {
 							$.jGrowl(custom.error_past_create, { header: custom.whoops });
 							return false;

@@ -20,7 +20,7 @@
 		echo $this->add_wrap(__('Settings Updated', AEC_NAME), '<div id="message" style="width:94%" class="message updated"><p><strong>', '.</strong></p></div>');
 	}
 
-	echo "<div class='postbox-container' style='width:70%'>\n";
+	echo "<div class='postbox-container' style='width:65%'>\n";
 	echo "<form method='post' action='options.php' class='aec-form'>\n";
 	settings_fields('aec_plugin_options');
 	$aec_options = get_option('aec_options');

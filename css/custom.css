@@ -7,7 +7,7 @@
 #aec-calendar table{margin:0 !important}
 #aec-container{position:relative;float:none}
 
-.fc-event-disabled{opacity:0.3;cursor:not-allowed}
+.fc-event-disabled{opacity:0.3;cursor:not-allowed !important}
 .em-icon{background:url(images/em-icon-32.png) no-repeat}
 
 #aec-filter{float:right;font-size:12px;padding:10px 0;margin:0 !important}
@@ -26,7 +26,7 @@
 #aec-modal-container .close a{color:#666;display:block;font-weight:bold;padding:6px 12px 0;text-decoration:none;text-shadow:0 1px 0 #f4f4f4}
 #aec-modal-container .close a:hover{color:#000}
 #aec-modal-container .aec-title{background-color:#ddd;border-bottom:1px solid #ccc;color:#000;font-weight:bold;padding:6px 8px;text-shadow:0 1px 0 #f4f4f4}
-#aec-modal-container .aec-content{overflow:hidden;padding:5px 10px 0;font-size:13px}
+#aec-modal-container .aec-content{overflow:auto;padding:5px 10px 0;font-size:13px;max-height:600px}
 
 
 #aec-modal{display:none;overflow:hidden}
@@ -195,7 +195,7 @@ html .fc,.fc table{font-size:1em}
 .fc-state-disabled,.fc-state-disabled .fc-button-inner{border-color:#ddd;color:#999}
 .fc-state-disabled{cursor:default}
 .fc-state-disabled .fc-button-effect{display:none}
-.fc-event{border-style:solid;border-width:0;cursor:pointer;font-size:.85em;cursor:default}
+.fc-event{border-style:solid;border-width:0;cursor:pointer;font-size:.85em}
 a.fc-event,.fc-event-draggable{cursor:pointer}
 a.fc-event{text-decoration:none}
 .fc-rtl .fc-event{text-align:right}
@@ -257,13 +257,13 @@ table.fc-border-separate{border-collapse:separate}
 .fc-event-vert .ui-resizable-s{bottom:0!important;cursor:s-resize;font-family:monospace;font-size:11px!important;height:8px!important;line-height:8px!important;overflow:hidden!important;text-align:center;width:100%!important}
 .fc-agenda .ui-resizable-resizing{_overflow:hidden}
 
-div.time-picker{background:#fff;border:1px solid #aaa;height:191px;margin:0;overflow:auto;position:absolute;width:6em;z-index:1002}
+div.time-picker{background:#fff;border:1px solid #aaa;height:191px;margin:0;overflow:auto;position:absolute;width:6em;z-index:10002}
 div.time-picker-12hours{width:7em}
 div.time-picker ul{list-style-type:none;margin:0;padding:0}
 div.time-picker li{cursor:pointer;height:10px;margin:0;padding:4px 3px}
 div.time-picker li.selected{background:#0063CE;color:#fff}
 
-div.jGrowl{color:#fff;font-size:12px;padding:10px;position:absolute;z-index:9999}
+div.jGrowl{color:#fff;font-size:12px;padding:10px;position:absolute;z-index:10003}
 div.jGrowl{position:absolute}
 body > div.jGrowl{position:fixed}
 div.jGrowl.top-left{left:0;top:0}
