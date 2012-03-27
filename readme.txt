@@ -137,7 +137,7 @@ These fine plugins were instrumental in the creation of this plugin:
 
 = 1.0.1 =
 * fixed drag-n-drop functionality (updated fullcalendar.js)
-* [246](http://code.google.com/p/wp-aec/issues/detail?can=2&q=246): fixed mousewheel scrolling (updated mousescroll.js)
+* [#246](http://code.google.com/p/wp-aec/issues/detail?id=246): fixed mousewheel scrolling (updated mousescroll.js)
 * replaced dynamically generated cat-colors.css file with inline css to eliminate permission failures
 * updated simplemodal.js
 * fixed modal overlay caused by theme header images css
