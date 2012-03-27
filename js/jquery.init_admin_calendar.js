@@ -308,7 +308,7 @@ jQuery(document).ready(function ($) {
 											show24Hours: custom.is24HrTime,
 											separator: ':'
 										});
-console.log(times);
+										
 										// toggle weekends
 										if (custom.show_weekends === '0') {
 											$.datepicker.setDefaults({'beforeShowDay': $.datepicker.noWeekends});

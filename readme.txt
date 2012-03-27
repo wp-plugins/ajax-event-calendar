@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event calendar, event list, move events, resize events, copy events, recurring events, repeating events
 Requires at least: 3.1
 Tested up to: 3.3.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 
 An easy-to-use community calendar and event list that allows authorized users to visual manage events into custom categories.
 
@@ -16,6 +16,13 @@ An easy-to-use visual community calendar that allows authorized users to add, ed
 
 NOTE: The plugin supports multiple eventlist instances per page, but only one calendar instance.
 <br>This plugin does not support WordPress MU.
+
+= Support =
+* [Read about installation instructions](http://wordpress.org/extend/plugins/ajax-event-calendar/installation)
+* [Read about shortcode display options](http://code.google.com/p/wp-aec/wiki/ShortcodeOptions)
+* [Find answers to Frequently Asked Questions](http://code.google.com/p/wp-aec/wiki/FrequentlyAskedQuestions)
+* [Ask for help from fellow users on the WordPress forums](http://wordpress.org/tags/ajax-event-calendar?forum_id=10)
+* [Submit issues and feature requests to the Author using the Issue Tracker](http://code.google.com/p/wp-aec/issues/list?can=1)
 
 =  Features =
 * Display events in Day, Week, and Month views
@@ -43,17 +50,12 @@ NOTE: The plugin supports multiple eventlist instances per page, but only one ca
 * Assign users the ability to add and modify their own events (**aec_add_events**)
 * Assign users the ability to modify all events (**aec_manage_events**)
 * Assign users the ability to change all calendar options (**aec_manage_calendar**)
-* Available in 21 languages with support for right-to-left languages (not all translations are current)
-
-= Need Support? =
-* [Read about installation and options](http://wordpress.org/extend/plugins/ajax-event-calendar/installation)
-* [Find answers to Frequently Asked Questions](http://code.google.com/p/wp-aec/wiki/FrequentlyAskedQuestions)
-* [Ask for help in the WordPress forums](http://wordpress.org/tags/ajax-event-calendar?forum_id=10)
-* [Submit issues and feature requests](http://code.google.com/p/wp-aec/issues/list?can=1)
+* Available in 23 languages with support for right-to-left languages (not all translations are current)
 
 = A BIG Thank You to those who have provided translations =
 * Arabic (Sultan G) - Shukran
 * Catalan (Isaac Turon) - Gracias
+* Chinese [China and Taiwan] (GC Tech) - M goi/Xie xie
 * Czech (Kamil) - Dekuji
 * Danish (kfe1970) - Tak
 * Dutch (Maikel) - Bedankt
@@ -128,9 +130,14 @@ These fine plugins were instrumental in the creation of this plugin:
 
 == Changelog ==
 
+= 1.0.2 =
+* [#264](http://code.google.com/p/wp-aec/issues/detail?id=264): fixed critical IE button locking issue
+* added inline widget message to alert users not aware of notifications on plugin homepage
+* added chinese
+
 = 1.0.1 =
 * fixed drag-n-drop functionality (updated fullcalendar.js)
-* fixed mousewheel scrolling (updated mousescroll.js) [246](http://code.google.com/p/wp-aec/issues/detail?can=2&q=246)
+* [246](http://code.google.com/p/wp-aec/issues/detail?can=2&q=246): fixed mousewheel scrolling (updated mousescroll.js)
 * replaced dynamically generated cat-colors.css file with inline css to eliminate permission failures
 * updated simplemodal.js
 * fixed modal overlay caused by theme header images css
@@ -382,5 +389,5 @@ These fine plugins were instrumental in the creation of this plugin:
 * getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
-= 1.0.1 =
-* mousewheel, drag-n-drop, and modal style bug fixes
+= 1.0.2 =
+* IE bug fix and widget to eventlist migration reminder
