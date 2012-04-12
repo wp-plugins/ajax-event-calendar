@@ -6,7 +6,7 @@ Requires at least: 3.1
 Tested up to: 3.3.1
 Stable tag: 1.0.2
 
-A calendar that enables filtered views of community managed events in custom categories.
+A drag-n-drop calendar that enables filtered views of community managed events in custom categories.
 
 == Description ==
 
@@ -15,6 +15,8 @@ A community calendar that allows authorized users to add, edit, move, copy, resi
 [youtube http://www.youtube.com/watch?v=bEzomAUe4DE&rel=0]
 
 = Key Features =
+* Select multiple days to quickly create multi-day events
+* Drag events or stretch across multiple days to quickly change event date/duration
 * Display events in Day, Week, and Month views
 * Copy/Duplicate/Clone events
 * Supports daily, weekly, monthly and yearly repeating events
