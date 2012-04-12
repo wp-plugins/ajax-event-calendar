@@ -6,53 +6,41 @@ Requires at least: 3.1
 Tested up to: 3.3.1
 Stable tag: 1.0.2
 
-An easy-to-use community calendar and event list that allows authorized users to visual manage events into custom categories.
+A calendar that enables filtered views of community managed events in custom categories.
 
 == Description ==
 
-An easy-to-use visual community calendar that allows authorized users to add, edit, move, copy, resize, delete and filter events into customizable categories - supports daily, weekly, monthly and yearly repeating events.  Calendars can be added to your site by typing "[calendar]" shortcode in the body of a page, a post or a text widget.  Event lists are similarly added via the "[eventlist]" shortcode.  Both shortcodes are highly customizable with numerous [display options](http://code.google.com/p/wp-aec/wiki/ShortcodeOptions).
+A community calendar that allows authorized users to add, edit, move, copy, resize, delete and filter events into customizable categories.  Calendars and event lists can be added to your blog by adding [highly customizable](http://code.google.com/p/wp-aec/wiki/ShortcodeOptions) shortcodes in the body of a page, a post or a text widget.
 
 [youtube http://www.youtube.com/watch?v=bEzomAUe4DE&rel=0]
 
-NOTE: The plugin supports multiple eventlist instances per page, but only one calendar instance.
-<br>This plugin does not support WordPress MU.
-
-= Support =
-* [Read about installation instructions](http://wordpress.org/extend/plugins/ajax-event-calendar/installation)
-* [Read about shortcode display options](http://code.google.com/p/wp-aec/wiki/ShortcodeOptions)
-* [Find answers to Frequently Asked Questions](http://code.google.com/p/wp-aec/wiki/FrequentlyAskedQuestions)
-* [Ask for help from fellow users on the WordPress forums](http://wordpress.org/tags/ajax-event-calendar?forum_id=10)
-* [Submit issues and feature requests to the Author using the Issue Tracker](http://code.google.com/p/wp-aec/issues/list?can=1)
-
-=  Features =
+= Key Features =
 * Display events in Day, Week, and Month views
 * Copy/Duplicate/Clone events
-* Supports daily, weekly, biweekly, monthly, and yearly repeating events
+* Supports daily, weekly, monthly and yearly repeating events
 * Month and Year dropdown selectors for fast navigation
-* Navigate between months/weeks with the calendar navigation buttons and the mouse wheel
-* Mini-calendar sidebar option 
-* Specify category filter label
-* Add, modify and delete event categories and colors
+* Optional navigate calendar months/weeks via mouse wheel
+* Optional mini-calendar view (for sidebar)
+* Customize category filter label (default: "Show Type")
+* Add, modify and delete event category names and colors
 * Instantly filter events by category
-* Specify calendar date/time formats and start of week via **Settings > General** menu
-* Variable calendar time slot intervals: 5, 10, 15, 30 and 60 minute options
-* Specify which event form fields to hide, display and require
-* Option to convert URLs entered in the description field into clickable links
-* Option to open links entered in event details in a new/same browser window
-* Option to allow/disallow the creation or editing of expired events
-* Option to show/hide the **Add Events** link (to the Administrative Calendar) above the front-end Calendar
-* Option to show/hide weekends on the calendar
-* Option to allow/disallow mouse wheel calendar navigation
-* Link to Google Maps, automatically generated from event address fields
-* Display a generated list of calendar contributors using the sidebar widget
-* View an **Activity Report** of the current month's event distribution by category
+* Customize date/time format and start of week setting
+* Customize calendar minute intervals
+* Customize which event fields to hide, display or require
+* Optional convert URLs entered in the event description into clickable links
+* Optional disallow creation of past events
+* Optional show **Add Events** link (to the Administrative Calendar) on the front-end Calendar
+* Optional to show/hide weekends on the calendar
+* Link to Google Maps automatically generated from address fields
+* Optional sidebar widget that displays a list of calendar contributors
+* View **Activity Report** of current month's event distribution by category
 * Track the number of events created by each user in the **Users** menu
 * Assign users the ability to add and modify their own events (**aec_add_events**)
 * Assign users the ability to modify all events (**aec_manage_events**)
 * Assign users the ability to change all calendar options (**aec_manage_calendar**)
-* Available in 23 languages with support for right-to-left languages (not all translations are current)
+* Supports right-to-left languages
 
-= A BIG Thank You to those who have provided translations =
+= Available in 23 languages =
 * Arabic (Sultan G) - Shukran
 * Catalan (Isaac Turon) - Gracias
 * Chinese [China and Taiwan] (GC Tech) - M goi/Xie xie
@@ -82,18 +70,22 @@ NOTE: The plugin supports multiple eventlist instances per page, but only one ca
 2. If you are unfamiliar with shortcode usage, [learn about shortcodes](http://codex.wordpress.org/Shortcode_API)
 3. To create a new calendar, add the [calendar] shortcode to the body of a page, a post or a text widget
 4. To create a new event list, add the [eventlist] shortcode to the body of a page, a post or a text widget
-5. For more advanced customization, these are the [available options](http://code.google.com/p/wp-aec/wiki/ShortcodeOptions)
-6. If you encounter issues, check out the [answers to frequently asked questions](https://code.google.com/p/wp-aec/wiki/FrequentlyAskedQuestions)
+5. To customize display, review the [shortcode options](http://code.google.com/p/wp-aec/wiki/ShortcodeOptions)
+6. Having problems? [Read this first](http://code.google.com/p/wp-aec/wiki/FrequentlyAskedQuestions)
+7. Ask other users for help [on the forums](http://wordpress.org/tags/ajax-event-calendar?forum_id=10)
+8. Found a bug? [Submit valid bugs and feature requests here](http://code.google.com/p/wp-aec/issues/list?can=1)
 
-**IMPORTANT !**
 
-* When adding shortcodes to pages or posts be sure to USE THE WORDPRESS HTML EDITOR VIEW, not the Visual editor view.
-* Your blog time zone option MUST BE A CITY VALUE, the plugin may not handle dates correctly when set to a numeric gmt_offset.
-* Prior to plugin updates its always a good idea to backup event data. Select a plugin from the WordPress Plugins Repository that can backup and restore custom (non-WordPress) tables.  Event data is located in aec_event and aec_event_category tables.
+** Important **
+
+* Your blog time zone option must be a city name value, the plugin may not handle dates correctly when set to a numeric gmt_offset.
+* Does NOT support WordPress MU implementations.
+* When adding shortcodes to pages or posts be sure to use the HTML editor mode - not the Visual editor.
+* You are encourage to backup event data (located in aec_event and aec_event_category tables) before running plugin updates. Select a plugin that can backup and restore custom (non-WordPress) tables.
 
 == Frequently Asked Questions ==
 
-The [answers to frequently asked questions](http://code.google.com/p/wp-aec/wiki/FrequentlyAskedQuestions).
+[The FAQ is located here](http://code.google.com/p/wp-aec/wiki/FrequentlyAskedQuestions).
 
 
 == Screenshots ==
@@ -119,14 +111,6 @@ These fine plugins were instrumental in the creation of this plugin:
 2. Growl feedback (jGrowl)
 3. OSX modal forms (simpleModal)
 4. Category color selection (miniColors)
-
-
-= Plugin Conflicts =
-
-* [Mime Type Link Images](http://wordpress.org/support/topic/calendar-disappeared?replies=5)
-* [Custom Field Template Plugin](http://wordpress.org/support/topic/ajax-event-calendar-conflict-with-custom-field-template?replies=9)
-* CloudFlare
-
 
 == Changelog ==
 
