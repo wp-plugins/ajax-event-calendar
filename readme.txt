@@ -6,7 +6,7 @@ Requires at least: 3.1
 Tested up to: 3.3.1
 Stable tag: 1.0.2
 
-A drag-n-drop calendar that enables filtered views of community managed events in custom categories.
+A drag-n-drop calendar that enables filtered views of community added events in custom categories.
 
 == Description ==
 
@@ -43,28 +43,29 @@ A community calendar that allows authorized users to add, edit, move, copy, resi
 * Supports right-to-left languages
 
 = Available in 23 languages =
-* Arabic (Sultan G) - Shukran
-* Catalan (Isaac Turon) - Gracias
-* Chinese [China and Taiwan] (GC Tech) - M goi/Xie xie
-* Czech (Kamil) - Dekuji
-* Danish (kfe1970) - Tak
-* Dutch (Maikel) - Bedankt
-* French (doc75, Luc) - Merci
-* German (Tobias, Ralph Stenzel) - Danke
-* Hungarian (Gabor Major) - Koszonom
-* Italian (Ernesto, eros.mazzurco) - Grazie
-* Indonesian (Nanang) - Matur Tampiasih
-* Latvian (Kaspars) - Paldies
-* Lithuanian (juliuslt) - Aciu
-* Norwegian (Julius) - Takk
-* Polish (Szymon) - Dziekuje
-* Portuguese (rgranzoti, ricardorodh) - Obrigado
-* Romanian (Razvan) - Multumesc
-* Russian (reddylabeu) - Spasiba
-* Spanish (Fernando) - Gracias
-* Swedish (Hirschan) - Tack
-* Tamil (Bage) - Nandri
-* Turkish (Darth crow) - Sag Olun
+* Arabic ( Sultan G )
+* Catalan ( Isaac Turon )
+* Chinese [China and Taiwan] ( GC Tech )
+* Czech ( Kamil )
+* Danish ( kfe1970 )
+* Dutch ( Maikel )
+* English ( Eran Miller, http://www.eranmiller.com )
+* French ( doc75, Luc )
+* German ( Ralph Stenzel, http://www.klein-aber-fein.de )
+* Hungarian ( Gabor Major )
+* Italian ( Ernesto, eros.mazzurco )
+* Indonesian ( Nanang )
+* Latvian ( Kaspars )
+* Lithuanian ( Vincent G, http://www.host1free.com )
+* Norwegian ( Julius )
+* Polish ( Szymon )
+* Portuguese ( rgranzoti, ricardorodh )
+* Romanian ( Razvan )
+* Russian ( reddylabeu )
+* Spanish ( Fernando )
+* Swedish ( Hirschan )
+* Tamil ( Bage )
+* Turkish ( Darth crow )
 
 == Installation ==
 
