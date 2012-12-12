@@ -1,0 +1,986 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ajax Event Calendar v0.9.8.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-09-23 22:57+0100\n"
+"PO-Revision-Date: 2011-09-26 19:47+0100\n"
+"Last-Translator: Luc <luc.potage@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__;_n:1,2\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SearchPath-0: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5\n"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:384
+msgid "Calendar"
+msgstr "Calendrier"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:392
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:850
+msgid "Categories"
+msgstr "Catégories"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:400
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:878
+msgid "Activity Report"
+msgstr "Rapport d'activité"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:404
+msgid "Options"
+msgstr "Options"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:438
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:439
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:111
+msgid "All Day"
+msgstr "Toute la journée"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:440
+msgid "Months"
+msgstr "Mois"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:441
+msgid "Month"
+msgstr "Mois"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:442
+msgid "Weeks"
+msgstr "Semaines"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:443
+msgid "Week"
+msgstr "Semaine"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:444
+msgid "Days"
+msgstr "Jours"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:445
+msgid "Day"
+msgstr "Jour"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:446
+msgid "Hours"
+msgstr "Heures"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:447
+msgid "Hour"
+msgstr "%d heure"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:448
+msgid "Minutes"
+msgstr "Minutes"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:449
+msgid "Minute"
+msgstr "%d minute"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:450
+msgid "January"
+msgstr "janvier"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:451
+msgid "February"
+msgstr "février"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:452
+msgid "March"
+msgstr "mars"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:453
+msgid "April"
+msgstr "avril"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:454
+msgid "May"
+msgstr "mai"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:455
+msgid "June"
+msgstr "juin"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:456
+msgid "July"
+msgstr "juillet"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:457
+msgid "August"
+msgstr "août"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:458
+msgid "September"
+msgstr "septembre"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:459
+msgid "October"
+msgstr "octobre"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:460
+msgid "November"
+msgstr "novembre"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:461
+msgid "December"
+msgstr "décembre"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:462
+msgid "Jan"
+msgstr "janv."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:463
+msgid "Feb"
+msgstr "févr."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:464
+msgid "Mar"
+msgstr "mars"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:465
+msgid "Apr"
+msgstr "avr."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:467
+msgid "Jun"
+msgstr "juin"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:468
+msgid "Jul"
+msgstr "juil."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:469
+msgid "Aug"
+msgstr "août"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:470
+msgid "Sep"
+msgstr "sept."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:471
+msgid "Oct"
+msgstr "oct."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:472
+msgid "Nov"
+msgstr "nov."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:473
+msgid "Dec"
+msgstr "déc."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:474
+msgid "Sunday"
+msgstr "dimanche"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:475
+msgid "Monday"
+msgstr "lundi"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:476
+msgid "Tuesday"
+msgstr "mardi"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:477
+msgid "Wednesday"
+msgstr "mercredi"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:478
+msgid "Thursday"
+msgstr "jeudi"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:479
+msgid "Friday"
+msgstr "vendredi"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:480
+msgid "Saturday"
+msgstr "samedi"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:481
+msgid "Sun"
+msgstr "dim."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:482
+msgid "Mon"
+msgstr "lun."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:483
+msgid "Tue"
+msgstr "mar."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:484
+msgid "Wed"
+msgstr "mer."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:485
+msgid "Thu"
+msgstr "jeu."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:486
+msgid "Fri"
+msgstr "ven."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:487
+msgid "Sat"
+msgstr "sam."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:488
+msgid "Close Event Form"
+msgstr "Fermer le formulaire"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:489
+msgid "Loading Event Form..."
+msgstr "Chargement du formulaire..."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:490
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:829
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:841
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:284
+msgid "Update"
+msgstr "Mettre à jour"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:491
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:843
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:282
+msgid "Delete"
+msgstr "Supprimer"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:492
+msgid "Category type"
+msgstr "Type de catégorie"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:493
+msgid "hide all notifications"
+msgstr "cacher toutes les notifications"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:494
+msgid "has been created."
+msgstr "a été créé."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:495
+msgid "has been modified."
+msgstr "a été modifié."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:496
+msgid "has been deleted."
+msgstr "a été supprimé."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:497
+msgid "Add Event"
+msgstr "Ajouter un événement"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:498
+msgid "Edit Event"
+msgstr "Éditer l'événement"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:499
+msgid "Delete this event?"
+msgstr "Voulez-vous supprimer cet événement ?"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:500
+msgid "Loading Events..."
+msgstr "Chargement des événements"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:501
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:827
+msgid "Category filter label"
+msgstr "Étiquette du filtre des catégories"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:502
+msgid "Repeats Every"
+msgstr "Répéter chaque"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:503
+msgid "Until"
+msgstr "Jusqu'à"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:504
+msgid "Success!"
+msgstr "Changements effectués"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:505
+msgid "Whoops!"
+msgstr "Oups !"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:518
+msgid "You cannot edit events created by other users."
+msgstr "Vous ne pouvez pas modifier les événements créés par d'autres utilisateurs."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:519
+msgid "You cannot create events in the past."
+msgstr "Vous ne pouvez pas créer d'événements dans le passé."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:520
+msgid "You cannot create events more than a year in advance."
+msgstr "Vous ne pouvez pas créer d'événements plus d'un an à l'avance."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:521
+msgid "You cannot resize expired events."
+msgstr "Vous ne pouvez pas redimensionner les événements expirés."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:522
+msgid "You cannot move events into the past."
+msgstr "Vous ne pouvez pas déplacer un événement dans le passé."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:523
+msgid "You cannot edit expired events."
+msgstr "Vous ne pouvez pas modifier les événements expirés."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:524
+msgid "Invalid duration."
+msgstr "Durée invalide."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:541
+msgid "Category type cannot be a blank value."
+msgstr "Le nom de la catégorie ne peut être une valeur vide."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:542
+msgid "Are you sure you want to delete this category type?"
+msgstr "Êtes-vous sûr de vouloir supprimer cette catégorie ?"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:543
+msgid "Several events are associated with this category. Click OK to reassign these events to the default category."
+msgstr "Plusieurs événements sont associés à cette catégorie. Cliquer sur OK pour réassigner ces événements à la catégorie par défaut."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:544
+msgid "Events have been reassigned to the default category."
+msgstr "Les événements ont été réassignés à la catégorie par défaut."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:624
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:803
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:815
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:859
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:887
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Vous n'êtes pas autorisé(e) à accéder à cette page."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:630
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:297
+msgid "Ajax Event Calendar"
+msgstr "Ajax Event Calendar"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:698
+msgid "Add Events"
+msgstr "Ajouter des événements"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:706
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:742
+msgid "Created By"
+msgstr "Créé par"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:720
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-upcoming.php:75
+msgid "No upcoming events"
+msgstr "Aucun événement à venir"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:792
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-upcoming.php:115
+msgid "All"
+msgstr "Tous"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:818
+msgid "To add a new category, enter a category label and select a background color."
+msgstr "Pour ajouter une nouvelle catégorie, entrez son nom et sélectionnez une couleur de fond."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:823
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:286
+msgid "Add"
+msgstr "Ajouter"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:831
+msgid "Category IDs are displayed in color bubbles at the beginning of each row."
+msgstr "Le nom de chaque catégorie est affiché dans sa bulle de couleur en début de ligne."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:832
+msgid "To change category color, click the color swatch or edit the hex color value and click Update."
+msgstr "Pour changer la couleur d'une catégorie, cliquez sur le nuancier des couleurs ou éditez la valeur hexadécimale de la couleur et cliquez sur Mettre à jour."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:848
+msgid "Manage Categories"
+msgstr "Organiser les catégories"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:867
+msgid "Event"
+msgid_plural "Events"
+msgstr[0] "Événement"
+msgstr[1] "Événements"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:870
+msgid "NOTE: Each repeating event is counted as a single event."
+msgstr "Remarque : Chaque événement répété est compté comme un événement simple."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:872
+msgid "No events this month."
+msgstr "Aucun événement ce mois-ci."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:875
+msgid "Number of events scheduled for the current month, by category:"
+msgstr "Nombre d'événements prévus pour le mois courant, par catégorie :"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:1075
+msgid "Read about installation and options"
+msgstr "Se renseigner sur l'installation et les options"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:1076
+msgid "Review the FAQ"
+msgstr "Consulter la FAQ"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:1077
+msgid "Ask for help in the WordPress forum"
+msgstr "Demander de l'aide sur le forum WordPress"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:1078
+msgid "Use the issue tracker"
+msgstr "Utiliser l'outil de suivi des dysfonctionnements"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:1079
+msgid "to track and report bugs, feature requests, and to submit"
+msgstr "pour suivre et signaler des dysfonctionnements, ou pour envoyer"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:1080
+msgid "poEdit"
+msgstr "Poedit"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:1081
+msgid "translation files"
+msgstr "des fichiers de traduction"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:1083
+msgid "Give the plugin a good rating"
+msgstr "Donner une bonne note à ce plugin"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:1084
+msgid "Make a donation in recognition of countless hours spent making this plugin"
+msgstr "Faire un don en reconnaissance du nombre incalculable d'heures passées à réaliser ce plugin"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:1087
+msgid "Create a blog review or an instructional video about the Calendar and share it"
+msgstr "Créer un article de blog ou une vidéo explicative à propos de ce calendrier et le partager"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:1092
+msgid "Support"
+msgstr "Support"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:1093
+msgid "Share the Love"
+msgstr "Témoignez votre intérêt"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:1094
+msgid "Spread the Word"
+msgstr "Faites passer le mot"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:1717
+msgid "Events"
+msgstr "Événements"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/ajax-event-calendar.php:1731
+msgid "Settings"
+msgstr "Réglages"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-contributors.php:9
+msgid "A list of calendar contributors linked to their organization websites"
+msgstr "Une liste des contributeurs au calendrier avec un lien vers leur site web"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-contributors.php:10
+msgid "AEC Contributors"
+msgstr "Contributeurs du calendrier"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-contributors.php:18
+#, php-format
+msgid "(%d) Contributor"
+msgid_plural "(%d) Contributors"
+msgstr[0] "(%d) Contributeur"
+msgstr[1] "(%d) Contributeurs"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-contributors.php:26
+msgid "No contributors as of yet."
+msgstr "Aucun contributeur pour le moment."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-contributors.php:62
+msgid "No options available."
+msgstr "Aucune option disponible."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/show-event.php:77
+msgid "View Map"
+msgstr "Voir la carte"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/show-event.php:97
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:267
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:49
+msgid "This event is accessible to people with disabilities."
+msgstr "Cet événement est accessible aux personnes handicapées."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/show-event.php:104
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:276
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:50
+msgid "Please register with the contact person for this event."
+msgstr "Merci de vous inscrire auprès du contact pour cet événement."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/show-event.php:116
+msgid "Presented by"
+msgstr "Présenté par"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/show-event.php:127
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:45
+msgid "Event Link"
+msgstr "Lien de l'événement"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:88
+msgid "Duration"
+msgstr "Durée"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:93
+msgid "From"
+msgstr "Du"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:101
+msgid "To"
+msgstr "Au"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:115
+msgid "Repeats"
+msgstr "Récurrence"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:120
+msgid "Every"
+msgstr "Chaque"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:121
+msgid "Never"
+msgstr "Jamais"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:137
+msgid "Day(s)"
+msgstr "Jour(s)"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:138
+msgid "Week(s)"
+msgstr "Semaine(s)"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:139
+msgid "Month(s)"
+msgstr "Mois"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:140
+msgid "Year(s)"
+msgstr "Année(s)"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:148
+msgid "Until this date"
+msgstr "Jusqu'à cette date"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:154
+msgid "Title"
+msgstr "Titre"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:158
+msgid "Category"
+msgstr "Catégorie"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:171
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:39
+msgid "Venue"
+msgstr "Salle"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:179
+msgid "Address"
+msgstr "Adresse"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:183
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:40
+msgid "Neighborhood or Street Address"
+msgstr "Quartier ou adresse"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:191
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:2
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:41
+msgid "City"
+msgstr "Ville"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:199
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:42
+msgid "State/Province"
+msgstr "Département"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:207
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:4
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:43
+msgid "Postal Code"
+msgstr "Code postal"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:215
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:44
+msgid "Country"
+msgstr "Pays"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:226
+msgid "Website Link"
+msgstr "Lien du site"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:234
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:46
+msgid "Description"
+msgstr "Description"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:242
+msgid "Contact Person"
+msgstr "Contact"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:246
+msgid "Name"
+msgstr "Nom"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:254
+msgid "Phone or Email Address"
+msgstr "Téléphone ou adresse mail"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:280
+msgid "Cancel"
+msgstr "Annuler"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:283
+msgid "Copy"
+msgstr "Copier"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-event.php:296
+msgid "Created by"
+msgstr "Créé par"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-upcoming.php:9
+msgid "Displays upcoming events with optional filters."
+msgstr "Affiche les événements à venir avec des filtres optionnels."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-upcoming.php:10
+msgid "AEC Upcoming Events"
+msgstr "Événements à venir"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-upcoming.php:48
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-upcoming.php:96
+msgid "Upcoming Events"
+msgstr "Événements à venir"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-upcoming.php:78
+msgid "Link to Calendar"
+msgstr "Lier au calendrier"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-upcoming.php:108
+msgid "Widget Title"
+msgstr "Titre du widget"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-upcoming.php:112
+msgid "Event category displayed"
+msgstr "Catégorie affichée"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-upcoming.php:125
+msgid "Maximum events displayed"
+msgstr "Nombre maximum d'événements affichés"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-upcoming.php:137
+msgid "Link to calendar"
+msgstr "Lier au calendrier"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/widget-upcoming.php:142
+msgid "Hide category colors"
+msgstr "Masquer la couleur des catégories"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:3
+msgid "State"
+msgstr "Département"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:7
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:8
+msgid "Hide"
+msgstr "Masquer"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:7
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:8
+msgid "Display"
+msgstr "Afficher"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:8
+msgid "Require"
+msgstr "Exiger"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:12
+msgid "Ajax Event Calendar Options"
+msgstr "Options d'Ajax Event Calendar"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:16
+msgid "Settings Updated"
+msgstr "Réglages mis à jour"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:26
+msgid "Date Format, Time Format, and Week Start"
+msgstr "Pour modifier le format de la date, celui de l'heure ou le jour initial de la semaine,"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:27
+msgid "settings are located here"
+msgstr "c'est par ici"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:28
+msgid "Display calendar weekends."
+msgstr "Afficher les week-ends dans le calendrier."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:29
+msgid "Allow adding or editing of expired events."
+msgstr "Autoriser l'ajout ou la modification d'événements expirés. "
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:30
+msgid "Display the Add Events link on the front-end calendar."
+msgstr "Afficher un lien « Ajouter un événement » sur le calendrier visible à partir du site."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:31
+msgid "Display the View Map link on event details."
+msgstr "Afficher un lien « Visualiser la carte » dans les détails de l'événement."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:32
+msgid "Convert description field URLs into  clickable links."
+msgstr "Convertir les URL ajoutées dans la description en liens cliquables."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:33
+msgid "Open Event Detail links in a new browser window."
+msgstr "Ouvrir le lien vers le détail de l'événement dans une nouvelle fenêtre du navigateur."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:34
+msgid "Navigate administrative calendar with mousewheel."
+msgstr "Naviguer dans le calendrier de l'administration avec la molette de la souris."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:35
+msgid "Address format"
+msgstr "Format de l'adresse"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:36
+msgid "Event timepicker interval"
+msgstr "Intervalle de temps pour les événements"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:38
+msgid "Hide, display or require form fields.  Hidden fields do not appear in the event form."
+msgstr "Masquer, afficher ou exiger certaines informations. Les champs masqués n'apparaissent pas dans le formulaire."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:47
+msgid "Contact Name"
+msgstr "Nom du contact"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:48
+msgid "Contact Information"
+msgstr "Informations du contact"
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:52
+msgid "Modify calendar and form options then click Save Changes below."
+msgstr "Modifier les options du calendrier et du formulaire puis cliquer sur  « Enregistrer les modifications » ci-dessous."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:53
+msgid "Reset all settings on Save."
+msgstr "Restaurer les options après enregistrement."
+
+#: /home/virlet/tmp/dev/ajax-event-calendar-1.0b5/inc/admin-options.php:54
+msgid "Save Changes"
+msgstr "Enregistrer les modifications"
+
+#~ msgid "here"
+#~ msgstr "ici"
+
+#~ msgid "Sorry, "
+#~ msgstr "Désolé, "
+
+#~ msgid "Have questions about this plugin?"
+#~ msgstr "Avez-vous des questions concernant l'extension ?"
+
+#~ msgid "Check out the FAQ"
+#~ msgstr "Consultez la FAQ"
+
+#~ msgid "Submit your questions and comments about this plugin"
+#~ msgstr "Envoyez vos questions et commentaires à propos de l'extension"
+
+#~ msgid "in the forum"
+#~ msgstr "sur le forum"
+
+#~ msgid ""
+#~ "You are welcome to request help from others in your native language, but "
+#~ "I am only able to assist in English."
+#~ msgstr ""
+#~ "N'hésitez pas à demander de l'aide aux autres dans votre propre langue, "
+#~ "mais moi je ne peux que vous aider en anglais."
+
+#~ msgid "If you use this plugin"
+#~ msgstr "Si vous utilisez cette extension"
+
+#~ msgid "please rate and vote on compatibility"
+#~ msgstr "pensez à évaluer la compatibilité"
+
+#~ msgid ""
+#~ "Consider making a donation to support continued development of this "
+#~ "plugin."
+#~ msgstr ""
+#~ "Pensez à faire un don pour soutenir le développement continu de "
+#~ "l'extension."
+
+#~ msgid "DONATE"
+#~ msgstr "FAIRE UN DON"
+
+#~ msgid "Thank you,"
+#~ msgstr "Merci,"
+
+#~ msgid ""
+#~ "Add a new, or edit/delete an existing calendar category.  To change the "
+#~ "category tile color, click the color swatch or edit the field containing "
+#~ "the hex value, then click Update.  The foreground color (black or white) "
+#~ "is automatically assigned for optimal readbility based on the selected "
+#~ "background color."
+#~ msgstr ""
+#~ "Ajouter ou éditer/supprimer une catégorie existant déjà. Pour changer la "
+#~ "couleur d'une catégorie, cliquez sur la pastille de couleur ou modifier "
+#~ "la valeur hexadécimale puis cliquez sur le bouton « Mettre à jour ». La "
+#~ "couleur de la police (blanc ou noir) est modifiée automatiquement selon "
+#~ "la couleur choisie pour une lisibilité optimale."
+
+#~ msgid "This category is required and can only be edited."
+#~ msgstr "Catégorie par défaut (uniquement modifiable)"
+
+#~ msgid "Invalid duration, please adjust your time inputs."
+#~ msgstr "Durée invalide, merci de vérifier les horaires."
+
+#~ msgid "Type"
+#~ msgstr "Catégorie"
+
+#~ msgid ""
+#~ "{Event Detail} links open in a new window (when unchecked, links open in "
+#~ "the same window)."
+#~ msgstr ""
+#~ "Ouvrir les détails de l'événement dans une nouvelle fenêtre (sinon ils "
+#~ "s'ouvrent dans la même fenêtre)."
+
+#~ msgid "Location"
+#~ msgstr "Lieu"
+
+#~ msgid "Show Types"
+#~ msgstr "Montrer les catégories"
+
+#~ msgid "Interval"
+#~ msgstr "Interval"
+
+#~ msgid "Checked fields are displayed"
+#~ msgstr "Les champs cochés sont affichés"
+
+#~ msgid "Restore Original Settings"
+#~ msgstr "Restaurer la configuration d'origine"
+
+#~ msgid "Calculating..."
+#~ msgstr "Calcul en cours..."
+
+#~ msgid "Plugin help available"
+#~ msgstr "Aide de l'extension disponible"
+
+#~ msgid "Loading..."
+#~ msgstr "Chargement..."
+
+#, fuzzy
+#~ msgid "%d Week"
+
+#~ msgid_plural "%d Weeks"
+#~ msgstr[0] "Semaine"
+#~ msgstr[1] "Semaine"
+
+#~ msgid "%d Day"
+
+#~ msgid_plural "%d Days"
+#~ msgstr[0] "%d jour"
+#~ msgstr[1] "%d jours"
+
+#~ msgid "%d Hour"
+
+#~ msgid_plural "%d Hours"
+#~ msgstr[0] "%d heure"
+#~ msgstr[1] "%d heures"
+
+#~ msgid "%d Minute"
+
+#~ msgid_plural "%d Minutes"
+#~ msgstr[0] "%d minute"
+#~ msgstr[1] "%d minutes"
+
+#~ msgid "Checked fields are required"
+#~ msgstr "Les champs cochés sont obligatoires"
+
+#~ msgid "Three Week Agenda"
+#~ msgstr "Agenda sur trois semaines"
+
+#~ msgid "No events listed in the next week"
+
+#~ msgid_plural "No events listed in the next %d weeks"
+#~ msgstr[0] "Pas d'événement listé pour la prochaine semaine"
+#~ msgstr[1] "Pas d'événement listé pour les %d prochaines semaines"
+
+#~ msgid "Number of Weeks from Today"
+#~ msgstr "Nombre de semaines à partir d'aujourd'hui"
+
+#~ msgid "%d Year"
+
+#~ msgid_plural "%d Years"
+#~ msgstr[0] "%d an"
+#~ msgstr[1] "%d ans"
+
+#~ msgid "%d Month"
+
+#~ msgid_plural "%d Months"
+#~ msgstr[0] "%d mois"
+#~ msgstr[1] "%d mois"
+
+#~ msgid ""
+#~ "Add new, or edit existing category type (and associated calendar tile "
+#~ "color)."
+#~ msgstr ""
+#~ "Ajouter ou modifier un type de Catégories (et la pastille de couleur "
+#~ "associée)."
+
+#~ msgid "Show weekends in the calendar."
+#~ msgstr "Afficher les week-ends dans le calendrier."
+
+#~ msgid ""
+#~ "Enforce event creation between 30 minutes and one year from the current "
+#~ "time."
+#~ msgstr ""
+#~ "Forcer la création d'évènements situés entre 30 minutes et 1 an de "
+#~ "l'heure courante."
+
+#~ msgid "Check Required Form Fields"
+#~ msgstr "Vérifier les champs obligatoires du formulaire"
+
+#~ msgid "Optional Checkboxes"
+#~ msgstr "Cases à cocher optionnelles"
+
+#~ msgid "(%d) Upcoming Event"
+
+#~ msgid_plural "(%d) Upcoming Events"
+#~ msgstr[0] "(%d) événement à venir"
+#~ msgstr[1] "(%d) événements à venir"
+
+#~ msgid "has been added."
+#~ msgstr "a été ajouté(e)."
+
+#~ msgid "has been updated."
+#~ msgstr "a été mis(e) à jour."
+
+#~ msgid "Close Event Details"
+#~ msgstr "Fermer les détails de l&#039;évènement"
+
+#~ msgid "Loading Event Details..."
+#~ msgstr "Chargement des détails de l&#039;évènement..."
+
+#~ msgid "Zip Code"
+#~ msgstr "Code postal"
+
+#~ msgid "created by"
+#~ msgstr "Créé par"
+
+#~ msgid "Calendar Options"
+#~ msgstr "Options du calendrier"
