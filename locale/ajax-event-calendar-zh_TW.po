@@ -1,0 +1,977 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ajax Event Calendar v1.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-09-26 19:21-0600\n"
+"PO-Revision-Date: 2012-03-16 04:28+0800\n"
+"Last-Translator: Jerry <Jerry@cmsart.net>\n"
+"Language-Team: GC Tech <Jerry@cmsart.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: Chinese\n"
+"X-Poedit-Country: TAIWAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:383
+msgid "Calendar"
+msgstr "日曆"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:391
+#: ajax-event-calendar.php:875
+msgid "Categories"
+msgstr "分類"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:399
+#: ajax-event-calendar.php:903
+msgid "Activity Report"
+msgstr "活動報告"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:403
+msgid "Options"
+msgstr "選項"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:437
+msgid "Today"
+msgstr "今天"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:438
+#: inc/admin-event.php:111
+msgid "All Day"
+msgstr "全天"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:439
+msgid "Months"
+msgstr "個月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:440
+msgid "Month"
+msgstr "本月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:441
+msgid "Weeks"
+msgstr "週"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:442
+msgid "Week"
+msgstr "星期"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:443
+msgid "Days"
+msgstr "天"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:444
+msgid "Day"
+msgstr "天"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:445
+msgid "Hours"
+msgstr "營業時間"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:446
+msgid "Hour"
+msgstr "小時"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:447
+#: inc/admin-options.php:8
+msgid "Minutes"
+msgstr "分鐘"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:448
+msgid "Minute"
+msgstr "分鐘"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:449
+msgid "January"
+msgstr "一月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:450
+msgid "February"
+msgstr "二月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:451
+msgid "March"
+msgstr "三月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:452
+msgid "April"
+msgstr "四月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:453
+msgid "May"
+msgstr "五月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:454
+msgid "June"
+msgstr "六月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:455
+msgid "July"
+msgstr "七月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:456
+msgid "August"
+msgstr "八月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:457
+msgid "September"
+msgstr "九月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:458
+msgid "October"
+msgstr "十月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:459
+msgid "November"
+msgstr "十一月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:460
+msgid "December"
+msgstr "十二月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:461
+msgid "Jan"
+msgstr "1月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:462
+msgid "Feb"
+msgstr "2月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:463
+msgid "Mar"
+msgstr "3月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:464
+msgid "Apr"
+msgstr "4月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:465
+msgctxt "Three-letter month name abbreviation"
+msgid "May"
+msgstr "5月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:466
+msgid "Jun"
+msgstr "6月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:467
+msgid "Jul"
+msgstr "7月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:468
+msgid "Aug"
+msgstr "8月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:469
+msgid "Sep"
+msgstr "9月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:470
+msgid "Oct"
+msgstr "10月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:471
+msgid "Nov"
+msgstr "11月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:472
+msgid "Dec"
+msgstr "12月"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:473
+msgid "Sunday"
+msgstr "星期日"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:474
+msgid "Monday"
+msgstr "星期一"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:475
+msgid "Tuesday"
+msgstr "星期二"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:476
+msgid "Wednesday"
+msgstr "星期三"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:477
+msgid "Thursday"
+msgstr "星期四"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:478
+msgid "Friday"
+msgstr "星期五"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:479
+msgid "Saturday"
+msgstr "星期六"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:480
+msgid "Sun"
+msgstr "週日"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:481
+msgid "Mon"
+msgstr "週一"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:482
+msgid "Tue"
+msgstr "週二"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:483
+msgid "Wed"
+msgstr "週三"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:484
+msgid "Thu"
+msgstr "週四"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:485
+msgid "Fri"
+msgstr "週五"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:486
+msgid "Sat"
+msgstr "週六"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:487
+msgid "Close Event Form"
+msgstr "關閉活動"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:488
+msgid "Loading Event Form..."
+msgstr "載入活動"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:489
+#: ajax-event-calendar.php:854
+#: ajax-event-calendar.php:866
+#: inc/admin-event.php:284
+msgid "Update"
+msgstr "更新"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:490
+#: ajax-event-calendar.php:868
+#: inc/admin-event.php:282
+msgid "Delete"
+msgstr "刪除"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:491
+msgid "Category type"
+msgstr "分類樣式"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:492
+msgid "hide all notifications"
+msgstr "隱藏所有通知"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:493
+msgid "has been created."
+msgstr "已建立"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:494
+msgid "has been modified."
+msgstr "已修改"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:495
+msgid "has been deleted."
+msgstr "已刪除"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:496
+msgid "Add Event"
+msgstr "新增活動"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:497
+msgid "Edit Event"
+msgstr "編輯活動"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:498
+msgid "Delete this event?"
+msgstr "刪除此活動？"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:499
+msgid "Loading Events..."
+msgstr "載入活動..."
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:500
+#: ajax-event-calendar.php:852
+msgid "Category filter label"
+msgstr "分類樣式標籤"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:501
+msgid "Repeats Every"
+msgstr "重複一次"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:502
+msgid "Until"
+msgstr "直到"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:503
+msgid "Success!"
+msgstr "成功！"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:504
+msgid "Whoops!"
+msgstr "哎呀！"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:517
+msgid "You cannot edit events created by other users."
+msgstr "您不能編輯由其他使用者建立的活動 "
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:518
+msgid "You cannot create events in the past."
+msgstr "您不能建立過去的活動。"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:519
+msgid "You cannot create events more than a year in advance."
+msgstr "您不能建立提前一年以上的活動"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:520
+msgid "You cannot resize expired events."
+msgstr "你不能調整過期活動"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:521
+msgid "You cannot move events into the past."
+msgstr "您不能移動過去的活動"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:522
+msgid "You cannot edit expired events."
+msgstr "您不能編輯過期的活動"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:523
+msgid "Invalid duration."
+msgstr "無效的持續時間"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:540
+msgid "Category type cannot be a blank value."
+msgstr "分類樣式不能空白值"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:541
+msgid "Are you sure you want to delete this category type?"
+msgstr "你確定要刪除這一分類樣式嗎？"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:542
+msgid "Several events are associated with this category. Click OK to reassign these events to the default category."
+msgstr "幾個活動與此分類。點選確定以重新分配這些活動的設類別"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:543
+msgid "Events have been reassigned to the default category."
+msgstr "活動已被重新分配到預設類別"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:626
+msgid "Created By"
+msgstr "建立者"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:633
+#: ajax-event-calendar.php:828
+#: ajax-event-calendar.php:840
+#: ajax-event-calendar.php:884
+#: ajax-event-calendar.php:912
+msgid "You do not have sufficient permissions to access this page."
+msgstr "您沒有足夠的權限訪問此頁面"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:639
+#: inc/admin-event.php:297
+msgid "Ajax Event Calendar"
+msgstr "Ajax活動日曆"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:723
+msgid "Add Events"
+msgstr "新增活動"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:745
+#: inc/widget-upcoming.php:81
+msgid "No upcoming events"
+msgstr "沒有即將發生的活動"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:817
+#: inc/widget-upcoming.php:121
+msgid "All"
+msgstr "全部"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:843
+msgid "To add a new category, enter a category label and select a background color."
+msgstr "要新增一個新的分類，進入一個分類標籤，並選擇一個背景顏色。"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:848
+#: inc/admin-event.php:286
+msgid "Add"
+msgstr "新增"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:856
+msgid "Category IDs are displayed in color bubbles at the beginning of each row."
+msgstr "類別ID顯示在顏色圖示每一行的開頭"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:857
+msgid "To change category color, click the color swatch or edit the hex color value and click Update."
+msgstr "要改變類別的顏色，請點選色板或編輯十六進位顏色值，然後點選更新"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:873
+msgid "Manage Categories"
+msgstr "管理類別"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:892
+msgid "Event"
+msgid_plural "Events"
+msgstr[0] "每"
+msgstr[1] "每天"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:895
+#, fuzzy
+msgid "NOTE: Each repeating event is counted once."
+msgstr "註：每次活動重複計次。"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:897
+msgid "No events this month."
+msgstr "本月沒有活動。"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:900
+msgid "Number of events scheduled for the current month, by category:"
+msgstr "本月活動數量(依類別)："
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:1099
+msgid "Read about installation and options"
+msgstr "閱讀有關安裝和選項"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:1100
+msgid "Review the FAQ"
+msgstr "查看常見問題"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:1101
+msgid "Ask for help in the WordPress forum"
+msgstr "在WordPress論壇尋求幫助"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:1102
+msgid "Use the issue tracker"
+msgstr "使用問題追蹤"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:1103
+msgid "to track and report bugs, feature requests, and to submit"
+msgstr "追蹤與報告錯誤"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:1104
+msgid "poEdit"
+msgstr "poEdit"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:1105
+msgid "translation files"
+msgstr "翻譯檔案"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:1107
+msgid "Give the plugin a good rating"
+msgstr "給此外掛評分"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:1108
+msgid "Make a donation in recognition of countless hours spent making this plugin"
+msgstr "給此外掛的作者一點認同--小額捐款"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:1111
+msgid "Create a blog review or an instructional video about the Calendar and share it"
+msgstr "建立一個網誌或教學影片和分享"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:1116
+msgid "Support"
+msgstr "支援"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:1117
+msgid "Share the Love"
+msgstr "分享"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:1118
+msgid "Spread the Word"
+msgstr "口耳相傳"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:1742
+msgid "Events"
+msgstr "活動"
+
+# @ ajax-event-calendar
+#: ajax-event-calendar.php:1756
+msgid "Settings"
+msgstr "設定"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:88
+msgid "Duration"
+msgstr "時間"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:93
+msgid "From"
+msgstr "從"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:101
+msgid "To"
+msgstr "到"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:115
+msgid "Repeats"
+msgstr "重複"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:120
+msgid "Every"
+msgstr "每"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:121
+msgid "Never"
+msgstr "從未"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:137
+msgid "Day(s)"
+msgstr "天(S)"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:138
+msgid "Week(s)"
+msgstr "週(S)"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:139
+msgid "Month(s)"
+msgstr "本月(S)"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:140
+msgid "Year(s)"
+msgstr "年份(S)"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:148
+msgid "Until this date"
+msgstr "在此日期之前"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:154
+msgid "Title"
+msgstr "標題"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:158
+msgid "Category"
+msgstr "分類"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:171
+#: inc/admin-options.php:43
+msgid "Venue"
+msgstr "地點"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:179
+msgid "Address"
+msgstr "地址"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:183
+#: inc/admin-options.php:44
+msgid "Neighborhood or Street Address"
+msgstr "附近地標或街道地址"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:191
+#: inc/admin-options.php:2
+#: inc/admin-options.php:45
+msgid "City"
+msgstr "市"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:199
+#: inc/admin-options.php:46
+msgid "State/Province"
+msgstr "州/省"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:207
+#: inc/admin-options.php:4
+#: inc/admin-options.php:47
+msgid "Postal Code"
+msgstr "郵遞區號"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:215
+#: inc/admin-options.php:48
+msgid "Country"
+msgstr "縣"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:226
+msgid "Website Link"
+msgstr "網站連結"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:234
+#: inc/admin-options.php:50
+msgid "Description"
+msgstr "說明"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:242
+msgid "Contact Person"
+msgstr "聯絡人"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:246
+msgid "Name"
+msgstr "名字"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:254
+msgid "Phone or Email Address"
+msgstr "手機或電子郵件地址"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:267
+#: inc/admin-options.php:53
+#: inc/show-event.php:97
+msgid "This event is accessible to people with disabilities."
+msgstr "此活動歡迎殘障人士參加"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:276
+#: inc/admin-options.php:54
+#: inc/show-event.php:105
+msgid "Please register with the contact person for this event."
+msgstr "報名請聯絡活動聯絡人。"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:280
+msgid "Cancel"
+msgstr "取消"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:283
+msgid "Copy"
+msgstr "複製"
+
+# @ ajax-event-calendar
+#: inc/admin-event.php:296
+msgid "Created by"
+msgstr "建立者"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:3
+msgid "State"
+msgstr "國家"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:11
+#: inc/admin-options.php:12
+msgid "Hide"
+msgstr "隱藏"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:11
+#: inc/admin-options.php:12
+msgid "Display"
+msgstr "顯示"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:12
+msgid "Require"
+msgstr "必填"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:16
+msgid "Ajax Event Calendar Options"
+msgstr "Ajax活動日曆選項"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:20
+msgid "Settings Updated"
+msgstr "設定更新"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:30
+msgid "Date Format, Time Format, and Week Start"
+msgstr "日期格式，時間格式，本週開始"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:31
+msgid "settings are located here"
+msgstr "在此設定"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:32
+msgid "Display calendar weekends."
+msgstr "顯示一週日曆。"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:33
+msgid "Prevent users from adding or editing expired events."
+msgstr "防止使用者新增或修改過期活動"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:34
+msgid "Display the Add Events link on the front-end calendar."
+msgstr "前端顯示新增活動連結。"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:35
+msgid "Display the View Map link on event details."
+msgstr "顯示活動地圖連結。"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:36
+msgid "Convert description field URLs into  clickable links."
+msgstr "將活動描述中的URL轉換為可點選連結。"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:37
+msgid "Open Event Detail links in a new browser window."
+msgstr "點選活動詳細訊息連結，打開新視窗。"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:38
+msgid "Navigate administrative calendar with mousewheel."
+msgstr "管理日曆導覽開啟捲軸"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:39
+msgid "Address format"
+msgstr "地址格式"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:40
+msgid "Event timepicker interval"
+msgstr "活動時間選擇器間隔"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:42
+msgid "Hide, display or require form fields.  Hidden fields do not appear in the event form."
+msgstr "顯示或隱藏必填欄位，隱藏欄位不會出現在活動表單。"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:49
+#: inc/show-event.php:137
+msgid "Event Link"
+msgstr "活動連結"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:51
+msgid "Contact Name"
+msgstr "聯絡人姓名"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:52
+msgid "Contact Information"
+msgstr "聯絡訊息"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:56
+msgid "Modify calendar and form options then click Save Changes below."
+msgstr "修改日曆和表單的選項，然後點選儲存更改"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:57
+msgid "Reset all settings on Save."
+msgstr "重設儲存所有設定"
+
+# @ ajax-event-calendar
+#: inc/admin-options.php:58
+msgid "Save Changes"
+msgstr "儲存更改"
+
+# @ ajax-event-calendar
+#: inc/show-event.php:77
+msgid "View Map"
+msgstr "預覽地圖"
+
+# @ ajax-event-calendar
+#: inc/show-event.php:123
+msgid "Presented by"
+msgstr "主辦人"
+
+# @ ajax-event-calendar
+#: inc/widget-contributors.php:9
+msgid "A list of calendar contributors linked to their organization websites"
+msgstr "活動主辦人的鏈結與網站"
+
+# @ ajax-event-calendar
+#: inc/widget-contributors.php:10
+msgid "AEC Contributors"
+msgstr "AEC提供"
+
+# @ ajax-event-calendar
+#: inc/widget-contributors.php:18
+#, php-format
+msgid "(%d) Contributor"
+msgid_plural "(%d) Contributors"
+msgstr[0] "(%d) 提供"
+msgstr[1] "(%d) 提供"
+
+# @ ajax-event-calendar
+#: inc/widget-contributors.php:26
+msgid "No contributors as of yet."
+msgstr "沒有提供者。"
+
+# @ ajax-event-calendar
+#: inc/widget-contributors.php:62
+msgid "No options available."
+msgstr "沒有可供選項。"
+
+# @ ajax-event-calendar
+#: inc/widget-upcoming.php:9
+msgid "Displays upcoming events with optional filters."
+msgstr "使用篩選器顯示近期活動。"
+
+# @ ajax-event-calendar
+#: inc/widget-upcoming.php:10
+msgid "AEC Upcoming Events"
+msgstr "AEC近期活動"
+
+# @ ajax-event-calendar
+#: inc/widget-upcoming.php:48
+#: inc/widget-upcoming.php:102
+msgid "Upcoming Events"
+msgstr "近期活動預告"
+
+# @ ajax-event-calendar
+#: inc/widget-upcoming.php:84
+msgid "Link to Calendar"
+msgstr "連結到日曆"
+
+# @ ajax-event-calendar
+#: inc/widget-upcoming.php:114
+msgid "Widget Title"
+msgstr "模組標題"
+
+# @ ajax-event-calendar
+#: inc/widget-upcoming.php:118
+msgid "Event category displayed"
+msgstr "顯示活動類別"
+
+# @ ajax-event-calendar
+#: inc/widget-upcoming.php:131
+msgid "Maximum events displayed"
+msgstr "最多顯示數量"
+
+# @ ajax-event-calendar
+#: inc/widget-upcoming.php:143
+msgid "Link to calendar"
+msgstr "連結到日曆"
+
+# @ ajax-event-calendar
+#: inc/widget-upcoming.php:148
+msgid "Hide category colors"
+msgstr "隱藏類別顏色"
+
