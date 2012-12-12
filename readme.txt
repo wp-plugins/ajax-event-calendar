@@ -3,8 +3,8 @@ Contributors: eranmiller
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NCDKRE46K2NBA
 Tags: calendar, event calendar, event list, move events, resize events, copy events, recurring events, repeating events
 Requires at least: 3.1
-Tested up to: 3.3.1
-Stable tag: 1.0.2
+Tested up to: 3.5
+Stable tag: 1.0.3
 
 An easy-to-use community calendar and event list that allows authorized users to visual manage events into custom categories.
 
@@ -50,31 +50,9 @@ NOTE: The plugin supports multiple eventlist instances per page, but only one ca
 * Assign users the ability to add and modify their own events (**aec_add_events**)
 * Assign users the ability to modify all events (**aec_manage_events**)
 * Assign users the ability to change all calendar options (**aec_manage_calendar**)
-* Available in 23 languages with support for right-to-left languages (not all translations are current)
-
-= A BIG Thank You to those who have provided translations =
-* Arabic (Sultan G) - Shukran
-* Catalan (Isaac Turon) - Gracias
-* Chinese [China and Taiwan] (GC Tech) - M goi/Xie xie
-* Czech (Kamil) - Dekuji
-* Danish (kfe1970) - Tak
-* Dutch (Maikel) - Bedankt
-* French (doc75, Luc) - Merci
-* German (Tobias, Ralph Stenzel) - Danke
-* Hungarian (Gabor Major) - Koszonom
-* Italian (Ernesto, eros.mazzurco) - Grazie
-* Indonesian (Nanang) - Matur Tampiasih
-* Latvian (Kaspars) - Paldies
-* Lithuanian (juliuslt) - Aciu
-* Norwegian (Julius) - Takk
-* Polish (Szymon) - Dziekuje
-* Portuguese (rgranzoti, ricardorodh) - Obrigado
-* Romanian (Razvan) - Multumesc
-* Russian (reddylabeu) - Spasiba
-* Spanish (Fernando) - Gracias
-* Swedish (Hirschan) - Tack
-* Tamil (Bage) - Nandri
-* Turkish (Darth crow) - Sag Olun
+* Available in 23 languages with support for right-to-left languages (not all translations are current):
+Arabic, Catalan, Chinese [China and Taiwan], Czech, Danish, Dutch, French, German, Hungarian, Italian,
+Indonesian, Latvian, Lithuanian, Norwegian, Polish, Portuguese, Romanian, Russian, Spanish, Swedish, Tamil, Turkish
 
 == Installation ==
 
@@ -121,14 +99,10 @@ These fine plugins were instrumental in the creation of this plugin:
 4. Category color selection (miniColors)
 
 
-= Plugin Conflicts =
-
-* [Mime Type Link Images](http://wordpress.org/support/topic/calendar-disappeared?replies=5)
-* [Custom Field Template Plugin](http://wordpress.org/support/topic/ajax-event-calendar-conflict-with-custom-field-template?replies=9)
-* CloudFlare
-
-
 == Changelog ==
+
+= 1.0.3 =
+* [#366](http://code.google.com/p/wp-aec/issues/detail?id=366): fixed fullcalendar javascript error
 
 = 1.0.2 =
 * [#264](http://code.google.com/p/wp-aec/issues/detail?id=264): fixed critical IE button locking issue
@@ -389,5 +363,5 @@ These fine plugins were instrumental in the creation of this plugin:
 * getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
-= 1.0.2 =
-* IE bug fix and widget to eventlist migration reminder
+= 1.0.3 =
+* fixed fullcalendar javascript error causing failure in WordPress 3.5

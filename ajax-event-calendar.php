@@ -3,7 +3,7 @@
 Plugin Name: Ajax Event Calendar
 Plugin URI: http://wordpress.org/extend/plugins/ajax-event-calendar/
 Description: A fully localized community calendar that allows authorized users to manage events in custom categories.
-Version: 1.0.2
+Version: 1.0.3
 Author: Eran Miller
 Author URI: http://eranmiller.com
 License: GPL2
@@ -38,7 +38,7 @@ if (version_compare(PHP_VERSION, '5', '<')) {
 }
 
 define('AEC_MENU_POSITION', null);  //previously 30
-define('AEC_VERSION', '1.0.2');
+define('AEC_VERSION', '1.0.3');
 define('AEC_FILE', basename(__FILE__));
 define('AEC_NAME', str_replace('.php', '', AEC_FILE));
 define('AEC_PATH', plugin_dir_path(__FILE__));
