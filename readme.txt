@@ -103,6 +103,7 @@ These fine plugins were instrumental in the creation of this plugin:
 
 = 1.0.4 =
 * [#427](http://code.google.com/p/wp-aec/issues/detail?id=427): fixed unable to create new events with latest version of wp
+* [#424](http://code.google.com/p/wp-aec/issues/detail?id=424): fixed WP-Aec with Php 5.4, Events Dont Appear
 * [#307](http://code.google.com/p/wp-aec/issues/detail?id=307): fixed events not showing when backend is running SSL
 * [#318](http://code.google.com/p/wp-aec/issues/detail?id=318): fixed Paypal issue with IE9 when using additional text fields
 * [#186](http://code.google.com/p/wp-aec/issues/detail?id=186): fixed Event Detail Info Popup Window hides behind WP header image & menu

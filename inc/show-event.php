@@ -4,6 +4,7 @@
 	}
 
 	$aec_options 		= get_option('aec_options');
+	$event				= new stdClass();
 	$event 				= $this->db_query_event($_POST['id']);
 
 	if ($event->repeat_freq) {

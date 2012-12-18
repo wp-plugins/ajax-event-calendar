@@ -1037,6 +1037,7 @@ if (!class_exists('ajax_event_calendar')) {
 		}
 
 		function generate_event($input, $user_id) {
+			$permissions = new stdClass();
 			$permissions 	= $this->get_event_permissions($input, $user_id);
 			$repeats		= ($input->repeat_freq) ? ' aec-repeating' : '';
 			$output 		= array(
@@ -1055,6 +1056,7 @@ if (!class_exists('ajax_event_calendar')) {
 		}
 
 		function get_event_permissions($input, $user_id) {
+			$permissions = new stdClass();
 			// users that are not logged-in see all events
 			if ($user_id == -1) {
 				$permissions->editable = false;
