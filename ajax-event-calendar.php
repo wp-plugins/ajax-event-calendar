@@ -380,7 +380,7 @@ if (!class_exists('ajax_event_calendar')) {
 			if (get_option('timezone_string')) {
 				$this->timezone = get_option('timezone_string');
 			} else {
-				$this->set_admin_alert(sprintf('<p>&#198;&#91;alendar %s.<br>%s... <a href="http://www.travelmath.com/time-zone/" target="_blank"><strong>%s</strong></a>.</p>
+				$this->set_admin_alert(sprintf('<p>Ajax Event Calendar %s.<br>%s... <a href="http://www.travelmath.com/time-zone/" target="_blank"><strong>%s</strong></a>.</p>
 					<h3><a href="' . admin_url() . 'options-general.php">%s</a></h3>'
 				, __('requires a city value for the Timezone setting', AEC_NAME)
 				, __("Not all cities are listed. Can't find your city in the timezone dropdown?", AEC_NAME)
@@ -390,9 +390,10 @@ if (!class_exists('ajax_event_calendar')) {
 			
 			// get_magic_quotes_gpc issue
 			if (get_magic_quotes_gpc()) {
-				$this->set_admin_alert(sprintf('<p>%s<br>%s <a href="http://wordpress.org/support/topic/plugin-ajax-event-calendar-ajax-event-calendar-dont-like-the-apostrophes?replies=11#post-2259386"  target="_blank"><strong>%s</strong></a>%s.</p>'
-				, __('Your PHP setup has magic_quotes_gpc turned ON.', AEC_NAME)
-				, __('This produces formatting errors in the &#198;&#91;alendar.  Learn how to disable this setting ', AEC_NAME)
+				$this->set_admin_alert(sprintf('<p>%s %s <br>%s <a href="http://wordpress.org/support/topic/plugin-ajax-event-calendar-ajax-event-calendar-dont-like-the-apostrophes?replies=11#post-2259386" target="_blank"> <strong>%s</strong></a>. %s.</p>'
+				, __('Your server has PHP magic_quotes_gpc set to active.', AEC_NAME)
+				, __('This produces formatting errors in the Ajax Event Calendar plugin.', AEC_NAME)
+				, __('Learn how to disable this setting', AEC_NAME)
 				, __('in this forum thread', AEC_NAME)
 				, __('Ask your host provider for help.', AEC_NAME)));
 			}
