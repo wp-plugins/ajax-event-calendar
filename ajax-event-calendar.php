@@ -390,10 +390,11 @@ if (!class_exists('ajax_event_calendar')) {
 			
 			// get_magic_quotes_gpc issue
 			if (get_magic_quotes_gpc()) {
-				$this->set_admin_alert(sprintf('<p>%s<br>%s <a href="http://wordpress.org/support/topic/plugin-ajax-event-calendar-ajax-event-calendar-dont-like-the-apostrophes?replies=11#post-2259386"  target="_blank"><strong>%s</strong></a>.</p>'
+				$this->set_admin_alert(sprintf('<p>%s<br>%s <a href="http://wordpress.org/support/topic/plugin-ajax-event-calendar-ajax-event-calendar-dont-like-the-apostrophes?replies=11#post-2259386"  target="_blank"><strong>%s</strong></a>%s.</p>'
 				, __('Your PHP setup has magic_quotes_gpc turned ON.', AEC_NAME)
-				, __('Learn about the undesired results it produces and how to disable this setting', AEC_NAME)
-				, __('in this forum thread', AEC_NAME)));
+				, __('This produces formatting errors in the &#198;&#91;alendar.  Learn how to disable this setting ', AEC_NAME)
+				, __('in this forum thread', AEC_NAME)
+				, __('Ask your host provider for help.', AEC_NAME)));
 			}
 
 			// register scripts
