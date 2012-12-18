@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: calendar, event calendar, event list, move events, resize events, copy events, recurring events, repeating events
 Requires at least: 3.1
 Tested up to: 3.5
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 
 An easy-to-use community calendar and event list that allows authorized users to visual manage events into custom categories.
 
