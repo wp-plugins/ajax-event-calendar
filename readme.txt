@@ -372,5 +372,5 @@ These fine plugins were instrumental in the creation of this plugin:
 * getting the wheels to stay on the wagon
 
 == Upgrade Notice ==
-= 1.0.3 =
-* fixed fullcalendar javascript error causing failure in WordPress 3.5
+= 1.0.4 =
+* IE and misc. bug fixes
