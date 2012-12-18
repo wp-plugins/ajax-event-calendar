@@ -3,7 +3,7 @@
 Plugin Name: Ajax Event Calendar
 Plugin URI: http://wordpress.org/extend/plugins/ajax-event-calendar/
 Description: A fully localized community calendar that allows authorized users to manage events in custom categories.
-Version: 1.0.3
+Version: 1.0.4
 Author: Eran Miller
 Author URI: http://eranmiller.com
 License: GPL2
@@ -38,7 +38,7 @@ if (version_compare(PHP_VERSION, '5', '<')) {
 }
 
 define('AEC_MENU_POSITION', null);  //previously 30
-define('AEC_VERSION', '1.0.3');
+define('AEC_VERSION', '1.0.4');
 define('AEC_FILE', basename(__FILE__));
 define('AEC_NAME', str_replace('.php', '', AEC_FILE));
 define('AEC_PATH', plugin_dir_path(__FILE__));
@@ -59,6 +59,7 @@ if (!class_exists('ajax_event_calendar')) {
 
 		private $required_fields  = array();
 		private $shortcode_params = array();
+		private $admin_messages	  = array();
 		private $plugin_defaults  = array(
 									'filter_label'		=> 'Show Type',
 									'limit' 			=> '0',
@@ -94,7 +95,8 @@ if (!class_exists('ajax_event_calendar')) {
 			add_action('wp_print_styles', array($this, 'calendar_styles'));
 			add_action('wp_print_scripts', array($this, 'frontend_calendar_scripts'));
 			add_action('delete_user', array($this, 'delete_events_by_user'));
-
+			add_action('admin_notices', array(&$this, 'admin_alert'));
+			
 			// ajax hooks
 			add_action('wp_ajax_nopriv_get_events', array($this, 'render_calendar_events'));
 			add_action('wp_ajax_get_events', array($this, 'render_calendar_events'));
@@ -350,6 +352,20 @@ if (!class_exists('ajax_event_calendar')) {
 			}
 		}
 
+		function set_admin_alert($message) {
+			array_push($this->admin_messages, print_r($message, true));
+		}
+		
+		// display admin alerts
+		function admin_alert() {
+			$alerts = $this->admin_messages;
+			if (count($alerts)) {
+				foreach ($alerts as $alert) {
+					printf('<div class="updated">%s</div>', $alert);
+				}
+			}
+		}
+		
 	    function localize_plugin($page) {
 			load_plugin_textdomain(AEC_NAME, false, AEC_NAME . '/locale/');
 			$timezone = get_option('timezone_string');
@@ -359,10 +375,30 @@ if (!class_exists('ajax_event_calendar')) {
 				// TODO: look into converting gmt_offset into timezone_string
 				date_default_timezone_set('UTC');
 			}
+			
+			// localization: date/time
+			if (get_option('timezone_string')) {
+				$this->timezone = get_option('timezone_string');
+			} else {
+				$this->set_admin_alert(sprintf('<p>&#198;&#91;alendar %s.<br>%s... <a href="http://www.travelmath.com/time-zone/" target="_blank"><strong>%s</strong></a>.</p>
+					<h3><a href="' . admin_url() . 'options-general.php">%s</a></h3>'
+				, __('requires a city value for the Timezone setting', AEC_NAME)
+				, __("Not all cities are listed. Can't find your city in the timezone dropdown?", AEC_NAME)
+				, __('Search for your standardized timezone.', AEC_NAME)
+				, __('Update Blog Settings', AEC_NAME)));
+			}
+			
+			// get_magic_quotes_gpc issue
+			if (get_magic_quotes_gpc()) {
+				$this->set_admin_alert(sprintf('<p>%s<br>%s <a href="http://wordpress.org/support/topic/plugin-ajax-event-calendar-ajax-event-calendar-dont-like-the-apostrophes?replies=11#post-2259386"  target="_blank"><strong>%s</strong></a>.</p>'
+				, __('Your PHP setup has magic_quotes_gpc turned ON.', AEC_NAME)
+				, __('Learn about the undesired results it produces and how to disable this setting', AEC_NAME)
+				, __('in this forum thread', AEC_NAME)));
+			}
 
 			// register scripts
 			wp_register_script('fullcalendar', AEC_URL . 'js/jquery.fullcalendar.min.js', array('jquery'), '1.5.3', true);
-			wp_register_script('simplemodal', AEC_URL . 'js/jquery.simplemodal.1.4.2.min.js', array('jquery'), '1.4.2', true);
+			wp_register_script('simplemodal', AEC_URL . 'js/jquery.simplemodal.1.4.3.min.js', array('jquery'), '1.4.3', true);
 			wp_register_script('jquery-ui-datepicker', AEC_URL . 'js/jquery.ui.datepicker.min.js', array('jquery-ui-core'), '1.8.5', true);
 			wp_register_script('datepicker-locale', AEC_URL . 'js/i18n/jquery.ui.datepicker-' . substr(get_locale(), 0, 2) . '.js', array('jquery-ui-datepicker'), '1.8.5', true);
 			wp_register_script('timepicker', AEC_URL . 'js/jquery.timePicker.min.js', array('jquery'), '5195', true);
@@ -535,8 +571,8 @@ if (!class_exists('ajax_event_calendar')) {
 		function frontend_calendar_variables() {
 			return array_merge($this->localized_variables(),
 					array(
-						'ajaxurl'  	=> admin_url('admin-ajax.php'),		// required for non-admin ajax pages
-						'editable'	=> false
+						'ajaxurl'               => admin_url('admin-ajax.php', is_ssl() ? 'https' : 'http'),
+						'editable'				=> false
 					)
 			);
 		}
@@ -594,20 +630,17 @@ if (!class_exists('ajax_event_calendar')) {
 			if (is_admin()) {
 				return;
 			}
-			// disabled: until I can conditionally load these scripts in text widgets with shortcodes
-			// if ($this->has_shortcode('calendar') || $this->has_shortcode('eventlist')) {
-				wp_enqueue_script('jquery');
-				wp_enqueue_script('fullcalendar');
-				wp_enqueue_script('simplemodal');
-				wp_enqueue_script('mousewheel');
-				wp_enqueue_script('growl');
-				wp_enqueue_script('jquery-ui-datepicker');
-				if (AEC_LOCALE != 'en') {
-					wp_enqueue_script('datepicker-locale');	// if not in English, load localization
-				}
-				wp_enqueue_script('init_show_calendar');
-				wp_localize_script('init_show_calendar', 'custom', $this->frontend_calendar_variables());
-			// }
+			wp_enqueue_script('jquery');
+			wp_enqueue_script('fullcalendar');
+			wp_enqueue_script('simplemodal');
+			wp_enqueue_script('mousewheel');
+			wp_enqueue_script('growl');
+			wp_enqueue_script('jquery-ui-datepicker');
+			if (AEC_LOCALE != 'en') {
+				wp_enqueue_script('datepicker-locale');	// if not in English, load localization
+			}
+			wp_enqueue_script('init_show_calendar');
+			wp_localize_script('init_show_calendar', 'custom', $this->frontend_calendar_variables());
 		}
 
 		function admin_social_scripts() {
@@ -751,7 +784,6 @@ if (!class_exists('ajax_event_calendar')) {
 			// shortcode input validation
 			$categories	 	= (isset($categories)) ? $this->cleanse_shortcode_input($categories) : false;
 			$excluded		= ($categories && isset($excluded)) ? $excluded : false;
-			//$limit 			= (!intval($limit)) ? 4 : intval($limit);
 			$limit 			= ($limit == "none") ? false : intval($limit);
 			$whitelabel 	= ($whitelabel == "true") ? true : false;
 			$start			= date('Y-m-d', strtotime($start));
@@ -1418,20 +1450,6 @@ if (!class_exists('ajax_event_calendar')) {
 			$this->render_json($this->return_result($result));
 		}
 
-		/* TODO: waiting for improved WordPress core delete_user hook
-			if (!isset($_POST['user_id']) || !isset($_POST['reassigned']))
-				return;
-
-			global $wpdb;
-			$result = $wpdb->update($wpdb->prefix . AEC_EVENT_TABLE,
-									array('user_id' => $_POST['reassigned']),
-									array('user_id' => $_POST['user_id']),
-									array('%d'),
-									array('%d')
-								);
-			return $this->return_result($result);
-		*/
-
 		function db_delete_events_by_user($id) {
 			global $wpdb;
 			$result = $wpdb->query($wpdb->prepare('DELETE FROM ' . $wpdb->prefix . AEC_EVENT_TABLE . ' WHERE user_id = %d;', $id));
@@ -1729,20 +1747,6 @@ if (!class_exists('ajax_event_calendar')) {
 		function array_compare_order($a, $b) {
 			return strtotime($a['start']) - strtotime($b['start']);
 		}
-
-		/* TODO: activate when able to conditionally load scripts in active text widgets with shortcodes
-		function has_shortcode($shortcode = '') {
-			$post_to_check = get_post(get_the_ID());
-			$found = false;
-			if (!$shortcode) {
-				return $found;
-			}
-			if (stripos($post_to_check->post_content, '[' . $shortcode) !== false) {
-				$found = true;
-			}
-			return $found;
-		}
-		*/
 
 		// CUSTOMIZE WORDPRESS
 		// adds column field label to WordPress users page

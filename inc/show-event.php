@@ -32,7 +32,7 @@
 		}
 	}
 
-	$out = "<p class='times'>{$event->start_date} {$event->start_time} {$divider} {$event->end_date} {$event->end_time}</p>\n";
+	$out = "<div class='times'>{$event->start_date} {$event->start_time} {$divider} {$event->end_date} {$event->end_time}</div>\n";
 
 	$categories = $this->db_query_categories();
 	foreach($categories as $category) {
@@ -41,8 +41,8 @@
 			break;
 		}
 	}
-	$out .= "<p class='category'>$cat</p>\n";
-	$out .= "<p class='round5 duration'></p>\n";
+	$out .= "<div class='category'>$cat</div>\n";
+	$out .= "<div class='round5 duration'></div>\n";
 
 	if (!empty($event->description)) {
 		// maintain lines breaks entered in textarea
@@ -52,7 +52,7 @@
 		if ($aec_options['make_links']) {
 			$description = make_clickable($description);
 		}
-		$out .= "<p class='description'>{$description}</p>\n";
+		$out .= "<div class='description'>{$description}</div>\n";
 	}
 
 	if (!empty($event->venue) || 
@@ -70,14 +70,14 @@
 				$comma 	= '';
 			}
 
-			$csz 		= ($aec_options['addy_format']) ? "{$zip} {$city}" : "{$city} {$state}{$comma}{$zip}";
+			$csz 		= ($aec_options['addy_format']) ? "{$zip} {$city}" : "{$city}{$comma} {$state} {$zip}";
 
 		// google map link
 		if ($aec_options['show_map_link']) {
 			$out .= "<a href='http://maps.google.com/?q=" . urlencode($event->address . " " . $csz . " " . $event->country) . "' class='round5 maplink cat{$event->category_id}'>" . __('View Map', AEC_NAME) . "</a>\n";
 		}
 
-		$out .= "<p class='round5 location'>\n";
+		$out .= "<div class='round5 location'>\n";
 
 		if (!empty($event->venue)) {
 			$out .= "<span>{$event->venue}</span>\n";
@@ -96,11 +96,11 @@
 		if ($event->access) {
 			$out .= "<span>" . __('This event is accessible to people with disabilities.', AEC_NAME) . "</span>\n";
 		}
-		$out .= "</p>\n";
+		$out .= "</div>\n";
 	}
 
 	$adjust = 2;
-	$out .= "<p class='contact'>\n";
+	$out .= "<div class='contact'>\n";
 	if ($event->rsvp) {
 		$out .= "<label>" . __('Please register with the contact person for this event.' , AEC_NAME) . "</label>\n";
 		$adjust -= 1;
@@ -115,18 +115,18 @@
 		$out .= "{$contact_info}\n";
 		$adjust -= 1;
 	}
-	$out .= "</p>\n";
+	$out .= "</div>\n";
 	
 	$org = get_userdata($event->user_id);
 	if (!empty($org->organization)) {
 		$organization = stripslashes($org->organization);
-		$out .= '<p class="presented">' . __('Presented by', AEC_NAME) . ' ';
+		$out .= '<div class="presented">' . __('Presented by', AEC_NAME) . ' ';
 		if (!empty($org->user_url)) {
 			$out .= "<a href='{$org->user_url}' target='_blank'>{$organization}</a>";
 		}else{
 			$out .= $organization;
 		}
-		$out .= "</p>\n";
+		$out .= "</div>\n";
 		$adjust -= 1;
 	}
 	

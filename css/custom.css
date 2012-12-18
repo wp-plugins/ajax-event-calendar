@@ -7,6 +7,9 @@
 #aec-calendar table{margin:0 !important}
 #aec-container{position:relative;float:none}
 
+/* fix branding zindex/modal overlay */
+#branding {z-index: inherit}
+
 .fc-event-disabled{opacity:0.3;cursor:not-allowed !important}
 .em-icon{background:url(images/em-icon-32.png) no-repeat}
 

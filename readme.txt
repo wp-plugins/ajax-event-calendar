@@ -101,8 +101,16 @@ These fine plugins were instrumental in the creation of this plugin:
 
 == Changelog ==
 
+= 1.0.4 =
+* [#427](http://code.google.com/p/wp-aec/issues/detail?id=427): fixed unable to create new events with latest version of wp
+* [#307](http://code.google.com/p/wp-aec/issues/detail?id=307): fixed events not showing when backend is running SSL
+* [#318](http://code.google.com/p/wp-aec/issues/detail?id=318): fixed Paypal issue with IE9 when using additional text fields
+* [#186](http://code.google.com/p/wp-aec/issues/detail?id=186): fixed Event Detail Info Popup Window hides behind WP header image & menu
+* [#280](http://code.google.com/p/wp-aec/issues/detail?id=280): fixed Event Address Display
+
 = 1.0.3 =
 * [#366](http://code.google.com/p/wp-aec/issues/detail?id=366): fixed fullcalendar javascript error
+* [#299](http://code.google.com/p/wp-aec/issues/detail?id=299): fixed Missing May shortcut for translation
 
 = 1.0.2 =
 * [#264](http://code.google.com/p/wp-aec/issues/detail?id=264): fixed critical IE button locking issue
