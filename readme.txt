@@ -6,7 +6,7 @@ Requires at least: 3.1
 Tested up to: 3.5
 Stable tag: 1.0.4
 
-An easy-to-use community calendar and event list that allows authorized users to visual manage events into custom categories.
+An easy-to-use community calendar and event list that allows authorized users to visually manage events into custom categories.
 
 == Description ==
 
