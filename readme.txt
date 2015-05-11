@@ -1,6 +1,6 @@
-=== Ajax Event Calendar ===
+=== Event Calendar ===
 Contributors: eranmiller
-Tags: calendar, event calendar, event list, move events, resize events, copy events, recurring events, repeating events, content marketing, coschedule
+Tags: calendar, event calendar, event list, move events, resize events, copy events, recurring events, repeating events, content marketing, coschedule, ajax, schedule
 Requires at least: 3.1
 Tested up to: 3.5
 Stable tag: 1.0.4
