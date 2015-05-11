@@ -1,7 +1,6 @@
 === Ajax Event Calendar ===
 Contributors: eranmiller
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NCDKRE46K2NBA
-Tags: calendar, event calendar, event list, move events, resize events, copy events, recurring events, repeating events
+Tags: calendar, event calendar, event list, move events, resize events, copy events, recurring events, repeating events, content marketing, coschedule
 Requires at least: 3.1
 Tested up to: 3.5
 Stable tag: 1.0.4
@@ -9,6 +8,8 @@ Stable tag: 1.0.4
 An easy-to-use community calendar and event list that allows authorized users to visually manage events into custom categories.
 
 == Description ==
+
+**[Click here to get the Ultimate WP Plugin](http://bit.ly/1zqOXPs)**
 
 An easy-to-use visual community calendar that allows authorized users to add, edit, move, copy, resize, delete and filter events into customizable categories - supports daily, weekly, monthly and yearly repeating events.  Calendars can be added to your site by typing "[calendar]" shortcode in the body of a page, a post or a text widget.  Event lists are similarly added via the "[eventlist]" shortcode.  Both shortcodes are highly customizable with numerous [display options](http://code.google.com/p/wp-aec/wiki/ShortcodeOptions).
 
@@ -22,7 +23,6 @@ NOTE: The plugin supports multiple eventlist instances per page, but only one ca
 * [Read about shortcode display options](http://code.google.com/p/wp-aec/wiki/ShortcodeOptions)
 * [Find answers to Frequently Asked Questions](http://code.google.com/p/wp-aec/wiki/FrequentlyAskedQuestions)
 * [Ask for help from fellow users on the WordPress forums](http://wordpress.org/tags/ajax-event-calendar?forum_id=10)
-* [Submit issues and feature requests to the Author using the Issue Tracker](http://code.google.com/p/wp-aec/issues/list?can=1)
 
 =  Features =
 * Display events in Day, Week, and Month views
