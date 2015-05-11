@@ -1,6 +1,6 @@
 === Event Calendar ===
 Contributors: eranmiller
-Tags: calendar, event calendar, event list, move events, resize events, copy events, recurring events, repeating events, content marketing, coschedule, ajax, schedule
+Tags: schedule, calendar, events, content schedule, event list, recurring events, content marketing, ajax, planner, organization, ajax
 Requires at least: 3.1
 Tested up to: 4.2
 Stable tag: 1.0.4
@@ -9,7 +9,7 @@ An easy-to-use community calendar and event list that allows authorized users to
 
 == Description ==
 
-**[Click here to get the Ultimate WP Plugin](http://bit.ly/1zqOXPs)**
+[**Click here to get the Ultimate WP Plugin**](http://bit.ly/1zqOXPs)
 
 An easy-to-use visual community calendar that allows authorized users to add, edit, move, copy, resize, delete and filter events into customizable categories - supports daily, weekly, monthly and yearly repeating events.  Calendars can be added to your site by typing "[calendar]" shortcode in the body of a page, a post or a text widget.  Event lists are similarly added via the "[eventlist]" shortcode.  Both shortcodes are highly customizable with numerous [display options](http://code.google.com/p/wp-aec/wiki/ShortcodeOptions).
 
