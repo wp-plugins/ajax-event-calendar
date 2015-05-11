@@ -670,7 +670,7 @@ if (!class_exists('ajax_event_calendar')) {
 			$options = get_option('aec_options');
 			$out  = $this->generate_css();
 			$out .= "<div class='wrap'>\n";
-			$out .= "<a href='". AEC_HOMEPAGE . "' target='_blank'><span class='em-icon icon32'></span></a>\n";
+			$out .= "<a href='https://wordpress.org/plugins/sumome' target='_blank'>Grow your site faster with SumoMe!</a>\n";
 			$out .= $this->render_category_filter($options);
 			$out .= "<h2>" . __('Ajax Event Calendar', AEC_NAME) . "</h2>\n";
 			$out .= "<div id='aec-calendar'></div>\n";
@@ -768,6 +768,8 @@ if (!class_exists('ajax_event_calendar')) {
 			$out .= "<div id='aec-calendar'></div>\n";
 			$out .= $this->render_aec_version();
 			$out .= "</div>\n";
+			$out .= "<a target='_blank' href='http://sumome.com/?src=wp_cal'>Powered by SumoMe</a>\n";
+			
 			return $out;
 		}
 
