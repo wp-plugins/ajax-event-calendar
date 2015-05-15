@@ -1143,15 +1143,9 @@ if (!class_exists('ajax_event_calendar')) {
 			$help = $this->add_wrap(__('Read about installation and options', AEC_NAME), "<p><a href='" . AEC_HOMEPAGE . "installation/' target='_blank'>", "</a>.</p>");
 			$help .= $this->add_wrap(__('Review the FAQ', AEC_NAME), "<p><a href='" . AEC_HOMEPAGE . "faq/' target='_blank'>", "</a>.</p>");
 			$help .= $this->add_wrap(__('Ask for help in the WordPress forum', AEC_NAME), "<p><a href='http://wordpress.org/tags/ajax-event-calendar' target='_blank'>", "</a>.</p>");
-			$help .= $this->add_wrap(__('Use the issue tracker', AEC_NAME), "<p><a href='http://code.google.com/p/wp-aec/issues/list' target='_blank'>", "</a> ");
-			$help .= $this->add_wrap(__('to track and report bugs, feature requests, and to submit', AEC_NAME), "", "");
-			$help .= $this->add_wrap(__('poEdit', AEC_NAME), " (<a href='http://weblogtoolscollection.com/archives/2007/08/27/localizing-a-wordpress-plugin-using-poedit/' target='_blank'>", "</a>)");
-			$help .= $this->add_wrap(__('translation files', AEC_NAME), "", ".</p>");
-
-			$like  = $this->add_wrap(__('Give the plugin a good rating', AEC_NAME), "<p><a href='" . AEC_HOMEPAGE . "' target='_blank'>", "</a>.</p>");
-			$like .= $this->add_wrap(__('Make a donation in recognition of countless hours spent making this plugin', AEC_NAME), "<p>", "</p>");
-			$like .= $this->add_wrap("<form style='text-align:center' action='https://www.paypal.com/cgi-bin/webscr' method='post'><input type='hidden' name='cmd' value='_s-xclick' /><input type='hidden' name='hosted_button_id' value='NCDKRE46K2NBA' /><input type='image' src='https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif' name='submit' alt='PayPal - The safer, easier way to pay online!' /><img alt='' border='0' src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1' /></form>", "<p>", "</p>");
-
+			
+			$like  = $this->add_wrap(__('Check out our other plugin, SumoMe. Tools to grow your website!', AEC_NAME), "<p><a href='https://wordpress.org/plugins/sumome' target='_blank'>", "</a>.</p>");
+			$like  = $this->add_wrap(__('Give the plugin a good rating', AEC_NAME), "<p><a href='https://wordpress.org/support/view/plugin-reviews/ajax-event-calendar' target='_blank'>", "</a>. It took countless hours to make this plugin.</p>");
 			$social = $this->add_wrap(__('Create a blog review or an instructional video about the Calendar and share it', AEC_NAME), "<p>", ".</p>");
 			$social .= $this->add_wrap("<a href='http://twitter.com/share' class='twitter-share-button' data-url='" . AEC_HOMEPAGE . "' data-count='horizontal' data-via='Ajax Event Calendar WordPress Plugin'>Tweet</a>", "<p>", "</p>");
 			$social .= $this->add_wrap("<fb:like href='" . AEC_HOMEPAGE . "'; layout='standard' show_faces='true' width='150' font='arial'></fb:like>", "<p>", "</p>");
