@@ -1145,7 +1145,7 @@ if (!class_exists('ajax_event_calendar')) {
 			$help .= $this->add_wrap(__('Ask for help in the WordPress forum', AEC_NAME), "<p><a href='http://wordpress.org/tags/ajax-event-calendar' target='_blank'>", "</a>.</p>");
 			
 			$like  = $this->add_wrap(__('Check out our other plugin, SumoMe. Tools to grow your website!', AEC_NAME), "<p><a href='https://wordpress.org/plugins/sumome' target='_blank'>", "</a>.</p>");
-			$like  = $this->add_wrap(__('Give the plugin a good rating', AEC_NAME), "<p><a href='https://wordpress.org/support/view/plugin-reviews/ajax-event-calendar' target='_blank'>", "</a>. It took countless hours to make this plugin.</p>");
+			$like  .= $this->add_wrap(__('Give the plugin a good rating', AEC_NAME), "<p><a href='https://wordpress.org/support/view/plugin-reviews/ajax-event-calendar' target='_blank'>", "</a>. It took countless hours to make this plugin.</p>");
 			$social = $this->add_wrap(__('Create a blog review or an instructional video about the Calendar and share it', AEC_NAME), "<p>", ".</p>");
 			$social .= $this->add_wrap("<a href='http://twitter.com/share' class='twitter-share-button' data-url='" . AEC_HOMEPAGE . "' data-count='horizontal' data-via='Ajax Event Calendar WordPress Plugin'>Tweet</a>", "<p>", "</p>");
 			$social .= $this->add_wrap("<fb:like href='" . AEC_HOMEPAGE . "'; layout='standard' show_faces='true' width='150' font='arial'></fb:like>", "<p>", "</p>");
