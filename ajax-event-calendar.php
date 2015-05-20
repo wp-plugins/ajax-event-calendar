@@ -768,7 +768,6 @@ if (!class_exists('ajax_event_calendar')) {
 			$out .= "<div id='aec-calendar'></div>\n";
 			$out .= $this->render_aec_version();
 			$out .= "</div>\n";
-			$out .= "<a target='_blank' rel='nofollow' href='http://sumome.com/?src=wp_cal'>Powered by SumoMe</a>\n";
 			
 			return $out;
 		}
